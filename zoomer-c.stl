@@ -1,0 +1,64 @@
+                                         $ ZOOMER.STL
+
+$ Keys recognized at mouse input
+$ z  -- select zooming region.  mark opposite corners with z and
+$         confirm with a final z
+$ g  -- toggle grid on and off
+$ S  -- save graph to file.  Use clover-S on Mac.
+$ RETURN  -- Enter text at the current point.  Terminate with a final
+$          RETURN
+$ BLANK or mouse click -- mark point on screen and write coordinates
+$         to the Execution window
+print_polar_coords := false;
+
+zoomer := func();
+    local x,y,c, x2,y2, linestate, grid_on, angl_compute;
+    grid_on := false;
+     angl_compute := func(x,y);
+          if x**2 + y**2 = 0 then return 0;
+          elseif y >= 0 then return acos(x/sqrt(x**2 + y**2));
+          else return 2*Pi - acos(x/sqrt(x**2 + y**2));
+          end;
+     end;
+
+    while true do
+        [x,y,c] := get_coord();
+        if c='z' then
+            [x2,y2,c] := get_coord();
+            if c='z' then
+                [x,x2,y,y2] := [min(x,x2), max(x,x2), min(y,y2), max(y,y2)];
+                linestate := thickline(false);
+                if grid_on then erasable(); grid_on := false; end if;
+                erasable(true); rectangle(x,x2,y,y2); erasable(false);
+                thickline(linestate);
+								[~,~,c] := get_coord();
+                erasable();
+                if c='z' then return [x,x2,y,y2]; end if;
+            end if;
+        elseif c=' ' or c='' then
+            point(x,y,0);
+            if print_polar_coords then
+                  print [sqrt(x**2 + y**2),angl_compute(x,y)];
+            else
+                 print [x,y];
+            end;
+        elseif c='g' then
+            if grid_on then erasable();
+            else erasable(true); grid(); erasable(false);
+            end if;
+            grid_on := not grid_on;
+        elseif c='S' then
+            save_graph('');
+        elseif c='\n' then
+            move(x,y);
+            [~,~,c] := get_coord();
+            while c /= '\n' do
+                textout(c);
+                [~,~,c] := get_coord();
+            end while;
+        else if grid_on then erasable(); end if; return c;
+        end;
+    end while;
+end func;
+
+        

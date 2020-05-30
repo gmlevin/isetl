@@ -1,0 +1,21 @@
+$ Created by Don Muench, 90/10/25
+$ Takes a graphfile and returns a tuple containing
+$ the low and high x values and the low and high y values.
+$
+        range := func(graphfile);
+          local x, r;
+          if is_string(graphfile) then
+            grfile:=openr(graphfile);
+            x:=om;
+            while x/= "(" do
+              readf x:-1 from grfile;
+            end while;
+            r:=[];
+            for i in [1..4] do
+              readf x from grfile;
+              r(i):=x;
+            end for;
+          end if;
+          return r;
+        end func;
+

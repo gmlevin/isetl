@@ -1,0 +1,98 @@
+                                    $   axis.stl
+
+axes := func(xlow,xhigh,ylow,yhigh);
+       local xcross,ycross, linestate, charsize, xgrid,ygrid;
+       charsize := char_mult(0.8);
+       linestate := thickline(false);
+
+       xcross := if ylow<=0 and 0<=yhigh-0.1*(yhigh-ylow) then 0 else ylow end;
+       ycross := if xlow<=0 and 0<=xhigh-0.1*(xhigh-xlow) then 0 else xlow end;
+       xgrid := xaxis(xlow,xhigh, (yhigh-ylow)/50, (xhigh-xlow)/10,2, xcross,ycross,ylow,yhigh);
+       ygrid := yaxis(ylow,yhigh, (xhigh-xlow)/50, (yhigh-ylow)/10,2, ycross,xcross,xlow,xhigh);
+
+        grid := func(); local linestate;
+                    linestate := thickline(false);
+                    xgrid(); ygrid(); 
+                    thickline(linestate);
+                  end func;
+
+       char_mult(charsize);
+       thickline(linestate);
+end func;
+
+xaxis := func(low,high,ticksize,tickstep,tickskip,center, suppress,XLOW,XHIGH);
+     local i,ticks;
+     center := center ? 0;
+
+     [high,low] := [high+twiddle, low-twiddle]
+                         where twiddle := (high-low)*0.1 end;
+
+	   move(low,center);
+	   draw(high,center);
+	   i := min(high,max(0,low)); ticks := 0;
+	   while i > low do i := i-tickstep; ticks := ticks-1; end;
+	   i := i+tickstep; ticks := ticks+1;
+	   while i < high do
+	     move(i,-ticksize/2 + center);
+	     draw(i,ticksize/2  + center);
+	     if ticks mod tickskip = 0 
+                and abs(i-suppress) >= 1.0e-9
+             then
+		textout(i,ticksize + center, as_string(i));
+	     end;
+	     i := i+tickstep;
+	     ticks := ticks+1;
+	   end;
+    return func(); local i;
+	       i := min(high,max(0,low));
+	       while i > low do i := i-tickstep;  end;
+	       i := i+tickstep;
+	       while i < high do
+	          if abs(i-suppress) >= 1.0e-9 then 
+                move(i,XLOW);
+	              draw(i,XHIGH);
+            end if;
+	          i := i+tickstep;
+	       end;
+    end func;
+end func;
+
+
+yaxis := func(low,high,ticksize,tickstep,tickskip,center, suppress,XLOW,XHIGH);
+           local i,ticks;
+           center := center ? 0;
+
+           [high,low] := [high+twiddle, low-twiddle]
+                         where twiddle := (high-low)*0.1 end;
+           
+	   move(center,low);
+	   draw(center,high);
+	   i := min(high,max(0,low)); ticks := 0;
+	   while i > low do  i := i-tickstep; ticks := ticks-1; end;
+	   i := i+tickstep; ticks := ticks+1;
+	   while i < high do
+	     move(-ticksize/2 + center,i);
+	     draw(ticksize/2 + center,i);
+	     if ticks mod tickskip = 0 
+                and abs(i-suppress) >= 1.0e-9
+             then
+		textout(ticksize + center, i, as_string(i));
+	     end;
+	     i := i+tickstep;
+	     ticks := ticks+1;
+	   end;
+    return func(); local i;
+	       i := min(high,max(0,low));
+	       while i > low do i := i-tickstep;  end;
+	       i := i+tickstep;
+	       while i < high do
+	          if abs(i-suppress) >= 1.0e-9 then 
+	               move(XHIGH,i);
+	               draw(XLOW,i);
+             end if;
+	           i := i+tickstep;
+	      end;
+    end func;
+end func;
+
+

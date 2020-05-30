@@ -1,0 +1,2 @@
+IPtr PrintCopy(PTR);
+

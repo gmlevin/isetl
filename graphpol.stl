@@ -1,0 +1,23 @@
+$ Subject: graphpol.stl
+$ To: cci.com!sjfc!dlm@cci632 (Don Muench)
+$ Date: Thu, 1 Aug 91 16:27:18 EDT
+
+                                  $ graphpol.stl
+
+proc(f,a,b);
+    
+    print_polar_coords := true;
+
+    fx := func(x);
+        if is_defined(f(x)) then return f(x)*cos(x); end;
+    end;
+
+    fy := func(x);
+        if is_defined(f(x)) then return f(x)*sin(x); end;
+    end;
+
+    graphpar([fx,fy],a,b);
+
+    print_polar_coords := false;
+   
+end;

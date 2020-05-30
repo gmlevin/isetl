@@ -1,0 +1,32 @@
+
+        table3 := func(f,g,h,a,b,n);
+            local P,x;
+            if is_func(f)  and  is_func(g)  and  is_func(h)  and
+                 is_number(a) and is_number(b) and
+                 is_number(n) and (n>0)  then
+              printf 9*" ","x",14*" ","f(x)",14*" ","g(x)",
+                           14*" ","h(x)","\n","\n";
+              P := [a + ((b-a)*(i-1))/n : i in [1..(n+1)]];
+              for x in P do
+                printf x:13,"   ",f(x):15,"   ",g(x):15,"   ",h(x):15,"\n";
+              end for;
+              return "Printing completed";
+            end if;
+          end func;
+        table2 := func(f,g,a,b,n);
+              printf 10*" ", "x", 20*" ", "f(x)", 19*" ", "g(x)", "\n";
+              P := [a + ((b-a)*(i-1))/n : i in [1..(n+1)]];
+              for x in P do
+                printf x:13, "   ",f(x),"   ",g(x),"\n";
+              end for;
+              return "Printing completed";
+           end func;
+        table1 := func(f,a,b,n);
+              printf 10*" ", "x", 20*" ", "f(x)", "\n";
+              P := [a + ((b-a)*(i-1))/n : i in [1..(n+1)]];
+              for x in P do
+                printf x:13, "   ",f(x),"\n";
+              end for;
+              return "Printing completed";
+           end func;
+

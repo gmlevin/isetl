@@ -1,0 +1,275 @@
+$ Modified by Don Muench, 90/10/31
+$ See help procedure below "PLOTTING INFO" for directions.
+!include zoomer.stl
+!include axis.stl
+!include range.stl
+!include grtofunc.stl
+
+!memory 400000
+MinPoints := 80;
+Connect := false;      $ Connect points in graph?
+Label := false;        $ Label points with coordinates?
+writeln 'For plotting information, type " help(); "';
+help := proc();
+ writeln;
+ writeln '*****************  PLOTTING INFORMATION  *******************';
+ writeln 'To label points with coordinates, set Label to true.';
+ writeln 'Plot syntax:';
+ writeln 'plot(Fs  opt xlow,xhigh,ylow,yhigh);';
+ writeln '    where Fs is a single func (or map)';
+ writeln '    or a tuple of funcs or maps.';
+ writeln '    or the name of a graph-file (a string).';
+ writeln 'z - zoom, 1st marks a corner, 2nd marks diagonally opp corner,';
+ writeln '    draws box, 3rd performs the zoom.';
+ writeln 'n - draws next graph.';
+ writeln 'c - connects the dots.';
+ writeln 'd - disconnects the dots.';
+ writeln 'x - halves x-axis, y - halves y-axis, b - halves both.';
+ writeln 'X - doubles x-axis, Y - doubles y-axis, B - doubles both.';
+ writeln 'a - autoscale...adjusts y-axis to fit.';
+ writeln 'ctrl-G - toggles between ISETL and graph display.';
+ writeln 'p - plots and labels point where cursor is located.';
+ writeln '    The set plotmap contains the coordinates of those labeled pts.';
+ writeln 'm - automatically scans points in a graph-file and';
+ writeln '    puts them into the map, plotmap.';
+ writeln 's - saves graph in a file.';
+ writeln 'q - quits graphics, returns to ISETL prompt.';
+ writeln;
+end proc;  $ help
+
+XLow     :=  -10;      $ default xbounds
+XHigh    :=   10;
+YLow     :=   OM;      $ use function to scale if undefined
+YHigh    :=   OM;
+
+plot := proc(Fs  opt xlow,xhigh, ylow,yhigh);
+    $ plots points between xlow and xhigh
+    $ if Fs is a func
+    $ or a map, or is a tuple of funcs or maps,
+    $ or is a graph-file.
+    $ Also creates "plotmap", the map representaion of the plotted points.
+
+    local fillin, MinX, MinY,points,Point, broken, result;
+    local activeFs, f, fcount, PointSize, InitFs;
+    local update_display, add_func;
+    $ MinX -- smallest visible delta for X
+    $ MinY -- smallest visible delta for Y
+    xlow  := xlow  ? XLow;
+    xhigh := xhigh ? XHigh;
+    ylow  := ylow  ? YLow;
+    yhigh := yhigh ? YHigh;
+    if is_map(Fs) then
+      xlow:=%min(domain(Fs));  xhigh:=%max(domain(Fs));
+      ylow:=%min(image(Fs));  yhigh:=%max(image(Fs));
+    end if;  $ that Fs is a map
+    plotmap := { };
+    Connect:=false; Label:=false;
+    if is_string(Fs) and Connect=false then  $**** Fs is graph-file
+      graphics(true);
+      r:=range(Fs);
+      xlow:=r(1); xhigh:=r(2); ylow:=r(3); yhigh:=r(4);
+      scale(xlow,xhigh,ylow,yhigh);
+      load_graph(Fs);
+      c:=" ";
+      while c /= 'q' do
+        [x,y,c]:= get_coord();
+        if c='p' then
+          move(x,y); draw(x,y);
+          [xp,yp]:=[fix(x*1000)/1000, fix(y*1000)/1000];
+          plotmap := plotmap with [xp,yp];
+        end if;
+        if c = 'm' then
+          plotmap := {};
+          prev := " ";
+          grfile := openr(Fs);
+          x := " ";
+          while x /= ";" do
+            readf x:-1 from grfile;
+          end while;
+          while not eof(grfile) do
+            readf x:-1 from grfile;
+            if x='1' and prev='\n' then
+              readf y,z from grfile;
+              plotmap := plotmap + {[y,z]};
+            end if;
+            prev := x;
+          end while;
+        end if;
+        close(grfile);
+      end while;
+   $      return plotmap;
+      graphics(false);
+    else   $ Fs is not a graph-file
+      if not is_tuple(Fs) then       $**** Fs is tuple of funcs or maps.
+        Fs := [Fs];
+      end if;
+      activeFs := [];
+      InitFs := Fs;
+
+      Point := func(x,y);
+               if broken then
+                 move(x,y);
+               else
+                 draw(x,y);
+               end if;
+               point(x,y,PointSize);
+               if Label=true then
+                 textout(x,y," ("+as_string(x)+','+as_string(y)+")");
+               end if;
+              $ if Connect = false then
+                 [xp,yp]:=[fix(x*1000)/1000,fix(y*1000)/1000];
+                 plotmap := plotmap with [xp,yp] ;
+               $end if;
+               broken := not Connect;
+      end func;  $ Point
+
+      fillin := func(f, xlow,xhigh,flow,fhigh);
+        local xmid, fmid;
+        if  xhigh-xlow<=MinX  then
+            if flow /= om then
+              Point(xlow,flow);
+            else broken := true;
+            end if;
+        else
+            xmid := (xlow+xhigh)/2;
+            fmid := f(xmid);
+            if flow=om or fhigh=om  or fmid=om then
+                 fillin(f,xlow,xmid,flow,fmid);
+                 fillin(f,xmid,xhigh,fmid,fhigh);
+            elseif abs(fmid-(flow+fhigh)/2) <=MinY then
+                Point(xlow,flow);
+                Point(xmid,fmid);
+            else
+                 fillin(f,xlow,xmid,flow,fmid);
+                 fillin(f,xmid,xhigh,fmid,fhigh);
+            end if;
+         end if;
+      end func;   $ fillin
+
+      maplot := proc(map);
+            local pt;
+            for pt in map do
+              move(pt(1),pt(2));
+              draw(pt(1),pt(2));
+$              if Label = true then
+                textout(pt(1),pt(2),
+                     " ("+as_string(pt(1))+','+as_string(pt(2))+')');
+ $             end if;
+              plotmap:=map;
+           end for;
+      end proc;   $ maplot
+
+      update_display := proc();
+        local points, numFs;
+
+        clear_screen();
+        points := [];
+        for [f,~] in activeFs do
+          points := points + [ [x,f(x)] where x:=xlow+i*delta end :
+                i in [0..MinPoints] ] where delta := (xhigh-xlow)/MinPoints
+                                      end;
+          end for;
+        ylow  := ylow  ? %min[ p(2) : p in points | p(2)/=om];
+        yhigh := yhigh ? %max[ p(2) : p in points | p(2)/=om];
+        if is_map(Fs) then
+          Label := true;
+          xlow := %min(domain(Fs));  xhigh := %max(domain(Fs));
+          ylow := %min(image(Fs));  yhigh := %max(image(Fs));
+        end if;
+        $ Print out the range****
+        textout(xlow,yhigh-Ytwiddle,"Range ("+as_string(xlow)+
+                           " "+as_string(xhigh)+
+                           " "+as_string(ylow)+" "+as_string(yhigh)+" )")
+                where Ytwiddle := (yhigh-ylow)/20; end;
+        if is_func(f) then
+          scale(xlow-Xtwiddle,xhigh+Xtwiddle, ylow-Ytwiddle,yhigh+Ytwiddle)
+          where Xtwiddle := (xhigh-xlow)/20; Ytwiddle := (yhigh-ylow)/20; end;
+          axes(xlow-Xtwiddle,xhigh+Xtwiddle,ylow-Ytwiddle,yhigh+Ytwiddle)
+          where Xtwiddle := (xhigh-xlow)/20; Ytwiddle := (yhigh-ylow)/20;end;
+        elseif is_map(f) then scale(xlow,xhigh,ylow,yhigh);
+        end if;
+        move(xlow,ylow-Ytwiddle) where Ytwiddle:=(yhigh-ylow)/20;end;
+        char_mult(1); $ Keep characters small.
+        numFs := #InitFs;
+        for f=InitFs(i) do
+          move(xlow,ylow+(numFs-i-1)*Ytwiddle)
+                where Ytwiddle:=(yhigh-ylow)/20;end;
+          textout(as_string(i)+' '+as_string(f)+ '   ');
+        end;
+        char_mult(1);  $ Keep subsequent characters small.
+        [MinX,MinY] := resolution();
+        for [f,i] in activeFs do  add_func(f,i); end;
+      end proc;  $ update_display
+
+      add_func := func(f,kind);
+        local points;
+        broken := true;
+        thickline(even(kind)); PointSize := kind div 2 ;
+        if is_func(f) then
+          points := [ [x,f(x)] where x:=xlow+i*delta end :
+               i in [0..MinPoints] ] where delta := (xhigh-xlow)/MinPoints
+                                     end;
+          for i in [1..MinPoints] do
+            fillin(f,points(i)(1),points(i+1)(1),points(i)(2),points(i+1)(2));
+          end;
+        elseif is_map(f) then
+          oldxlow := xlow;
+          oldylow := ylow;
+          xlow:=xlow-0.1*(xhigh-xlow);
+          xhigh:=xhigh+0.1*(xhigh-oldxlow);
+          ylow := ylow-0.1*(yhigh-ylow);
+          yhigh:= yhigh+0.1*(yhigh-oldylow);
+          scale(xlow,xhigh,ylow,yhigh);
+          axes(xlow,xhigh,ylow,yhigh);
+          maplot(f);
+        end if;
+      end func;  $ add_func
+
+    fcount := 1;
+    take f fromb Fs;  activeFs := activeFs with [f,fcount];
+    graphics(true);
+    while result /= 'q' do
+      if result='n'  and Fs /= []
+        then take f fromb Fs;  fcount := fcount+1;
+               activeFs := activeFs with [f,fcount]; add_func(f,fcount);
+      else update_display();
+      end if;
+      result := zoomer();
+      if     result='q' then [xlow,xhigh,ylow,yhigh] := [0,0,0,0]; $ quit
+      elseif result='c' then Connect:=true;  $ Connect the dots
+      elseif result='d' then Connect:=false; $ Disconnect the dots
+      elseif result='a' then [ylow,yhigh] := [om,om]; $ Autoscale
+      elseif result='X' then [xlow,xhigh] :=       $ Double x-axis
+                        [xlow-delta,xhigh+delta]
+                        where delta := (xhigh-xlow)/2;
+                        end;
+      elseif result='Y' then [ylow,yhigh] :=        $ Double y-axis
+                        [ylow-delta,yhigh+delta]
+                        where delta := (yhigh-ylow)/2;
+                        end;
+      elseif result='B' then [xlow,xhigh,ylow,yhigh] :=    $Double both axes
+                        [xlow-xdelta,xhigh+xdelta, ylow-ydelta, yhigh+ydelta]
+                        where xdelta := (xhigh-xlow)/2;
+                              ydelta := (yhigh-ylow)/2;
+                        end;
+      elseif result='x' then [xlow,xhigh] :=        $Halve the x-axis
+                        [xlow+delta/2, xhigh-delta/2]
+                        where delta := (xhigh-xlow)/2;
+                        end;
+      elseif result='y' then [ylow,yhigh] :=     $ Halve the y-axis
+                        [ylow+delta/2,yhigh-delta/2]
+                        where delta:=(yhigh-ylow)/2;
+                        end;
+      elseif result='b' then [xlow,xhigh,ylow,yhigh] :=   $ Halve both axes
+              [xlow+xdelta/2,xhigh-xdelta/2,ylow+ydelta/2,yhigh-ydelta/2]
+              where xdelta := (xhigh-xlow)/2;
+                    ydelta := (yhigh-ylow)/2;
+              end;
+      elseif is_tuple(result) then [xlow,xhigh,ylow,yhigh] := result;
+      end if;
+    end while;
+    graphics(false);
+$  return plotmap;  $ Returns plotmap if plot is a func instead of a proc
+ end if;
+end proc;  $ plot
+

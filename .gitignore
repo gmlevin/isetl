@@ -1,0 +1,5 @@
+*.o
+*.bgi
+.pure
+TAGS
+isetl

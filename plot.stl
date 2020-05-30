@@ -1,0 +1,195 @@
+                                       $ plot.stl
+
+$ Keys recognized at mouse input, in addition to zoomer keys
+$ n  -- next function is added
+$ q  -- quit plotting
+$ a  -- auto-scale so that all functions currently showing fit on y-axis
+$ X  -- double x-axis
+$ Y  -- double y-axis
+$ Z  -- double both axes
+
+
+proc(Fs opt xlow,xhigh, ylow,yhigh);
+    $ plots points between xlow and xhigh
+
+    local fillin, MinX, MinY,points,Point, broken, result, MinPoints;
+    local activeFs, f, fcount, PointSize, PointStyle, Connect, InitFs;
+    local update_display, add_func;
+    local PointSet, XLow, XHigh, YLow, YHigh, AllAtOnce;
+    
+    Connect  := false;    $ Connect points in graph?
+    PointStyle := 1;      $ if om, uses different style per function
+                          $ otherwise uses PointStyle for all functions
+                          $ not relevant, historical
+    AllAtOnce := true;    $ funcs plotted one at a time or all at once
+
+    MinPoints := 20;
+    
+    XLow     :=  -10;      $ default xbounds
+    XHigh    :=   10;
+    
+    YLow     :=   OM;      $ use function to scale if undefined
+    YHigh    :=   OM;
+
+
+     $ MinX          -- smallest visible delta for X
+     $ MinY          -- smallest visible delta for Y
+    xlow  := xlow  ? XLow;
+    xhigh := xhigh ? XHigh;
+    ylow  := ylow  ? YLow;
+    yhigh := yhigh ? YHigh;
+
+    if not is_tuple(Fs) or forall x in Fs | is_number(x) then
+           Fs := [Fs];
+           AllAtOnce := false;
+    else
+           AllAtOnce := true;
+    end;
+   
+$    if not is_tuple(Fs) then Fs := [Fs]; end;
+    
+     activeFs := [];
+     InitFs := Fs;
+
+    Point := func(x,y);   local LineState;
+                 if AllAtOnce then 
+                      PointSet := PointSet with [x,y];
+                      return;
+                 end if;
+                 if broken then move(x,y); 
+                 else LineState:= thickline(false); 
+                        draw(x,y); 
+                        thickline(LineState);
+                 end if;
+                 point(x,y,PointStyle ? PointSize);
+                 broken := not Connect;
+               end;
+
+    fillin := func(f, xlow,xhigh,flow,fhigh);
+        local xmid, fmid;
+        if  xhigh-xlow<=MinX  then
+            if flow /= om then Point(xlow,flow); 
+            else broken := true;
+            end if;
+        else
+            xmid := (xlow+xhigh)/2;
+            fmid := f(xmid);
+            if flow=om or fhigh=om  or fmid=om then 
+                 fillin(f,xlow,xmid,flow,fmid);
+                 fillin(f,xmid,xhigh,fmid,fhigh);           
+            elseif abs(fmid-(flow+fhigh)/2) <=MinY then
+                Point(xlow,flow);
+                Point(xmid,fmid);
+            else
+                 fillin(f,xlow,xmid,flow,fmid);
+                 fillin(f,xmid,xhigh,fmid,fhigh);
+            end if;
+         end if;
+    end func;
+
+update_display := func();
+    local points;
+
+    clear_screen();
+
+    if AllAtOnce then activeFs := [[f,i] : f=InitFs(i)]; end if;
+    points := [];
+    for [f,~] in activeFs do 
+        if is_func(f) then
+            points := points + [ [x,f(x)] where x:=xlow+i*delta end :
+                                                                i in [0..MinPoints] ] where delta := (xhigh-xlow)/MinPoints
+                                                                end;
+        elseif is_map(f) or is_tuple(f) then 
+                points := points + [ [x,y] : y=f(x)];
+        else writeln 'Bad function to plot.';
+        end if;
+    end for;
+
+    xlow := %min[ p(1) : p in points | p(1)/=om];
+    xhigh := %max[ p(1) : p in points | p(1)/=om];
+
+   if [xlow,xhigh] = [0,0] then [xlow,xhigh] := [-1,1];
+    elseif xlow = xhigh and xlow /= 0 then 
+          [xlow,xhigh] := [-x,x] where x := 1.5*abs(xhigh) end;
+    elseif abs(xlow-xhigh) < 1.0e-4*abs(xhigh) then
+          [xlow,xhigh] := [-x,x] where x := 1.5*abs(xhigh) end;
+    end if;
+         
+    ylow  := ylow  ? %min[ p(2) : p in points | p(2)/=om];
+    yhigh := yhigh ? %max[ p(2) : p in points | p(2)/=om];
+    
+  if [ylow,yhigh] = [0,0] then [ylow,yhigh] := [-1,1];
+    elseif ylow = yhigh and ylow /= 0 then 
+          [ylow,yhigh] := [-y,y] where y := 1.5*abs(yhigh) end;
+    elseif abs(ylow-yhigh) < 1.0e-4*abs(yhigh) then
+          [ylow,yhigh] := [-y,y] where y := 1.5*abs(yhigh) end;
+    end if;
+
+    scale(xlow-Xtwiddle,xhigh+Xtwiddle, ylow-Ytwiddle,yhigh+Ytwiddle)
+        where Xtwiddle := (xhigh-xlow)/20; Ytwiddle := (yhigh-ylow)/20; end;
+    move(xlow,ylow);
+
+    [MinX,MinY] := resolution();
+    axes(xlow,xhigh,ylow,yhigh);
+
+    PointSet := {};
+    for [f,i] in activeFs do add_func(f,i); end;
+    if AllAtOnce then 
+        thickline(false);
+        for [x,y] in PointSet do point(x,y,-1); end for;
+    end if;
+end func;
+
+add_func := func(f,kind);
+    local points;
+    broken := true;
+    PointSize := kind div 2 + 1; 
+    if odd(kind) then PointSize := -PointSize; end if;
+
+if is_func(f) then
+    points := [ [x,f(x)] where x:=xlow+i*delta end :
+                     i in [0..MinPoints] ] where delta := (xhigh-xlow)/MinPoints
+                                                              end;
+
+    for i in [1..MinPoints] do 
+        fillin(f,points(i)(1),points(i+1)(1),points(i)(2),points(i+1)(2));
+    end;
+elseif (is_tuple(f) and forall y in f: is_number(y) )
+    or (is_map(f) and forall y=f(x): is_number(x) and is_number(y)) then
+    for y=f(x) | xlow <= x and x <= xhigh do Point(x,y) end for;
+else writeln('Bad function to plot.');
+end if;
+    
+end;
+
+fcount := 1;
+take f fromb Fs;  activeFs := activeFs with [f,fcount]; 
+graphics(true);
+while result /= 'q' do  
+    if result='n'  and Fs /= [] 
+        then take f fromb Fs;  fcount := fcount+1; 
+               activeFs := activeFs with [f,fcount]; add_func(f,fcount);
+        else update_display();
+        end if;          
+    result := zoomer();
+    if result='q' then [xlow,xhigh,ylow,yhigh] := [0,0,0,0];
+    elseif result='a' then [ylow,yhigh] := [om,om];
+    elseif result='X' then [xlow,xhigh] :=
+                        [xlow-delta,xhigh+delta]
+                        where delta := (xhigh-xlow)/2;
+                        end;
+    elseif result='Y' then [ylow,yhigh] :=
+                        [ylow-delta,yhigh+delta]
+                        where delta := (yhigh-ylow)/2;
+                        end;
+
+    elseif result='Z' then [xlow,xhigh,ylow,yhigh] :=
+                        [xlow-xdelta,xhigh+xdelta, ylow-ydelta, yhigh+ydelta]
+                        where xdelta := (xhigh-xlow)/2;
+                              ydelta := (yhigh-ylow)/2;
+                        end;
+    elseif is_tuple(result) then [xlow,xhigh,ylow,yhigh] := result;
+    end;
+end while;
+graphics(false);
+end proc;

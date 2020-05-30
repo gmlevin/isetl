@@ -1,0 +1,128 @@
+$ Subject: graphs.stl
+$ To: cci.com!sjfc!dlm@cci632 (Don Muench)
+$ Date: Thu, 1 Aug 91 16:29:54 EDT
+
+                                      $ graphs.stl
+
+proc(f, g, xlow, xhigh);
+
+     local result, ylow, yhigh, MinX, MinY, fill,min_points,Connect;
+     Connect := false;
+
+     min_points := 60;
+     
+     if not (is_func(f) and is_func(g) and is_number(xlow) and 
+                is_number (xhigh)) then
+           writeln('Bad input to graphs');
+           return;
+     end;
+
+     Line := func(x,y1,y2);
+          local y;                                                                        $3  
+          if y2 < y1 then [y1, y2] := [y2, y1]; end;
+          for i in [0..min_points] do                                    $3        
+               y := ylow + i*(yhigh - ylow)/min_points;                  $3
+               if y1 <=    y and y <= y2 then point(x,y,1); end;        $3              
+          end;                                                          $3                                                                             $3
+$2          for i in [0..min_points div 8] do
+$2               point(x,y1+i*(y2-y1)/(min_points div 8), 1);
+$2          end;                        
+ $1         move(x,y1);
+ $1         draw(x,y2);
+     end;
+
+     fill := func(F, G, xlow, xhigh, Flow, Fhigh, Glow, Ghigh); 
+          local xmid, Fmid, Gmid;
+
+          if (xhigh - xlow) < MinX then
+               if (Flow /= om and Glow /= om) then 
+                    Line(xlow, Flow, Glow); 
+               end;
+          else
+               xmid := (xlow + xhigh)/2;
+               Fmid := F(xmid);     Gmid := G(xmid);
+               if (Flow = om or Glow = om or Fhigh = om 
+                  or Fmid = om or Gmid = om) then
+                         fill(F,G,xlow,xmid,Flow,Fmid,Glow,Gmid);
+                         fill(F,G,xmid,xlow,Fmid,Fhigh,Gmid,Ghigh);
+               elseif  abs(Fmid - (Flow+Fhigh)/2) <= MinY then
+                    Line(xmid,Flow,Glow);
+                    Line(xmid,Fmid,Gmid);
+               else
+                         fill(F,G,xlow,xmid,Flow,Fmid,Glow,Gmid);
+                         fill(F,G,xmid,xlow,Fmid,Fhigh,Gmid,Ghigh);
+               end;
+          end;
+     end;
+
+     update_disp := func();
+          local points;
+
+          clear_screen();
+
+          points := [ [x,f(x),g(x)] where x := xlow + i*delta; end :
+                                              i in [0..min_points]] where 
+                                                delta := (xhigh - xlow)/min_points end;                                        
+
+          ylow := %min[min(p(2),p(3)) : 
+                                        p in points | p(2) /=om and p(3) /= om];
+          yhigh := %max[max(p(2),p(3)) : 
+                                        p in points | p(2) /=om and p(3) /= om];
+
+    if [xlow,xhigh] = [0,0] then [xlow,xhigh] := [-1,1];
+    elseif xlow = xhigh and xlow /= 0 then 
+          [xlow,xhigh] := [-x,x] where x := 1.5*abs(xhigh) end;
+    elseif abs(xlow-xhigh) < 1.0e-4*abs(xhigh) then
+          [xlow,xhigh] := [-x,x] where x := 1.5*abs(xhigh) end;
+    end if;
+
+    if [ylow,yhigh] = [0,0] then [ylow,yhigh] := [-1,1];
+    elseif ylow = yhigh and ylow /= 0 then 
+          [ylow,yhigh] := [-y,y] where y := 1.5*abs(yhigh) end;
+    elseif abs(ylow-yhigh) < 1.0e-4*abs(yhigh) then
+          [ylow,yhigh] := [-y,y] where y := 1.5*abs(yhigh) end;
+    end if;
+
+          scale(xlow - X^, xhigh + X^, ylow - Y^, yhigh+Y^)
+                         where X^ := (xhigh-xlow)/20;  Y^ := (yhigh-ylow)/20; end;
+          move(xlow,ylow);
+
+          [MinX,MinY] := resolution();
+          axes(xlow,xhigh,ylow,yhigh);
+
+$4        for i in [1..min_points] do
+$4          fill(f,g,points(i)(1), points(i+1)(1), points(i)(2), points(i+1)(2),
+$4                         points(i)(3), points(i+1)(3)); 
+$4       end;
+
+          for p in points do                   $5
+               Line(p(1),p(2),p(3));           $5
+          end;                                 $5      
+
+     end;
+
+     graphics(true);
+
+     while result  /= 'q' do
+          update_disp();
+          result := zoomer();
+
+          if result = 'q' then 
+               [xlow, xhigh, ylow, yhigh] := [0,0,0,0];
+          elseif is_tuple(result) then
+               [xlow, xhigh, ylow, yhigh] := result;
+          end;
+
+     end;
+
+     graphics(false);
+
+end proc; 
+               
+	       
+	       
+	       
+$ Replace the loop $5 by the loop $4 to get variable sampling.  As it now
+$ stands, fill is completely ignored.
+
+$ The variations $1, $2 use non-uniform distribution of points on the line.

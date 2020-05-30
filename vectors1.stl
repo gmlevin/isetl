@@ -1,0 +1,30 @@
+        vector := proc(r, theta, CP);
+        $ Draws "vector" of length r and angle theta, from current point CP.
+        $ Pressing 'q' returns you to the editor.
+        $ v1 and v2 are 2-tuples of numbers.
+          local x,y,c;
+          graphics(true);
+          scale(-10,10,-10,10);
+          axes(-10,10,-10,10);
+          move(CP(1),CP(2));
+          pt := [r*cos(theta),r*sin(theta)];
+          draw(pt(1), pt(2));
+          point(pt(1),pt(2),1);
+          [x,y,c]:=get_coord();
+          if c='q' then graphics(false);end if;
+        end proc;
+        
+        posvector := proc(v);
+        $ Draws position vector from origin to point v, with a * at the end.
+        $ Pressing 'q' returns you to the editor.
+          local x,y,c;
+          graphics(true);
+          scale(-10,10,-10,10);
+          axes(-10,10,-10,10);
+          move(0,0);
+          draw(v(1),v(2));
+          textout('*');
+          [x,y,c]:=get_coord();
+          if c='q' then graphics(false);end if;
+        end proc;
+

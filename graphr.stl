@@ -1,0 +1,90 @@
+$ Subject: graphR.stl
+$ To: cci.com!sjfc!dlm@cci632 (Don Muench)
+$ Date: Thu, 1 Aug 91 16:29:04 EDT
+
+                                  $ GRAPHR.STL
+
+proc(f opt xlow,xhigh, ylow,yhigh);
+    $ plots roots in region [xlow..xhigh]x[ylow..yhigh]
+    $ depends on globals:
+    
+    local Centers, Parts;
+    local MinDepth, MinRefine;
+    local fillin, depth, MaxDepth, result, XLow, XHigh, YLow, YHigh;
+    Centers  := true;     $ center points(true) or rectangles(false)
+    Parts  := 100;
+    MinDepth :=   4;      $  determines initial grid
+    MinRefine := 2;       $  determines refinement beyond initial grid
+
+    XLow     := -10;
+    XHigh    :=  10;
+    YLow     := -10;
+    YHigh    :=  10;
+
+    xlow  := xlow  ? XLow;
+    xhigh := xhigh ? XHigh;
+    ylow  := ylow  ? YLow;
+    yhigh := yhigh ? YHigh;
+
+fillin := func(xlow,xhigh,ylow,yhigh , tl,tr,bl,br);
+   $ {t,m,b}x{l,m,r} are the sign of f at the corresponding points
+   local xmid,ymid, grid, tm,ml,mm,mr,bm, fp;
+   depth := depth+1;
+
+      if depth<=MinDepth
+          or tl/=bl or tl/=tr or tl/=br then  $ contains root
+        if depth >= MaxDepth then
+            if Centers then point((xlow+xhigh)/2, (ylow+yhigh)/2,-1);
+            else rectangle(xlow,xhigh,ylow,yhigh,false);
+            end if;
+        else
+            xmid := (xhigh+xlow)/2.0;
+            ymid := (yhigh+ylow)/2.0;
+            tm := sgn(f(xmid,yhigh));
+            ml := sgn(f(xlow,ymid));
+            mm := sgn(f(xmid,ymid));
+            mr := sgn(f(xhigh,ymid));
+            bm := sgn(f(xmid,ylow));
+            fillin(xlow,xmid,ylow,ymid,ml,mm,bl,bm);
+            fillin(xlow,xmid,ymid,yhigh,tl,tm,ml,mm);
+            fillin(xmid,xhigh,ylow,ymid,mm,mr,bm,br);
+            fillin(xmid,xhigh,ymid,yhigh,tm,tr,mm,mr);
+         end if;
+     end if;
+     depth := depth-1;
+end func;
+
+    depth := 0;
+    MaxDepth := MinDepth+MinRefine;
+    graphics(true);
+    while result /= 'q' do
+       clear_screen();
+
+    if [xlow,xhigh] = [0,0] then [xlow,xhigh] := [-1,1];
+    elseif xlow = xhigh and xlow /= 0 then 
+          [xlow,xhigh] := [-x,x] where x := 1.5*abs(xhigh) end;
+    elseif abs(xlow-xhigh) < 1.0e-4*abs(xhigh) then
+          [xlow,xhigh] := [-x,x] where x := 1.5*abs(xhigh) end;
+    end if;
+
+    if [ylow,yhigh] = [0,0] then [ylow,yhigh] := [-1,1];
+    elseif ylow = yhigh and ylow /= 0 then 
+          [ylow,yhigh] := [-y,y] where y := 1.5*abs(yhigh) end;
+    elseif abs(ylow-yhigh) < 1.0e-4*abs(yhigh) then
+          [ylow,yhigh] := [-y,y] where y := 1.5*abs(yhigh) end;
+    end if;
+
+       scale(xlow,xhigh, ylow,yhigh);
+       axes(xlow,xhigh,ylow,yhigh);
+
+       fillin(xlow,xhigh,ylow,yhigh, sgn(f(xlow,yhigh)), sgn(f(xhigh,yhigh)),
+                                              sgn(f(xlow,ylow)), sgn(f(xhigh,ylow)) ) ;
+       result := zoomer();
+       if result='r' then MaxDepth := MaxDepth+1;
+       elseif is_tuple(result) then [xlow,xhigh,ylow,yhigh] := result;
+       end;
+    end while;
+    graphics(false);
+
+
+end proc;

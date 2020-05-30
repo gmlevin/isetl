@@ -1,0 +1,35 @@
+                        $ tools
+
+        implicit := func(rel,IO,JO);
+                return func(x);
+                  local f;
+                  if not ((IO(1) <= x) and (x <= IO(2))) then return; end if;
+                  f := func(y);
+                         return rel(x,y);
+                       end func;
+                  return bis(f,JO(1),JO(2),.00001);
+                end func;
+              end func;
+        bis := func(f,a,b,eps);         $ p. 329
+                 if f(a) = 0 then return a; end if;
+                 if f(b) = 0 then return b; end if;
+                 c := (a+b)/2;
+                 if abs(b-a) < eps then return c; end if;
+                 if f(a)*f(c) <= 0 then return bis(f,a,c,eps); end if;
+                 if f(c)*f(b) <= 0 then return bis(f,c,b,eps); end if;
+                 return "cannot find any zeros";
+               end func;
+        ad := func(f);
+                return func(x);
+                         h := .00001; return (f(x+h)-f(x))/h;
+                       end func;
+              end func;
+        Z := func(v);
+               if 0 <= v and v < 6 then
+                 return 1 + (v-2)**3*(v-6)/54; end if;
+               if 6 <= v and v < 90 then
+                 return v**3/(3.e3) - .048*v**2 + 1.73*v - 7.724; end if;
+               if 90 <= v then return
+                 6.432 - 4*v**(3/2)/(5*(v**3-7.e5)**(1/2)) - 27/(v-200);
+               end if;
+             end func;

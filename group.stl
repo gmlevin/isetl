@@ -1,0 +1,34 @@
+        $ Contents of file group.stl
+        is_closed := func(G,o);
+           return forall a,b in G | a .o b in G;
+        end func;
+        
+        is_assoc := func(G,o);
+           return forall a,b,c in G | a .o (b .o c)=(a .o b) .o c;
+        end func;
+        
+        has_identity := func(G,o);
+                    return
+                     exists e in G | (forall a in G | e .o a = a;
+        end func;
+
+        $ Identity
+        identity := func(G,o);
+           return choose e in G|(forall x in G|e .o x =x and x .o e=x);
+        
+        end func;
+        
+        has_inverses := func(G,o);
+            local e;  e:= identity(G,o);
+            return
+              is_defined(e) and (forall a in G|(exists a' in G|a' .o a=e));
+        end func;
+
+        $ Inverse of element x
+        inverse := func(G,o,x);
+           local e;
+           e := identity(G,o);
+           return choose x' in G | x' .o x = e;
+        end func;
+
+

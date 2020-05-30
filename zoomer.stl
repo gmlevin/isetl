@@ -1,0 +1,39 @@
+zoomer := func();
+    local x,y,c, x2,y2, linestate;
+    while true do
+        [x,y,c] := get_coord();
+        if c='z' then
+            [x2,y2,c] := get_coord();
+            if c='z' then
+                [x,x2,y,y2] := [min(x,x2), max(x,x2), min(y,y2), max(y,y2)];
+                linestate := thickline(false);
+                erasable(true); rectangle(x,x2,y,y2); erasable(false);
+                thickline(linestate);
+								[~,~,c] := get_coord();
+                erasable();
+                if c='z' then return [x,x2,y,y2]; end if;
+            end if;
+        elseif c=' ' or c='' then
+            move(x,y); draw(x,y);
+            textout(x,y, " ("+as_string(x)+','+as_string(y)+')');
+        elseif c='g' then
+            if gridX<0 then add_object(-gridX); add_object(-gridY);
+            else del_object(gridX); del_object(gridY);
+            end if;
+            gridX := -gridX; gridY:= -gridY;
+        elseif c='S' then
+            save_graph('');
+        elseif c='\n' then
+            move(x,y);
+            [~,~,c] := get_coord();
+            while c /= '\n' do
+                textout(c);
+                [~,~,c] := get_coord();
+            end while;
+        else return c;
+        end;
+    end while;
+end func;
+
+        
+

@@ -1,0 +1,38 @@
+        
+        ad := func(f);
+                return func(x);
+                         local h; h := .00001;
+                         return (f(x+h)-f(x))/h;
+                       end func;
+              end func;
+
+        D := func(f);
+               return func(x);
+                        local dq;
+                        dq := func(h);
+                                return (f(x+h)-f(x))/h;
+                              end func;
+                        return lim2(dq,0);
+                      end func;
+             end func;
+        
+        ad2 := func(f);
+                return func(x);
+                         local h; h := .00001;
+                         return (f(x+h/2)-f(x-h/2))/h;
+                       end func;
+              end func;
+
+        lim2 := func(f,c);
+                  local n,t,i;
+                  n := 0;
+                  while n < 5 do
+                    t := [f(c+1/97**(n+i)) : i in [1..2]] +
+                                [f(c-1/102**(n+i)) : i in [1..2]];
+                    if %max[abs(t(i)-t(i+1)) : i in [1..3]] < .0001
+                      then return t(4); end if;
+                    n := n + 1;
+                  end while;
+                  $ print "Unable to find a limit";
+                end func;
+        

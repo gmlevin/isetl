@@ -1,0 +1,24 @@
+$ Created by Don Muench, 90/11/23
+     graph_to_func := proc(graphfile);
+$ Takes a graphfile and returns a string containing
+$ the definition of the func whose graph is in graphfile.
+$ That is, it returns the "pre-image" of the graph.
+          local x, str;
+          if is_string(graphfile) then
+            grfile:=openr(graphfile);
+            x:=om;
+            while x/="=" do
+              readf x:-1 from grfile;
+            end while;
+            str:="";
+            while x/="`" do
+              readf x:-1 from grfile;
+              str:=str + x;
+            end while;
+            for i in [1..#str-4] do
+              if str(i)='\n' or str='`' then str(i):="";end if;
+            end for;
+          end if;
+          writeln str(1..#str-5)+";";
+        end proc;
+

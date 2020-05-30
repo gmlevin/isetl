@@ -1,0 +1,101 @@
+$ Subject: vectors.stl
+$ To: cci.com!sjfc!dlm@cci632 (Don Muench)
+$ Date: Thu, 1 Aug 91 16:31:01 EDT
+
+                                        $ vectors.stl
+
+proc(S opt arrow);
+local e,d, S',xmin,xmax,xlow,xhigh,ylow,yhigh,ymin,ymax,result;
+
+draw_arrows:= proc(u,v,d,xhigh,xlow,yhigh,ylow);
+    local  a,   x1, x2, y1, y2, z1,z2,r;
+
+$  r := (yhigh-ylow)/(xhigh-xlow); 
+    r := 1;
+    
+
+   a := sqrt((v(1)-u(1))**2 + (v(2)-u(2))**2);
+   if a = 0 then return; end;
+        
+   
+    x1 := (d/a)*(v(1)-u(1));
+    x2 := (d/a)*(v(2)-u(2));  
+
+    y1 := v(1) + (-0.866*x1 - 0.5*x2)/r;
+    y2 := v(2) + (0.5*x1 - 0.866*x2)*r;
+
+    z1 := v(1) + (-0.866*x1 + 0.5*x2)/r;
+    z2 := v(2) + (-0.5*x1 - 0.866*x2)*r;
+
+     
+     
+     move(v(1),v(2));
+     draw(y1,y2);
+     move(v(1),v(2));
+     draw(z1,z2);
+
+   end;
+
+e := 0.01;
+arrow := arrow ? true;
+graphics(true);
+
+S' := {};
+for v in S do
+     if is_number(v(1)) then
+         S' := S' with [[0,0],v];
+     else S' := S' with v;
+     end;
+end;
+
+xmin := %min[min(V(1)(1),V(2)(1)) : V in S'];
+xmax := %max[max(V(1)(1),V(2)(1)) : V in S'];
+ymin := %min[min(V(1)(2),V(2)(2)) : V in S'];
+ymax := %max[max(V(1)(2),V(2)(2)) : V in S'];
+
+xlow := min(0.8*xmin,1.2*xmin);
+xhigh := max(0.8*xmax,1.2*xmax);
+ylow :=  min(0.8*ymin,1.2*ymin);
+yhigh := max(0.8*ymax,1.2*ymax);
+
+
+if [xlow,xhigh] = [0,0] then [xlow,xhigh] := [-1,1];
+    elseif xlow = xhigh and xlow /= 0 then 
+          [xlow,xhigh] := [-x,x] where x := 1.5*abs(xhigh) end;
+    elseif abs(xlow-xhigh) < 1.0e-4*abs(xhigh) then
+          [xlow,xhigh] := [-x,x] where x := 1.5*abs(xhigh) end;
+    end if;
+
+if [ylow,yhigh] = [0,0] then [ylow,yhigh] := [-1,1];
+    elseif ylow = yhigh and ylow /= 0 then 
+          [ylow,yhigh] := [-y,y] where y := 1.5*abs(yhigh) end;
+    elseif abs(ylow-yhigh) < 1.0e-4*abs(yhigh) then
+          [ylow,yhigh] := [-y,y] where y := 1.5*abs(yhigh) end;
+    end if;
+
+while result /= 'q' do
+    scale(xlow-Xtwiddle,xhigh+Xtwiddle, ylow-Ytwiddle,yhigh+Ytwiddle)
+        where Xtwiddle := 
+                (xhigh-xlow)/20; Ytwiddle := (yhigh-ylow)/20; end;
+
+    axes(xlow,xhigh,ylow,yhigh);
+
+    d := e*sqrt((xhigh-xlow)**2 + (ylow-yhigh)**2);
+ 
+    for [u,v] in S' do
+	        move(u(1),u(2));
+          draw(v(1),v(2));
+          if arrow then draw_arrows(u,v,d,xhigh,xlow,yhigh,ylow); end;
+    end;
+
+    result := zoomer();
+
+          if result = 'q' then 
+               [xlow, xhigh, ylow, yhigh] := [0,0,0,0];
+          elseif is_tuple(result) then
+               [xlow, xhigh, ylow, yhigh] := result;
+          end;
+end;
+graphics(false);
+
+end;

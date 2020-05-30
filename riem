@@ -1,0 +1,70 @@
+
+        RiemL := func(f,a,b,n);
+                   local dx,x,i;
+                   dx := (b-a)/n;
+                   x := [a+(i-1)*dx : i in [1..n+1]];
+                   return %+[f(x(i))*dx : i in [1..n]];
+                 end func;
+
+        RiemR := func(f,a,b,n);
+                   local dx,x,i;
+                   dx := (b-a)/n;
+                   x := [a+(i-1)*dx : i in [1..n+1]];
+                   return %+[f(x(i+1))*dx : i in [1..n]];
+                 end func;
+
+        RiemMid := func(f,a,b,n);
+                     local dx,x,i;
+                     dx := (b-a)/n;
+                     x := [a+(i-1)*dx : i in [1..n+1]];
+                     return %+[f((x(i+1)+x(i))/2)*dx : i in [1..n]];
+                   end func;
+
+        RiemMax := func(f,a,b,n,crit);
+                     local dx,x,xc,i;
+                     dx := (b-a)/n;
+                     x := [a+(i-1)*dx : i in [1..n+1]];
+                     xc := [[x(i)] + [s:s in crit | x(i) < s and
+                                 s < x(i+1)] + [x(i+1)] : i in [1..n]];
+                     return %+[%max[f(t) : t in xc(i)]*dx : i in [1..n]];
+                   end func;
+
+        RiemMin := func(f,a,b,n,crit);
+                     local dx,x,xc,i;
+                     dx := (b-a)/n;
+                     x := [a+(i-1)*dx : i in [1..n+1]];
+                     xc := [[x(i)] + [s:s in crit | x(i) < s and
+                                 s < x(i+1)] + [x(i+1)] : i in [1..n]];
+                     return %+[%min[f(t) : t in xc(i)]*dx : i in [1..n]];
+                   end func;
+
+        RiemTrap := func(f,a,b,n);
+                      local dx,x,i;
+                      dx := (b-a)/n;
+                      x := [a + (i-1)*dx : i in [1..n+1]];
+                      return %+[((f(x(i))+f(x(i+1)))/2)*dx : i in [1..n]];
+                    end func;
+
+        RiemRan := func(f,a,b,n);
+                     local dx,x,i;
+                     dx := (b-a)/n;
+                     x := [a + (i-1)*dx : i in [1..n+1]];
+                     return %+[f(x(i)+random(dx))*dx : i in [1..n]];
+                   end func;
+        
+        RiemRan2 := func(f,a,b,n);
+                      local S,x,dx,i;
+                      S := {a,b}; x := []; dx := [];
+                      while #S < n+1 do
+                        S := S with (a+random(1.0)*(b-a));
+                      end while;
+                      for i in [1..n+1] do
+                        x := x + [%min(S)];
+                        S := S less x(i);
+                      end for;
+                      for i in [1..n] do
+                        dx := dx + [x(i+1) - x(i)];
+                      end for;
+                      return %+[f(x(i)+random(1.0)*dx(i))*dx(i):i in [1..n]];
+                    end func;
+        

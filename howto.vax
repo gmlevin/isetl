@@ -1,0 +1,112 @@
+ISETL 3.0 can now be installed on the VAX under Unix BSD 4.2 and 4.3
+
+You need the source code (obtainable from Ron Pullins, West Educational
+Publishing, 508-388-6685).  And, you need to upload it to the VAX.
+I have a makefile that compiles the executable.  The text of it follows.
+All you have to do is type: make vax  (or make vaxbsd4.2) and an executable
+file named "isetl" will be created.  Any of you who are Unix experts may be
+able to simplify the makefile.  Suffice it to say that the one provided
+below does work.
+
+If you don't have parser.c, you need to run ``yacc -d parser.y'' and then 
+rename y.tab.c to parser.c and y.tab.h to parser.h.
+
+Also you need to make a change in machine.h.  At the beginning, put in the
+statement  #define Vax  to replace the #if, #define Mac, #endif statements
+that are there.
+
+Remember that this installation does not include graphics or the screen
+editor that now exists on the MSDOS version (also obtainable as an executable
+from West Publishing).  
+
+If you haven't gotten 3.0, do so.  It is much more useful than before. Just
+two things I want to mention:  (1) !rational on|off enables|disables exact
+rational number arithmetic;  (2) [a,b..c] and {a,b..c} now work for floating
+point numbers.
+
+Remember, ISETL is distributed now by West Educ Publ.  
+
+---Don Muench
+----------------------  cut here   ---------------------------------------
+CFILES	=	debug.c mp.c globals.c interp.c isetl.c \
+		op_*.c manager.c emitter.c \
+		init_ops.c mc_*.c \
+		ast.c predef.c rev_info.c edit.c \
+		parser.c signals.c keywords.c \
+		sort.c symbol.c scanner.c ile.c raw.c
+
+OFILES	=	debug.o mp.o globals.o interp.o isetl.o \
+		op_*.o manager.o emitter.o \
+		init_ops.o mc_*.o \
+		parser.o scanner.o ast.o predef.o \
+		rev_info.o edit.o signals.o keywords.o \
+		ile.o raw.o sort.o symbol.o
+
+HFILES	=	debug.h machine.h micro.h manager.h  parser.h \
+		symbol.h types.h common.h emitter.h version.h \
+		op.h instr.h ast.h predef.h mp.h scanner.h
+
+FILES	=	$(CFILES) $(HFILES) makefile parser.y \
+		.isetlrc 
+
+CREATED	=	core $(OFILES) tags Lint y.output
+
+CO	=	co -q
+CFLAGS	=	-g
+YFLAGS	=	-d
+MESSAGE =	no message
+
+sun:
+
+parser.h:	parser.c
+parser.c:	parser.y
+
+$(OFILES):	debug.h	types.h common.h machine.h mp.h
+ast.o:		ast.h parser.h instr.h emitter.h manager.h micro.h op.h
+debug.o:	micro.h
+edit.o:		parser.h
+emitter.o:	emitter.h instr.h manager.h op.h micro.h parser.h
+globals.o:	ast.h instr.h
+init_ops.o:	instr.h op.h manager.h micro.h emitter.h
+interp.o:	instr.h emitter.h manager.h ast.h op.h micro.h parser.h scanner.h version.h
+keywords.o:	parser.h
+manager.o:	manager.h micro.h ast.h parser.h
+mc_*.o:		micro.h manager.h sort.h
+mp.o:		micro.h manager.h
+op_*.o: 	instr.h op.h manager.h micro.h emitter.h symbol.h
+parser.o:	ast.h scanner.h
+predef.o:	manager.h predef.h micro.h
+scanner.o:	parser.h scanner.h symbol.h manager.h
+sort.o:		manager.h sort.h micro.h
+symbol.o:	manager.h symbol.h
+
+isetl:	$(OFILES)
+#	ci -l -f -q -m'$(MESSAGE)' rev_info.c
+	$(CC) -c rev_info.c
+	$(CC) $(CFLAGS) $(OFILES) -lm -lcurses -o isetl
+	chmod 755 isetl
+
+#  /* Sun can use  Vax (old BSD used crmode in place of cbreak) */
+vaxbsd4.2:	; make  MESSAGE='$(MESSAGE)' \
+                  CFLAGS='$(CFLAGS) -DVax -DCRMode'	isetl
+vax:		; make  MESSAGE='$(MESSAGE)' CFLAGS='$(CFLAGS) -DVax'	isetl
+sun:		; make  MESSAGE='$(MESSAGE)' CFLAGS='$(CFLAGS) -DVax'	isetl
+gcc:		; make  MESSAGE='$(MESSAGE)' CFLAGS='$(CFLAGS) -DGCC' \
+                     	CC='gcc  ' isetl
+msdos:		; make CFLAGS='$(CFLAGS) -DMSDOS'	isetl
+sys5:		; make CFLAGS='$(CFLAGS) -DSYS5'	isetl
+att:		; make CFLAGS='$(CFLAGS) -DATT'	isetl
+vms:		; make CFLAGS='$(CFLAGS) -DVMS'	isetl
+mac:		; make CFLAGS='$(CFLAGS) -DMac'	isetl
+
+
+clean:	; rm -f $(CREATED)
+tag:	; ctags $(CFILES) $(HFILES) 2> /dev/null > /dev/null
+lint:	; lint -a -h  -x -c -DVax $(CFILES) parser.c 
+update:	; make -f .RCS.make VERSION=$(VERSION) MESSAGE='$(MESSAGE)' all
+checkin:	; ci -f -l$(VERSION) '-m $(MESSAGE)' $(FILES);
+		rcs -L $(FILES); make -t isetl
+
+install:
+	cp isetl isetl3
+	strip isetl3
