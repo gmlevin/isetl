@@ -103,7 +103,7 @@ void    Print_Id(i)
     int     i;
 {
     if (i < 0) {
-	mcprintf("Anon(%d)", -i,0);
+	mcprintf("Anon(%d)", -i);
     } else {
 	mcprintf("Var(%d) '%s'", i, ids[i]);
     }
@@ -135,7 +135,7 @@ void    Id_Dump(defined,locked)
 		   (i % 5 == 0 ? '\n' : '\t'));
 	}
     }
-    mcprintf("\n!dump complete\n",0,0);
+    mcprintf("\n!dump complete\n");
 }
 
 IPtr Get_Assoc(i) C_Ref i; {

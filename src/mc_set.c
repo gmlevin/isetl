@@ -5,8 +5,8 @@
 
 
 /*  static forward declarations */
-IPtr     LDel_Image(PTR X PTR);
-IPtr     HDel_Image(PTR X PTR X INT);
+static IPtr     LDel_Image(PTR X PTR);
+static IPtr     HDel_Image(PTR X PTR X INT);
 
 
 /* (f:list, i):list   f-{[i,.]} */

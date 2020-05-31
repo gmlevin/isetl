@@ -260,7 +260,7 @@ void    mcDel_Env(lhs)
 	break;
 
       default:
-	mcprintf("Kind = %d\n", Kind(lhs),0);
+	mcprintf("Kind = %d\n", Kind(lhs));
 	assert(0);
     }
     LEAVE;

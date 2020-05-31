@@ -15,7 +15,7 @@
 void Mk_Pd(C_Str str, C_Pd (c), int x);
 
 #else
-void Mk_Pd();
+static void Mk_Pd();
 
 #endif
 
@@ -664,7 +664,7 @@ Pd1(pdChar)
     }
 }
 
-IPtr     Sdom(PTR);
+static IPtr     Sdom(PTR);
 static IPtr Sdom(S)
     IPtr     S;
 {
@@ -689,7 +689,7 @@ static IPtr Sdom(S)
     LEAVE   R(ans);
 }
 
-IPtr     Tdom(PTR);
+static IPtr     Tdom(PTR);
 static IPtr Tdom(T)
     IPtr     T;
 {
@@ -728,7 +728,7 @@ Pd1(pdDomain)
     }
 }
 
-IPtr     Srange(PTR);
+static IPtr     Srange(PTR);
 static IPtr Srange(S)
     IPtr     S;
 {
@@ -754,7 +754,7 @@ static IPtr Srange(S)
     LEAVE   R(ans);
 }
 
-IPtr     Trange(PTR);
+static IPtr     Trange(PTR);
 static IPtr Trange(T)
     IPtr     T;
 {
@@ -787,7 +787,7 @@ Pd1(pdRange)
     }
 }
 
-IPtr     powset(PTR);
+static IPtr     powset(PTR);
 static IPtr powset(S)
     IPtr     S;
 {
@@ -844,7 +844,7 @@ Pd1(pdPow)
 
 /* Return list of sublists of S of size n, in front of tail */
 /* S is list */
-IPtr     npowlist(INT X PTR X PTR);
+static IPtr     npowlist(INT X PTR X PTR);
 static IPtr npowlist(n, S, tail)
     int     n;
     IPtr     S,
@@ -878,7 +878,7 @@ static IPtr npowlist(n, S, tail)
     LEAVE   R(ans);
 }
 
-IPtr     htree2list(PTR);
+static IPtr     htree2list(PTR);
 static IPtr htree2list(S)
     IPtr     S;
 {
@@ -973,7 +973,7 @@ Pd1(pdSign)
 
 
 FILE   *CONin = 0;
-IPtr     opener(PTR X STR);
+static IPtr     opener(PTR X STR);
 static IPtr opener(x, mode)
     IPtr     x;
     char   *mode;
@@ -1041,8 +1041,8 @@ Pd1(pdClose)
 
 
 
-IPtr     real_apply(PTR X MATHFUNC);
-IPtr     check_apply(PTR X PTRFUNC);
+static IPtr     real_apply(PTR X MATHFUNC);
+static IPtr     check_apply(PTR X PTRFUNC);
 
 static IPtr real_apply(x, f)
     IPtr     x;

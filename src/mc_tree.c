@@ -5,8 +5,8 @@
 
 
 /* static forward declaration */
-IPtr     TSlice(PTR X IDX X IDX);
-void    Fold(IDX X PTR ADDR X PTR ADDR);
+static IPtr     TSlice(PTR X IDX X IDX);
+static void    Fold(IDX X PTR ADDR X PTR ADDR);
 
 /* AVL trees ordered by position (length) (origin 0) */
 
@@ -42,7 +42,7 @@ IPtr     mcAccess(tree, i)
 
 
 /* assumes neither is empty */
-IPtr     Cat(PTR X PTR);
+static IPtr     Cat(PTR X PTR);
 static IPtr Cat(a, b)
     IPtr     a,
             b;

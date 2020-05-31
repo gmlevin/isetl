@@ -7,7 +7,7 @@ AST_Ptr make_func();
 void fix_error();
 
 # define	Not_Implemented \
-		mcprintf("Unimplemented feature\n",0,0)
+		mcprintf("Unimplemented feature\n",0)
 Bool    need_clear = false;
 
 #define YYSTYPE AST_Ptr
@@ -507,12 +507,12 @@ void yyerror(i) char *i; {
 }
 
 void fix_error() 
-	{     mcprintf("!Syntax error or clearing input at or before end of:",0,0);
+	{     mcprintf("!Syntax error or clearing input at or before end of:");
 	      Show_Error();
 
 	      if( yyin==stdin ) {
-		  mcprintf("\n!Enter '!clear'" ,0,0);
-		  mcprintf("\n",0,0);
+		  mcprintf("\n!Enter '!clear'" );
+		  mcprintf("\n");
 		  need_clear = true;
 	      } else {
 		  mcputc('\n');

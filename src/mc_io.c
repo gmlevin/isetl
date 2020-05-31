@@ -6,8 +6,8 @@
 #include <ctype.h>
 
 /* static forward declaration */
-void    Seq_Print(PTR X C_FILE X BOOL X BOOL);
-void    mcPrintOrdered(PTR X C_FILE X BOOL);
+static void    Seq_Print(PTR X C_FILE X BOOL X BOOL);
+static void    mcPrintOrdered(PTR X C_FILE X BOOL);
 
 void    New_Line(NONE);		       /* edit.c */
 
@@ -230,7 +230,7 @@ void    mcPrint(p, f, verbose)
 
       case File:
 	if (File_Value(p) != FNULL) {
-	    sprintf(temp, "!File(%c:%lx)!", File_Mode(p), File_Value(p));
+	    sprintf(temp, "!File(%c:%p)!", File_Mode(p), File_Value(p));
 	    show(temp, f);
 	} else {
 	    show("!Closed File!", f);
@@ -448,7 +448,7 @@ void    mcPrint(p, f, verbose)
 
 
       default:
-	mcprintf("type = %d", Kind(p), 0);
+	mcprintf("type = %d", Kind(p));
 	mcFlush(f);
 	RT_ERROR("Bad arg to mcPrint");
     }
@@ -558,7 +558,7 @@ void    mcPrintF(x, format, f)
 
 	      case File:
 		if (File_Value(x) != FNULL) {
-		    sprintf(temp, "!File(%c:%lx)!", File_Mode(x),
+		    sprintf(temp, "!File(%c:%p)!", File_Mode(x),
 			    File_Value(x));
 		} else {
 		    sprintf(temp, "%s", "!Closed File!");
@@ -577,17 +577,17 @@ void    mcPrintF(x, format, f)
 
 	      case Rational:
 		mpPrint(Num(x),f,false, width, prec);
-		mcfprintf(f, "/", 0, 0);
+		mcfprintf(f, "/");
 		mpPrint(Den(x),f,false, width, prec);
 		break;
 
 	      case Real:
 		if (alt) {
 		    sprintf(temp, "%*.*e", width, prec, Real_Value(x));
-		    mcfprintf(f, "%s", temp, 0);
+		    mcfprintf(f, "%s", temp);
 		} else {
 		    sprintf(temp, "%*.*f", width, prec, Real_Value(x));
-		    mcfprintf(f, "%s", temp, 0);
+		    mcfprintf(f, "%s", temp);
 		}
 		break;
 
@@ -648,7 +648,7 @@ void    mcPrintF(x, format, f)
 			fetch = false;
 			if (mcNext(&R(form), &R(form_list), true)) {
 			    if (Kind(R(form)) == String) {
-				mcfprintf(f, "%s", Str_Value(R(form)), 0);
+				mcfprintf(f, "%s", Str_Value(R(form)));
 			    } else {
 				mcPrintF(R(item), R(form), f);
 				printed = true;

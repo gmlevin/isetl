@@ -59,10 +59,10 @@ void save_buff(NONE);
 /* Print p in either long or short form, depending on verbose */
 #define dbPrint(p, f)    mcPrint(p, f, verbose)
 
-#define NA(x)	mcprintf("%s -- Not Available\n", x,0)
+#define NA(x)	mcprintf("%s -- Not Available\n", x)
 
 #define TRACE_VARS(msg,i) \
 	if( trace_debug ) { \
-	    mcprintf( "%s -- ", msg,0 );	\
+	    mcprintf( "%s -- ", msg);	\
 	    Print_Id(i);	\
 	    mcputc('\n'); }

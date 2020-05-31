@@ -17,8 +17,8 @@ static enum func_level nesting;
 AST_Ptr Live_AST;
 
 /* forward declarations for statics */
-AST_Ptr Copy_AST(AST_PTR);
-void CheckBound(AST_PTR);
+static AST_Ptr Copy_AST(AST_PTR);
+static void CheckBound(AST_PTR);
 void AST_Reset() {
    bounded = 0;
    Live_AST = Nil;
@@ -43,7 +43,7 @@ AST_Ptr New_AST(k, f1, f2)
     return new;
 }
 
-void w_DEREF(PTR);
+static void w_DEREF(PTR);
 
 /* @expr | @(expr, expr.list) */
 /* <DEREF, expr, expr.list(reversed)> */
@@ -398,7 +398,7 @@ void    w_LHS(T, bind)
         C_Ref i = find_id((char *) (ast_1(T)));
         if( Locked(i) ) {
             SYNTAX("Cannot assign to locked id.");
-	    mcprintf("ID = %s\n", (char*)ast_1(T),0);
+	    mcprintf("ID = %s\n", (char*)ast_1(T));
             ERROR;
         }
 	switch (bind) {

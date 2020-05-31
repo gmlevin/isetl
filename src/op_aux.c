@@ -70,7 +70,7 @@ void    opLoad()
     id = Var_Index(Var_Assoc(R(Only_Op)));
     TRACE_VARS("Loading", id);
     if (trace_debug) {
-	mcprintf(" = ",0,0);
+	mcprintf(" = ");
 	mcPrint(Var(R(Only_Op)), stdout, verbose);
 	mcFlush(stdout);
     }
@@ -355,8 +355,8 @@ void    opPop()
 }
 
 /* forward static declarations */
-IPtr mcIterLoad(PTR);
-IPtr mcFetchVal(PTR);
+static IPtr mcIterLoad(PTR);
+static IPtr mcFetchVal(PTR);
 IPtr mcFetchTuple(PTR);
 
 /* (iter):*   Leave value of iters on stack */

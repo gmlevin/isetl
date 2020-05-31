@@ -14,8 +14,8 @@
 int     line_num = 1;
 
 /* forward static declarations */
-void alias(STR X STR);
-char *in_alias(STR);
+static void alias(STR X STR);
+static char *in_alias(STR);
 
 static int scan_error;
 static int top = 0;
@@ -71,7 +71,7 @@ void    unget(c)
 }
 
 char   *intext;
-void    Save(CHAR);
+static void    Save(CHAR);
 static void Save(c)
     char    c;
 {
@@ -470,7 +470,7 @@ void    yyclear()
         geof = false;
 	fpop();
 	if (echo_mode || (!silent && !silent_running && top == 0)) {
-	    mcprintf("!include %s completed\n", fn_stack[top + 1],0);
+	    mcprintf("!include %s completed\n", fn_stack[top + 1]);
 	}
     }
     reset_line();
@@ -501,7 +501,7 @@ int     yywrap()
 	fclose(yyin);
 	fpop();
 	if (echo_mode || (!silent && !silent_running && top == 0)) {
-	    mcprintf("!include %s completed\n", fn_stack[top + 1],0);
+	    mcprintf("!include %s completed\n", fn_stack[top + 1]);
 	}
 	prompt(last_prompt);
 	return 0;
@@ -531,7 +531,7 @@ void    prompt(s)
 	if (inside) {
 	    mcprintf("%s%s      ", s, s);
 	} else {
-	    mcprintf("%s       ", s,0);
+	    mcprintf("%s       ", s);
 	}
     }
     last_prompt = s;
@@ -540,7 +540,7 @@ void    prompt(s)
 
 
 /* Return pointer to first non-space (or EOS) at or after s. */
-char   *skip_space(STR);
+static char   *skip_space(STR);
 static char *skip_space(s)
     char   *s;
 {
@@ -550,7 +550,7 @@ static char *skip_space(s)
 }
 
 /* Return pointer to first space (or EOS) at or after s. */
-char   *find_space(STR);
+static char   *find_space(STR);
 static char *find_space(s)
     char   *s;
 {
@@ -559,7 +559,7 @@ static char *find_space(s)
     return s;
 }
 
-Bool    good_id(STR);
+static Bool    good_id(STR);
 static Bool good_id(s)
     char   *s;
 {
@@ -592,7 +592,7 @@ static FILE * pp_out = 0;
 void toggle(var) Bool *var; {
     if(      strcmp(ON,  arg) == 0 ) *var = true;
     else if( strcmp(OFF, arg) == 0 ) *var = false;
-    else mcprintf("!value is %s\n", *var ? ON : OFF, 0);
+    else mcprintf("!value is %s\n", *var ? ON : OFF);
 }
 
 static struct {char *cmd; void (*cmd_action)(); Bool *var;} cmds[] =
@@ -635,7 +635,7 @@ int     Bang(s)
 	s = line;
 
 	if( i > 10 )  {
-	    mcprintf("!Alias loop in '%s'.  Ignored.\n", s,0);
+	    mcprintf("!Alias loop in '%s'.  Ignored.\n", s);
 	    return 0;
 	}
     }
@@ -660,7 +660,7 @@ int     Bang(s)
 	if( *arg == EOS ) { /* change pp to stdout */
 	    if( pp_out != stdout ) fclose(pp_out);
 	    pp_out = stdout;
-	    mcprintf("!pp to standard output\n",0,0);
+	    mcprintf("!pp to standard output\n");
 	    return 0;
 	}
 
@@ -675,8 +675,8 @@ int     Bang(s)
 	    if( pp_out != stdout ) fclose(pp_out);
 	    pp_out = FOpen(file_name, "a");
 	    if( pp_out == NULL ) {
-		mcprintf("!can't append to %s\n", file_name,0);
-		mcprintf("!pp to standard output\n",0,0);
+		mcprintf("!can't append to %s\n", file_name);
+		mcprintf("!pp to standard output\n");
 		pp_out = stdout;
 	    }
 	}
@@ -687,18 +687,18 @@ int     Bang(s)
 	    IPtr val;
 
 	    if( Kind(val = Var_Value(e)) != Closure ) {
-		mcprintf("!'%s' is not a printable function\n", id,0);
+		mcprintf("!'%s' is not a printable function\n", id);
 		return 0;
 	    }
 
 	    for( code = Cl_SRC(val); code != Nil ; code = Next(code) ) {
 		IPtr x = Info(code);
 		if( Kind(x) == String )
-		    mcfprintf(pp_out, "%s", Str_Value(x),0);
+		    mcfprintf(pp_out, "%s", Str_Value(x));
 	    }
 	    if( pp_out != stdout ) {
 		fflush(pp_out);
-		mcprintf("!'%s' appended\n", id,0);
+		mcprintf("!'%s' appended\n", id);
 	    }
 	}
 	
@@ -706,35 +706,34 @@ int     Bang(s)
 
     } else if (strcmp(command, "credits") == 0) {
 #ifdef Mac
-   mcprintf("This version was compiled with Think-C (c) Symantec\n",0,0);
-   mcprintf("Screen Editor based on the THINK C Class Library\n",0,0);
+   mcprintf("This version was compiled with Think-C (c) Symantec\n");
+   mcprintf("Screen Editor based on the THINK C Class Library\n");
 #endif
 
 #ifdef TURBOC
-   mcprintf("This version was compiled with Turbo-C (c) Borland\n",0,0);
-   mcprintf("Screen Editor (c) Gary Levin 1989\n",0,0);
+   mcprintf("This version was compiled with Turbo-C (c) Borland\n");
+   mcprintf("Screen Editor (c) Gary Levin 1989\n");
 #endif
 #ifndef SCREEN
-mcprintf("The interactive line editor was derived from ILE\n",0,0);
-mcprintf("  written by Robert C. Pendleton (c) 1988, Evans & Sutherland\n",
-         0,0);
+mcprintf("The interactive line editor was derived from ILE\n");
+mcprintf("  written by Robert C. Pendleton (c) 1988, Evans & Sutherland\n");
 #endif
 
-mcprintf("This program was developed while the author was a member of the\n",0,0);
-mcprintf("Clarkson faculty, using the Z200 provided by the school.  West\n",0,0);
-mcprintf("Publishing has provided a Macintosh for further refinement of the\n",0,0);
-mcprintf("Mac version.  West has also provided support for the development of\n",0,0);
-mcprintf("the PC and Mac graphics features.\n",0,0);
-mcprintf("\n",0,0);
-mcprintf("There are many people who have contributed to the ideas behind\n",0,0);
-mcprintf("ISETL.  First and foremost is Ed Dubinsky, whose idea it was to use\n",0,0);
-mcprintf("SETL for teaching Discrete Mathematics.  His dissatisfaction with\n",0,0);
-mcprintf("the old implementation suggested this project.  Others include:\n",0,0);
-mcprintf("Nancy Baxter, Don Muench, and that mysterious bunch that we just\n",0,0);
-mcprintf("call IWEST.\n",0,0);
+mcprintf("This program was developed while the author was a member of the\n");
+mcprintf("Clarkson faculty, using the Z200 provided by the school.  West\n");
+mcprintf("Publishing has provided a Macintosh for further refinement of the\n");
+mcprintf("Mac version.  West has also provided support for the development of\n");
+mcprintf("the PC and Mac graphics features.\n");
+mcprintf("\n");
+mcprintf("There are many people who have contributed to the ideas behind\n");
+mcprintf("ISETL.  First and foremost is Ed Dubinsky, whose idea it was to use\n");
+mcprintf("SETL for teaching Discrete Mathematics.  His dissatisfaction with\n");
+mcprintf("the old implementation suggested this project.  Others include:\n");
+mcprintf("Nancy Baxter, Don Muench, and that mysterious bunch that we just\n");
+mcprintf("call IWEST.\n");
      return 0;
     } else if (strcmp(command, "clear") == 0) {
-	mcprintf("!clear complete\n",0,0);
+	mcprintf("!clear complete\n");
 	Clear();
 	inside = false;
 	return CLEAR;
@@ -762,7 +761,7 @@ mcprintf("call IWEST.\n",0,0);
 	Id_Dump(true,true);
 	return 0;
     } else if (strcmp(command, "version") == 0) {
-	mcprintf("%s\n", rev_info,0);
+	mcprintf("%s\n", rev_info);
 	return 0;
 
 #ifndef Mac
@@ -798,7 +797,7 @@ mcprintf("call IWEST.\n",0,0);
 		break;
 
 	    if (!good_id(arg)) {
-		mcprintf("!'%s' not an id\n", arg,0);
+		mcprintf("!'%s' not an id\n", arg);
 	    } else {
                 if( echo_mode || (!silent && !silent_running) )
 		    mcprintf("!'%s' %sed\n", arg, command);
@@ -858,7 +857,7 @@ mcprintf("call IWEST.\n",0,0);
 	    }
 	    yyin = FOpen(arg, "r");
 	    if (FNULL == yyin) {
-		mcprintf("Cannot open '%s'\n", arg,0);
+		mcprintf("Cannot open '%s'\n", arg);
 		--top;
 		yyin = stack[top];
 		line_num = --ln_stack[top];
@@ -873,19 +872,19 @@ mcprintf("call IWEST.\n",0,0);
 		   && *arg != EOS) {
 	    if (record != NULL) {
 		fclose(record);
-		mcprintf("! Previous record closed\n",0,0);
+		mcprintf("! Previous record closed\n");
 	    }
 	    record = FOpen(arg, "a");
-	    mcprintf("! Recording on '%s'\n", arg,0);
+	    mcprintf("! Recording on '%s'\n", arg);
 	    return 0;
 	} else if (strcmp(command, "record") == 0
 		   && *arg == EOS) {
 	    if (record != NULL) {
 		fclose(record);
 		record = NULL;
-		mcprintf("! Recording off\n",0,0);
+		mcprintf("! Recording off\n");
 	    } else {
-		mcprintf("! Recording stays off\n",0,0);
+		mcprintf("! Recording stays off\n");
 	    }
 	    return 0;
 	} else if (strcmp(command, "slow") == 0) {
@@ -902,7 +901,7 @@ mcprintf("call IWEST.\n",0,0);
 		    return 0;
 		}
 	    }
-	    mcprintf("Unknown compiler directive \"%s\" ignored\n", s,0);
+	    mcprintf("Unknown compiler directive \"%s\" ignored\n", s);
 	    return 0;
 	}
     }
@@ -929,13 +928,13 @@ static int find_alias(name) char *name; {
 static void alias(name,string) char *name, *string; {
     int i = find_alias(name);
     if( i < aliases ) {
-	mcprintf("!Duplicate alias '%s' replaces old definition\n", name,0);
+	mcprintf("!Duplicate alias '%s' replaces old definition\n", name);
 	free(names[i]);
 	free(strings[i]);
 	names[i]   = str(name);
 	strings[i] = str(string);
     } else if( aliases == MAX_ALIASES) {
-	mcprintf("!Too many aliases\n", 0,0);
+	mcprintf("!Too many aliases\n");
     } else {
 	names[aliases]   = str(name);
 	strings[aliases] = str(string);

@@ -24,10 +24,10 @@
  */
 
 /* static forward declaration */
-void    mcNSBal(PTR ADDR);
-IPtr     Add_To_Bin(PTR X PTR);
-IPtr     Take_From_Bin(PTR X PTR);
-IPtr     HCat(PTR X PTR);
+static void    mcNSBal(PTR ADDR);
+static IPtr     Add_To_Bin(PTR X PTR);
+static IPtr     Take_From_Bin(PTR X PTR);
+static IPtr     HCat(PTR X PTR);
 
 
 #define Singleton(x)		x

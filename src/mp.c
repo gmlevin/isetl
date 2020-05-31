@@ -541,7 +541,7 @@ IPtr     mpCnt(i, j, step)
 
 #define DIGITBLOCK 10000
 
-#define mpOutput(str,f)	 if(free)show(str,f);else mcfprintf(f,"%s",str,0)
+#define mpOutput(str,f)	 if(free)show(str,f);else mcfprintf(f,"%s",str)
 
 /* free	 ==> use show */
 /* !free ==> pad to width, break after prec digits */

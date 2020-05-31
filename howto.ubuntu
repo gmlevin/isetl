@@ -1,0 +1,6 @@
+Need to install libncurses-dev
+compile with "make sun"
+
+There are three warnings, 2 from parser.y and 1 from scanner.c. This
+is based on generated code and so has some old assumptions.May be
+cleaned up eventually. 

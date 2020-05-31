@@ -39,7 +39,7 @@ void    Out_Integer(s)
     Reg     (p);
 
     if (instruction_printing)
-	mcprintf("int = %s\n", s,0);
+	mcprintf("int = %s\n", s);
     R(p) = mpStrToInt(s);
     Out_Const(R(p));
     LEAVE;
@@ -50,7 +50,7 @@ void    Out_Ref(n)
     C_Ref   n;
 {
     if (instruction_printing)
-	mcprintf("ref = %d\n", n,0);
+	mcprintf("ref = %d\n", n);
 
     al_Instr;
     *(C_Instr *) ((char *) CData(EP_Ptr(PC)) + EP_Offset(PC))
@@ -68,7 +68,7 @@ void    Out_Env(n)
     C_Ref   n;
 {
     if (instruction_printing)
-	mcprintf("ref = %d\n", n,0);
+	mcprintf("ref = %d\n", n);
 
     al_Instr;
     *(C_Instr *) ((char *) CData(EP_Ptr(PC)) + EP_Offset(PC))
@@ -89,7 +89,7 @@ void    Out_Real(n)
     Reg     (p);
 
     if (instruction_printing)
-	mcprintf("real = %g\n", n,0);
+	mcprintf("real = %g\n", n);
     R(p) = New_Real(n);
     Out_Const(R(p));
 
@@ -103,7 +103,7 @@ void    Out_String(s)
     Reg     (p);
 
     if (instruction_printing)
-	mcprintf("string = \"%s\"\n", s,0);
+	mcprintf("string = \"%s\"\n", s);
     R(p) = New_String(s);
     Out_Const(R(p));
 
@@ -118,14 +118,14 @@ void    Out_SRC(n)
     CNext(Tail_Code) = New_Block(SRC, 0);
     at = CNext(Tail_Code);
     if (instruction_printing)
-	mcprintf("Source code:\t",0,0);
+	mcprintf("Source code:\t");
     Tail_Code = at;
     CPtr(at) = n;
     CNext(at) = New_Block(Join, 0);
     Tail_Code = CNext(Tail_Code);
 
     if (instruction_printing)
-	mcprintf("Join %lx\n", Tail_Code,0);
+	mcprintf("Join %p\n", Tail_Code);
 }
 
 /* (n) Stores n.  */
@@ -138,14 +138,14 @@ void Out_Const(n)
     CNext(Tail_Code) = New_Block(PUSH, 0);
     at = CNext(Tail_Code);
     if (instruction_printing)
-	mcprintf("Push Const\t",0,0);
+	mcprintf("Push Const\t");
     Tail_Code = at;
     CPtr(at) = n;
-    CNext(at) = New_Block(Join, 0);
+    CNext(at) = New_Block(Join);
     Tail_Code = CNext(Tail_Code);
 
     if (instruction_printing)
-	mcprintf("Join %lx\n", Tail_Code,0);
+	mcprintf("Join %p\n", Tail_Code);
 }
 
 
@@ -159,14 +159,14 @@ C_Label Out_Label(n)
     CNext(Tail_Code) = New_Block(Fork, 0);
     at = CNext(Tail_Code);
     if (instruction_printing)
-	mcprintf("at %lx Push %lx\t", at, n);
+	mcprintf("at %p Push %p\t", at, n);
     Tail_Code = at;
     CPtr(at) = n;
     CNext(at) = New_Block(Join, 0);
     Tail_Code = CNext(Tail_Code);
 
     if (instruction_printing)
-	mcprintf("Join %lx\n", Tail_Code,0);
+	mcprintf("Join %p\n", Tail_Code);
     return at;
 }
 
@@ -178,7 +178,7 @@ void    Fix_Label(a, b)
             b;
 {
     if (instruction_printing)
-	mcprintf("Fixup at %lx to be %lx\n", a, b);
+	mcprintf("Fixup at %p to be %p\n", a, b);
     CPtr(a) = b;
 }
 
@@ -193,7 +193,7 @@ void    Start_Code()
     New_Code = Tail_Code = New_Block(Join, 0);
 
     if (instruction_printing)
-	mcprintf("Start code at %lx\n", New_Code,0);
+	mcprintf("Start code at %p\n", New_Code);
 }
 
 /* Finish Code Queue */
@@ -219,7 +219,7 @@ void    Flush_Code()
     CNext(Tail_Code) = New_Block(Code, EP_Offset(PC) + sizeof(C_Instr));
     Tail_Code = CNext(Tail_Code);
     if (instruction_printing)
-	mcprintf("Flush %lx\t", Tail_Code,0);
+	mcprintf("Flush %p\t", Tail_Code);
 
     /* Copy code */
     for (i = 0; i < EP_Offset(PC); i++) {
@@ -234,7 +234,7 @@ void    Flush_Code()
     CNext(Tail_Code) = New_Block(Join, 0);
     Tail_Code = CNext(Tail_Code);
     if (instruction_printing)
-	mcprintf("Join %lx\n", Tail_Code,0);
+	mcprintf("Join %p\n", Tail_Code);
 
     /* Reset PC */
     GO_TO(&Working_Code);

@@ -4,7 +4,7 @@
 #include "micro.h"
 #include "ast.h"
 #include "parser.h"
-
+#include "symbol.h"
 
 #ifdef TORTURE
 Bool    torture = false;	       /* Garbage collect before EVERY
@@ -58,7 +58,7 @@ Bool    Add_Segment()
     Seg_Ptr new;
     IPtr     p;
 
-    GC_DEBUG("Added new segment\n",0,0);
+    GC_DEBUG("Added new segment\n");
 
     if ((sizeof(*new) + current_mem) > max_mem) {
 	return false;
@@ -142,13 +142,13 @@ void    Init_Store()
 
 #if 0
     if (gc_debug) {
-	mcprintf("Sizes:\tMin Block =\t%5d\n", MIN_FREE,0);
-	mcprintf("	  \tInt Block =\t%5d\n", sizeof(struct Int_Block),0);
-	mcprintf("	  \tReal Block =\t%5d\n", sizeof(struct Real_Block),0);
-	mcprintf("	  \tList Block =\t%5d\n", sizeof(struct List_Block),0);
-	mcprintf("	  \tFree Block =\t%5d\n", sizeof(struct Free_Block),0);
-	mcprintf("	  \tHead Block =\t%5d\n", sizeof(struct Block_Head),0);
-	mcprintf("	  \tGen_Mult =\t%5d\n", Gen_Mult,0);
+	mcprintf("Sizes:\tMin Block =\t%5d\n", MIN_FREE);
+	mcprintf("	  \tInt Block =\t%5d\n", sizeof(struct Int_Block));
+	mcprintf("	  \tReal Block =\t%5d\n", sizeof(struct Real_Block));
+	mcprintf("	  \tList Block =\t%5d\n", sizeof(struct List_Block));
+	mcprintf("	  \tFree Block =\t%5d\n", sizeof(struct Free_Block));
+	mcprintf("	  \tHead Block =\t%5d\n", sizeof(struct Block_Head));
+	mcprintf("	  \tGen_Mult =\t%5d\n", Gen_Mult);
     }
 #endif
 
@@ -181,7 +181,7 @@ void    Init_Store()
  * string
  */
 
-static  next_atom = 1;
+static  int next_atom = 1;
 IPtr     New_Block(tag, len)
     Type_Tags tag;
     int     len;
@@ -749,7 +749,7 @@ void    GC(needed)
 
     GC_DEBUG("bytes	 reclaimed = %ld   in use = %ld\n", reclaimed, inuse);
     GC_DEBUG("blocks reclaimed = %ld   in use = %ld\n", unmarked, marked);
-    GC_DEBUG("overhead %0.0f%%\n", 100*(got-wanted)/(float)wanted,0);
+    GC_DEBUG("overhead %0.0f%%\n", 100*(got-wanted)/(float)wanted);
 
     if (gc_debug) {
 	IPtr     p;
@@ -774,9 +774,9 @@ void    GC(needed)
 	    RT_ERROR("Internal object too large.");
 	}
 	if (!Add_Segment()) {
-	    mcprintf("Data memory limit of %ld bytes exceeded\n", max_mem,0);
-	    mcprintf("or real memory exceeded\n",0,0);
-	    mcprintf("See manual under !memory to increase limit\n",0,0);
+	    mcprintf("Data memory limit of %ld bytes exceeded\n", max_mem);
+	    mcprintf("or real memory exceeded\n");
+	    mcprintf("See manual under !memory to increase limit\n");
 	    RT_ERROR("Allocated data memory exhausted");
 	}
     }

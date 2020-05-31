@@ -81,7 +81,7 @@ void    opCount()
 }
 
 
-void    Add_Sel(PTR X PTR);
+static void    Add_Sel(PTR X PTR);
 
 
 /* (ref1,ref2) take ref1 from ref2 */

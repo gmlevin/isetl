@@ -28,9 +28,9 @@ static Bool need_prompt = true;
 
 
 /* static forward declarations */
-void    Execute(NONE);
-int     Finput(NONE);
-void	ReadExecute(STR X BOOL X C_FILE X INT ADDR);
+static void    Execute(NONE);
+static int     Finput(NONE);
+static void	ReadExecute(STR X BOOL X C_FILE X INT ADDR);
 
 #define open_source(s) FOpen(s, "r")
 
@@ -46,7 +46,7 @@ FILE   *next_file()
     while (f == FNULL && gargc > 0) {
 	f = open_source(gargv[0]);
 	if (f == FNULL) {
-	    mcprintf("Cannot open '%s'\n", gargv[0],0);
+	    mcprintf("Cannot open '%s'\n", gargv[0]);
 	}
 	loading = true;
 	silent = true;
@@ -115,7 +115,7 @@ void    _main(argc, argv)
 	  } break;
 #endif
 	  default:
-	    mcprintf("Unknown flag '%s'\n", gargv[0],0);
+	    mcprintf("Unknown flag '%s'\n", gargv[0]);
 	    do_exit(GOOD_EXIT);
 	}
 	gargv++;
@@ -147,21 +147,21 @@ void    _main(argc, argv)
 	sscanf(index(rev_info, '$'), form,
 	       rev_version, rev_date, rev_time);
     mcprintf("%s (%s)        (c) Gary Levin\n", VERSION, rev_date);
-    mcprintf("Type `!credits' for more information.\n",0,0);
-    mcprintf("Type `!quit' to exit.\n\n",0,0);
+    mcprintf("Type `!credits' for more information.\n");
+    mcprintf("Type `!quit' to exit.\n\n");
 
 	if (!direct_input) {
 #ifdef Screen
 #ifdef TURBOC
-    mcprintf("To send a region of code, TAG the first line with ^T,\n",0,0);
-    mcprintf("    then type RETURN on last line.\n",0,0);
-    mcprintf("Type ESC for menu.\n",0,0);
+    mcprintf("To send a region of code, TAG the first line with ^T,\n");
+    mcprintf("    then type RETURN on last line.\n");
+    mcprintf("Type ESC for menu.\n");
 #endif
 #ifdef Mac
-    mcprintf("To send a region of code, select it and type RETURN.\n",0,0);
+    mcprintf("To send a region of code, select it and type RETURN.\n");
 #endif
 #else
- mcprintf("Interactive Line Editor active\n", 0,0);
+ mcprintf("Interactive Line Editor active\n");
 #endif
       }
 
@@ -196,7 +196,7 @@ void    _main(argc, argv)
         Bool    was_silent = silent_running;
 #ifdef GRAPHICS
         Bool    was_Graphics = Graphics;
-#endif GRAPHICS
+#endif
 
 	if (setjmp(err_ret)) {	       /* Taken on error return */
 	    IPtr    *p = Top;
@@ -210,7 +210,7 @@ void    _main(argc, argv)
 
 	    while (stack_dump && AStack != p) {
 		if (Kind(*p) == Closure && Kind(Cl_SRC(*p)) == String) {
-		    mcprintf("stack>>> %s\n", Str_Value(Cl_SRC(*p)),0);
+		    mcprintf("stack>>> %s\n", Str_Value(Cl_SRC(*p)));
 		}
 		p--;
 	    }
@@ -274,7 +274,7 @@ static void Execute()
 
 		reset_line();
 		do {
-		    mcprintf("?>",0,0);
+		    mcprintf("?>");
 
 		    /* read command and dispose of rest of line */
 		    while( isspace(command = catch()) && command !='\n' );
@@ -305,7 +305,7 @@ static void Execute()
 			mcPop();
 			single_step = true;
 		    } else if (!isspace(command)) {
-			mcprintf("'%c' not recognized\n", command,0);
+			mcprintf("'%c' not recognized\n", command);
 		    }  else break;
 		} while (true);
 	    }
@@ -314,7 +314,7 @@ static void Execute()
 	  case PUSH:
 	    mcPush(CPtr(EP_Ptr(PC)));
 	    if (trace_debug) {
-		mcprintf("* Push Const = ",0,0);
+		mcprintf("* Push Const = ");
 		mcPrint(R(Top), stdout, true);
 		mcFlush(stdout);
 	    }
@@ -329,7 +329,7 @@ static void Execute()
 	    EP_Offset(PC) += Inst_Mult;
 	    if (trace_debug) {
 		mcprintf("* %s\n",
-		       Inst_Map[(int) instr].Name,0);
+		       Inst_Map[(int) instr].Name);
 	    }
 	    Exec(instr);
 	    break;
@@ -337,7 +337,7 @@ static void Execute()
 	    mcPLabel(CPtr(EP_Ptr(PC)));
 	    GO_TO(CNext(EP_Ptr(PC)));
 	    if (trace_debug) {
-		mcprintf("* Push Label\n",0,0);
+		mcprintf("* Push Label\n");
 	    }
 	    break;
 	  default:

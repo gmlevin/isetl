@@ -283,7 +283,7 @@ void    opIter_Next()
 
 
 /* (PrevIter, LHS, S):Iter Creates an iterator */
-void GIter(INT), IC2(NONE), IC3(NONE);  /* static forward declarations */
+static void GIter(INT), IC2(NONE), IC3(NONE);  /* static forward declarations */
 
 void    opMk_Iter() {    GIter(I_In);}
 void    opMk_FIter(){    GIter(I_SMap);}

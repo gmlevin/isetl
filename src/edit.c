@@ -24,11 +24,11 @@ void    Show_Error()
     mcputc('\n');
     if (errfull) {
 	for (i = in_err; i < MAXERRBUFF; i++) {
-	    mcprintf("%c", errbuff[i],0);
+	    mcprintf("%c", errbuff[i]);
 	}
     }
     for (i = 0; i < in_err; i++) {
-	mcprintf("%c", errbuff[i],0);
+	mcprintf("%c", errbuff[i]);
     }
     mcputc('\n');
 }

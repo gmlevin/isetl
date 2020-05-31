@@ -4,8 +4,8 @@
 #include "manager.h"
 
 /*  static forward declarations */
-IPtr     mcLTrim(PTR);
-IPtr     mcTTrim(PTR);
+static IPtr     mcLTrim(PTR);
+static IPtr     mcTTrim(PTR);
 
 /* (x:List):List Return x with trailing OMs deleted (destructive) */
 static IPtr mcLTrim(x)

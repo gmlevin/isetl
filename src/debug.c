@@ -8,7 +8,7 @@ Bool    verbose = false;	       /* controls type vs value printing
 void    Show_Line()
 {
     if (Last_Line != Nil)
-	mcprintf("\n*** %s", Str_Value(Last_Line),0);
+	mcprintf("\n*** %s", Str_Value(Last_Line));
 }
 
 /* General Error messages */
@@ -33,7 +33,7 @@ void    BAD_ARGS(s, left, right)
 {
     MSG("Error", "Bad arguments in:");
     last_nl = true;
-    if (left != NULL)
+    if (left != (IPtr)NULL)
 	dbPrint(left, stdout);
     show(" ", stdout);
     show(s, stdout);
@@ -58,7 +58,7 @@ void    BAD_REF(s, ref)
     char   *s;
     IPtr     ref;
 {
-    MSG("Error -- Bad mapping", s != NULL ? s : "");
+    MSG("Error -- Bad mapping", s != (char*)NULL ? s : "");
     last_nl = true;
 
     dbPrint(ref, stdout);
@@ -72,7 +72,7 @@ void    BAD_SLICE(s, fn, low, high)
             low,
             high;
 {
-    MSG("Error -- Bad slice", s != NULL ? s : "");
+    MSG("Error -- Bad slice", s != (char*)NULL ? s : "");
     last_nl = true;
 
     dbPrint(fn, stdout);
@@ -90,7 +90,7 @@ void    BAD_SMAP(s, fn, idx)
     IPtr     fn,
             idx;
 {
-    MSG("Error -- Bad mapping", s != NULL ? s : "");
+    MSG("Error -- Bad mapping", s != (char*)NULL ? s : "");
     last_nl = true;
 
     dbPrint(fn, stdout);
@@ -106,7 +106,7 @@ void    BAD_MMAP(s, fn, idx)
     IPtr     fn,
             idx;
 {
-    MSG("Error -- Bad mapping", s != NULL ? s : "");
+    MSG("Error -- Bad mapping", s != (char*)NULL ? s : "");
     last_nl = true;
 
     dbPrint(fn, stdout);
@@ -122,7 +122,7 @@ void    BAD_MAP(s, fn, select)
     IPtr     fn,
             select;
 {
-    MSG("Error -- Bad mapping", s != NULL ? s : "");
+    MSG("Error -- Bad mapping", s != (char*)NULL ? s : "");
     last_nl = true;
 
     dbPrint(fn, stdout);

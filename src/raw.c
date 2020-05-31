@@ -1,4 +1,6 @@
 #include "machine.h"
+#include <stdlib.h>
+
 extern int direct_input;
   /* make sure type here agrees with definition of Bool */
 

@@ -5,6 +5,7 @@
 #	include <stdio.h>
 #endif
 
+#include <stdlib.h>
 #include <setjmp.h>
 
 #include <math.h>
@@ -296,19 +297,14 @@ extern void start_raw(NONE);
 extern void _main(INT X STR ADDR);
 
 #ifdef TURBOC
-#include <stdlib.h>
 
 #else
 #ifdef Mac
-#include <stdlib.h>
 
 #else
 #ifdef Vax
-#include <stdlib.h>
 
 #else
-extern char *malloc(INT);
-extern void free(STR);
 
 #endif
 #endif
@@ -321,9 +317,9 @@ extern char io_temp[];
 					else Eputc(c)
 #  define  mcfputc(c,f)			{if(f==stdout)mcputc(c);\
 					 else         putc(c,f);}
-#  define  mcprintf(form,a1,a2)		{sprintf(io_temp, form,a1,a2);\
+#  define  mcprintf(...)		{sprintf(io_temp, __VA_ARGS__);\
                                          mcEputs();}
-#  define  mcfprintf(f,form,a1,a2)	{sprintf(io_temp, form,a1,a2);\
+#  define  mcfprintf(f,...)	        {sprintf(io_temp, __VA_ARGS__);	\
                                          mcEfputs(f);}
 #  define  mcfflush(f) (f == stdout && !direct_input ? Eflush() : (void)fflush(f))
 extern void mcEputs(NONE), mcEfputs(C_FILE), Eputc(CHAR);
@@ -333,9 +329,9 @@ extern char io_temp[];
 #  define  mcputc(c)			Eputc(c)
 #  define  mcfputc(c,f)			{if(f==stdout)mcputc(c);\
 					 else         putc(c,f);}
-#  define  mcprintf(form,a1,a2)		{sprintf(io_temp, form,a1,a2);\
+#  define  mcprintf(...)		{sprintf(io_temp, __VA_ARGS__);\
                                          mcEputs();}
-#  define  mcfprintf(f,form,a1,a2)	{sprintf(io_temp, form,a1,a2);\
+#  define  mcfprintf(f,...)	{sprintf(io_temp, __VA_ARGS__);\
                                          mcEfputs(f);}
 #  define  mcfflush(f) (f == stdout ? Eflush() : fflush(f))
 extern void mcEputs(NONE), mcEfputs(C_FILE), Eputc(CHAR);
@@ -343,8 +339,8 @@ extern void mcEputs(NONE), mcEfputs(C_FILE), Eputc(CHAR);
 #else
 #  define  mcputc(c)			putchar(c)
 #  define  mcfputc(c,f)			putc(c,f)
-#  define  mcprintf(form,a1,a2)		printf(form,a1,a2)
-#  define  mcfprintf(f,form,a1,a2)	fprintf(f,form,a1,a2)
+#  define  mcprintf(...)		printf(__VA_ARGS__)
+#  define  mcfprintf(f,...)	        fprintf(f, __VA_ARGS__)
 #  define  mcfflush(f) fflush(f)
 #endif
 

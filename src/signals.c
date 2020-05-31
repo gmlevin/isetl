@@ -30,7 +30,7 @@ INT_TYPE on_int(x) int x;
 				        * delay here */
 #endif
 
-    mcprintf("\nINTERRUPT\n",0,0);
+    mcprintf("\nINTERRUPT\n");
     Clear();
 
     reset_line();

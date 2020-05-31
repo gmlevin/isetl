@@ -4,10 +4,10 @@
 #include "manager.h"
 #define unit  IPtr
 
-void heapify(PTR ADDR X INT X INT);
-Bool  lt(PTR X PTR);
-Bool lex(PTR X PTR);
-void sort(PTR ADDR X INT);
+static void heapify(PTR ADDR X INT X INT);
+static Bool  lt(PTR X PTR);
+static Bool lex(PTR X PTR);
+static void sort(PTR ADDR X INT);
 
 static Bool lt(a,b) IPtr a,b; {
     if( is_num(a) && is_num(b) ) return mcLt(a,b);

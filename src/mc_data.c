@@ -316,8 +316,8 @@ Bool    mcEq(x, y)
 	    return true;
 
 	  default:
-	    mcprintf("x=%x y=%x", x,y);
-	    mcprintf("Kind(x)=%d\n", Kind(x),0);
+	    mcprintf("x=%p y=%p", x,y);
+	    mcprintf("Kind(x)=%d\n", Kind(x));
 	    assert(0);
 	}
     } else {

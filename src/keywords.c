@@ -15,8 +15,8 @@ struct Binding {
 static struct Binding Table[TABLE_SIZE];
 
 /* staic forward declarations */
-void    Key_Bind(STR X INT);
-int     hash(STR);
+static void    Key_Bind(STR X INT);
+static int     hash(STR);
 
 static int hash(s)
     char   *s;
@@ -32,7 +32,7 @@ static int hash(s)
     return h % TABLE_SIZE;
 }
 
-int     locate(STR);
+static int     locate(STR);
 
 static int locate(s)
     char   *s;
