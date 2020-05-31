@@ -1,4 +1,4 @@
-CC=clcc
+CC=gcc
 CFILES	=	isetl.c \
 		debug.c mp.c globals.c interp.c \
 		op_arith.c      op_ctrl.c       op_io.c \
@@ -42,8 +42,9 @@ sun:
 parser.h:	parser.c
 parser.c:	parser.y
 	yacc $(YFLAGS) parser.y
-	sed -f  y.tab.c  >parser.c
-	rm y.tab.c
+	#sed -f  y.tab.c  >parser.c
+	mv y.tab.c parser.c
+	#rm y.tab.c
 	mv y.tab.h parser.h
 
 $(OFILES):	debug.h	types.h common.h machine.h mp.h

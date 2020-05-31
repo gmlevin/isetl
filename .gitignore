@@ -3,3 +3,5 @@
 .pure
 TAGS
 isetl
+y.tab.*
+parser.[ch]
