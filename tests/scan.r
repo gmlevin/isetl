@@ -1,0 +1,22 @@
+"Enter a string";
+"here is a string";
+["here", "is", "a", "string"];
+["here", "is", "a", "string"];
+"Enter a string";
+"    leading blanks in this one";
+["leading", "blanks", "in", "this", "one"];
+["leading", "blanks", "in", "this", "one"];
+"Enter a string";
+"   trailing blanks here    ";
+["trailing", "blanks", "here"];
+["trailing", "blanks", "here"];
+"Enter a string";
+"  extra    spaces    everywhere     ";
+["extra", "spaces", "everywhere"];
+["extra", "spaces", "everywhere"];
+"Enter a string";
+"non-letters break words too...too bad";
+["non", "letters", "break", "words", "too", "too", "bad"];
+["non", "letters", "break", "words", "too", "too", "bad"];
+"Enter a string";
+

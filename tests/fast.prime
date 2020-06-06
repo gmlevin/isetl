@@ -1,0 +1,23 @@
+f := openw("prime.out");
+
+trials := [2];
+limit  := 4;
+rest   := [];
+$ limit = square of largest prime in trials
+test   := 3;
+count  := 0;
+while true do
+    if test > limit then
+        take next fromb rest;
+        trials := trials with next;
+        limit  := next**2;
+        end;
+    if forall i in trials | test mod i /= 0 then
+	count := count+1;
+        printf test:10 to f;
+        printf test:10;
+	if count mod 5 = 0 then printf "\n" to f; printf "\n"; end if;
+        rest := rest with test;
+        end;
+    test := test + 2;
+    end;

@@ -1,0 +1,178 @@
+make `ls *.t | sed s/\\\.t/.c/`
+time isetl  -s -d <addlist.t | diff - addlist.r
+        0.7 real         0.1 user         0.2 sys  
+time isetl  -s -d <assign.t | diff - assign.r
+        0.8 real         0.1 user         0.2 sys  
+time isetl  -s -d <atom.t | diff - atom.r
+        0.9 real         0.4 user         0.2 sys  
+time isetl  -s -d <bigmod.t | diff - bigmod.r
+        1.9 real         1.3 user         0.2 sys  
+time isetl  -s -d <bignum.t | diff - bignum.r
+        1.0 real         0.6 user         0.2 sys  
+time isetl  -s -d <binop.t | diff - binop.r
+        0.6 real         0.1 user         0.2 sys  
+time isetl  -s -d <bubble.t | diff - bubble.r
+        2.9 real         2.3 user         0.2 sys  
+time isetl  -s -d <curry.t | diff - curry.r
+        0.6 real         0.1 user         0.2 sys  
+time isetl  -s -d <defins.t | diff - defins.r
+        0.6 real         0.2 user         0.2 sys  
+time isetl  -s -d <demorgan.t | diff - demorgan.r
+        4.9 real         0.1 user         0.1 sys  
+time isetl  -s -d <env.t | diff - env.r
+        0.8 real         0.3 user         0.2 sys  
+time isetl  -s -d <error.t | diff - error.r
+        1.0 real         0.5 user         0.1 sys  
+time isetl  -s -d <file.t | diff - file.r
+        1.8 real         0.2 user         0.3 sys  
+time isetl  -s -d <formers.t | diff - formers.r
+        0.7 real         0.4 user         0.1 sys  
+time isetl  -s -d <func.t | diff - func.r
+        0.6 real         0.2 user         0.2 sys  
+time isetl  -s -d <gcd.t | diff - gcd.r
+        0.5 real         0.0 user         0.2 sys  
+time isetl  -s -d <group.t | diff - group.r
+        1.7 real         1.3 user         0.1 sys  
+time isetl  -s -d <hash.t | diff - hash.r
+        0.6 real         0.2 user         0.1 sys  
+1c1
+< {1234567890123456789, 1.235e+18};
+---
+> {1.235e+18, 1234567890123456789};
+3,5c3,5
+< {0.100, 0.200, 0.300, 0.400, 0.500, 0.600, 0.700, 0.800, 0.900, 1.000};
+< {0.100, 0.200, 0.300, 0.400, 0.500, 0.600, 0.700, 0.800, 0.900, 1.000};
+< {0.100, 0.200, 0.300, 0.400, 0.500, 0.600, 0.700, 0.800, 0.900, 1.000};
+---
+> {1.000, 0.100, 0.200, 0.300, 0.400, 0.500, 0.600, 0.700, 0.800, 0.900};
+> {1.000, 0.100, 0.200, 0.300, 0.400, 0.500, 0.600, 0.700, 0.800, 0.900};
+> {1.000, 0.100, 0.200, 0.300, 0.400, 0.500, 0.600, 0.700, 0.800, 0.900};
+*** Error code 1 (ignored)
+time isetl  -s -d <infunc.t | diff - infunc.r
+        1.0 real         0.4 user         0.2 sys  
+time isetl  -s -d <insert.t | diff - insert.r
+        0.7 real         0.2 user         0.2 sys  
+time isetl  -s -d <io.t | diff - io.r
+        0.7 real         0.2 user         0.2 sys  
+time isetl  -s -d <iters.t | diff - iters.r
+        0.7 real         0.2 user         0.2 sys  
+1c1
+< {[1, 2], [1, 3], [1, 4], [1, 5], [2, 3], [2, 4], [2, 5], [3, 4], [3, 5],
+---
+> {[1, 5], [1, 4], [1, 3], [1, 2], [2, 5], [2, 4], [2, 3], [3, 5], [3, 4],
+4c4
+< {[1, 1], [1, 4], [2, 2], [2, 5], [3, 3], [4, 1], [4, 4], [5, 2], [5, 5]};
+---
+> {[1, 4], [1, 1], [2, 5], [2, 2], [3, 3], [4, 4], [4, 1], [5, 5], [5, 2]};
+*** Error code 1 (ignored)
+time isetl  -s -d <map.t | diff - map.r
+        0.6 real         0.2 user         0.1 sys  
+time isetl  -s -d <map2.t | diff - map2.r
+        1.6 real         0.9 user         0.2 sys  
+2,3c2,3
+<  {[2, 1], [3, 1], [3, 2], [4, 1], [4, 2], [4, 3], [5, 1], [5, 2], [5, 3],
+<   [5, 4]}];
+---
+>  {[2, 1], [3, 2], [3, 1], [4, 3], [4, 2], [4, 1], [5, 4], [5, 3], [5, 2],
+>   [5, 1]}];
+9c9
+< {[2, 1], [3, 1], [3, 2], [5, 1], [5, 2], [5, 3], [5, 4]};
+---
+> {[2, 1], [3, 2], [3, 1], [5, 4], [5, 3], [5, 2], [5, 1]};
+11c11
+< {[2, 1], [3, 1], [3, 2], [4, 1], [4, 2], [4, 3]};
+---
+> {[2, 1], [3, 2], [3, 1], [4, 3], [4, 2], [4, 1]};
+13,14c13,14
+< {[2, 1], [3, 1], [3, 2], [4, 7], [4, 8], [4, 9], [4, 10], [5, 1], [5, 2],
+<  [5, 3], [5, 4]};
+---
+> {[2, 1], [3, 2], [3, 1], [4, 10], [4, 9], [4, 8], [4, 7], [5, 4], [5, 3],
+>  [5, 2], [5, 1]};
+46,47c46,47
+< {[2, 1], [3, 1], [3, 2], [4, 1], [4, 2], [4, 3], [5, 1], [5, 2], [5, 3],
+<  [5, 4]};
+---
+> {[2, 1], [3, 1], [3, 2], [4, 3], [4, 2], [4, 1], [5, 1], [5, 2], [5, 4],
+>  [5, 3]};
+49,50c49,50
+< {[2, 1], [3, 1], [3, 2], [4, 1], [4, 2], [4, 3], [5, 1], [5, 2], [5, 3],
+<  [5, 4]};
+---
+> {[2, 1], [3, 2], [3, 1], [4, 1], [4, 3], [4, 2], [5, 3], [5, 4], [5, 2],
+>  [5, 1]};
+*** Error code 1 (ignored)
+time isetl  -s -d <med2.t | diff - med2.r
+        1.0 real         0.5 user         0.2 sys  
+time isetl  -s -d <median.t | diff - median.r
+        1.6 real         1.0 user         0.2 sys  
+time isetl  -s -d <mod.t | diff - mod.r
+        0.7 real         0.1 user         0.2 sys  
+time isetl  -s -d <more.t | diff - more.r
+        1.4 real         0.7 user         0.3 sys  
+time isetl  -s -d <new.t | diff - new.r
+        0.7 real         0.2 user         0.1 sys  
+time isetl  -s -d <npow.t | diff - npow.r
+        1.9 real         1.5 user         0.2 sys  
+time isetl  -s -d <object.t | diff - object.r
+        0.5 real         0.1 user         0.2 sys  
+time isetl  -s -d <ops1.t | diff - ops1.r
+        0.7 real         0.2 user         0.2 sys  
+time isetl  -s -d <ops2.t | diff - ops2.r
+        0.6 real         0.1 user         0.2 sys  
+time isetl  -s -d <opt.t | diff - opt.r
+        0.6 real         0.1 user         0.2 sys  
+time isetl  -s -d <origin.t | diff - origin.r
+        0.8 real         0.4 user         0.2 sys  
+time isetl  -s -d <perms.t | diff - perms.r
+        1.5 real         1.0 user         0.2 sys  
+time isetl  -s -d <posort.t | diff - posort.r
+        1.1 real         0.6 user         0.2 sys  
+time isetl  -s -d <predef.t | diff - predef.r
+        1.1 real         0.6 user         0.2 sys  
+time isetl  -s -d <primeg.t | diff - primeg.r
+        0.9 real         0.3 user         0.2 sys  
+time isetl  -s -d <primel.t | diff - primel.r
+        1.0 real         0.5 user         0.2 sys  
+time isetl  -s -d <primes.t | diff - primes.r
+        1.3 real         1.0 user         0.1 sys  
+time isetl  -s -d <printf.t | diff - printf.r
+        1.2 real         0.7 user         0.2 sys  
+time isetl  -s -d <qrec.t | diff - qrec.r
+        2.9 real         2.5 user         0.2 sys  
+time isetl  -s -d <qstack.t | diff - qstack.r
+        5.7 real         5.3 user         0.2 sys  
+time isetl  -s -d <quant.t | diff - quant.r
+        0.5 real         0.1 user         0.2 sys  
+time isetl  -s -d <queens.t | diff - queens.r
+        2.2 real         1.8 user         0.2 sys  
+time isetl  -s -d <rat.t | diff - rat.r
+        2.7 real         2.1 user         0.2 sys  
+time isetl  -s -d <read.t | diff - read.r
+        0.5 real         0.1 user         0.2 sys  
+5c5
+< {[3, 10], [3, 11], [3, 12], [3, 13], [6, 17]};
+---
+> {[3, 13], [3, 12], [3, 11], [3, 10], [6, 17]};
+*** Error code 1 (ignored)
+time isetl  -s -d <readf.t | diff - readf.r
+        0.7 real         0.2 user         0.2 sys  
+time isetl  -s -d <scan.t | diff - scan.r
+       12.1 real        11.5 user         0.2 sys  
+time isetl  -s -d <slice.t | diff - slice.r
+        0.7 real         0.2 user         0.2 sys  
+time isetl  -s -d <string.t | diff - string.r
+        0.7 real         0.1 user         0.2 sys  
+time isetl  -s -d <take.t | diff - take.r
+        0.7 real         0.2 user         0.2 sys  
+time isetl  -s -d <tupget.t | diff - tupget.r
+        0.7 real         0.2 user         0.1 sys  
+time isetl  -s -d <watch.t | diff - watch.r
+        0.7 real         0.2 user         0.3 sys  
+13c13
+< ! f := {};
+---
+> ! f := {!Set!};
+*** Error code 1 (ignored)
+time isetl  -s -d <where.t | diff - where.r
+        0.8 real         0.4 user         0.1 sys  

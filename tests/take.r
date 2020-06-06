@@ -1,0 +1,20 @@
+true;
+true;
+true;
+true;
+true;
+true;
+[1, 4, 7, 10, 13, 16, 4];
+"take x from s";
+[16, {1, 4, 7, 10, 13}];
+"take x frome t";
+[16, [1, 4, 7, 10, 13]];
+"take x fromb t";
+[1, [4, 7, 10, 13]];
+"take x from t";
+[4, [7, 10, 13]];
+[OM, {}];
+[OM, []];
+[OM, []];
+[OM, []];
+

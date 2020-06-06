@@ -1,0 +1,5472 @@
+Current GC memory = 50060, New Limit = 1000000
+Enter numbers, terminate with non-number
+Next?	Next?	Next?	Next?	Next?	Next?	Sum is: 15.70000
+[5, [1, [3]]];
+[2];
+10;
+6;
+"Enter an expression with operators +-*/";
+"Parentheses may be used for grouping";
+"Arguments are single lower case letters";
+"a + b * c + d * ( x + y ) * e";
+[["root", !13!],
+ ["tree",
+  {[!9!, ["*", !1!, !2!]], [!10!, ["*", !7!, !8!]],
+   [!12!, ["+", !9!, !10!]], [!13!, ["+", !11!, !12!]], [!11!, "a"],
+   [!7!, "d"], [!8!, ["*", !5!, !6!]], [!6!, "e"], [!5!, ["+", !3!, !4!]],
+   [!2!, "c"], [!1!, "b"], [!3!, "x"], [!4!, "y"]}]];
+[true, true, 0, true, [5, 5], 1, 0];
+[true, true, 0, true, [-5, 5], -1, 0];
+[true, true, 0, true, [5, -5], -1, 0];
+[true, true, 0, true, [-5, -5], 1, 0];
+[true, true, 0, true, [5, 9990], 0, 5];
+[true, true, 0, true, [-5, 9990], -1, 9985];
+[true, true, 0, true, [5, -9990], 0, 5];
+[true, true, 0, true, [-5, -9990], 1, 9985];
+[true, true, 0, true, [5, 12000], 0, 5];
+[true, true, 0, true, [-5, 12000], -1, 11995];
+[true, true, 0, true, [5, -12000], 0, 5];
+[true, true, 0, true, [-5, -12000], 1, 11995];
+[true, true, 0, true, [5, 123456789], 0, 5];
+[true, true, 0, true, [-5, 123456789], -1, 123456784];
+[true, true, 0, true, [5, -123456789], 0, 5];
+[true, true, 0, true, [-5, -123456789], 1, 123456784];
+[true, true, 0, true, [9990, 5], 1998, 0];
+[true, true, 0, true, [-9990, 5], -1998, 0];
+[true, true, 0, true, [9990, -5], -1998, 0];
+[true, true, 0, true, [-9990, -5], 1998, 0];
+[true, true, 0, true, [9990, 9990], 1, 0];
+[true, true, 0, true, [-9990, 9990], -1, 0];
+[true, true, 0, true, [9990, -9990], -1, 0];
+[true, true, 0, true, [-9990, -9990], 1, 0];
+[true, true, 0, true, [9990, 12000], 0, 9990];
+[true, true, 0, true, [-9990, 12000], -1, 2010];
+[true, true, 0, true, [9990, -12000], 0, 9990];
+[true, true, 0, true, [-9990, -12000], 1, 2010];
+[true, true, 0, true, [9990, 123456789], 0, 9990];
+[true, true, 0, true, [-9990, 123456789], -1, 123446799];
+[true, true, 0, true, [9990, -123456789], 0, 9990];
+[true, true, 0, true, [-9990, -123456789], 1, 123446799];
+[true, true, 0, true, [12000, 5], 2400, 0];
+[true, true, 0, true, [-12000, 5], -2400, 0];
+[true, true, 0, true, [12000, -5], -2400, 0];
+[true, true, 0, true, [-12000, -5], 2400, 0];
+[true, true, 0, true, [12000, 9990], 1, 2010];
+[true, true, 0, true, [-12000, 9990], -2, 7980];
+[true, true, 0, true, [12000, -9990], -1, 2010];
+[true, true, 0, true, [-12000, -9990], 2, 7980];
+[true, true, 0, true, [12000, 12000], 1, 0];
+[true, true, 0, true, [-12000, 12000], -1, 0];
+[true, true, 0, true, [12000, -12000], -1, 0];
+[true, true, 0, true, [-12000, -12000], 1, 0];
+[true, true, 0, true, [12000, 123456789], 0, 12000];
+[true, true, 0, true, [-12000, 123456789], -1, 123444789];
+[true, true, 0, true, [12000, -123456789], 0, 12000];
+[true, true, 0, true, [-12000, -123456789], 1, 123444789];
+[true, true, 0, true, [123456789, 5], 24691357, 4];
+[true, true, 0, true, [-123456789, 5], -24691358, 1];
+[true, true, 0, true, [123456789, -5], -24691357, 4];
+[true, true, 0, true, [-123456789, -5], 24691358, 1];
+[true, true, 0, true, [123456789, 9990], 12358, 369];
+[true, true, 0, true, [-123456789, 9990], -12359, 9621];
+[true, true, 0, true, [123456789, -9990], -12358, 369];
+[true, true, 0, true, [-123456789, -9990], 12359, 9621];
+[true, true, 0, true, [123456789, 12000], 10288, 789];
+[true, true, 0, true, [-123456789, 12000], -10289, 11211];
+[true, true, 0, true, [123456789, -12000], -10288, 789];
+[true, true, 0, true, [-123456789, -12000], 10289, 11211];
+[true, true, 0, true, [123456789, 123456789], 1, 0];
+[true, true, 0, true, [-123456789, 123456789], -1, 0];
+[true, true, 0, true, [123456789, -123456789], -1, 0];
+[true, true, 0, true, [-123456789, -123456789], 1, 0];
+[-3, 0, 1];
+[-3, 1, -3];
+[-3, 2, 9];
+[-3, 50, 717897987691852588770249];
+[0, 0];
+[0, 1, 0];
+[0, 2, 0];
+[0, 50, 0];
+[3, 0, 1];
+[3, 1, 3];
+[3, 2, 9];
+[3, 50, 717897987691852588770249];
+[true, true, true, true, true, [5, 5], 1, 0];
+[true, true, true, true, true, [5, 9990], 0, 5];
+[true, true, true, true, true, [5, 12000], 0, 5];
+[true, true, true, true, true, [5, 123456789], 0, 5];
+[true, true, true, true, true, [9990, 5], 1998, 0];
+[true, true, true, true, true, [9990, 9990], 1, 0];
+[true, true, true, true, true, [9990, 12000], 0, 9990];
+[true, true, true, true, true, [9990, 123456789], 0, 9990];
+[true, true, true, true, true, [12000, 5], 2400, 0];
+[true, true, true, true, true, [12000, 9990], 1, 2010];
+[true, true, true, true, true, [12000, 12000], 1, 0];
+[true, true, true, true, true, [12000, 123456789], 0, 12000];
+[true, true, true, true, true, [123456789, 5], 24691357, 4];
+[true, true, true, true, true, [123456789, 9990], 12358, 369];
+[true, true, true, true, true, [123456789, 12000], 10288, 789];
+[true, true, true, true, true, [123456789, 123456789], 1, 0];
+[-3, 0, 1];
+[-3, 1, -3];
+[-3, 2, 9];
+[-3, 5, -243];
+[0, 0];
+[0, 1, 0];
+[0, 2, 0];
+[0, 5, 0];
+[3, 0, 1];
+[3, 1, 3];
+[3, 2, 9];
+[3, 5, 243];
+true;
+true;
+true;
+true;
+true;
+true;
+"Enter tuple to sort";
+["original list",
+ [20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1]];
+["sorted list",
+ [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20]];
+"Enter tuple to sort";
+["original list",
+ ["this", "is", "a", "test", "to", "show", "that", "subtle", "is",
+  "polymorphic"]];
+["sorted list",
+ ["a", "is", "is", "polymorphic", "show", "subtle", "test", "that",
+  "this", "to"]];
+"Enter tuple to sort";
+["original list", []];
+["sorted list", []];
+["inc(10) = ", 11];
+["dec(10) = ", 9];
+13;
+55;
+33;
+6;
+24;
+3628800;
+true;
+true;
+"print f(first(1),second(1));";
+true;
+"print f(first(number),second(number));";
+true;
+"print #[i: i in [1..number]| f(first(i),second(i))];";
+5;
+
+! Syntax: ~ not permitted
+
+! Syntax: Only identifiers can be bound
+
+! Syntax: Bad RHS for Iterator
+
+! Syntax: warning -- id bound twice in same scope
+2;
+4;
+
+! Syntax: Bad RHS for Iterator
+
+*** if true then return 5; end;
+
+! Error: Return at top level
+
+! Error: Return at top level
+
+! Error: Input must be an expression
+
+*** s(2..3) := 5;
+
+! Error: RHS in string slice assignment must be string
+
+*** t(1..3) := 5;
+
+! Error: RHS in tuple slice assignment must be tuple
+
+*** m{3} := 4;
+
+! Error: RHS in mmap assignment must be set
+{2, 3, 1};
+
+! Error -- Bad mapping: multiple images
+{[3, 1], [3, 2], [3, 3]}(3);
+
+! Error: Slice upper bound too big
+
+! Error: Slice lower bound too big
+
+*** a := {true..false};
+
+! Error: Bad args in low..high
+
+*** a := {1, 3.5 .. 7};
+
+! Error: Bad args in low,next..high
+
+*** for i in [1.."abc"] do print i; end;
+
+! Error: Bad args in low..high
+
+*** for i in [1, 3 .. "abc"] do print i; end;
+
+! Error: Bad args in low,next..high
+
+*** for i=s{j} do print [i,j]; end;
+
+! Error: Can't mmap string
+{"d"};
+{4};
+
+! Error -- Bad mapping: 
+OM{4};
+
+! Error: Divide by zero
+
+! Error: Bad arguments in:
+4 <relation> true;
+
+! Error: Bad arguments in:
+{3, 4, 1, 2, 5, 6, 7, 8, 9, 10} <relation> {1, 2, 3};
+
+*** [a,b,c] := 5;
+
+! Error: Bad arguments in:
+[a, b, c] := 5;
+
+! Error: Bad arguments in:
+ # 4;
+
+*** t(-5) := 4;
+
+! Error -- Bad mapping: 
+[1, 2, 3, 4](-5);
+
+*** take y from x;
+
+! Error: Bad arguments in:
+y from x;
+
+*** for i in 3 do print i; end;
+
+! Error: Can't iterate over
+3;
+3;
+
+*** if true and 3 then print 1; else print 2; end;
+
+! Error: Boolean expected
+3;
+
+! Error: Boolean expected
+3;
+
+! Error: Boolean expected
+3;
+
+! Error: Bad arguments in:
+3 impl true;
+
+! Error: Bad arguments in:
+ not 5;
+
+! Error: Bad arguments in:
+{1, 3, 2} + 5;
+
+! Error: Bad arguments in:
+OM + OM;
+
+! Error: Bad arguments in:
+{1, 3, 2} - 5;
+
+! Error: Bad arguments in:
+OM - OM;
+
+! Error: Bad arguments in:
+ - {2, 3, 1};
+
+! Error: Bad arguments in:
+[1, 2, 3] less 5;
+
+! Error: Bad arguments in:
+5 with {3, 2, 1};
+
+! Error: Bad arguments in:
+"abc" * "cde";
+
+! Error: Bad arguments in:
+5 * {2, 3, 1};
+
+! Error: Bad arguments in:
+5 mod 0;
+2;
+
+! Error: Bad arguments in:
+5 mod true;
+
+! Error: Bad arguments in:
+true mod false;
+
+! Error: Bad arguments in:
+3.500 div 4.500;
+
+! Error: Bad arguments in:
+{1, 3, 2} / {2};
+
+! Error: Bad arguments in:
+{2, 3, 1} / 2;
+
+! Error: Bad arguments in:
+{3, 2, 1} ** 2;
+
+! Error: Bad arguments in:
+5 in "abc";
+
+! Error: Bad arguments in:
+5 in 7;
+
+! Error: Bad arguments in:
+3 subset 5;
+Can't read from: OM;
+Can't write to: OM;
+[1, 2, 3, 4];
+[1, 2, 3, 4];
+[1, 2, 3, 4, 5];
+
+*** f(4)(2) := 10;
+
+! Error: Only one level of selection allowed
+3;
+9;
+OM;
+OM;
+true;
+OM;
+OM;
+true;
+["function",
+ {[1, 1], [2, 4], [3, 9], [4, 16], [5, 25], [6, 36], [9, 81], [10, 100],
+  [7, 49], [8, 64]}];
+["image", {100, 81, 64, 49, 1, 4, 25, 36, 9, 16}];
+["domain", {6, 5, 4, 3, 1, 2, 10, 9, 7, 8}];
+["explode", "abcdefg", ["a", "b", "c", "d", "e", "f", "g"]];
+[[1, "a"], [2, "b"], [3, "c"], [4, "d"], [5, "e"], [6, "f"], [7, "g"]];
+[[1, 10], [2, 11], [3, 12], [4, 13], [5, 14], [6, 15], [7, 16], [8, 17],
+ [9, 18], [10, 19], [11, 20]];
+[21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+[25, 26, 27, 28, 29, 30];
+[35, 36, 37, 38, 39, 40];
+[21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+[30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+1;
+OM;
+OM;
+3;
+OM;
+OM;
+OM;
+3;
+OM;
+OM;
+OM;
+5;
+[2, 4, 6, 8, 10];
+0;
+[2, 4, 6, 8, 10];
+0;
+[1, 2];
+[3, 4];
+"done";
+true;
+{1.235e+18, 1234567890123456789};
+{10000000};
+{0.400, 0.300, 0.200, 0.100, 1.000, 0.600, 0.500, 0.900, 0.800, 0.700};
+{0.900, 0.800, 0.700, 0.600, 0.500, 0.300, 0.400, 1.000, 0.100, 0.200};
+{0.700, 0.800, 0.900, 0.600, 0.500, 0.200, 1.000, 0.100, 0.300, 0.400};
+"Series and Sums";
+"Enter the series function, as a function of one variable";
+"\tUse the form 'func(i); return <some expression using i>; end;'";
+"Enter the number of terms, N:";
+["i", "f(i)", "%+[ f(x): x in [1..i]]"];
+[1, 1, 1];
+[2, 4, 5];
+[3, 9, 14];
+[4, 16, 30];
+[5, 25, 55];
+[6, 36, 91];
+[7, 49, 140];
+[8, 64, 204];
+[9, 81, 285];
+[10, 100, 385];
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+1606938044258990275541962092341162602522\
+202993782792835301376;
+  Sun  Mon Tues  Wed  Thu  Fri  Sat
+                   1    2    3    4
+    5    6    7    8    9   10   11
+   12   13   14   15   16   17   18
+   19   20   21   22   23   24   25
+   26   27   28   29   30
+1+3=4	2+1=3	1+2=3	1+1=2	3+2=5	
+3+3=6	2+3=5	3+1=4	2+2=4
+
+Enter numbers, terminate with any non-number
+Next?	Next?	Next?	Next?	Next?	Next?	Total is: 15.70000
+40;
+{[4, 5], [3, 5], [3, 4], [1, 5], [1, 4], [1, 3], [1, 2], [2, 5], [2, 4],
+ [2, 3]};
+false;
+{[5, 5], [5, 2], [4, 4], [4, 1], [3, 3], [1, 4], [1, 1], [2, 5], [2, 2]};
+true;
+"TRY THIS 123";
+["gt",
+ {[3, 2], [3, 1], [2, 1], [5, 4], [5, 3], [5, 2], [5, 1], [4, 3], [4, 2],
+  [4, 1]}];
+OM;
+1;
+{2, 1, 3};
+{};
+{1};
+{[5, 4], [5, 3], [5, 2], [5, 1], [3, 2], [3, 1], [2, 1]};
+"gt{5} := om";
+{[4, 3], [4, 2], [4, 1], [3, 2], [3, 1], [2, 1]};
+"gt{4} := {7,8,9,10}";
+{[2, 1], [3, 2], [3, 1], [5, 4], [5, 3], [5, 2], [5, 1], [4, 10], [4, 9],
+ [4, 8], [4, 7]};
+"{ [x,y]: y=gt{x} }";
+{[4, {3, 2, 1}], [5, {3, 4, 1, 2}], [3, {1, 2}], [2, {1}]};
+"{ [[i,j], i>j] : i in [1..5], j in [1..5] }";
+{[[2, 1], true], [[1, 3], false], [[2, 2], false], [[1, 4], false],
+ [[1, 1], false], [[1, 2], false], [[3, 2], true], [[2, 4], false],
+ [[3, 1], true], [[2, 3], false], [[1, 5], false], [[4, 2], true],
+ [[3, 4], false], [[4, 1], true], [[3, 3], false], [[2, 5], false],
+ [[5, 1], true], [[4, 3], true], [[3, 5], false], [[5, 2], true],
+ [[4, 4], false], [[5, 5], false], [[5, 4], true], [[5, 3], true],
+ [[4, 5], false]};
+false;
+true;
+{false};
+{true};
+"{ [x,y]: y=gt{x} }";
+{[[2, 2], {false}], [[1, 4], {false}], [[1, 3], {false}],
+ [[2, 1], {true}], [[1, 2], {false}], [[1, 1], {false}],
+ [[3, 3], {false}], [[4, 1], {true}], [[2, 5], {false}], [[4, 2], {true}],
+ [[3, 4], {false}], [[2, 4], {false}], [[3, 2], {true}],
+ [[2, 3], {false}], [[1, 5], {false}], [[3, 1], {true}], [[5, 3], {true}],
+ [[4, 5], {false}], [[5, 5], {false}], [[5, 4], {true}], [[4, 3], {true}],
+ [[3, 5], {false}], [[5, 1], {true}], [[4, 4], {false}], [[5, 2], {true}]};
+"{ [x,y]: y=gt(x) }";
+{[[5, 5], false], [[5, 4], true], [[4, 5], false], [[5, 3], true],
+ [[4, 4], false], [[5, 2], true], [[3, 5], false], [[4, 3], true],
+ [[5, 1], true], [[2, 5], false], [[3, 3], false], [[4, 1], true],
+ [[3, 4], false], [[4, 2], true], [[1, 5], false], [[2, 3], false],
+ [[3, 1], true], [[2, 4], false], [[3, 2], true], [[1, 3], false],
+ [[2, 1], true], [[1, 4], false], [[2, 2], false], [[1, 1], false],
+ [[1, 2], false]};
+"{ x : y=gt(x) | y }";
+{[2, 1], [3, 1], [3, 2], [4, 2], [4, 1], [4, 3], [5, 2], [5, 1], [5, 4],
+ [5, 3]};
+"{ [i,j] : y = gt(i,j) | y }";
+{[2, 1], [3, 2], [3, 1], [5, 2], [5, 1], [5, 3], [5, 4], [4, 3], [4, 2],
+ [4, 1]};
+{[1, [2, 5]]};
+{1};
+{};
+{2};
+{};
+{3};
+{};
+{4};
+"Enter a set or tuple:";
+[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "has no median"];
+"Enter a set or tuple:";
+["Median of", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "is", 6];
+"Enter a set or tuple:";
+["Median of", [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121], "is", 36];
+"Enter a set or tuple:";
+[[], "has no median"];
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+OM;
+OM;
+{};
+[true, true, true, true, true, [5, 5], 1, 0];
+[true, true, true, true, true, [5, 9990], 0, 5];
+[true, true, true, true, true, [5, 12000], 0, 5];
+[true, true, true, true, true, [5, 123456789], 0, 5];
+[true, true, true, true, true, [9990, 5], 1998, 0];
+[true, true, true, true, true, [9990, 9990], 1, 0];
+[true, true, true, true, true, [9990, 12000], 0, 9990];
+[true, true, true, true, true, [9990, 123456789], 0, 9990];
+[true, true, true, true, true, [12000, 5], 2400, 0];
+[true, true, true, true, true, [12000, 9990], 1, 2010];
+[true, true, true, true, true, [12000, 12000], 1, 0];
+[true, true, true, true, true, [12000, 123456789], 0, 12000];
+[true, true, true, true, true, [123456789, 5], 24691357, 4];
+[true, true, true, true, true, [123456789, 9990], 12358, 369];
+[true, true, true, true, true, [123456789, 12000], 10288, 789];
+[true, true, true, true, true, [123456789, 123456789], 1, 0];
+true;
+true;
+true;
+true;
+true;
+OM;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+OM;
+OM;
+256637406;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+
+! Error -- Bad mapping: 
+OM();
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+         1         6
+         2         7
+         3         8
+1;
+24;
+"single quotes may be used for strings";
+"such strings may contain double quotes (\q)";
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+"Gary Levin";
+"Carol Simon Levin";
+OM;
+OM;
+1100;
+700;
+1;
+2.500;
+"abc";
+{};
+[];
+OM;
+[1, 2, 3];
+{6, 5, 3, 1, 2};
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+[1, 3, 5, 7, 9];
+[1, 3, 5, 7, 9];
+[];
+[];
+[10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+6;
+6.000;
+"abcxyz";
+[1, 2, 3, 4, 5, 6];
+{1, 2, 3, 4, 5, 6, 7};
+2;
+2.000;
+{1, 2};
+8;
+8.000;
+"abcabcabc";
+[1, 2, 3, 1, 2, 3, 1, 2, 3];
+{5, 4, 3};
+2.500;
+2.000;
+2;
+1;
+2.500;
+1024;
+1.414;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+true;
+false;
+true;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+true;
+false;
+true;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+false;
+true;
+true;
+
+! Error: Too few arguments
+
+! Error: Too few arguments
+
+! Error: Too few arguments
+[1, 2, 3];
+OM;
+[1, 2, 3, 4];
+OM;
+[1, 2, 3, 4, 5];
+OM;
+
+! Error: Too many arguments
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+24;
+[{[1, 4, 3, 2], [1, 4, 2, 3], [1, 3, 2, 4], [1, 3, 4, 2], [1, 2, 3, 4],
+  [1, 2, 4, 3]},
+ {[2, 4, 3, 1], [2, 4, 1, 3], [2, 3, 4, 1], [2, 3, 1, 4], [2, 1, 3, 4],
+  [2, 1, 4, 3]},
+ {[3, 1, 2, 4], [3, 1, 4, 2], [3, 2, 4, 1], [3, 2, 1, 4], [3, 4, 1, 2],
+  [3, 4, 2, 1]},
+ {[4, 1, 3, 2], [4, 1, 2, 3], [4, 2, 3, 1], [4, 2, 1, 3], [4, 3, 1, 2],
+  [4, 3, 2, 1]}];
+true;
+"Enter a partial order as a set of pairs";
+["nodes", {7, 8, 6, 2, 1, 3, 4, 5}];
+["sort", [1, 2, 4, 3, 6, 5, 7, 8]];
+"Enter a partial order as a set of pairs";
+["nodes", {1, 2, 3, 5, 4, 8, 7, 6}];
+["sort", [1, 3, 2, 6, 5, 4, 7, 8]];
+4;
+4;
+4;
+4;
+0;
+0;
+4.000;
+4.000;
+4.000;
+4.000;
+0.000;
+0.000;
+97;
+97;
+OM;
+OM;
+OM;
+OM;
+1.000;
+1.000;
+1.400;
+1.400;
+-4.000;
+-4.000;
+1;
+1;
+1;
+1;
+-1;
+-1;
+-1;
+-1;
+2;
+2;
+2;
+2;
+-1;
+-1;
+-1;
+-1;
+1;
+1;
+1;
+1;
+-2;
+-2;
+-2;
+-2;
+false;
+false;
+false;
+false;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+false;
+false;
+false;
+false;
+false;
+false;
+"[random( 10) : i in [1..10]]";
+[10, 4, 5, 6, 10, 6, 6, 9, 9, 6];
+"[random(-10) : i in [1..10]]";
+[];
+"[random(1.0) : i in [1..10]]";
+[0.895, 0.270, 0.276, 0.455, 0.953, 0.998, 0.236, 0.244, 0.889, 0.354];
+"[random(1.5) : i in [1..10]]";
+[1.428, 0.426, 0.738, 0.643, 1.255, 1.144, 1.364, 1.359, 0.958, 0.726];
+"[random({1,3,5,6,8,9}) : i in [1..10]]";
+[6, 6, 9, 1, 3, 8, 6, 8, 8, 5];
+"[random([1,3,om,6,8,9]) : i in [1..10]]";
+[OM, 6, 8, 8, 1, 8, 8, 3, 9, 6];
+"[random('abcdefghijkl') : i in [1..10]]";
+["h", "k", "k", "b", "d", "i", "k", "c", "h", "g"];
+"a";
+"a";
+"F";
+"F";
+3;
+5;
+7;
+11;
+13;
+17;
+19;
+23;
+29;
+31;
+"Enter N:";
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
+ 71, 73, 79, 83, 89, 97];
+Current GC memory = 500600, Limit = 1000000
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
+ 71, 73, 79, 83, 89, 97];
+"\001\002\003\004\005\006\007\b\t\n\013\f\r\016\017\020\021\022\023\024\025"
++"\026\027\030\031\032\033\034\035\036\037 !\q#$%&'()*+,-./0123456789:;<=>?"
++"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\177";
+
+         1    2                   3
+
+1125899906842624
+
+    1125899906842624
+
+112589990\
+6842624
+
+             1.50000             1.50000      1.50    1.50000e+00
+
+      true     false
+        OM   OM
+abcdef  xyz       xyz
+
+      !16!      !15!
+
+!FUNC(f6f2)!!FUNC(9fae0/5d88c)!
+
+!modified:FUNC(9fae0/5d88c)!
+
+        OM!File(w:ed22f3c)!!File(a:ed22f50)!
+OM;
+
+        OM
+
+{}
+
+{         3         4         5         2         1}
+
+{  1  2  3  5  4}
+
+{  1,  2,  3,  5,  4}
+
+[]
+
+[         1         2         3         4         5]
+
+[  1  2  3  4  5]
+
+[  1,  2,  3,  4,  5]
+
+           1  2  3  4
+  5  6  7  8  9 10 11
+ 12 13 14 15 16 17 18
+ 19 20 21 22 23 24 25
+ 26 27 28 29 30 31
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+ "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+["any", "are", "because", "different", "hardly", "in", "is", "operators",
+ "polymorphic", "problem", "subtle", "the", "there", "types", "using",
+ "with"];
+"enter set to be sorted";
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+"qwertyuioplkjhgfdsazxcvbnm";
+["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+ "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+"enter set to be sorted";
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+[25, 13, 14, 5, 6, 7, 22, 23, 24, 1, 2, 9, 27, 28, 34, 35, 26, 15, 37, 38,
+ 40, 16, 17, 30, 31, 21, 10, 11, 18, 32, 33, 39, 29, 19, 3, 4, 8, 20, 12,
+ 36];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+"enter set to be sorted";
+["there", "is", "hardly", "any", "problem", "with", "using", "different",
+ "types", "in", "subtle", "because", "the", "operators", "are",
+ "polymorphic"];
+["any", "are", "because", "different", "hardly", "in", "is", "operators",
+ "polymorphic", "problem", "subtle", "the", "there", "types", "using",
+ "with"];
+"enter set to be sorted";
+[];
+[];
+"correct";
+"correct";
+{[1, 3, 5, 2, 4], [1, 4, 2, 5, 3], [4, 1, 3, 5, 2], [2, 5, 3, 1, 4],
+ [2, 4, 1, 3, 5], [3, 1, 4, 2, 5], [5, 3, 1, 4, 2], [5, 2, 4, 1, 3],
+ [4, 2, 5, 3, 1], [3, 5, 2, 4, 1]};
+true;
+true;
+true;
+true;
+{[6, 17], [3, 13], [3, 12], [3, 11], [3, 10]};
+[OM, OM, OM, 21];
+123;
+"123,456";
+-123;
+123;
+123456789;
+-123456789;
+123456789;
+123.456;
+12345.600;
+-1.235;
+678;
+"12345";
+"x;";
+"12345";
+"Enter a string";
+"here is a string";
+["here", "is", "a", "string"];
+["here", "is", "a", "string"];
+"Enter a string";
+"    leading blanks in this one";
+["leading", "blanks", "in", "this", "one"];
+["leading", "blanks", "in", "this", "one"];
+"Enter a string";
+"   trailing blanks here    ";
+["trailing", "blanks", "here"];
+["trailing", "blanks", "here"];
+"Enter a string";
+"  extra    spaces    everywhere     ";
+["extra", "spaces", "everywhere"];
+["extra", "spaces", "everywhere"];
+"Enter a string";
+"non-letters break words too...too bad";
+["non", "letters", "break", "words", "too", "too", "bad"];
+["non", "letters", "break", "words", "too", "too", "bad"];
+"Enter a string";
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 25, 26, 27, 28, 29, 30];
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25,
+ 26, 27, 28, 29, 30];
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 50, 22, 23, 24, 25, 26, 27,
+ 28, 29, 30];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+ 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 45, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, OM, 70, 16, 17, 18,
+ 19, 20];
+[1, 2, 3, 4, OM, OM, OM, 8, 9, 10];
+[4];
+[1, 2, 3, 4, 17, 8, 9, 10];
+[1, 2, 3, 4, OM, 1, 8, 9, 10];
+["abcdefg", "abcdefg"];
+["d", "d"];
+["def", "def"];
+["abcefg", "abcefg"];
+["abceABCDEFGg", "abceABCDEFGg"];
+["abXCDEFGg", "abXCDEFGg"];
+["abQQQXCDEFGg", "abQQQXCDEFGg"];
+true;
+true;
+true;
+true;
+true;
+true;
+[1, 4, 7, 10, 13, 16, 4];
+"take x from s";
+[16, {1, 4, 10, 7, 13}];
+"take x frome t";
+[16, [1, 4, 7, 10, 13]];
+"take x fromb t";
+[1, [4, 7, 10, 13]];
+"take x from t";
+[4, [7, 10, 13]];
+[OM, {}];
+[OM, []];
+[OM, []];
+[OM, []];
+[1, 2, 3];
+[];
+[OM, 1, OM, 2, OM, 3];
+[OM, 1, OM, 2, OM, 3];
+OM;
+OM;
+OM;
+1;
+2;
+4;
+11;
+12;
+14;
+21;
+22;
+OM;
+[];
+[];
+!'f' watched
+! Evaluate: f(4);
+! Evaluate: f(3);
+! Evaluate: f(2);
+! Evaluate: f(1);
+! Evaluate: f(0);
+! Yields: 1;
+! f returns: 1;
+! f returns: 2;
+! f returns: 6;
+! f returns: 24;
+24;
+! f := {};
+! f(3) := 4;
+! f(4) := 5;
+{[4, 5], [3, 4]};
+!'f' unwatched
+!'f' watched
+! Evaluate: f(6);
+! Evaluate: f(5);
+! Evaluate: f(4);
+! Evaluate: f(3);
+! Evaluate: f(2);
+! Yields: 1;
+! Evaluate: f(1);
+! Yields: 1;
+! f(3) := 2;
+! Evaluate: f(3);
+! Yields: 2;
+! f returns: 2;
+! Evaluate: f(2);
+! Yields: 1;
+! f(4) := 3;
+! Evaluate: f(4);
+! Yields: 3;
+! f returns: 3;
+! Evaluate: f(3);
+! Yields: 2;
+! f(5) := 5;
+! Evaluate: f(5);
+! Yields: 5;
+! f returns: 5;
+! Evaluate: f(4);
+! Yields: 3;
+! f(6) := 8;
+! Evaluate: f(6);
+! Yields: 8;
+! f returns: 8;
+8;
+! Evaluate: f(7);
+! Evaluate: f(6);
+! Yields: 8;
+! Evaluate: f(5);
+! Yields: 5;
+! f(7) := 13;
+! Evaluate: f(7);
+! Yields: 13;
+! f returns: 13;
+13;
+!'f' unwatched
+[[1, 1], [1, 2], [1, 3], [1, 4], [2, 1], [2, 2], [2, 3], [2, 4], [3, 1],
+ [3, 2], [3, 3], [3, 4], [4, 1], [4, 2], [4, 3], [4, 4]];
+[[1, 1, 3, 3], [1, 1, 3, 4], [1, 1, 4, 3], [1, 1, 4, 4], [1, 2, 3, 3],
+ [1, 2, 3, 4], [1, 2, 4, 3], [1, 2, 4, 4], [2, 1, 3, 3], [2, 1, 3, 4],
+ [2, 1, 4, 3], [2, 1, 4, 4], [2, 2, 3, 3], [2, 2, 3, 4], [2, 2, 4, 3],
+ [2, 2, 4, 4]];
+6;
+6;
+6;
+
+*** 		 else return n*fact(n-1);
+
+! Error -- Bad mapping: 
+OM(2);
+"a";
+"b";
+"c";
+OM;
+1;
+2;
+3;
+4;
+Current GC memory = 500600, New Limit = 1000000
+Enter numbers, terminate with non-number
+Next?	Next?	Next?	Next?	Next?	Next?	Sum is: 15.70000
+[5, [1, [3, !FUNC(b8ac8/b83f8)!]]];
+[2, 123456789];
+10;
+6;
+"Enter an expression with operators +-*/";
+"Parentheses may be used for grouping";
+"Arguments are single lower case letters";
+"a + b * c + d * ( x + y ) * e";
+[["root", !29!],
+ ["tree",
+  {[!25!, ["*", !17!, !18!]], [!26!, ["*", !23!, !24!]],
+   [!28!, ["+", !25!, !26!]], [!29!, ["+", !27!, !28!]], [!27!, "a"],
+   [!24!, ["*", !21!, !22!]], [!23!, "d"], [!22!, "e"],
+   [!21!, ["+", !19!, !20!]], [!18!, "c"], [!17!, "b"], [!19!, "x"],
+   [!20!, "y"]}]];
+[true, true, 0, true, [5, 5], 1, 0];
+[true, true, 0, true, [-5, 5], -1, 0];
+[true, true, 0, true, [5, -5], -1, 0];
+[true, true, 0, true, [-5, -5], 1, 0];
+[true, true, 0, true, [5, 9990], 0, 5];
+[true, true, 0, true, [-5, 9990], -1, 9985];
+[true, true, 0, true, [5, -9990], 0, 5];
+[true, true, 0, true, [-5, -9990], 1, 9985];
+[true, true, 0, true, [5, 12000], 0, 5];
+[true, true, 0, true, [-5, 12000], -1, 11995];
+[true, true, 0, true, [5, -12000], 0, 5];
+[true, true, 0, true, [-5, -12000], 1, 11995];
+[true, true, 0, true, [5, 123456789], 0, 5];
+[true, true, 0, true, [-5, 123456789], -1, 123456784];
+[true, true, 0, true, [5, -123456789], 0, 5];
+[true, true, 0, true, [-5, -123456789], 1, 123456784];
+[true, true, 0, true, [9990, 5], 1998, 0];
+[true, true, 0, true, [-9990, 5], -1998, 0];
+[true, true, 0, true, [9990, -5], -1998, 0];
+[true, true, 0, true, [-9990, -5], 1998, 0];
+[true, true, 0, true, [9990, 9990], 1, 0];
+[true, true, 0, true, [-9990, 9990], -1, 0];
+[true, true, 0, true, [9990, -9990], -1, 0];
+[true, true, 0, true, [-9990, -9990], 1, 0];
+[true, true, 0, true, [9990, 12000], 0, 9990];
+[true, true, 0, true, [-9990, 12000], -1, 2010];
+[true, true, 0, true, [9990, -12000], 0, 9990];
+[true, true, 0, true, [-9990, -12000], 1, 2010];
+[true, true, 0, true, [9990, 123456789], 0, 9990];
+[true, true, 0, true, [-9990, 123456789], -1, 123446799];
+[true, true, 0, true, [9990, -123456789], 0, 9990];
+[true, true, 0, true, [-9990, -123456789], 1, 123446799];
+[true, true, 0, true, [12000, 5], 2400, 0];
+[true, true, 0, true, [-12000, 5], -2400, 0];
+[true, true, 0, true, [12000, -5], -2400, 0];
+[true, true, 0, true, [-12000, -5], 2400, 0];
+[true, true, 0, true, [12000, 9990], 1, 2010];
+[true, true, 0, true, [-12000, 9990], -2, 7980];
+[true, true, 0, true, [12000, -9990], -1, 2010];
+[true, true, 0, true, [-12000, -9990], 2, 7980];
+[true, true, 0, true, [12000, 12000], 1, 0];
+[true, true, 0, true, [-12000, 12000], -1, 0];
+[true, true, 0, true, [12000, -12000], -1, 0];
+[true, true, 0, true, [-12000, -12000], 1, 0];
+[true, true, 0, true, [12000, 123456789], 0, 12000];
+[true, true, 0, true, [-12000, 123456789], -1, 123444789];
+[true, true, 0, true, [12000, -123456789], 0, 12000];
+[true, true, 0, true, [-12000, -123456789], 1, 123444789];
+[true, true, 0, true, [123456789, 5], 24691357, 4];
+[true, true, 0, true, [-123456789, 5], -24691358, 1];
+[true, true, 0, true, [123456789, -5], -24691357, 4];
+[true, true, 0, true, [-123456789, -5], 24691358, 1];
+[true, true, 0, true, [123456789, 9990], 12358, 369];
+[true, true, 0, true, [-123456789, 9990], -12359, 9621];
+[true, true, 0, true, [123456789, -9990], -12358, 369];
+[true, true, 0, true, [-123456789, -9990], 12359, 9621];
+[true, true, 0, true, [123456789, 12000], 10288, 789];
+[true, true, 0, true, [-123456789, 12000], -10289, 11211];
+[true, true, 0, true, [123456789, -12000], -10288, 789];
+[true, true, 0, true, [-123456789, -12000], 10289, 11211];
+[true, true, 0, true, [123456789, 123456789], 1, 0];
+[true, true, 0, true, [-123456789, 123456789], -1, 0];
+[true, true, 0, true, [123456789, -123456789], -1, 0];
+[true, true, 0, true, [-123456789, -123456789], 1, 0];
+[-3, 0, 1];
+[-3, 1, -3];
+[-3, 2, 9];
+[-3, 50, 717897987691852588770249];
+[0, 0];
+[0, 1, 0];
+[0, 2, 0];
+[0, 50, 0];
+[3, 0, 1];
+[3, 1, 3];
+[3, 2, 9];
+[3, 50, 717897987691852588770249];
+[true, true, true, true, true, [5, 5], 1, 0];
+[true, true, true, true, true, [5, 9990], 0, 5];
+[true, true, true, true, true, [5, 12000], 0, 5];
+[true, true, true, true, true, [5, 123456789], 0, 5];
+[true, true, true, true, true, [9990, 5], 1998, 0];
+[true, true, true, true, true, [9990, 9990], 1, 0];
+[true, true, true, true, true, [9990, 12000], 0, 9990];
+[true, true, true, true, true, [9990, 123456789], 0, 9990];
+[true, true, true, true, true, [12000, 5], 2400, 0];
+[true, true, true, true, true, [12000, 9990], 1, 2010];
+[true, true, true, true, true, [12000, 12000], 1, 0];
+[true, true, true, true, true, [12000, 123456789], 0, 12000];
+[true, true, true, true, true, [123456789, 5], 24691357, 4];
+[true, true, true, true, true, [123456789, 9990], 12358, 369];
+[true, true, true, true, true, [123456789, 12000], 10288, 789];
+[true, true, true, true, true, [123456789, 123456789], 1, 0];
+[-3, 0, 1];
+[-3, 1, -3];
+[-3, 2, 9];
+[-3, 5, -243];
+[0, 0];
+[0, 1, 0];
+[0, 2, 0];
+[0, 5, 0];
+[3, 0, 1];
+[3, 1, 3];
+[3, 2, 9];
+[3, 5, 243];
+true;
+true;
+true;
+true;
+true;
+true;
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+["this", "is", "a", "test", "to", "show", "that", "subtle", "is",
+ "polymorphic"];
+[];
+["inc(10) = ", 11];
+["dec(10) = ", 9];
+13;
+55;
+33;
+6;
+24;
+3628800;
+true;
+true;
+"print f(first(1),second(1));";
+true;
+"print f(first(number),second(number));";
+true;
+"print #[i: i in [1..number]| f(first(i),second(i))];";
+5;
+
+! Syntax: ~ not permitted
+
+! Syntax: Only identifiers can be bound
+
+! Syntax: Bad RHS for Iterator
+
+! Syntax: warning -- id bound twice in same scope
+4;
+2;
+
+! Syntax: Bad RHS for Iterator
+
+*** if true then return 5; end;
+
+! Error: Return at top level
+
+! Error: Return at top level
+
+! Error: Input must be an expression
+
+*** s(2..3) := 5;
+
+! Error: RHS in string slice assignment must be string
+
+*** t(1..3) := 5;
+
+! Error: RHS in tuple slice assignment must be tuple
+
+*** m{3} := 4;
+
+! Error: RHS in mmap assignment must be set
+{2, 3, 1};
+
+! Error -- Bad mapping: multiple images
+{[3, 1], [3, 2], [3, 3]}(3);
+
+! Error: Slice upper bound too big
+
+! Error: Slice lower bound too big
+
+*** a := {true..false};
+
+! Error: Bad args in low..high
+
+*** a := {1, 3.5 .. 7};
+
+! Error: Bad args in low,next..high
+
+*** for i in [1.."abc"] do print i; end;
+
+! Error: Bad args in low..high
+
+*** for i in [1, 3 .. "abc"] do print i; end;
+
+! Error: Bad args in low,next..high
+
+*** for i=s{j} do print [i,j]; end;
+
+! Error: Can't mmap string
+{"d"};
+{4};
+
+! Error -- Bad mapping: 
+OM{4};
+
+! Error: Divide by zero
+
+! Error: Bad arguments in:
+4 <relation> true;
+
+! Error: Bad arguments in:
+{3, 4, 1, 2, 8, 7, 10, 9, 6, 5} <relation> {2, 3, 1};
+
+*** [a,b,c] := 5;
+
+! Error: Bad arguments in:
+[a, b, c] := 5;
+
+! Error: Bad arguments in:
+ # 4;
+
+*** t(-5) := 4;
+
+! Error -- Bad mapping: 
+[1, 2, 3, 4](-5);
+
+*** take y from x;
+
+! Error: Bad arguments in:
+y from x;
+
+*** for i in 3 do print i; end;
+
+! Error: Can't iterate over
+3;
+3;
+
+*** if true and 3 then print 1; else print 2; end;
+
+! Error: Boolean expected
+3;
+
+! Error: Boolean expected
+3;
+
+! Error: Boolean expected
+3;
+
+! Error: Bad arguments in:
+3 impl true;
+
+! Error: Bad arguments in:
+ not 5;
+
+! Error: Bad arguments in:
+{3, 2, 1} + 5;
+
+! Error: Bad arguments in:
+OM + OM;
+
+! Error: Bad arguments in:
+{1, 2, 3} - 5;
+
+! Error: Bad arguments in:
+OM - OM;
+
+! Error: Bad arguments in:
+ - {1, 3, 2};
+
+! Error: Bad arguments in:
+[1, 2, 3] less 5;
+
+! Error: Bad arguments in:
+5 with {1, 3, 2};
+
+! Error: Bad arguments in:
+"abc" * "cde";
+
+! Error: Bad arguments in:
+5 * {2, 3, 1};
+
+! Error: Bad arguments in:
+5 mod 0;
+2;
+
+! Error: Bad arguments in:
+5 mod true;
+
+! Error: Bad arguments in:
+true mod false;
+
+! Error: Bad arguments in:
+3.500 div 4.500;
+
+! Error: Bad arguments in:
+{1, 2, 3} / {2};
+
+! Error: Bad arguments in:
+{1, 3, 2} / 2;
+
+! Error: Bad arguments in:
+{1, 2, 3} ** 2;
+
+! Error: Bad arguments in:
+5 in "abc";
+
+! Error: Bad arguments in:
+5 in 7;
+
+! Error: Bad arguments in:
+3 subset 5;
+Can't read from: OM;
+Can't write to: OM;
+[1, 2, 3, 4];
+[1, 2, 3, 4];
+[1, 2, 3, 4, 5];
+
+*** f(4)(2) := 10;
+
+! Error: Only one level of selection allowed
+3;
+9;
+OM;
+OM;
+true;
+OM;
+OM;
+true;
+["function",
+ {[7, 49], [8, 64], [9, 81], [10, 100], [6, 36], [5, 25], [1, 1], [2, 4],
+  [4, 16], [3, 9]}];
+["image", {49, 64, 81, 100, 16, 9, 36, 25, 1, 4}];
+["domain", {3, 4, 2, 1, 6, 5, 8, 7, 10, 9}];
+["explode", "abcdefg", ["a", "b", "c", "d", "e", "f", "g"]];
+[[1, "a"], [2, "b"], [3, "c"], [4, "d"], [5, "e"], [6, "f"], [7, "g"]];
+[[1, 10], [2, 11], [3, 12], [4, 13], [5, 14], [6, 15], [7, 16], [8, 17],
+ [9, 18], [10, 19], [11, 20]];
+[21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+[25, 26, 27, 28, 29, 30];
+[35, 36, 37, 38, 39, 40];
+[21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+[30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+1;
+OM;
+OM;
+3;
+OM;
+OM;
+OM;
+3;
+OM;
+OM;
+OM;
+5;
+[2, 4, 6, 8, 10];
+0;
+[2, 4, 6, 8, 10];
+0;
+[1, 2];
+[3, 4];
+"done";
+true;
+{1.235e+18, 1234567890123456789};
+{10000000};
+{0.500, 0.600, 0.700, 0.900, 0.800, 0.300, 0.400, 0.200, 1.000, 0.100};
+{0.400, 0.300, 0.200, 0.100, 1.000, 0.700, 0.900, 0.800, 0.500, 0.600};
+{0.300, 0.400, 1.000, 0.100, 0.200, 0.600, 0.500, 0.900, 0.800, 0.700};
+"Series and Sums";
+"Enter the series function, as a function of one variable";
+"\tUse the form 'func(i); return <some expression using i>; end;'";
+"Enter the number of terms, N:";
+["i", "f(i)", "%+[ f(x): x in [1..i]]"];
+[1, 1, 1];
+[2, 4, 5];
+[3, 9, 14];
+[4, 16, 30];
+[5, 25, 55];
+[6, 36, 91];
+[7, 49, 140];
+[8, 64, 204];
+[9, 81, 285];
+[10, 100, 385];
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+1606938044258990275541962092341162602522\
+202993782792835301376;
+  Sun  Mon Tues  Wed  Thu  Fri  Sat
+                   1    2    3    4
+    5    6    7    8    9   10   11
+   12   13   14   15   16   17   18
+   19   20   21   22   23   24   25
+   26   27   28   29   30
+1+3=4	2+1=3	1+2=3	1+1=2	2+2=4	
+3+1=4	3+3=6	3+2=5	2+3=5
+
+Enter numbers, terminate with any non-number
+Next?	Next?	Next?	Next?	Next?	Next?	Total is: 15.70000
+40;
+{[4, 5], [3, 5], [3, 4], [1, 5], [1, 4], [1, 3], [1, 2], [2, 5], [2, 4],
+ [2, 3]};
+false;
+{[3, 3], [5, 5], [5, 2], [4, 4], [4, 1], [1, 4], [1, 1], [2, 5], [2, 2]};
+true;
+"TRY THIS 123";
+["gt",
+ {[3, 2], [3, 1], [2, 1], [5, 4], [5, 3], [5, 2], [5, 1], [4, 3], [4, 2],
+  [4, 1]}];
+OM;
+1;
+{2, 1, 3};
+{};
+{1};
+{[5, 4], [5, 3], [5, 2], [5, 1], [2, 1], [3, 2], [3, 1]};
+"gt{5} := om";
+{[4, 3], [4, 2], [4, 1], [3, 2], [3, 1], [2, 1]};
+"gt{4} := {7,8,9,10}";
+{[4, 10], [4, 9], [4, 8], [4, 7], [5, 4], [5, 3], [5, 2], [5, 1], [3, 2],
+ [3, 1], [2, 1]};
+"{ [x,y]: y=gt{x} }";
+{[5, {2, 1, 3, 4}], [4, {3, 2, 1}], [2, {1}], [3, {1, 2}]};
+"{ [[i,j], i>j] : i in [1..5], j in [1..5] }";
+{[[4, 2], true], [[3, 4], false], [[4, 1], true], [[3, 3], false],
+ [[2, 5], false], [[3, 1], true], [[2, 3], false], [[1, 5], false],
+ [[3, 2], true], [[2, 4], false], [[1, 1], false], [[1, 2], false],
+ [[2, 2], false], [[1, 4], false], [[2, 1], true], [[1, 3], false],
+ [[5, 1], true], [[4, 3], true], [[3, 5], false], [[5, 2], true],
+ [[4, 4], false], [[5, 3], true], [[4, 5], false], [[5, 4], true],
+ [[5, 5], false]};
+false;
+true;
+{false};
+{true};
+"{ [x,y]: y=gt{x} }";
+{[[4, 4], {false}], [[5, 2], {true}], [[4, 3], {true}], [[3, 5], {false}],
+ [[5, 1], {true}], [[5, 4], {true}], [[5, 5], {false}], [[5, 3], {true}],
+ [[4, 5], {false}], [[1, 1], {false}], [[1, 2], {false}],
+ [[1, 3], {false}], [[2, 1], {true}], [[2, 2], {false}],
+ [[1, 4], {false}], [[2, 4], {false}], [[3, 2], {true}],
+ [[2, 3], {false}], [[1, 5], {false}], [[3, 1], {true}], [[4, 2], {true}],
+ [[3, 4], {false}], [[3, 3], {false}], [[4, 1], {true}], [[2, 5], {false}]};
+"{ [x,y]: y=gt(x) }";
+{[[1, 4], false], [[2, 2], false], [[1, 3], false], [[2, 1], true],
+ [[1, 5], false], [[2, 3], false], [[3, 1], true], [[1, 2], false],
+ [[1, 1], false], [[5, 4], true], [[5, 5], false], [[4, 5], false],
+ [[5, 3], true], [[4, 4], false], [[5, 2], true], [[2, 5], false],
+ [[3, 3], false], [[4, 1], true], [[2, 4], false], [[3, 2], true],
+ [[3, 5], false], [[4, 3], true], [[5, 1], true], [[3, 4], false],
+ [[4, 2], true]};
+"{ x : y=gt(x) | y }";
+{[3, 1], [3, 2], [2, 1], [4, 2], [4, 1], [4, 3], [5, 3], [5, 4], [5, 1],
+ [5, 2]};
+"{ [i,j] : y = gt(i,j) | y }";
+{[5, 4], [5, 3], [5, 1], [5, 2], [4, 2], [4, 1], [4, 3], [3, 1], [3, 2],
+ [2, 1]};
+{[1, [2, 5]]};
+{1};
+{};
+{2};
+{};
+{3};
+{};
+{4};
+"Enter a set or tuple:";
+[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "has no median"];
+"Enter a set or tuple:";
+["Median of", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "is", 6];
+"Enter a set or tuple:";
+["Median of", [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121], "is", 36];
+"Enter a set or tuple:";
+[[], "has no median"];
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+OM;
+OM;
+{};
+[true, true, true, true, true, [5, 5], 1, 0];
+[true, true, true, true, true, [5, 9990], 0, 5];
+[true, true, true, true, true, [5, 12000], 0, 5];
+[true, true, true, true, true, [5, 123456789], 0, 5];
+[true, true, true, true, true, [9990, 5], 1998, 0];
+[true, true, true, true, true, [9990, 9990], 1, 0];
+[true, true, true, true, true, [9990, 12000], 0, 9990];
+[true, true, true, true, true, [9990, 123456789], 0, 9990];
+[true, true, true, true, true, [12000, 5], 2400, 0];
+[true, true, true, true, true, [12000, 9990], 1, 2010];
+[true, true, true, true, true, [12000, 12000], 1, 0];
+[true, true, true, true, true, [12000, 123456789], 0, 12000];
+[true, true, true, true, true, [123456789, 5], 24691357, 4];
+[true, true, true, true, true, [123456789, 9990], 12358, 369];
+[true, true, true, true, true, [123456789, 12000], 10288, 789];
+[true, true, true, true, true, [123456789, 123456789], 1, 0];
+true;
+true;
+true;
+true;
+true;
+OM;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+OM;
+OM;
+256637406;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+
+! Error -- Bad mapping: 
+OM();
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+         1         6
+         2         7
+         3         8
+1;
+24;
+"single quotes may be used for strings";
+"such strings may contain double quotes (\q)";
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+"Gary Levin";
+"Carol Simon Levin";
+OM;
+OM;
+1100;
+700;
+1;
+2.500;
+"abc";
+{};
+[];
+OM;
+[1, 2, 3];
+{6, 5, 3, 1, 2};
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+[1, 3, 5, 7, 9];
+[1, 3, 5, 7, 9];
+[];
+[];
+[10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+6;
+6.000;
+"abcxyz";
+[1, 2, 3, 4, 5, 6];
+{1, 2, 3, 4, 5, 6, 7};
+2;
+2.000;
+{1, 2};
+8;
+8.000;
+"abcabcabc";
+[1, 2, 3, 1, 2, 3, 1, 2, 3];
+{5, 4, 3};
+2.500;
+2.000;
+2;
+1;
+2.500;
+1024;
+1.414;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+true;
+false;
+true;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+true;
+false;
+true;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+false;
+true;
+true;
+
+! Error: Too few arguments
+
+! Error: Too few arguments
+
+! Error: Too few arguments
+[1, 2, 3];
+OM;
+[1, 2, 3, 4];
+OM;
+[1, 2, 3, 4, 5];
+OM;
+
+! Error: Too many arguments
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+24;
+[{[1, 4, 3, 2], [1, 4, 2, 3], [1, 3, 2, 4], [1, 3, 4, 2], [1, 2, 3, 4],
+  [1, 2, 4, 3]},
+ {[2, 4, 3, 1], [2, 4, 1, 3], [2, 3, 4, 1], [2, 3, 1, 4], [2, 1, 3, 4],
+  [2, 1, 4, 3]},
+ {[3, 1, 2, 4], [3, 1, 4, 2], [3, 2, 4, 1], [3, 2, 1, 4], [3, 4, 1, 2],
+  [3, 4, 2, 1]},
+ {[4, 1, 3, 2], [4, 1, 2, 3], [4, 2, 3, 1], [4, 2, 1, 3], [4, 3, 1, 2],
+  [4, 3, 2, 1]}];
+true;
+"Enter a partial order as a set of pairs";
+["nodes", {7, 8, 6, 2, 1, 3, 4, 5}];
+["sort", [1, 2, 4, 3, 6, 5, 7, 8]];
+"Enter a partial order as a set of pairs";
+["nodes", {1, 2, 3, 5, 4, 8, 7, 6}];
+["sort", [1, 3, 2, 6, 5, 4, 7, 8]];
+4;
+4;
+4;
+4;
+0;
+0;
+4.000;
+4.000;
+4.000;
+4.000;
+0.000;
+0.000;
+97;
+97;
+OM;
+OM;
+OM;
+OM;
+1.000;
+1.000;
+1.400;
+1.400;
+-4.000;
+-4.000;
+1;
+1;
+1;
+1;
+-1;
+-1;
+-1;
+-1;
+2;
+2;
+2;
+2;
+-1;
+-1;
+-1;
+-1;
+1;
+1;
+1;
+1;
+-2;
+-2;
+-2;
+-2;
+false;
+false;
+false;
+false;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+false;
+false;
+false;
+false;
+false;
+false;
+"[random( 10) : i in [1..10]]";
+[10, 4, 5, 6, 10, 6, 6, 9, 9, 6];
+"[random(-10) : i in [1..10]]";
+[];
+"[random(1.0) : i in [1..10]]";
+[0.895, 0.270, 0.276, 0.455, 0.953, 0.998, 0.236, 0.244, 0.889, 0.354];
+"[random(1.5) : i in [1..10]]";
+[1.428, 0.426, 0.738, 0.643, 1.255, 1.144, 1.364, 1.359, 0.958, 0.726];
+"[random({1,3,5,6,8,9}) : i in [1..10]]";
+[6, 6, 9, 1, 3, 8, 6, 8, 8, 5];
+"[random([1,3,om,6,8,9]) : i in [1..10]]";
+[OM, 6, 8, 8, 1, 8, 8, 3, 9, 6];
+"[random('abcdefghijkl') : i in [1..10]]";
+["h", "k", "k", "b", "d", "i", "k", "c", "h", "g"];
+"a";
+"a";
+"F";
+"F";
+3;
+5;
+7;
+11;
+13;
+17;
+19;
+23;
+29;
+31;
+"Enter N:";
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
+ 71, 73, 79, 83, 89, 97];
+Current GC memory = 500600, Limit = 1000000
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
+ 71, 73, 79, 83, 89, 97];
+"\001\002\003\004\005\006\007\b\t\n\013\f\r\016\017\020\021\022\023\024\025"
++"\026\027\030\031\032\033\034\035\036\037 !\q#$%&'()*+,-./0123456789:;<=>?"
++"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\177";
+
+         1    2                   3
+
+1125899906842624
+
+    1125899906842624
+
+112589990\
+6842624
+
+             1.50000             1.50000      1.50    1.50000e+00
+
+      true     false
+        OM   OM
+abcdef  xyz       xyz
+
+      !32!      !31!
+
+!FUNC(f6f2)!!FUNC(7f680/5d88c)!
+
+!modified:FUNC(7f680/5d88c)!
+
+        OM!File(w:ed22f64)!!File(a:ed22f78)!
+OM;
+
+        OM
+
+{}
+
+{         3         4         5         2         1}
+
+{  1  2  3  5  4}
+
+{  1,  2,  3,  5,  4}
+
+[]
+
+[         1         2         3         4         5]
+
+[  1  2  3  4  5]
+
+[  1,  2,  3,  4,  5]
+
+           1  2  3  4
+  5  6  7  8  9 10 11
+ 12 13 14 15 16 17 18
+ 19 20 21 22 23 24 25
+ 26 27 28 29 30 31
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+ "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+["any", "are", "because", "different", "hardly", "in", "is", "operators",
+ "polymorphic", "problem", "subtle", "the", "there", "types", "using",
+ "with"];
+"enter set to be sorted";
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+"qwertyuioplkjhgfdsazxcvbnm";
+["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+ "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+"enter set to be sorted";
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+[25, 13, 14, 5, 6, 7, 22, 23, 24, 1, 2, 9, 27, 28, 34, 35, 26, 15, 37, 38,
+ 40, 16, 17, 30, 31, 21, 10, 11, 18, 32, 33, 39, 29, 19, 3, 4, 8, 20, 12,
+ 36];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+"enter set to be sorted";
+["there", "is", "hardly", "any", "problem", "with", "using", "different",
+ "types", "in", "subtle", "because", "the", "operators", "are",
+ "polymorphic"];
+["any", "are", "because", "different", "hardly", "in", "is", "operators",
+ "polymorphic", "problem", "subtle", "the", "there", "types", "using",
+ "with"];
+"enter set to be sorted";
+[];
+[];
+"correct";
+"correct";
+{[1, 3, 5, 2, 4], [1, 4, 2, 5, 3], [4, 1, 3, 5, 2], [2, 5, 3, 1, 4],
+ [2, 4, 1, 3, 5], [3, 1, 4, 2, 5], [5, 3, 1, 4, 2], [5, 2, 4, 1, 3],
+ [4, 2, 5, 3, 1], [3, 5, 2, 4, 1]};
+true;
+true;
+true;
+true;
+{[6, 17], [3, 13], [3, 12], [3, 11], [3, 10]};
+[OM, OM, OM, 21];
+123;
+"123,456";
+-123;
+123;
+123456789;
+-123456789;
+123456789;
+123.456;
+12345.600;
+-1.235;
+678;
+"12345";
+"x;";
+"12345";
+"Enter a string";
+"here is a string";
+["here", "is", "a", "string"];
+["here", "is", "a", "string"];
+"Enter a string";
+"    leading blanks in this one";
+["leading", "blanks", "in", "this", "one"];
+["leading", "blanks", "in", "this", "one"];
+"Enter a string";
+"   trailing blanks here    ";
+["trailing", "blanks", "here"];
+["trailing", "blanks", "here"];
+"Enter a string";
+"  extra    spaces    everywhere     ";
+["extra", "spaces", "everywhere"];
+["extra", "spaces", "everywhere"];
+"Enter a string";
+"non-letters break words too...too bad";
+["non", "letters", "break", "words", "too", "too", "bad"];
+["non", "letters", "break", "words", "too", "too", "bad"];
+"Enter a string";
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 25, 26, 27, 28, 29, 30];
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25,
+ 26, 27, 28, 29, 30];
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 50, 22, 23, 24, 25, 26, 27,
+ 28, 29, 30];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+ 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 45, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, OM, 70, 16, 17, 18,
+ 19, 20];
+[1, 2, 3, 4, OM, OM, OM, 8, 9, 10];
+[4];
+[1, 2, 3, 4, 17, 8, 9, 10];
+[1, 2, 3, 4, OM, 1, 8, 9, 10];
+["abcdefg", "abcdefg"];
+["d", "d"];
+["def", "def"];
+["abcefg", "abcefg"];
+["abceABCDEFGg", "abceABCDEFGg"];
+["abXCDEFGg", "abXCDEFGg"];
+["abQQQXCDEFGg", "abQQQXCDEFGg"];
+true;
+true;
+true;
+true;
+true;
+true;
+[1, 4, 7, 10, 13, 16, 4];
+"take x from s";
+[16, {1, 4, 10, 7, 13}];
+"take x frome t";
+[16, [1, 4, 7, 10, 13]];
+"take x fromb t";
+[1, [4, 7, 10, 13]];
+"take x from t";
+[4, [7, 10, 13]];
+[OM, {}];
+[OM, []];
+[OM, []];
+[OM, []];
+[1, 2, 3];
+[];
+[OM, 1, OM, 2, OM, 3];
+[OM, 1, OM, 2, OM, 3];
+OM;
+OM;
+OM;
+1;
+2;
+4;
+11;
+12;
+14;
+21;
+22;
+OM;
+[];
+[];
+!'f' watched
+! Evaluate: f(4);
+! Evaluate: f(3);
+! Evaluate: f(2);
+! Evaluate: f(1);
+! Evaluate: f(0);
+! Yields: 1;
+! f returns: 1;
+! f returns: 2;
+! f returns: 6;
+! f returns: 24;
+24;
+! f := {};
+! f(3) := 4;
+! f(4) := 5;
+{[4, 5], [3, 4]};
+!'f' unwatched
+!'f' watched
+! Evaluate: f(6);
+! Evaluate: f(5);
+! Evaluate: f(4);
+! Evaluate: f(3);
+! Evaluate: f(2);
+! Yields: 1;
+! Evaluate: f(1);
+! Yields: 1;
+! f(3) := 2;
+! Evaluate: f(3);
+! Yields: 2;
+! f returns: 2;
+! Evaluate: f(2);
+! Yields: 1;
+! f(4) := 3;
+! Evaluate: f(4);
+! Yields: 3;
+! f returns: 3;
+! Evaluate: f(3);
+! Yields: 2;
+! f(5) := 5;
+! Evaluate: f(5);
+! Yields: 5;
+! f returns: 5;
+! Evaluate: f(4);
+! Yields: 3;
+! f(6) := 8;
+! Evaluate: f(6);
+! Yields: 8;
+! f returns: 8;
+8;
+! Evaluate: f(7);
+! Evaluate: f(6);
+! Yields: 8;
+! Evaluate: f(5);
+! Yields: 5;
+! f(7) := 13;
+! Evaluate: f(7);
+! Yields: 13;
+! f returns: 13;
+13;
+!'f' unwatched
+[[1, 1], [1, 2], [1, 3], [1, 4], [2, 1], [2, 2], [2, 3], [2, 4], [3, 1],
+ [3, 2], [3, 3], [3, 4], [4, 1], [4, 2], [4, 3], [4, 4]];
+[[1, 1, 3, 3], [1, 1, 3, 4], [1, 1, 4, 3], [1, 1, 4, 4], [1, 2, 3, 3],
+ [1, 2, 3, 4], [1, 2, 4, 3], [1, 2, 4, 4], [2, 1, 3, 3], [2, 1, 3, 4],
+ [2, 1, 4, 3], [2, 1, 4, 4], [2, 2, 3, 3], [2, 2, 3, 4], [2, 2, 4, 3],
+ [2, 2, 4, 4]];
+6;
+6;
+6;
+
+*** 		 else return n*fact(n-1);
+
+! Error -- Bad mapping: 
+OM(2);
+"a";
+"b";
+"c";
+OM;
+1;
+2;
+3;
+4;
+Current GC memory = 500600, New Limit = 1000000
+Enter numbers, terminate with non-number
+Next?	Next?	Next?	Next?	Next?	Next?	Sum is: 15.70000
+[5, [1, [3, !FUNC(ab3c0/aacb0)!]]];
+[2, 123456789];
+10;
+6;
+"Enter an expression with operators +-*/";
+"Parentheses may be used for grouping";
+"Arguments are single lower case letters";
+"a + b * c + d * ( x + y ) * e";
+[["root", !45!],
+ ["tree",
+  {[!41!, ["*", !33!, !34!]], [!42!, ["*", !39!, !40!]],
+   [!44!, ["+", !41!, !42!]], [!45!, ["+", !43!, !44!]], [!43!, "a"],
+   [!40!, ["*", !37!, !38!]], [!39!, "d"], [!38!, "e"],
+   [!37!, ["+", !35!, !36!]], [!34!, "c"], [!33!, "b"], [!35!, "x"],
+   [!36!, "y"]}]];
+[true, true, 0, true, [5, 5], 1, 0];
+[true, true, 0, true, [-5, 5], -1, 0];
+[true, true, 0, true, [5, -5], -1, 0];
+[true, true, 0, true, [-5, -5], 1, 0];
+[true, true, 0, true, [5, 9990], 0, 5];
+[true, true, 0, true, [-5, 9990], -1, 9985];
+[true, true, 0, true, [5, -9990], 0, 5];
+[true, true, 0, true, [-5, -9990], 1, 9985];
+[true, true, 0, true, [5, 12000], 0, 5];
+[true, true, 0, true, [-5, 12000], -1, 11995];
+[true, true, 0, true, [5, -12000], 0, 5];
+[true, true, 0, true, [-5, -12000], 1, 11995];
+[true, true, 0, true, [5, 123456789], 0, 5];
+[true, true, 0, true, [-5, 123456789], -1, 123456784];
+[true, true, 0, true, [5, -123456789], 0, 5];
+[true, true, 0, true, [-5, -123456789], 1, 123456784];
+[true, true, 0, true, [9990, 5], 1998, 0];
+[true, true, 0, true, [-9990, 5], -1998, 0];
+[true, true, 0, true, [9990, -5], -1998, 0];
+[true, true, 0, true, [-9990, -5], 1998, 0];
+[true, true, 0, true, [9990, 9990], 1, 0];
+[true, true, 0, true, [-9990, 9990], -1, 0];
+[true, true, 0, true, [9990, -9990], -1, 0];
+[true, true, 0, true, [-9990, -9990], 1, 0];
+[true, true, 0, true, [9990, 12000], 0, 9990];
+[true, true, 0, true, [-9990, 12000], -1, 2010];
+[true, true, 0, true, [9990, -12000], 0, 9990];
+[true, true, 0, true, [-9990, -12000], 1, 2010];
+[true, true, 0, true, [9990, 123456789], 0, 9990];
+[true, true, 0, true, [-9990, 123456789], -1, 123446799];
+[true, true, 0, true, [9990, -123456789], 0, 9990];
+[true, true, 0, true, [-9990, -123456789], 1, 123446799];
+[true, true, 0, true, [12000, 5], 2400, 0];
+[true, true, 0, true, [-12000, 5], -2400, 0];
+[true, true, 0, true, [12000, -5], -2400, 0];
+[true, true, 0, true, [-12000, -5], 2400, 0];
+[true, true, 0, true, [12000, 9990], 1, 2010];
+[true, true, 0, true, [-12000, 9990], -2, 7980];
+[true, true, 0, true, [12000, -9990], -1, 2010];
+[true, true, 0, true, [-12000, -9990], 2, 7980];
+[true, true, 0, true, [12000, 12000], 1, 0];
+[true, true, 0, true, [-12000, 12000], -1, 0];
+[true, true, 0, true, [12000, -12000], -1, 0];
+[true, true, 0, true, [-12000, -12000], 1, 0];
+[true, true, 0, true, [12000, 123456789], 0, 12000];
+[true, true, 0, true, [-12000, 123456789], -1, 123444789];
+[true, true, 0, true, [12000, -123456789], 0, 12000];
+[true, true, 0, true, [-12000, -123456789], 1, 123444789];
+[true, true, 0, true, [123456789, 5], 24691357, 4];
+[true, true, 0, true, [-123456789, 5], -24691358, 1];
+[true, true, 0, true, [123456789, -5], -24691357, 4];
+[true, true, 0, true, [-123456789, -5], 24691358, 1];
+[true, true, 0, true, [123456789, 9990], 12358, 369];
+[true, true, 0, true, [-123456789, 9990], -12359, 9621];
+[true, true, 0, true, [123456789, -9990], -12358, 369];
+[true, true, 0, true, [-123456789, -9990], 12359, 9621];
+[true, true, 0, true, [123456789, 12000], 10288, 789];
+[true, true, 0, true, [-123456789, 12000], -10289, 11211];
+[true, true, 0, true, [123456789, -12000], -10288, 789];
+[true, true, 0, true, [-123456789, -12000], 10289, 11211];
+[true, true, 0, true, [123456789, 123456789], 1, 0];
+[true, true, 0, true, [-123456789, 123456789], -1, 0];
+[true, true, 0, true, [123456789, -123456789], -1, 0];
+[true, true, 0, true, [-123456789, -123456789], 1, 0];
+[-3, 0, 1];
+[-3, 1, -3];
+[-3, 2, 9];
+[-3, 50, 717897987691852588770249];
+[0, 0];
+[0, 1, 0];
+[0, 2, 0];
+[0, 50, 0];
+[3, 0, 1];
+[3, 1, 3];
+[3, 2, 9];
+[3, 50, 717897987691852588770249];
+[true, true, true, true, true, [5, 5], 1, 0];
+[true, true, true, true, true, [5, 9990], 0, 5];
+[true, true, true, true, true, [5, 12000], 0, 5];
+[true, true, true, true, true, [5, 123456789], 0, 5];
+[true, true, true, true, true, [9990, 5], 1998, 0];
+[true, true, true, true, true, [9990, 9990], 1, 0];
+[true, true, true, true, true, [9990, 12000], 0, 9990];
+[true, true, true, true, true, [9990, 123456789], 0, 9990];
+[true, true, true, true, true, [12000, 5], 2400, 0];
+[true, true, true, true, true, [12000, 9990], 1, 2010];
+[true, true, true, true, true, [12000, 12000], 1, 0];
+[true, true, true, true, true, [12000, 123456789], 0, 12000];
+[true, true, true, true, true, [123456789, 5], 24691357, 4];
+[true, true, true, true, true, [123456789, 9990], 12358, 369];
+[true, true, true, true, true, [123456789, 12000], 10288, 789];
+[true, true, true, true, true, [123456789, 123456789], 1, 0];
+[-3, 0, 1];
+[-3, 1, -3];
+[-3, 2, 9];
+[-3, 5, -243];
+[0, 0];
+[0, 1, 0];
+[0, 2, 0];
+[0, 5, 0];
+[3, 0, 1];
+[3, 1, 3];
+[3, 2, 9];
+[3, 5, 243];
+true;
+true;
+true;
+true;
+true;
+true;
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+["this", "is", "a", "test", "to", "show", "that", "subtle", "is",
+ "polymorphic"];
+[];
+["inc(10) = ", 11];
+["dec(10) = ", 9];
+13;
+55;
+33;
+6;
+24;
+3628800;
+true;
+true;
+"print f(first(1),second(1));";
+true;
+"print f(first(number),second(number));";
+true;
+"print #[i: i in [1..number]| f(first(i),second(i))];";
+5;
+
+! Syntax: ~ not permitted
+
+! Syntax: Only identifiers can be bound
+
+! Syntax: Bad RHS for Iterator
+
+! Syntax: warning -- id bound twice in same scope
+4;
+2;
+
+! Syntax: Bad RHS for Iterator
+
+*** if true then return 5; end;
+
+! Error: Return at top level
+
+! Error: Return at top level
+
+! Error: Input must be an expression
+
+*** s(2..3) := 5;
+
+! Error: RHS in string slice assignment must be string
+
+*** t(1..3) := 5;
+
+! Error: RHS in tuple slice assignment must be tuple
+
+*** m{3} := 4;
+
+! Error: RHS in mmap assignment must be set
+{2, 3, 1};
+
+! Error -- Bad mapping: multiple images
+{[3, 1], [3, 2], [3, 3]}(3);
+
+! Error: Slice upper bound too big
+
+! Error: Slice lower bound too big
+
+*** a := {true..false};
+
+! Error: Bad args in low..high
+
+*** a := {1, 3.5 .. 7};
+
+! Error: Bad args in low,next..high
+
+*** for i in [1.."abc"] do print i; end;
+
+! Error: Bad args in low..high
+
+*** for i in [1, 3 .. "abc"] do print i; end;
+
+! Error: Bad args in low,next..high
+
+*** for i=s{j} do print [i,j]; end;
+
+! Error: Can't mmap string
+{"d"};
+{4};
+
+! Error -- Bad mapping: 
+OM{4};
+
+! Error: Divide by zero
+
+! Error: Bad arguments in:
+4 <relation> true;
+
+! Error: Bad arguments in:
+{3, 4, 1, 2, 8, 7, 10, 9, 6, 5} <relation> {2, 3, 1};
+
+*** [a,b,c] := 5;
+
+! Error: Bad arguments in:
+[a, b, c] := 5;
+
+! Error: Bad arguments in:
+ # 4;
+
+*** t(-5) := 4;
+
+! Error -- Bad mapping: 
+[1, 2, 3, 4](-5);
+
+*** take y from x;
+
+! Error: Bad arguments in:
+y from x;
+
+*** for i in 3 do print i; end;
+
+! Error: Can't iterate over
+3;
+3;
+
+*** if true and 3 then print 1; else print 2; end;
+
+! Error: Boolean expected
+3;
+
+! Error: Boolean expected
+3;
+
+! Error: Boolean expected
+3;
+
+! Error: Bad arguments in:
+3 impl true;
+
+! Error: Bad arguments in:
+ not 5;
+
+! Error: Bad arguments in:
+{3, 2, 1} + 5;
+
+! Error: Bad arguments in:
+OM + OM;
+
+! Error: Bad arguments in:
+{1, 2, 3} - 5;
+
+! Error: Bad arguments in:
+OM - OM;
+
+! Error: Bad arguments in:
+ - {1, 3, 2};
+
+! Error: Bad arguments in:
+[1, 2, 3] less 5;
+
+! Error: Bad arguments in:
+5 with {1, 3, 2};
+
+! Error: Bad arguments in:
+"abc" * "cde";
+
+! Error: Bad arguments in:
+5 * {2, 3, 1};
+
+! Error: Bad arguments in:
+5 mod 0;
+2;
+
+! Error: Bad arguments in:
+5 mod true;
+
+! Error: Bad arguments in:
+true mod false;
+
+! Error: Bad arguments in:
+3.500 div 4.500;
+
+! Error: Bad arguments in:
+{1, 2, 3} / {2};
+
+! Error: Bad arguments in:
+{1, 3, 2} / 2;
+
+! Error: Bad arguments in:
+{1, 2, 3} ** 2;
+
+! Error: Bad arguments in:
+5 in "abc";
+
+! Error: Bad arguments in:
+5 in 7;
+
+! Error: Bad arguments in:
+3 subset 5;
+Can't read from: OM;
+Can't write to: OM;
+[1, 2, 3, 4];
+[1, 2, 3, 4];
+[1, 2, 3, 4, 5];
+
+*** f(4)(2) := 10;
+
+! Error: Only one level of selection allowed
+3;
+9;
+OM;
+OM;
+true;
+OM;
+OM;
+true;
+["function",
+ {[7, 49], [8, 64], [9, 81], [10, 100], [6, 36], [5, 25], [1, 1], [2, 4],
+  [4, 16], [3, 9]}];
+["image", {49, 64, 81, 100, 16, 9, 36, 25, 1, 4}];
+["domain", {3, 4, 2, 1, 6, 5, 8, 7, 10, 9}];
+["explode", "abcdefg", ["a", "b", "c", "d", "e", "f", "g"]];
+[[1, "a"], [2, "b"], [3, "c"], [4, "d"], [5, "e"], [6, "f"], [7, "g"]];
+[[1, 10], [2, 11], [3, 12], [4, 13], [5, 14], [6, 15], [7, 16], [8, 17],
+ [9, 18], [10, 19], [11, 20]];
+[21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+[25, 26, 27, 28, 29, 30];
+[35, 36, 37, 38, 39, 40];
+[21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+[30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+1;
+OM;
+OM;
+3;
+OM;
+OM;
+OM;
+3;
+OM;
+OM;
+OM;
+5;
+[2, 4, 6, 8, 10];
+0;
+[2, 4, 6, 8, 10];
+0;
+[1, 2];
+[3, 4];
+"done";
+true;
+{1.235e+18, 1234567890123456789};
+{10000000};
+{0.500, 0.600, 0.700, 0.900, 0.800, 0.300, 0.400, 0.200, 1.000, 0.100};
+{0.400, 0.300, 0.200, 0.100, 1.000, 0.700, 0.900, 0.800, 0.500, 0.600};
+{0.300, 0.400, 1.000, 0.100, 0.200, 0.600, 0.500, 0.900, 0.800, 0.700};
+"Series and Sums";
+"Enter the series function, as a function of one variable";
+"\tUse the form 'func(i); return <some expression using i>; end;'";
+"Enter the number of terms, N:";
+["i", "f(i)", "%+[ f(x): x in [1..i]]"];
+[1, 1, 1];
+[2, 4, 5];
+[3, 9, 14];
+[4, 16, 30];
+[5, 25, 55];
+[6, 36, 91];
+[7, 49, 140];
+[8, 64, 204];
+[9, 81, 285];
+[10, 100, 385];
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+1606938044258990275541962092341162602522\
+202993782792835301376;
+  Sun  Mon Tues  Wed  Thu  Fri  Sat
+                   1    2    3    4
+    5    6    7    8    9   10   11
+   12   13   14   15   16   17   18
+   19   20   21   22   23   24   25
+   26   27   28   29   30
+1+3=4	2+1=3	1+2=3	1+1=2	2+2=4	
+3+1=4	3+3=6	3+2=5	2+3=5
+
+Enter numbers, terminate with any non-number
+Next?	Next?	Next?	Next?	Next?	Next?	Total is: 15.70000
+40;
+{[4, 5], [3, 5], [3, 4], [1, 5], [1, 4], [1, 3], [1, 2], [2, 5], [2, 4],
+ [2, 3]};
+false;
+{[3, 3], [5, 5], [5, 2], [4, 4], [4, 1], [1, 4], [1, 1], [2, 5], [2, 2]};
+true;
+"TRY THIS 123";
+["gt",
+ {[3, 2], [3, 1], [2, 1], [5, 4], [5, 3], [5, 2], [5, 1], [4, 3], [4, 2],
+  [4, 1]}];
+OM;
+1;
+{2, 1, 3};
+{};
+{1};
+{[5, 4], [5, 3], [5, 2], [5, 1], [2, 1], [3, 2], [3, 1]};
+"gt{5} := om";
+{[4, 3], [4, 2], [4, 1], [3, 2], [3, 1], [2, 1]};
+"gt{4} := {7,8,9,10}";
+{[4, 10], [4, 9], [4, 8], [4, 7], [5, 4], [5, 3], [5, 2], [5, 1], [3, 2],
+ [3, 1], [2, 1]};
+"{ [x,y]: y=gt{x} }";
+{[5, {2, 1, 3, 4}], [4, {3, 2, 1}], [2, {1}], [3, {1, 2}]};
+"{ [[i,j], i>j] : i in [1..5], j in [1..5] }";
+{[[4, 2], true], [[3, 4], false], [[4, 1], true], [[3, 3], false],
+ [[2, 5], false], [[3, 1], true], [[2, 3], false], [[1, 5], false],
+ [[3, 2], true], [[2, 4], false], [[1, 1], false], [[1, 2], false],
+ [[2, 2], false], [[1, 4], false], [[2, 1], true], [[1, 3], false],
+ [[5, 1], true], [[4, 3], true], [[3, 5], false], [[5, 2], true],
+ [[4, 4], false], [[5, 3], true], [[4, 5], false], [[5, 4], true],
+ [[5, 5], false]};
+false;
+true;
+{false};
+{true};
+"{ [x,y]: y=gt{x} }";
+{[[4, 4], {false}], [[5, 2], {true}], [[4, 3], {true}], [[3, 5], {false}],
+ [[5, 1], {true}], [[5, 4], {true}], [[5, 5], {false}], [[5, 3], {true}],
+ [[4, 5], {false}], [[1, 1], {false}], [[1, 2], {false}],
+ [[1, 3], {false}], [[2, 1], {true}], [[2, 2], {false}],
+ [[1, 4], {false}], [[2, 4], {false}], [[3, 2], {true}],
+ [[2, 3], {false}], [[1, 5], {false}], [[3, 1], {true}], [[4, 2], {true}],
+ [[3, 4], {false}], [[3, 3], {false}], [[4, 1], {true}], [[2, 5], {false}]};
+"{ [x,y]: y=gt(x) }";
+{[[1, 4], false], [[2, 2], false], [[1, 3], false], [[2, 1], true],
+ [[1, 5], false], [[2, 3], false], [[3, 1], true], [[1, 2], false],
+ [[1, 1], false], [[5, 4], true], [[5, 5], false], [[4, 5], false],
+ [[5, 3], true], [[4, 4], false], [[5, 2], true], [[2, 5], false],
+ [[3, 3], false], [[4, 1], true], [[2, 4], false], [[3, 2], true],
+ [[3, 5], false], [[4, 3], true], [[5, 1], true], [[3, 4], false],
+ [[4, 2], true]};
+"{ x : y=gt(x) | y }";
+{[3, 1], [3, 2], [2, 1], [4, 2], [4, 1], [4, 3], [5, 3], [5, 4], [5, 1],
+ [5, 2]};
+"{ [i,j] : y = gt(i,j) | y }";
+{[5, 4], [5, 3], [5, 1], [5, 2], [4, 2], [4, 1], [4, 3], [3, 1], [3, 2],
+ [2, 1]};
+{[1, [2, 5]]};
+{1};
+{};
+{2};
+{};
+{3};
+{};
+{4};
+"Enter a set or tuple:";
+[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "has no median"];
+"Enter a set or tuple:";
+["Median of", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "is", 6];
+"Enter a set or tuple:";
+["Median of", [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121], "is", 36];
+"Enter a set or tuple:";
+[[], "has no median"];
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+OM;
+OM;
+{};
+[true, true, true, true, true, [5, 5], 1, 0];
+[true, true, true, true, true, [5, 9990], 0, 5];
+[true, true, true, true, true, [5, 12000], 0, 5];
+[true, true, true, true, true, [5, 123456789], 0, 5];
+[true, true, true, true, true, [9990, 5], 1998, 0];
+[true, true, true, true, true, [9990, 9990], 1, 0];
+[true, true, true, true, true, [9990, 12000], 0, 9990];
+[true, true, true, true, true, [9990, 123456789], 0, 9990];
+[true, true, true, true, true, [12000, 5], 2400, 0];
+[true, true, true, true, true, [12000, 9990], 1, 2010];
+[true, true, true, true, true, [12000, 12000], 1, 0];
+[true, true, true, true, true, [12000, 123456789], 0, 12000];
+[true, true, true, true, true, [123456789, 5], 24691357, 4];
+[true, true, true, true, true, [123456789, 9990], 12358, 369];
+[true, true, true, true, true, [123456789, 12000], 10288, 789];
+[true, true, true, true, true, [123456789, 123456789], 1, 0];
+true;
+true;
+true;
+true;
+true;
+OM;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+OM;
+OM;
+256637406;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+
+! Error -- Bad mapping: 
+OM();
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+         1         6
+         2         7
+         3         8
+1;
+24;
+"single quotes may be used for strings";
+"such strings may contain double quotes (\q)";
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+"Gary Levin";
+"Carol Simon Levin";
+OM;
+OM;
+1100;
+700;
+1;
+2.500;
+"abc";
+{};
+[];
+OM;
+[1, 2, 3];
+{6, 5, 3, 1, 2};
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+[1, 3, 5, 7, 9];
+[1, 3, 5, 7, 9];
+[];
+[];
+[10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+6;
+6.000;
+"abcxyz";
+[1, 2, 3, 4, 5, 6];
+{1, 2, 3, 4, 5, 6, 7};
+2;
+2.000;
+{1, 2};
+8;
+8.000;
+"abcabcabc";
+[1, 2, 3, 1, 2, 3, 1, 2, 3];
+{5, 4, 3};
+2.500;
+2.000;
+2;
+1;
+2.500;
+1024;
+1.414;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+true;
+false;
+true;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+true;
+false;
+true;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+false;
+true;
+true;
+
+! Error: Too few arguments
+
+! Error: Too few arguments
+
+! Error: Too few arguments
+[1, 2, 3];
+OM;
+[1, 2, 3, 4];
+OM;
+[1, 2, 3, 4, 5];
+OM;
+
+! Error: Too many arguments
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+24;
+[{[1, 4, 3, 2], [1, 4, 2, 3], [1, 3, 2, 4], [1, 3, 4, 2], [1, 2, 3, 4],
+  [1, 2, 4, 3]},
+ {[2, 4, 3, 1], [2, 4, 1, 3], [2, 3, 4, 1], [2, 3, 1, 4], [2, 1, 3, 4],
+  [2, 1, 4, 3]},
+ {[3, 1, 2, 4], [3, 1, 4, 2], [3, 2, 4, 1], [3, 2, 1, 4], [3, 4, 1, 2],
+  [3, 4, 2, 1]},
+ {[4, 1, 3, 2], [4, 1, 2, 3], [4, 2, 3, 1], [4, 2, 1, 3], [4, 3, 1, 2],
+  [4, 3, 2, 1]}];
+true;
+"Enter a partial order as a set of pairs";
+["nodes", {7, 8, 6, 2, 1, 3, 4, 5}];
+["sort", [1, 2, 4, 3, 6, 5, 7, 8]];
+"Enter a partial order as a set of pairs";
+["nodes", {1, 2, 3, 5, 4, 8, 7, 6}];
+["sort", [1, 3, 2, 6, 5, 4, 7, 8]];
+4;
+4;
+4;
+4;
+0;
+0;
+4.000;
+4.000;
+4.000;
+4.000;
+0.000;
+0.000;
+97;
+97;
+OM;
+OM;
+OM;
+OM;
+1.000;
+1.000;
+1.400;
+1.400;
+-4.000;
+-4.000;
+1;
+1;
+1;
+1;
+-1;
+-1;
+-1;
+-1;
+2;
+2;
+2;
+2;
+-1;
+-1;
+-1;
+-1;
+1;
+1;
+1;
+1;
+-2;
+-2;
+-2;
+-2;
+false;
+false;
+false;
+false;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+false;
+false;
+false;
+false;
+false;
+false;
+"[random( 10) : i in [1..10]]";
+[10, 4, 5, 6, 10, 6, 6, 9, 9, 6];
+"[random(-10) : i in [1..10]]";
+[];
+"[random(1.0) : i in [1..10]]";
+[0.895, 0.270, 0.276, 0.455, 0.953, 0.998, 0.236, 0.244, 0.889, 0.354];
+"[random(1.5) : i in [1..10]]";
+[1.428, 0.426, 0.738, 0.643, 1.255, 1.144, 1.364, 1.359, 0.958, 0.726];
+"[random({1,3,5,6,8,9}) : i in [1..10]]";
+[6, 6, 9, 1, 3, 8, 6, 8, 8, 5];
+"[random([1,3,om,6,8,9]) : i in [1..10]]";
+[OM, 6, 8, 8, 1, 8, 8, 3, 9, 6];
+"[random('abcdefghijkl') : i in [1..10]]";
+["h", "k", "k", "b", "d", "i", "k", "c", "h", "g"];
+"a";
+"a";
+"F";
+"F";
+3;
+5;
+7;
+11;
+13;
+17;
+19;
+23;
+29;
+31;
+"Enter N:";
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
+ 71, 73, 79, 83, 89, 97];
+Current GC memory = 500600, Limit = 1000000
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
+ 71, 73, 79, 83, 89, 97];
+"\001\002\003\004\005\006\007\b\t\n\013\f\r\016\017\020\021\022\023\024\025"
++"\026\027\030\031\032\033\034\035\036\037 !\q#$%&'()*+,-./0123456789:;<=>?"
++"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\177";
+
+         1    2                   3
+
+1125899906842624
+
+    1125899906842624
+
+112589990\
+6842624
+
+             1.50000             1.50000      1.50    1.50000e+00
+
+      true     false
+        OM   OM
+abcdef  xyz       xyz
+
+      !48!      !47!
+
+!FUNC(f6f2)!!FUNC(76b20/5d88c)!
+
+!modified:FUNC(76b20/5d88c)!
+
+        OM!File(w:ed22f3c)!!File(a:ed22f50)!
+OM;
+
+        OM
+
+{}
+
+{         3         4         5         2         1}
+
+{  1  2  3  5  4}
+
+{  1,  2,  3,  5,  4}
+
+[]
+
+[         1         2         3         4         5]
+
+[  1  2  3  4  5]
+
+[  1,  2,  3,  4,  5]
+
+           1  2  3  4
+  5  6  7  8  9 10 11
+ 12 13 14 15 16 17 18
+ 19 20 21 22 23 24 25
+ 26 27 28 29 30 31
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+ "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+["any", "are", "because", "different", "hardly", "in", "is", "operators",
+ "polymorphic", "problem", "subtle", "the", "there", "types", "using",
+ "with"];
+"enter set to be sorted";
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+"qwertyuioplkjhgfdsazxcvbnm";
+["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+ "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+"enter set to be sorted";
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+[25, 13, 14, 5, 6, 7, 22, 23, 24, 1, 2, 9, 27, 28, 34, 35, 26, 15, 37, 38,
+ 40, 16, 17, 30, 31, 21, 10, 11, 18, 32, 33, 39, 29, 19, 3, 4, 8, 20, 12,
+ 36];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+"enter set to be sorted";
+["there", "is", "hardly", "any", "problem", "with", "using", "different",
+ "types", "in", "subtle", "because", "the", "operators", "are",
+ "polymorphic"];
+["any", "are", "because", "different", "hardly", "in", "is", "operators",
+ "polymorphic", "problem", "subtle", "the", "there", "types", "using",
+ "with"];
+"enter set to be sorted";
+[];
+[];
+"correct";
+"correct";
+{[1, 3, 5, 2, 4], [1, 4, 2, 5, 3], [4, 1, 3, 5, 2], [2, 5, 3, 1, 4],
+ [2, 4, 1, 3, 5], [3, 1, 4, 2, 5], [5, 3, 1, 4, 2], [5, 2, 4, 1, 3],
+ [4, 2, 5, 3, 1], [3, 5, 2, 4, 1]};
+true;
+true;
+true;
+true;
+{[6, 17], [3, 13], [3, 12], [3, 11], [3, 10]};
+[OM, OM, OM, 21];
+123;
+"123,456";
+-123;
+123;
+123456789;
+-123456789;
+123456789;
+123.456;
+12345.600;
+-1.235;
+678;
+"12345";
+"x;";
+"12345";
+"Enter a string";
+"here is a string";
+["here", "is", "a", "string"];
+["here", "is", "a", "string"];
+"Enter a string";
+"    leading blanks in this one";
+["leading", "blanks", "in", "this", "one"];
+["leading", "blanks", "in", "this", "one"];
+"Enter a string";
+"   trailing blanks here    ";
+["trailing", "blanks", "here"];
+["trailing", "blanks", "here"];
+"Enter a string";
+"  extra    spaces    everywhere     ";
+["extra", "spaces", "everywhere"];
+["extra", "spaces", "everywhere"];
+"Enter a string";
+"non-letters break words too...too bad";
+["non", "letters", "break", "words", "too", "too", "bad"];
+["non", "letters", "break", "words", "too", "too", "bad"];
+"Enter a string";
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 25, 26, 27, 28, 29, 30];
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25,
+ 26, 27, 28, 29, 30];
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 50, 22, 23, 24, 25, 26, 27,
+ 28, 29, 30];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+ 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 45, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, OM, 70, 16, 17, 18,
+ 19, 20];
+[1, 2, 3, 4, OM, OM, OM, 8, 9, 10];
+[4];
+[1, 2, 3, 4, 17, 8, 9, 10];
+[1, 2, 3, 4, OM, 1, 8, 9, 10];
+["abcdefg", "abcdefg"];
+["d", "d"];
+["def", "def"];
+["abcefg", "abcefg"];
+["abceABCDEFGg", "abceABCDEFGg"];
+["abXCDEFGg", "abXCDEFGg"];
+["abQQQXCDEFGg", "abQQQXCDEFGg"];
+true;
+true;
+true;
+true;
+true;
+true;
+[1, 4, 7, 10, 13, 16, 4];
+"take x from s";
+[16, {1, 4, 10, 7, 13}];
+"take x frome t";
+[16, [1, 4, 7, 10, 13]];
+"take x fromb t";
+[1, [4, 7, 10, 13]];
+"take x from t";
+[4, [7, 10, 13]];
+[OM, {}];
+[OM, []];
+[OM, []];
+[OM, []];
+[1, 2, 3];
+[];
+[OM, 1, OM, 2, OM, 3];
+[OM, 1, OM, 2, OM, 3];
+OM;
+OM;
+OM;
+1;
+2;
+4;
+11;
+12;
+14;
+21;
+22;
+OM;
+[];
+[];
+!'f' watched
+! Evaluate: f(4);
+! Evaluate: f(3);
+! Evaluate: f(2);
+! Evaluate: f(1);
+! Evaluate: f(0);
+! Yields: 1;
+! f returns: 1;
+! f returns: 2;
+! f returns: 6;
+! f returns: 24;
+24;
+! f := {};
+! f(3) := 4;
+! f(4) := 5;
+{[4, 5], [3, 4]};
+!'f' unwatched
+!'f' watched
+! Evaluate: f(6);
+! Evaluate: f(5);
+! Evaluate: f(4);
+! Evaluate: f(3);
+! Evaluate: f(2);
+! Yields: 1;
+! Evaluate: f(1);
+! Yields: 1;
+! f(3) := 2;
+! Evaluate: f(3);
+! Yields: 2;
+! f returns: 2;
+! Evaluate: f(2);
+! Yields: 1;
+! f(4) := 3;
+! Evaluate: f(4);
+! Yields: 3;
+! f returns: 3;
+! Evaluate: f(3);
+! Yields: 2;
+! f(5) := 5;
+! Evaluate: f(5);
+! Yields: 5;
+! f returns: 5;
+! Evaluate: f(4);
+! Yields: 3;
+! f(6) := 8;
+! Evaluate: f(6);
+! Yields: 8;
+! f returns: 8;
+8;
+! Evaluate: f(7);
+! Evaluate: f(6);
+! Yields: 8;
+! Evaluate: f(5);
+! Yields: 5;
+! f(7) := 13;
+! Evaluate: f(7);
+! Yields: 13;
+! f returns: 13;
+13;
+!'f' unwatched
+[[1, 1], [1, 2], [1, 3], [1, 4], [2, 1], [2, 2], [2, 3], [2, 4], [3, 1],
+ [3, 2], [3, 3], [3, 4], [4, 1], [4, 2], [4, 3], [4, 4]];
+[[1, 1, 3, 3], [1, 1, 3, 4], [1, 1, 4, 3], [1, 1, 4, 4], [1, 2, 3, 3],
+ [1, 2, 3, 4], [1, 2, 4, 3], [1, 2, 4, 4], [2, 1, 3, 3], [2, 1, 3, 4],
+ [2, 1, 4, 3], [2, 1, 4, 4], [2, 2, 3, 3], [2, 2, 3, 4], [2, 2, 4, 3],
+ [2, 2, 4, 4]];
+6;
+6;
+6;
+
+*** 		 else return n*fact(n-1);
+
+! Error -- Bad mapping: 
+OM(2);
+"a";
+"b";
+"c";
+OM;
+1;
+2;
+3;
+4;
+Current GC memory = 500600, New Limit = 1000000
+Enter numbers, terminate with non-number
+Next?	Next?	Next?	Next?	Next?	Next?	Sum is: 15.70000
+[5, [1, [3, !FUNC(a0970/a02a0)!]]];
+[2, 123456789];
+10;
+6;
+"Enter an expression with operators +-*/";
+"Parentheses may be used for grouping";
+"Arguments are single lower case letters";
+"a + b * c + d * ( x + y ) * e";
+[["root", !61!],
+ ["tree",
+  {[!57!, ["*", !49!, !50!]], [!58!, ["*", !55!, !56!]],
+   [!60!, ["+", !57!, !58!]], [!61!, ["+", !59!, !60!]], [!59!, "a"],
+   [!56!, ["*", !53!, !54!]], [!55!, "d"], [!54!, "e"],
+   [!53!, ["+", !51!, !52!]], [!50!, "c"], [!49!, "b"], [!51!, "x"],
+   [!52!, "y"]}]];
+[true, true, 0, true, [5, 5], 1, 0];
+[true, true, 0, true, [-5, 5], -1, 0];
+[true, true, 0, true, [5, -5], -1, 0];
+[true, true, 0, true, [-5, -5], 1, 0];
+[true, true, 0, true, [5, 9990], 0, 5];
+[true, true, 0, true, [-5, 9990], -1, 9985];
+[true, true, 0, true, [5, -9990], 0, 5];
+[true, true, 0, true, [-5, -9990], 1, 9985];
+[true, true, 0, true, [5, 12000], 0, 5];
+[true, true, 0, true, [-5, 12000], -1, 11995];
+[true, true, 0, true, [5, -12000], 0, 5];
+[true, true, 0, true, [-5, -12000], 1, 11995];
+[true, true, 0, true, [5, 123456789], 0, 5];
+[true, true, 0, true, [-5, 123456789], -1, 123456784];
+[true, true, 0, true, [5, -123456789], 0, 5];
+[true, true, 0, true, [-5, -123456789], 1, 123456784];
+[true, true, 0, true, [9990, 5], 1998, 0];
+[true, true, 0, true, [-9990, 5], -1998, 0];
+[true, true, 0, true, [9990, -5], -1998, 0];
+[true, true, 0, true, [-9990, -5], 1998, 0];
+[true, true, 0, true, [9990, 9990], 1, 0];
+[true, true, 0, true, [-9990, 9990], -1, 0];
+[true, true, 0, true, [9990, -9990], -1, 0];
+[true, true, 0, true, [-9990, -9990], 1, 0];
+[true, true, 0, true, [9990, 12000], 0, 9990];
+[true, true, 0, true, [-9990, 12000], -1, 2010];
+[true, true, 0, true, [9990, -12000], 0, 9990];
+[true, true, 0, true, [-9990, -12000], 1, 2010];
+[true, true, 0, true, [9990, 123456789], 0, 9990];
+[true, true, 0, true, [-9990, 123456789], -1, 123446799];
+[true, true, 0, true, [9990, -123456789], 0, 9990];
+[true, true, 0, true, [-9990, -123456789], 1, 123446799];
+[true, true, 0, true, [12000, 5], 2400, 0];
+[true, true, 0, true, [-12000, 5], -2400, 0];
+[true, true, 0, true, [12000, -5], -2400, 0];
+[true, true, 0, true, [-12000, -5], 2400, 0];
+[true, true, 0, true, [12000, 9990], 1, 2010];
+[true, true, 0, true, [-12000, 9990], -2, 7980];
+[true, true, 0, true, [12000, -9990], -1, 2010];
+[true, true, 0, true, [-12000, -9990], 2, 7980];
+[true, true, 0, true, [12000, 12000], 1, 0];
+[true, true, 0, true, [-12000, 12000], -1, 0];
+[true, true, 0, true, [12000, -12000], -1, 0];
+[true, true, 0, true, [-12000, -12000], 1, 0];
+[true, true, 0, true, [12000, 123456789], 0, 12000];
+[true, true, 0, true, [-12000, 123456789], -1, 123444789];
+[true, true, 0, true, [12000, -123456789], 0, 12000];
+[true, true, 0, true, [-12000, -123456789], 1, 123444789];
+[true, true, 0, true, [123456789, 5], 24691357, 4];
+[true, true, 0, true, [-123456789, 5], -24691358, 1];
+[true, true, 0, true, [123456789, -5], -24691357, 4];
+[true, true, 0, true, [-123456789, -5], 24691358, 1];
+[true, true, 0, true, [123456789, 9990], 12358, 369];
+[true, true, 0, true, [-123456789, 9990], -12359, 9621];
+[true, true, 0, true, [123456789, -9990], -12358, 369];
+[true, true, 0, true, [-123456789, -9990], 12359, 9621];
+[true, true, 0, true, [123456789, 12000], 10288, 789];
+[true, true, 0, true, [-123456789, 12000], -10289, 11211];
+[true, true, 0, true, [123456789, -12000], -10288, 789];
+[true, true, 0, true, [-123456789, -12000], 10289, 11211];
+[true, true, 0, true, [123456789, 123456789], 1, 0];
+[true, true, 0, true, [-123456789, 123456789], -1, 0];
+[true, true, 0, true, [123456789, -123456789], -1, 0];
+[true, true, 0, true, [-123456789, -123456789], 1, 0];
+[-3, 0, 1];
+[-3, 1, -3];
+[-3, 2, 9];
+[-3, 50, 717897987691852588770249];
+[0, 0];
+[0, 1, 0];
+[0, 2, 0];
+[0, 50, 0];
+[3, 0, 1];
+[3, 1, 3];
+[3, 2, 9];
+[3, 50, 717897987691852588770249];
+[true, true, true, true, true, [5, 5], 1, 0];
+[true, true, true, true, true, [5, 9990], 0, 5];
+[true, true, true, true, true, [5, 12000], 0, 5];
+[true, true, true, true, true, [5, 123456789], 0, 5];
+[true, true, true, true, true, [9990, 5], 1998, 0];
+[true, true, true, true, true, [9990, 9990], 1, 0];
+[true, true, true, true, true, [9990, 12000], 0, 9990];
+[true, true, true, true, true, [9990, 123456789], 0, 9990];
+[true, true, true, true, true, [12000, 5], 2400, 0];
+[true, true, true, true, true, [12000, 9990], 1, 2010];
+[true, true, true, true, true, [12000, 12000], 1, 0];
+[true, true, true, true, true, [12000, 123456789], 0, 12000];
+[true, true, true, true, true, [123456789, 5], 24691357, 4];
+[true, true, true, true, true, [123456789, 9990], 12358, 369];
+[true, true, true, true, true, [123456789, 12000], 10288, 789];
+[true, true, true, true, true, [123456789, 123456789], 1, 0];
+[-3, 0, 1];
+[-3, 1, -3];
+[-3, 2, 9];
+[-3, 5, -243];
+[0, 0];
+[0, 1, 0];
+[0, 2, 0];
+[0, 5, 0];
+[3, 0, 1];
+[3, 1, 3];
+[3, 2, 9];
+[3, 5, 243];
+true;
+true;
+true;
+true;
+true;
+true;
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+["this", "is", "a", "test", "to", "show", "that", "subtle", "is",
+ "polymorphic"];
+[];
+["inc(10) = ", 11];
+["dec(10) = ", 9];
+13;
+55;
+33;
+6;
+24;
+3628800;
+true;
+true;
+"print f(first(1),second(1));";
+true;
+"print f(first(number),second(number));";
+true;
+"print #[i: i in [1..number]| f(first(i),second(i))];";
+5;
+
+! Syntax: ~ not permitted
+
+! Syntax: Only identifiers can be bound
+
+! Syntax: Bad RHS for Iterator
+
+! Syntax: warning -- id bound twice in same scope
+4;
+2;
+
+! Syntax: Bad RHS for Iterator
+
+*** if true then return 5; end;
+
+! Error: Return at top level
+
+! Error: Return at top level
+
+! Error: Input must be an expression
+
+*** s(2..3) := 5;
+
+! Error: RHS in string slice assignment must be string
+
+*** t(1..3) := 5;
+
+! Error: RHS in tuple slice assignment must be tuple
+
+*** m{3} := 4;
+
+! Error: RHS in mmap assignment must be set
+{2, 3, 1};
+
+! Error -- Bad mapping: multiple images
+{[3, 1], [3, 2], [3, 3]}(3);
+
+! Error: Slice upper bound too big
+
+! Error: Slice lower bound too big
+
+*** a := {true..false};
+
+! Error: Bad args in low..high
+
+*** a := {1, 3.5 .. 7};
+
+! Error: Bad args in low,next..high
+
+*** for i in [1.."abc"] do print i; end;
+
+! Error: Bad args in low..high
+
+*** for i in [1, 3 .. "abc"] do print i; end;
+
+! Error: Bad args in low,next..high
+
+*** for i=s{j} do print [i,j]; end;
+
+! Error: Can't mmap string
+{"d"};
+{4};
+
+! Error -- Bad mapping: 
+OM{4};
+
+! Error: Divide by zero
+
+! Error: Bad arguments in:
+4 <relation> true;
+
+! Error: Bad arguments in:
+{3, 4, 1, 2, 8, 7, 10, 9, 6, 5} <relation> {2, 3, 1};
+
+*** [a,b,c] := 5;
+
+! Error: Bad arguments in:
+[a, b, c] := 5;
+
+! Error: Bad arguments in:
+ # 4;
+
+*** t(-5) := 4;
+
+! Error -- Bad mapping: 
+[1, 2, 3, 4](-5);
+
+*** take y from x;
+
+! Error: Bad arguments in:
+y from x;
+
+*** for i in 3 do print i; end;
+
+! Error: Can't iterate over
+3;
+3;
+
+*** if true and 3 then print 1; else print 2; end;
+
+! Error: Boolean expected
+3;
+
+! Error: Boolean expected
+3;
+
+! Error: Boolean expected
+3;
+
+! Error: Bad arguments in:
+3 impl true;
+
+! Error: Bad arguments in:
+ not 5;
+
+! Error: Bad arguments in:
+{3, 2, 1} + 5;
+
+! Error: Bad arguments in:
+OM + OM;
+
+! Error: Bad arguments in:
+{1, 2, 3} - 5;
+
+! Error: Bad arguments in:
+OM - OM;
+
+! Error: Bad arguments in:
+ - {1, 3, 2};
+
+! Error: Bad arguments in:
+[1, 2, 3] less 5;
+
+! Error: Bad arguments in:
+5 with {1, 3, 2};
+
+! Error: Bad arguments in:
+"abc" * "cde";
+
+! Error: Bad arguments in:
+5 * {2, 3, 1};
+
+! Error: Bad arguments in:
+5 mod 0;
+2;
+
+! Error: Bad arguments in:
+5 mod true;
+
+! Error: Bad arguments in:
+true mod false;
+
+! Error: Bad arguments in:
+3.500 div 4.500;
+
+! Error: Bad arguments in:
+{1, 2, 3} / {2};
+
+! Error: Bad arguments in:
+{1, 3, 2} / 2;
+
+! Error: Bad arguments in:
+{1, 2, 3} ** 2;
+
+! Error: Bad arguments in:
+5 in "abc";
+
+! Error: Bad arguments in:
+5 in 7;
+
+! Error: Bad arguments in:
+3 subset 5;
+Can't read from: OM;
+Can't write to: OM;
+[1, 2, 3, 4];
+[1, 2, 3, 4];
+[1, 2, 3, 4, 5];
+
+*** f(4)(2) := 10;
+
+! Error: Only one level of selection allowed
+3;
+9;
+OM;
+OM;
+true;
+OM;
+OM;
+true;
+["function",
+ {[7, 49], [8, 64], [9, 81], [10, 100], [6, 36], [5, 25], [1, 1], [2, 4],
+  [4, 16], [3, 9]}];
+["image", {49, 64, 81, 100, 16, 9, 36, 25, 1, 4}];
+["domain", {3, 4, 2, 1, 6, 5, 8, 7, 10, 9}];
+["explode", "abcdefg", ["a", "b", "c", "d", "e", "f", "g"]];
+[[1, "a"], [2, "b"], [3, "c"], [4, "d"], [5, "e"], [6, "f"], [7, "g"]];
+[[1, 10], [2, 11], [3, 12], [4, 13], [5, 14], [6, 15], [7, 16], [8, 17],
+ [9, 18], [10, 19], [11, 20]];
+[21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+[25, 26, 27, 28, 29, 30];
+[35, 36, 37, 38, 39, 40];
+[21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+[30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+1;
+OM;
+OM;
+3;
+OM;
+OM;
+OM;
+3;
+OM;
+OM;
+OM;
+5;
+[2, 4, 6, 8, 10];
+0;
+[2, 4, 6, 8, 10];
+0;
+[1, 2];
+[3, 4];
+"done";
+true;
+{1.235e+18, 1234567890123456789};
+{10000000};
+{0.500, 0.600, 0.700, 0.900, 0.800, 0.300, 0.400, 0.200, 1.000, 0.100};
+{0.400, 0.300, 0.200, 0.100, 1.000, 0.700, 0.900, 0.800, 0.500, 0.600};
+{0.300, 0.400, 1.000, 0.100, 0.200, 0.600, 0.500, 0.900, 0.800, 0.700};
+"Series and Sums";
+"Enter the series function, as a function of one variable";
+"\tUse the form 'func(i); return <some expression using i>; end;'";
+"Enter the number of terms, N:";
+["i", "f(i)", "%+[ f(x): x in [1..i]]"];
+[1, 1, 1];
+[2, 4, 5];
+[3, 9, 14];
+[4, 16, 30];
+[5, 25, 55];
+[6, 36, 91];
+[7, 49, 140];
+[8, 64, 204];
+[9, 81, 285];
+[10, 100, 385];
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+1606938044258990275541962092341162602522\
+202993782792835301376;
+  Sun  Mon Tues  Wed  Thu  Fri  Sat
+                   1    2    3    4
+    5    6    7    8    9   10   11
+   12   13   14   15   16   17   18
+   19   20   21   22   23   24   25
+   26   27   28   29   30
+1+3=4	2+1=3	1+2=3	1+1=2	2+2=4	
+3+1=4	3+3=6	3+2=5	2+3=5
+
+Enter numbers, terminate with any non-number
+Next?	Next?	Next?	Next?	Next?	Next?	Total is: 15.70000
+40;
+{[4, 5], [3, 5], [3, 4], [1, 5], [1, 4], [1, 3], [1, 2], [2, 5], [2, 4],
+ [2, 3]};
+false;
+{[3, 3], [5, 5], [5, 2], [4, 4], [4, 1], [1, 4], [1, 1], [2, 5], [2, 2]};
+true;
+"TRY THIS 123";
+["gt",
+ {[3, 2], [3, 1], [2, 1], [5, 4], [5, 3], [5, 2], [5, 1], [4, 3], [4, 2],
+  [4, 1]}];
+OM;
+1;
+{2, 1, 3};
+{};
+{1};
+{[5, 4], [5, 3], [5, 2], [5, 1], [2, 1], [3, 2], [3, 1]};
+"gt{5} := om";
+{[4, 3], [4, 2], [4, 1], [3, 2], [3, 1], [2, 1]};
+"gt{4} := {7,8,9,10}";
+{[4, 10], [4, 9], [4, 8], [4, 7], [5, 4], [5, 3], [5, 2], [5, 1], [3, 2],
+ [3, 1], [2, 1]};
+"{ [x,y]: y=gt{x} }";
+{[5, {2, 1, 3, 4}], [4, {3, 2, 1}], [2, {1}], [3, {1, 2}]};
+"{ [[i,j], i>j] : i in [1..5], j in [1..5] }";
+{[[4, 2], true], [[3, 4], false], [[4, 1], true], [[3, 3], false],
+ [[2, 5], false], [[3, 1], true], [[2, 3], false], [[1, 5], false],
+ [[3, 2], true], [[2, 4], false], [[1, 1], false], [[1, 2], false],
+ [[2, 2], false], [[1, 4], false], [[2, 1], true], [[1, 3], false],
+ [[5, 1], true], [[4, 3], true], [[3, 5], false], [[5, 2], true],
+ [[4, 4], false], [[5, 3], true], [[4, 5], false], [[5, 4], true],
+ [[5, 5], false]};
+false;
+true;
+{false};
+{true};
+"{ [x,y]: y=gt{x} }";
+{[[4, 4], {false}], [[5, 2], {true}], [[4, 3], {true}], [[3, 5], {false}],
+ [[5, 1], {true}], [[5, 4], {true}], [[5, 5], {false}], [[5, 3], {true}],
+ [[4, 5], {false}], [[1, 1], {false}], [[1, 2], {false}],
+ [[1, 3], {false}], [[2, 1], {true}], [[2, 2], {false}],
+ [[1, 4], {false}], [[2, 4], {false}], [[3, 2], {true}],
+ [[2, 3], {false}], [[1, 5], {false}], [[3, 1], {true}], [[4, 2], {true}],
+ [[3, 4], {false}], [[3, 3], {false}], [[4, 1], {true}], [[2, 5], {false}]};
+"{ [x,y]: y=gt(x) }";
+{[[1, 4], false], [[2, 2], false], [[1, 3], false], [[2, 1], true],
+ [[1, 5], false], [[2, 3], false], [[3, 1], true], [[1, 2], false],
+ [[1, 1], false], [[5, 4], true], [[5, 5], false], [[4, 5], false],
+ [[5, 3], true], [[4, 4], false], [[5, 2], true], [[2, 5], false],
+ [[3, 3], false], [[4, 1], true], [[2, 4], false], [[3, 2], true],
+ [[3, 5], false], [[4, 3], true], [[5, 1], true], [[3, 4], false],
+ [[4, 2], true]};
+"{ x : y=gt(x) | y }";
+{[3, 1], [3, 2], [2, 1], [4, 2], [4, 1], [4, 3], [5, 3], [5, 4], [5, 1],
+ [5, 2]};
+"{ [i,j] : y = gt(i,j) | y }";
+{[5, 4], [5, 3], [5, 1], [5, 2], [4, 2], [4, 1], [4, 3], [3, 1], [3, 2],
+ [2, 1]};
+{[1, [2, 5]]};
+{1};
+{};
+{2};
+{};
+{3};
+{};
+{4};
+"Enter a set or tuple:";
+[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "has no median"];
+"Enter a set or tuple:";
+["Median of", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "is", 6];
+"Enter a set or tuple:";
+["Median of", [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121], "is", 36];
+"Enter a set or tuple:";
+[[], "has no median"];
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+OM;
+OM;
+{};
+[true, true, true, true, true, [5, 5], 1, 0];
+[true, true, true, true, true, [5, 9990], 0, 5];
+[true, true, true, true, true, [5, 12000], 0, 5];
+[true, true, true, true, true, [5, 123456789], 0, 5];
+[true, true, true, true, true, [9990, 5], 1998, 0];
+[true, true, true, true, true, [9990, 9990], 1, 0];
+[true, true, true, true, true, [9990, 12000], 0, 9990];
+[true, true, true, true, true, [9990, 123456789], 0, 9990];
+[true, true, true, true, true, [12000, 5], 2400, 0];
+[true, true, true, true, true, [12000, 9990], 1, 2010];
+[true, true, true, true, true, [12000, 12000], 1, 0];
+[true, true, true, true, true, [12000, 123456789], 0, 12000];
+[true, true, true, true, true, [123456789, 5], 24691357, 4];
+[true, true, true, true, true, [123456789, 9990], 12358, 369];
+[true, true, true, true, true, [123456789, 12000], 10288, 789];
+[true, true, true, true, true, [123456789, 123456789], 1, 0];
+true;
+true;
+true;
+true;
+true;
+OM;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+OM;
+OM;
+256637406;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+
+! Error -- Bad mapping: 
+OM();
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+         1         6
+         2         7
+         3         8
+1;
+24;
+"single quotes may be used for strings";
+"such strings may contain double quotes (\q)";
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+"Gary Levin";
+"Carol Simon Levin";
+OM;
+OM;
+1100;
+700;
+1;
+2.500;
+"abc";
+{};
+[];
+OM;
+[1, 2, 3];
+{6, 5, 3, 1, 2};
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+[1, 3, 5, 7, 9];
+[1, 3, 5, 7, 9];
+[];
+[];
+[10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+6;
+6.000;
+"abcxyz";
+[1, 2, 3, 4, 5, 6];
+{1, 2, 3, 4, 5, 6, 7};
+2;
+2.000;
+{1, 2};
+8;
+8.000;
+"abcabcabc";
+[1, 2, 3, 1, 2, 3, 1, 2, 3];
+{5, 4, 3};
+2.500;
+2.000;
+2;
+1;
+2.500;
+1024;
+1.414;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+true;
+false;
+true;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+true;
+false;
+true;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+false;
+true;
+true;
+
+! Error: Too few arguments
+
+! Error: Too few arguments
+
+! Error: Too few arguments
+[1, 2, 3];
+OM;
+[1, 2, 3, 4];
+OM;
+[1, 2, 3, 4, 5];
+OM;
+
+! Error: Too many arguments
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+24;
+[{[1, 4, 3, 2], [1, 4, 2, 3], [1, 3, 2, 4], [1, 3, 4, 2], [1, 2, 3, 4],
+  [1, 2, 4, 3]},
+ {[2, 4, 3, 1], [2, 4, 1, 3], [2, 3, 4, 1], [2, 3, 1, 4], [2, 1, 3, 4],
+  [2, 1, 4, 3]},
+ {[3, 1, 2, 4], [3, 1, 4, 2], [3, 2, 4, 1], [3, 2, 1, 4], [3, 4, 1, 2],
+  [3, 4, 2, 1]},
+ {[4, 1, 3, 2], [4, 1, 2, 3], [4, 2, 3, 1], [4, 2, 1, 3], [4, 3, 1, 2],
+  [4, 3, 2, 1]}];
+true;
+"Enter a partial order as a set of pairs";
+["nodes", {7, 8, 6, 2, 1, 3, 4, 5}];
+["sort", [1, 2, 4, 3, 6, 5, 7, 8]];
+"Enter a partial order as a set of pairs";
+["nodes", {1, 2, 3, 5, 4, 8, 7, 6}];
+["sort", [1, 3, 2, 6, 5, 4, 7, 8]];
+4;
+4;
+4;
+4;
+0;
+0;
+4.000;
+4.000;
+4.000;
+4.000;
+0.000;
+0.000;
+97;
+97;
+OM;
+OM;
+OM;
+OM;
+1.000;
+1.000;
+1.400;
+1.400;
+-4.000;
+-4.000;
+1;
+1;
+1;
+1;
+-1;
+-1;
+-1;
+-1;
+2;
+2;
+2;
+2;
+-1;
+-1;
+-1;
+-1;
+1;
+1;
+1;
+1;
+-2;
+-2;
+-2;
+-2;
+false;
+false;
+false;
+false;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+false;
+false;
+false;
+false;
+false;
+false;
+"[random( 10) : i in [1..10]]";
+[10, 4, 5, 6, 10, 6, 6, 9, 9, 6];
+"[random(-10) : i in [1..10]]";
+[];
+"[random(1.0) : i in [1..10]]";
+[0.895, 0.270, 0.276, 0.455, 0.953, 0.998, 0.236, 0.244, 0.889, 0.354];
+"[random(1.5) : i in [1..10]]";
+[1.428, 0.426, 0.738, 0.643, 1.255, 1.144, 1.364, 1.359, 0.958, 0.726];
+"[random({1,3,5,6,8,9}) : i in [1..10]]";
+[6, 6, 9, 1, 3, 8, 6, 8, 8, 5];
+"[random([1,3,om,6,8,9]) : i in [1..10]]";
+[OM, 6, 8, 8, 1, 8, 8, 3, 9, 6];
+"[random('abcdefghijkl') : i in [1..10]]";
+["h", "k", "k", "b", "d", "i", "k", "c", "h", "g"];
+"a";
+"a";
+"F";
+"F";
+3;
+5;
+7;
+11;
+13;
+17;
+19;
+23;
+29;
+31;
+"Enter N:";
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
+ 71, 73, 79, 83, 89, 97];
+Current GC memory = 500600, Limit = 1000000
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
+ 71, 73, 79, 83, 89, 97];
+"\001\002\003\004\005\006\007\b\t\n\013\f\r\016\017\020\021\022\023\024\025"
++"\026\027\030\031\032\033\034\035\036\037 !\q#$%&'()*+,-./0123456789:;<=>?"
++"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\177";
+
+         1    2                   3
+
+1125899906842624
+
+    1125899906842624
+
+112589990\
+6842624
+
+             1.50000             1.50000      1.50    1.50000e+00
+
+      true     false
+        OM   OM
+abcdef  xyz       xyz
+
+      !64!      !63!
+
+!FUNC(f6f2)!!FUNC(70590/5d88c)!
+
+!modified:FUNC(70590/5d88c)!
+
+        OM!File(w:ed22f64)!!File(a:ed22f78)!
+OM;
+
+        OM
+
+{}
+
+{         3         4         5         2         1}
+
+{  1  2  3  5  4}
+
+{  1,  2,  3,  5,  4}
+
+[]
+
+[         1         2         3         4         5]
+
+[  1  2  3  4  5]
+
+[  1,  2,  3,  4,  5]
+
+           1  2  3  4
+  5  6  7  8  9 10 11
+ 12 13 14 15 16 17 18
+ 19 20 21 22 23 24 25
+ 26 27 28 29 30 31
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+ "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+["any", "are", "because", "different", "hardly", "in", "is", "operators",
+ "polymorphic", "problem", "subtle", "the", "there", "types", "using",
+ "with"];
+"enter set to be sorted";
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+"qwertyuioplkjhgfdsazxcvbnm";
+["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+ "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+"enter set to be sorted";
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+[25, 13, 14, 5, 6, 7, 22, 23, 24, 1, 2, 9, 27, 28, 34, 35, 26, 15, 37, 38,
+ 40, 16, 17, 30, 31, 21, 10, 11, 18, 32, 33, 39, 29, 19, 3, 4, 8, 20, 12,
+ 36];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+"enter set to be sorted";
+["there", "is", "hardly", "any", "problem", "with", "using", "different",
+ "types", "in", "subtle", "because", "the", "operators", "are",
+ "polymorphic"];
+["any", "are", "because", "different", "hardly", "in", "is", "operators",
+ "polymorphic", "problem", "subtle", "the", "there", "types", "using",
+ "with"];
+"enter set to be sorted";
+[];
+[];
+"correct";
+"correct";
+{[1, 3, 5, 2, 4], [1, 4, 2, 5, 3], [4, 1, 3, 5, 2], [2, 5, 3, 1, 4],
+ [2, 4, 1, 3, 5], [3, 1, 4, 2, 5], [5, 3, 1, 4, 2], [5, 2, 4, 1, 3],
+ [4, 2, 5, 3, 1], [3, 5, 2, 4, 1]};
+true;
+true;
+true;
+true;
+{[6, 17], [3, 13], [3, 12], [3, 11], [3, 10]};
+[OM, OM, OM, 21];
+123;
+"123,456";
+-123;
+123;
+123456789;
+-123456789;
+123456789;
+123.456;
+12345.600;
+-1.235;
+678;
+"12345";
+"x;";
+"12345";
+"Enter a string";
+"here is a string";
+["here", "is", "a", "string"];
+["here", "is", "a", "string"];
+"Enter a string";
+"    leading blanks in this one";
+["leading", "blanks", "in", "this", "one"];
+["leading", "blanks", "in", "this", "one"];
+"Enter a string";
+"   trailing blanks here    ";
+["trailing", "blanks", "here"];
+["trailing", "blanks", "here"];
+"Enter a string";
+"  extra    spaces    everywhere     ";
+["extra", "spaces", "everywhere"];
+["extra", "spaces", "everywhere"];
+"Enter a string";
+"non-letters break words too...too bad";
+["non", "letters", "break", "words", "too", "too", "bad"];
+["non", "letters", "break", "words", "too", "too", "bad"];
+"Enter a string";
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 25, 26, 27, 28, 29, 30];
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25,
+ 26, 27, 28, 29, 30];
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 50, 22, 23, 24, 25, 26, 27,
+ 28, 29, 30];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+ 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 45, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, OM, 70, 16, 17, 18,
+ 19, 20];
+[1, 2, 3, 4, OM, OM, OM, 8, 9, 10];
+[4];
+[1, 2, 3, 4, 17, 8, 9, 10];
+[1, 2, 3, 4, OM, 1, 8, 9, 10];
+["abcdefg", "abcdefg"];
+["d", "d"];
+["def", "def"];
+["abcefg", "abcefg"];
+["abceABCDEFGg", "abceABCDEFGg"];
+["abXCDEFGg", "abXCDEFGg"];
+["abQQQXCDEFGg", "abQQQXCDEFGg"];
+true;
+true;
+true;
+true;
+true;
+true;
+[1, 4, 7, 10, 13, 16, 4];
+"take x from s";
+[16, {1, 4, 10, 7, 13}];
+"take x frome t";
+[16, [1, 4, 7, 10, 13]];
+"take x fromb t";
+[1, [4, 7, 10, 13]];
+"take x from t";
+[4, [7, 10, 13]];
+[OM, {}];
+[OM, []];
+[OM, []];
+[OM, []];
+[1, 2, 3];
+[];
+[OM, 1, OM, 2, OM, 3];
+[OM, 1, OM, 2, OM, 3];
+OM;
+OM;
+OM;
+1;
+2;
+4;
+11;
+12;
+14;
+21;
+22;
+OM;
+[];
+[];
+!'f' watched
+! Evaluate: f(4);
+! Evaluate: f(3);
+! Evaluate: f(2);
+! Evaluate: f(1);
+! Evaluate: f(0);
+! Yields: 1;
+! f returns: 1;
+! f returns: 2;
+! f returns: 6;
+! f returns: 24;
+24;
+! f := {};
+! f(3) := 4;
+! f(4) := 5;
+{[4, 5], [3, 4]};
+!'f' unwatched
+!'f' watched
+! Evaluate: f(6);
+! Evaluate: f(5);
+! Evaluate: f(4);
+! Evaluate: f(3);
+! Evaluate: f(2);
+! Yields: 1;
+! Evaluate: f(1);
+! Yields: 1;
+! f(3) := 2;
+! Evaluate: f(3);
+! Yields: 2;
+! f returns: 2;
+! Evaluate: f(2);
+! Yields: 1;
+! f(4) := 3;
+! Evaluate: f(4);
+! Yields: 3;
+! f returns: 3;
+! Evaluate: f(3);
+! Yields: 2;
+! f(5) := 5;
+! Evaluate: f(5);
+! Yields: 5;
+! f returns: 5;
+! Evaluate: f(4);
+! Yields: 3;
+! f(6) := 8;
+! Evaluate: f(6);
+! Yields: 8;
+! f returns: 8;
+8;
+! Evaluate: f(7);
+! Evaluate: f(6);
+! Yields: 8;
+! Evaluate: f(5);
+! Yields: 5;
+! f(7) := 13;
+! Evaluate: f(7);
+! Yields: 13;
+! f returns: 13;
+13;
+!'f' unwatched
+[[1, 1], [1, 2], [1, 3], [1, 4], [2, 1], [2, 2], [2, 3], [2, 4], [3, 1],
+ [3, 2], [3, 3], [3, 4], [4, 1], [4, 2], [4, 3], [4, 4]];
+[[1, 1, 3, 3], [1, 1, 3, 4], [1, 1, 4, 3], [1, 1, 4, 4], [1, 2, 3, 3],
+ [1, 2, 3, 4], [1, 2, 4, 3], [1, 2, 4, 4], [2, 1, 3, 3], [2, 1, 3, 4],
+ [2, 1, 4, 3], [2, 1, 4, 4], [2, 2, 3, 3], [2, 2, 3, 4], [2, 2, 4, 3],
+ [2, 2, 4, 4]];
+6;
+6;
+6;
+
+*** 		 else return n*fact(n-1);
+
+! Error -- Bad mapping: 
+OM(2);
+"a";
+"b";
+"c";
+OM;
+1;
+2;
+3;
+4;
+Current GC memory = 500600, New Limit = 1000000
+Enter numbers, terminate with non-number
+Next?	Next?	Next?	Next?	Next?	Next?	Sum is: 15.70000
+[5, [1, [3, !FUNC(99e38/99518)!]]];
+[2, 123456789];
+10;
+6;
+"Enter an expression with operators +-*/";
+"Parentheses may be used for grouping";
+"Arguments are single lower case letters";
+"a + b * c + d * ( x + y ) * e";
+[["root", !77!],
+ ["tree",
+  {[!73!, ["*", !65!, !66!]], [!74!, ["*", !71!, !72!]],
+   [!76!, ["+", !73!, !74!]], [!77!, ["+", !75!, !76!]], [!75!, "a"],
+   [!72!, ["*", !69!, !70!]], [!71!, "d"], [!70!, "e"],
+   [!69!, ["+", !67!, !68!]], [!66!, "c"], [!65!, "b"], [!67!, "x"],
+   [!68!, "y"]}]];
+[true, true, 0, true, [5, 5], 1, 0];
+[true, true, 0, true, [-5, 5], -1, 0];
+[true, true, 0, true, [5, -5], -1, 0];
+[true, true, 0, true, [-5, -5], 1, 0];
+[true, true, 0, true, [5, 9990], 0, 5];
+[true, true, 0, true, [-5, 9990], -1, 9985];
+[true, true, 0, true, [5, -9990], 0, 5];
+[true, true, 0, true, [-5, -9990], 1, 9985];
+[true, true, 0, true, [5, 12000], 0, 5];
+[true, true, 0, true, [-5, 12000], -1, 11995];
+[true, true, 0, true, [5, -12000], 0, 5];
+[true, true, 0, true, [-5, -12000], 1, 11995];
+[true, true, 0, true, [5, 123456789], 0, 5];
+[true, true, 0, true, [-5, 123456789], -1, 123456784];
+[true, true, 0, true, [5, -123456789], 0, 5];
+[true, true, 0, true, [-5, -123456789], 1, 123456784];
+[true, true, 0, true, [9990, 5], 1998, 0];
+[true, true, 0, true, [-9990, 5], -1998, 0];
+[true, true, 0, true, [9990, -5], -1998, 0];
+[true, true, 0, true, [-9990, -5], 1998, 0];
+[true, true, 0, true, [9990, 9990], 1, 0];
+[true, true, 0, true, [-9990, 9990], -1, 0];
+[true, true, 0, true, [9990, -9990], -1, 0];
+[true, true, 0, true, [-9990, -9990], 1, 0];
+[true, true, 0, true, [9990, 12000], 0, 9990];
+[true, true, 0, true, [-9990, 12000], -1, 2010];
+[true, true, 0, true, [9990, -12000], 0, 9990];
+[true, true, 0, true, [-9990, -12000], 1, 2010];
+[true, true, 0, true, [9990, 123456789], 0, 9990];
+[true, true, 0, true, [-9990, 123456789], -1, 123446799];
+[true, true, 0, true, [9990, -123456789], 0, 9990];
+[true, true, 0, true, [-9990, -123456789], 1, 123446799];
+[true, true, 0, true, [12000, 5], 2400, 0];
+[true, true, 0, true, [-12000, 5], -2400, 0];
+[true, true, 0, true, [12000, -5], -2400, 0];
+[true, true, 0, true, [-12000, -5], 2400, 0];
+[true, true, 0, true, [12000, 9990], 1, 2010];
+[true, true, 0, true, [-12000, 9990], -2, 7980];
+[true, true, 0, true, [12000, -9990], -1, 2010];
+[true, true, 0, true, [-12000, -9990], 2, 7980];
+[true, true, 0, true, [12000, 12000], 1, 0];
+[true, true, 0, true, [-12000, 12000], -1, 0];
+[true, true, 0, true, [12000, -12000], -1, 0];
+[true, true, 0, true, [-12000, -12000], 1, 0];
+[true, true, 0, true, [12000, 123456789], 0, 12000];
+[true, true, 0, true, [-12000, 123456789], -1, 123444789];
+[true, true, 0, true, [12000, -123456789], 0, 12000];
+[true, true, 0, true, [-12000, -123456789], 1, 123444789];
+[true, true, 0, true, [123456789, 5], 24691357, 4];
+[true, true, 0, true, [-123456789, 5], -24691358, 1];
+[true, true, 0, true, [123456789, -5], -24691357, 4];
+[true, true, 0, true, [-123456789, -5], 24691358, 1];
+[true, true, 0, true, [123456789, 9990], 12358, 369];
+[true, true, 0, true, [-123456789, 9990], -12359, 9621];
+[true, true, 0, true, [123456789, -9990], -12358, 369];
+[true, true, 0, true, [-123456789, -9990], 12359, 9621];
+[true, true, 0, true, [123456789, 12000], 10288, 789];
+[true, true, 0, true, [-123456789, 12000], -10289, 11211];
+[true, true, 0, true, [123456789, -12000], -10288, 789];
+[true, true, 0, true, [-123456789, -12000], 10289, 11211];
+[true, true, 0, true, [123456789, 123456789], 1, 0];
+[true, true, 0, true, [-123456789, 123456789], -1, 0];
+[true, true, 0, true, [123456789, -123456789], -1, 0];
+[true, true, 0, true, [-123456789, -123456789], 1, 0];
+[-3, 0, 1];
+[-3, 1, -3];
+[-3, 2, 9];
+[-3, 50, 717897987691852588770249];
+[0, 0];
+[0, 1, 0];
+[0, 2, 0];
+[0, 50, 0];
+[3, 0, 1];
+[3, 1, 3];
+[3, 2, 9];
+[3, 50, 717897987691852588770249];
+[true, true, true, true, true, [5, 5], 1, 0];
+[true, true, true, true, true, [5, 9990], 0, 5];
+[true, true, true, true, true, [5, 12000], 0, 5];
+[true, true, true, true, true, [5, 123456789], 0, 5];
+[true, true, true, true, true, [9990, 5], 1998, 0];
+[true, true, true, true, true, [9990, 9990], 1, 0];
+[true, true, true, true, true, [9990, 12000], 0, 9990];
+[true, true, true, true, true, [9990, 123456789], 0, 9990];
+[true, true, true, true, true, [12000, 5], 2400, 0];
+[true, true, true, true, true, [12000, 9990], 1, 2010];
+[true, true, true, true, true, [12000, 12000], 1, 0];
+[true, true, true, true, true, [12000, 123456789], 0, 12000];
+[true, true, true, true, true, [123456789, 5], 24691357, 4];
+[true, true, true, true, true, [123456789, 9990], 12358, 369];
+[true, true, true, true, true, [123456789, 12000], 10288, 789];
+[true, true, true, true, true, [123456789, 123456789], 1, 0];
+[-3, 0, 1];
+[-3, 1, -3];
+[-3, 2, 9];
+[-3, 5, -243];
+[0, 0];
+[0, 1, 0];
+[0, 2, 0];
+[0, 5, 0];
+[3, 0, 1];
+[3, 1, 3];
+[3, 2, 9];
+[3, 5, 243];
+true;
+true;
+true;
+true;
+true;
+true;
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+["this", "is", "a", "test", "to", "show", "that", "subtle", "is",
+ "polymorphic"];
+[];
+["inc(10) = ", 11];
+["dec(10) = ", 9];
+13;
+55;
+33;
+6;
+24;
+3628800;
+true;
+true;
+"print f(first(1),second(1));";
+true;
+"print f(first(number),second(number));";
+true;
+"print #[i: i in [1..number]| f(first(i),second(i))];";
+5;
+
+! Syntax: ~ not permitted
+
+! Syntax: Only identifiers can be bound
+
+! Syntax: Bad RHS for Iterator
+
+! Syntax: warning -- id bound twice in same scope
+4;
+2;
+
+! Syntax: Bad RHS for Iterator
+
+*** if true then return 5; end;
+
+! Error: Return at top level
+
+! Error: Return at top level
+
+! Error: Input must be an expression
+
+*** s(2..3) := 5;
+
+! Error: RHS in string slice assignment must be string
+
+*** t(1..3) := 5;
+
+! Error: RHS in tuple slice assignment must be tuple
+
+*** m{3} := 4;
+
+! Error: RHS in mmap assignment must be set
+{2, 3, 1};
+
+! Error -- Bad mapping: multiple images
+{[3, 1], [3, 2], [3, 3]}(3);
+
+! Error: Slice upper bound too big
+
+! Error: Slice lower bound too big
+
+*** a := {true..false};
+
+! Error: Bad args in low..high
+
+*** a := {1, 3.5 .. 7};
+
+! Error: Bad args in low,next..high
+
+*** for i in [1.."abc"] do print i; end;
+
+! Error: Bad args in low..high
+
+*** for i in [1, 3 .. "abc"] do print i; end;
+
+! Error: Bad args in low,next..high
+
+*** for i=s{j} do print [i,j]; end;
+
+! Error: Can't mmap string
+{"d"};
+{4};
+
+! Error -- Bad mapping: 
+OM{4};
+
+! Error: Divide by zero
+
+! Error: Bad arguments in:
+4 <relation> true;
+
+! Error: Bad arguments in:
+{3, 4, 1, 2, 8, 7, 10, 9, 6, 5} <relation> {2, 3, 1};
+
+*** [a,b,c] := 5;
+
+! Error: Bad arguments in:
+[a, b, c] := 5;
+
+! Error: Bad arguments in:
+ # 4;
+
+*** t(-5) := 4;
+
+! Error -- Bad mapping: 
+[1, 2, 3, 4](-5);
+
+*** take y from x;
+
+! Error: Bad arguments in:
+y from x;
+
+*** for i in 3 do print i; end;
+
+! Error: Can't iterate over
+3;
+3;
+
+*** if true and 3 then print 1; else print 2; end;
+
+! Error: Boolean expected
+3;
+
+! Error: Boolean expected
+3;
+
+! Error: Boolean expected
+3;
+
+! Error: Bad arguments in:
+3 impl true;
+
+! Error: Bad arguments in:
+ not 5;
+
+! Error: Bad arguments in:
+{3, 2, 1} + 5;
+
+! Error: Bad arguments in:
+OM + OM;
+
+! Error: Bad arguments in:
+{1, 2, 3} - 5;
+
+! Error: Bad arguments in:
+OM - OM;
+
+! Error: Bad arguments in:
+ - {1, 3, 2};
+
+! Error: Bad arguments in:
+[1, 2, 3] less 5;
+
+! Error: Bad arguments in:
+5 with {1, 3, 2};
+
+! Error: Bad arguments in:
+"abc" * "cde";
+
+! Error: Bad arguments in:
+5 * {2, 3, 1};
+
+! Error: Bad arguments in:
+5 mod 0;
+2;
+
+! Error: Bad arguments in:
+5 mod true;
+
+! Error: Bad arguments in:
+true mod false;
+
+! Error: Bad arguments in:
+3.500 div 4.500;
+
+! Error: Bad arguments in:
+{1, 2, 3} / {2};
+
+! Error: Bad arguments in:
+{1, 3, 2} / 2;
+
+! Error: Bad arguments in:
+{1, 2, 3} ** 2;
+
+! Error: Bad arguments in:
+5 in "abc";
+
+! Error: Bad arguments in:
+5 in 7;
+
+! Error: Bad arguments in:
+3 subset 5;
+Can't read from: OM;
+Can't write to: OM;
+[1, 2, 3, 4];
+[1, 2, 3, 4];
+[1, 2, 3, 4, 5];
+
+*** f(4)(2) := 10;
+
+! Error: Only one level of selection allowed
+3;
+9;
+OM;
+OM;
+true;
+OM;
+OM;
+true;
+["function",
+ {[7, 49], [8, 64], [9, 81], [10, 100], [6, 36], [5, 25], [1, 1], [2, 4],
+  [4, 16], [3, 9]}];
+["image", {49, 64, 81, 100, 16, 9, 36, 25, 1, 4}];
+["domain", {3, 4, 2, 1, 6, 5, 8, 7, 10, 9}];
+["explode", "abcdefg", ["a", "b", "c", "d", "e", "f", "g"]];
+[[1, "a"], [2, "b"], [3, "c"], [4, "d"], [5, "e"], [6, "f"], [7, "g"]];
+[[1, 10], [2, 11], [3, 12], [4, 13], [5, 14], [6, 15], [7, 16], [8, 17],
+ [9, 18], [10, 19], [11, 20]];
+[21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+[25, 26, 27, 28, 29, 30];
+[35, 36, 37, 38, 39, 40];
+[21, 22, 23, 24, 25, 26, 27, 28, 29, 30];
+[30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40];
+1;
+OM;
+OM;
+3;
+OM;
+OM;
+OM;
+3;
+OM;
+OM;
+OM;
+5;
+[2, 4, 6, 8, 10];
+0;
+[2, 4, 6, 8, 10];
+0;
+[1, 2];
+[3, 4];
+"done";
+true;
+{1.235e+18, 1234567890123456789};
+{10000000};
+{0.500, 0.600, 0.700, 0.900, 0.800, 0.300, 0.400, 0.200, 1.000, 0.100};
+{0.400, 0.300, 0.200, 0.100, 1.000, 0.700, 0.900, 0.800, 0.500, 0.600};
+{0.300, 0.400, 1.000, 0.100, 0.200, 0.600, 0.500, 0.900, 0.800, 0.700};
+"Series and Sums";
+"Enter the series function, as a function of one variable";
+"\tUse the form 'func(i); return <some expression using i>; end;'";
+"Enter the number of terms, N:";
+["i", "f(i)", "%+[ f(x): x in [1..i]]"];
+[1, 1, 1];
+[2, 4, 5];
+[3, 9, 14];
+[4, 16, 30];
+[5, 25, 55];
+[6, 36, 91];
+[7, 49, 140];
+[8, 64, 204];
+[9, 81, 285];
+[10, 100, 385];
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+1606938044258990275541962092341162602522\
+202993782792835301376;
+  Sun  Mon Tues  Wed  Thu  Fri  Sat
+                   1    2    3    4
+    5    6    7    8    9   10   11
+   12   13   14   15   16   17   18
+   19   20   21   22   23   24   25
+   26   27   28   29   30
+1+3=4	2+1=3	1+2=3	1+1=2	2+2=4	
+3+1=4	3+3=6	3+2=5	2+3=5
+
+Enter numbers, terminate with any non-number
+Next?	Next?	Next?	Next?	Next?	Next?	Total is: 15.70000
+40;
+{[4, 5], [3, 5], [3, 4], [1, 5], [1, 4], [1, 3], [1, 2], [2, 5], [2, 4],
+ [2, 3]};
+false;
+{[3, 3], [5, 5], [5, 2], [4, 4], [4, 1], [1, 4], [1, 1], [2, 5], [2, 2]};
+true;
+"TRY THIS 123";
+["gt",
+ {[3, 2], [3, 1], [2, 1], [5, 4], [5, 3], [5, 2], [5, 1], [4, 3], [4, 2],
+  [4, 1]}];
+OM;
+1;
+{2, 1, 3};
+{};
+{1};
+{[5, 4], [5, 3], [5, 2], [5, 1], [2, 1], [3, 2], [3, 1]};
+"gt{5} := om";
+{[4, 3], [4, 2], [4, 1], [3, 2], [3, 1], [2, 1]};
+"gt{4} := {7,8,9,10}";
+{[4, 10], [4, 9], [4, 8], [4, 7], [5, 4], [5, 3], [5, 2], [5, 1], [3, 2],
+ [3, 1], [2, 1]};
+"{ [x,y]: y=gt{x} }";
+{[5, {2, 1, 3, 4}], [4, {3, 2, 1}], [2, {1}], [3, {1, 2}]};
+"{ [[i,j], i>j] : i in [1..5], j in [1..5] }";
+{[[4, 2], true], [[3, 4], false], [[4, 1], true], [[3, 3], false],
+ [[2, 5], false], [[3, 1], true], [[2, 3], false], [[1, 5], false],
+ [[3, 2], true], [[2, 4], false], [[1, 1], false], [[1, 2], false],
+ [[2, 2], false], [[1, 4], false], [[2, 1], true], [[1, 3], false],
+ [[5, 1], true], [[4, 3], true], [[3, 5], false], [[5, 2], true],
+ [[4, 4], false], [[5, 3], true], [[4, 5], false], [[5, 4], true],
+ [[5, 5], false]};
+false;
+true;
+{false};
+{true};
+"{ [x,y]: y=gt{x} }";
+{[[4, 4], {false}], [[5, 2], {true}], [[4, 3], {true}], [[3, 5], {false}],
+ [[5, 1], {true}], [[5, 4], {true}], [[5, 5], {false}], [[5, 3], {true}],
+ [[4, 5], {false}], [[1, 1], {false}], [[1, 2], {false}],
+ [[1, 3], {false}], [[2, 1], {true}], [[2, 2], {false}],
+ [[1, 4], {false}], [[2, 4], {false}], [[3, 2], {true}],
+ [[2, 3], {false}], [[1, 5], {false}], [[3, 1], {true}], [[4, 2], {true}],
+ [[3, 4], {false}], [[3, 3], {false}], [[4, 1], {true}], [[2, 5], {false}]};
+"{ [x,y]: y=gt(x) }";
+{[[1, 4], false], [[2, 2], false], [[1, 3], false], [[2, 1], true],
+ [[1, 5], false], [[2, 3], false], [[3, 1], true], [[1, 2], false],
+ [[1, 1], false], [[5, 4], true], [[5, 5], false], [[4, 5], false],
+ [[5, 3], true], [[4, 4], false], [[5, 2], true], [[2, 5], false],
+ [[3, 3], false], [[4, 1], true], [[2, 4], false], [[3, 2], true],
+ [[3, 5], false], [[4, 3], true], [[5, 1], true], [[3, 4], false],
+ [[4, 2], true]};
+"{ x : y=gt(x) | y }";
+{[3, 1], [3, 2], [2, 1], [4, 2], [4, 1], [4, 3], [5, 3], [5, 4], [5, 1],
+ [5, 2]};
+"{ [i,j] : y = gt(i,j) | y }";
+{[5, 4], [5, 3], [5, 1], [5, 2], [4, 2], [4, 1], [4, 3], [3, 1], [3, 2],
+ [2, 1]};
+{[1, [2, 5]]};
+{1};
+{};
+{2};
+{};
+{3};
+{};
+{4};
+"Enter a set or tuple:";
+[[1, 2, 3, 4, 5, 6, 7, 8, 9, 10], "has no median"];
+"Enter a set or tuple:";
+["Median of", [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11], "is", 6];
+"Enter a set or tuple:";
+["Median of", [1, 4, 9, 16, 25, 36, 49, 64, 81, 100, 121], "is", 36];
+"Enter a set or tuple:";
+[[], "has no median"];
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+OM;
+OM;
+{};
+[true, true, true, true, true, [5, 5], 1, 0];
+[true, true, true, true, true, [5, 9990], 0, 5];
+[true, true, true, true, true, [5, 12000], 0, 5];
+[true, true, true, true, true, [5, 123456789], 0, 5];
+[true, true, true, true, true, [9990, 5], 1998, 0];
+[true, true, true, true, true, [9990, 9990], 1, 0];
+[true, true, true, true, true, [9990, 12000], 0, 9990];
+[true, true, true, true, true, [9990, 123456789], 0, 9990];
+[true, true, true, true, true, [12000, 5], 2400, 0];
+[true, true, true, true, true, [12000, 9990], 1, 2010];
+[true, true, true, true, true, [12000, 12000], 1, 0];
+[true, true, true, true, true, [12000, 123456789], 0, 12000];
+[true, true, true, true, true, [123456789, 5], 24691357, 4];
+[true, true, true, true, true, [123456789, 9990], 12358, 369];
+[true, true, true, true, true, [123456789, 12000], 10288, 789];
+[true, true, true, true, true, [123456789, 123456789], 1, 0];
+true;
+true;
+true;
+true;
+true;
+OM;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+OM;
+OM;
+256637406;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+
+! Error -- Bad mapping: 
+OM();
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+         1         6
+         2         7
+         3         8
+1;
+24;
+"single quotes may be used for strings";
+"such strings may contain double quotes (\q)";
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+"Gary Levin";
+"Carol Simon Levin";
+OM;
+OM;
+1100;
+700;
+1;
+2.500;
+"abc";
+{};
+[];
+OM;
+[1, 2, 3];
+{6, 5, 3, 1, 2};
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+[1, 3, 5, 7, 9];
+[1, 3, 5, 7, 9];
+[];
+[];
+[10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+6;
+6.000;
+"abcxyz";
+[1, 2, 3, 4, 5, 6];
+{1, 2, 3, 4, 5, 6, 7};
+2;
+2.000;
+{1, 2};
+8;
+8.000;
+"abcabcabc";
+[1, 2, 3, 1, 2, 3, 1, 2, 3];
+{5, 4, 3};
+2.500;
+2.000;
+2;
+1;
+2.500;
+1024;
+1.414;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+true;
+false;
+true;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+true;
+false;
+true;
+true;
+false;
+false;
+true;
+false;
+true;
+true;
+false;
+true;
+true;
+
+! Error: Too few arguments
+
+! Error: Too few arguments
+
+! Error: Too few arguments
+[1, 2, 3];
+OM;
+[1, 2, 3, 4];
+OM;
+[1, 2, 3, 4, 5];
+OM;
+
+! Error: Too many arguments
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+24;
+[{[1, 4, 3, 2], [1, 4, 2, 3], [1, 3, 2, 4], [1, 3, 4, 2], [1, 2, 3, 4],
+  [1, 2, 4, 3]},
+ {[2, 4, 3, 1], [2, 4, 1, 3], [2, 3, 4, 1], [2, 3, 1, 4], [2, 1, 3, 4],
+  [2, 1, 4, 3]},
+ {[3, 1, 2, 4], [3, 1, 4, 2], [3, 2, 4, 1], [3, 2, 1, 4], [3, 4, 1, 2],
+  [3, 4, 2, 1]},
+ {[4, 1, 3, 2], [4, 1, 2, 3], [4, 2, 3, 1], [4, 2, 1, 3], [4, 3, 1, 2],
+  [4, 3, 2, 1]}];
+true;
+"Enter a partial order as a set of pairs";
+["nodes", {7, 8, 6, 2, 1, 3, 4, 5}];
+["sort", [1, 2, 4, 3, 6, 5, 7, 8]];
+"Enter a partial order as a set of pairs";
+["nodes", {1, 2, 3, 5, 4, 8, 7, 6}];
+["sort", [1, 3, 2, 6, 5, 4, 7, 8]];
+4;
+4;
+4;
+4;
+0;
+0;
+4.000;
+4.000;
+4.000;
+4.000;
+0.000;
+0.000;
+97;
+97;
+OM;
+OM;
+OM;
+OM;
+1.000;
+1.000;
+1.400;
+1.400;
+-4.000;
+-4.000;
+1;
+1;
+1;
+1;
+-1;
+-1;
+-1;
+-1;
+2;
+2;
+2;
+2;
+-1;
+-1;
+-1;
+-1;
+1;
+1;
+1;
+1;
+-2;
+-2;
+-2;
+-2;
+false;
+false;
+false;
+false;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+true;
+false;
+false;
+false;
+false;
+false;
+false;
+"[random( 10) : i in [1..10]]";
+[10, 4, 5, 6, 10, 6, 6, 9, 9, 6];
+"[random(-10) : i in [1..10]]";
+[];
+"[random(1.0) : i in [1..10]]";
+[0.895, 0.270, 0.276, 0.455, 0.953, 0.998, 0.236, 0.244, 0.889, 0.354];
+"[random(1.5) : i in [1..10]]";
+[1.428, 0.426, 0.738, 0.643, 1.255, 1.144, 1.364, 1.359, 0.958, 0.726];
+"[random({1,3,5,6,8,9}) : i in [1..10]]";
+[6, 6, 9, 1, 3, 8, 6, 8, 8, 5];
+"[random([1,3,om,6,8,9]) : i in [1..10]]";
+[OM, 6, 8, 8, 1, 8, 8, 3, 9, 6];
+"[random('abcdefghijkl') : i in [1..10]]";
+["h", "k", "k", "b", "d", "i", "k", "c", "h", "g"];
+"a";
+"a";
+"F";
+"F";
+3;
+5;
+7;
+11;
+13;
+17;
+19;
+23;
+29;
+31;
+"Enter N:";
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
+ 71, 73, 79, 83, 89, 97];
+Current GC memory = 500600, Limit = 1000000
+[2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67,
+ 71, 73, 79, 83, 89, 97];
+"\001\002\003\004\005\006\007\b\t\n\013\f\r\016\017\020\021\022\023\024\025"
++"\026\027\030\031\032\033\034\035\036\037 !\q#$%&'()*+,-./0123456789:;<=>?"
++"@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\177";
+
+         1    2                   3
+
+1125899906842624
+
+    1125899906842624
+
+112589990\
+6842624
+
+             1.50000             1.50000      1.50    1.50000e+00
+
+      true     false
+        OM   OM
+abcdef  xyz       xyz
+
+      !80!      !79!
+
+!FUNC(f6f2)!!FUNC(69350/5d88c)!
+
+!modified:FUNC(69350/5d88c)!
+
+        OM!File(w:ed22f3c)!!File(a:ed22f50)!
+OM;
+
+        OM
+
+{}
+
+{         3         4         5         2         1}
+
+{  1  2  3  5  4}
+
+{  1,  2,  3,  5,  4}
+
+[]
+
+[         1         2         3         4         5]
+
+[  1  2  3  4  5]
+
+[  1,  2,  3,  4,  5]
+
+           1  2  3  4
+  5  6  7  8  9 10 11
+ 12 13 14 15 16 17 18
+ 19 20 21 22 23 24 25
+ 26 27 28 29 30 31
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+ "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+["any", "are", "because", "different", "hardly", "in", "is", "operators",
+ "polymorphic", "problem", "subtle", "the", "there", "types", "using",
+ "with"];
+"enter set to be sorted";
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+"qwertyuioplkjhgfdsazxcvbnm";
+["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n",
+ "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+"enter set to be sorted";
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+[20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+"enter set to be sorted";
+[25, 13, 14, 5, 6, 7, 22, 23, 24, 1, 2, 9, 27, 28, 34, 35, 26, 15, 37, 38,
+ 40, 16, 17, 30, 31, 21, 10, 11, 18, 32, 33, 39, 29, 19, 3, 4, 8, 20, 12,
+ 36];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+ 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38,
+ 39, 40];
+"enter set to be sorted";
+["there", "is", "hardly", "any", "problem", "with", "using", "different",
+ "types", "in", "subtle", "because", "the", "operators", "are",
+ "polymorphic"];
+["any", "are", "because", "different", "hardly", "in", "is", "operators",
+ "polymorphic", "problem", "subtle", "the", "there", "types", "using",
+ "with"];
+"enter set to be sorted";
+[];
+[];
+"correct";
+"correct";
+{[1, 3, 5, 2, 4], [1, 4, 2, 5, 3], [4, 1, 3, 5, 2], [2, 5, 3, 1, 4],
+ [2, 4, 1, 3, 5], [3, 1, 4, 2, 5], [5, 3, 1, 4, 2], [5, 2, 4, 1, 3],
+ [4, 2, 5, 3, 1], [3, 5, 2, 4, 1]};
+true;
+true;
+true;
+true;
+{[6, 17], [3, 13], [3, 12], [3, 11], [3, 10]};
+[OM, OM, OM, 21];
+123;
+"123,456";
+-123;
+123;
+123456789;
+-123456789;
+123456789;
+123.456;
+12345.600;
+-1.235;
+678;
+"12345";
+"x;";
+"12345";
+"Enter a string";
+"here is a string";
+["here", "is", "a", "string"];
+["here", "is", "a", "string"];
+"Enter a string";
+"    leading blanks in this one";
+["leading", "blanks", "in", "this", "one"];
+["leading", "blanks", "in", "this", "one"];
+"Enter a string";
+"   trailing blanks here    ";
+["trailing", "blanks", "here"];
+["trailing", "blanks", "here"];
+"Enter a string";
+"  extra    spaces    everywhere     ";
+["extra", "spaces", "everywhere"];
+["extra", "spaces", "everywhere"];
+"Enter a string";
+"non-letters break words too...too bad";
+["non", "letters", "break", "words", "too", "too", "bad"];
+["non", "letters", "break", "words", "too", "too", "bad"];
+"Enter a string";
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 25, 26, 27, 28, 29, 30];
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 25,
+ 26, 27, 28, 29, 30];
+[10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 50, 22, 23, 24, 25, 26, 27,
+ 28, 29, 30];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60,
+ 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 45, 13, 14, 15, 16, 17, 18, 19, 20];
+[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, OM, 70, 16, 17, 18,
+ 19, 20];
+[1, 2, 3, 4, OM, OM, OM, 8, 9, 10];
+[4];
+[1, 2, 3, 4, 17, 8, 9, 10];
+[1, 2, 3, 4, OM, 1, 8, 9, 10];
+["abcdefg", "abcdefg"];
+["d", "d"];
+["def", "def"];
+["abcefg", "abcefg"];
+["abceABCDEFGg", "abceABCDEFGg"];
+["abXCDEFGg", "abXCDEFGg"];
+["abQQQXCDEFGg", "abQQQXCDEFGg"];
+true;
+true;
+true;
+true;
+true;
+true;
+[1, 4, 7, 10, 13, 16, 4];
+"take x from s";
+[16, {1, 4, 10, 7, 13}];
+"take x frome t";
+[16, [1, 4, 7, 10, 13]];
+"take x fromb t";
+[1, [4, 7, 10, 13]];
+"take x from t";
+[4, [7, 10, 13]];
+[OM, {}];
+[OM, []];
+[OM, []];
+[OM, []];
+[1, 2, 3];
+[];
+[OM, 1, OM, 2, OM, 3];
+[OM, 1, OM, 2, OM, 3];
+OM;
+OM;
+OM;
+1;
+2;
+4;
+11;
+12;
+14;
+21;
+22;
+OM;
+[];
+[];
+!'f' watched
+! Evaluate: f(4);
+! Evaluate: f(3);
+! Evaluate: f(2);
+! Evaluate: f(1);
+! Evaluate: f(0);
+! Yields: 1;
+! f returns: 1;
+! f returns: 2;
+! f returns: 6;
+! f returns: 24;
+24;
+! f := {};
+! f(3) := 4;
+! f(4) := 5;
+{[4, 5], [3, 4]};
+!'f' unwatched
+!'f' watched
+! Evaluate: f(6);
+! Evaluate: f(5);
+! Evaluate: f(4);
+! Evaluate: f(3);
+! Evaluate: f(2);
+! Yields: 1;
+! Evaluate: f(1);
+! Yields: 1;
+! f(3) := 2;
+! Evaluate: f(3);
+! Yields: 2;
+! f returns: 2;
+! Evaluate: f(2);
+! Yields: 1;
+! f(4) := 3;
+! Evaluate: f(4);
+! Yields: 3;
+! f returns: 3;
+! Evaluate: f(3);
+! Yields: 2;
+! f(5) := 5;
+! Evaluate: f(5);
+! Yields: 5;
+! f returns: 5;
+! Evaluate: f(4);
+! Yields: 3;
+! f(6) := 8;
+! Evaluate: f(6);
+! Yields: 8;
+! f returns: 8;
+8;
+! Evaluate: f(7);
+! Evaluate: f(6);
+! Yields: 8;
+! Evaluate: f(5);
+! Yields: 5;
+! f(7) := 13;
+! Evaluate: f(7);
+! Yields: 13;
+! f returns: 13;
+13;
+!'f' unwatched
+[[1, 1], [1, 2], [1, 3], [1, 4], [2, 1], [2, 2], [2, 3], [2, 4], [3, 1],
+ [3, 2], [3, 3], [3, 4], [4, 1], [4, 2], [4, 3], [4, 4]];
+[[1, 1, 3, 3], [1, 1, 3, 4], [1, 1, 4, 3], [1, 1, 4, 4], [1, 2, 3, 3],
+ [1, 2, 3, 4], [1, 2, 4, 3], [1, 2, 4, 4], [2, 1, 3, 3], [2, 1, 3, 4],
+ [2, 1, 4, 3], [2, 1, 4, 4], [2, 2, 3, 3], [2, 2, 3, 4], [2, 2, 4, 3],
+ [2, 2, 4, 4]];
+6;
+6;
+6;
+
+*** 		 else return n*fact(n-1);
+
+! Error -- Bad mapping: 
+OM(2);
+"a";
+"b";
+"c";
+OM;
+1;
+2;
+3;
+4;
+
+234.7u 10.7s 4:36 88% 0+512k 124+37io 132pf+0w
