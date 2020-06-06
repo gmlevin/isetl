@@ -1,0 +1,87 @@
+I have three errors in ISETL 1.9 to report.  I have fixed them in my
+local copy, and the corrections will be distributed whenever 1.10
+(read one point ten) comes out.  If these errors will cause you
+trouble, let me know and I can arrange to get you new copies.  I'd
+rather wait until the next release so that things remain consistent.
+
+All three errors are rare:
+
+   (1) On the Sun/4 SPARC architecture, structures were packed
+       differently than I had assumed.  The result was that nothing ran on
+       the Sun/4.  This mistake cannot effect any working system.
+
+   (2) Large floating point numbers cannot be elements of sets.  This
+       is also machine dependent.  The PC is one machine that has
+       displayed the error.  Large here means > 2**30 or roughly
+       10**10.  Presumably this is not a common problem, as no one
+       reported the error.
+
+   (3) If you are watching a func (!watch) and you have verbose on and
+       if there is a garbage collection during the printing of the
+       value returned, an error can occur.  This was reported by
+       Arnold Lebow; thanks Arnold.  If the function is returning
+       numbers or strings, the problem can't occur.  If it returning a
+       set(tuple), the probability of the error increases as the
+       set(tuple) size increases.
+
+       Short term solution is to allocate more memory so that garbage
+       collection is less frequent.  Long term solution is to replace
+       the code for opReturn in func_ops.c.  For those who can
+       re-compile their copy of ISETL, the corrected version of
+       opReturn is below.  It is the last function in func_ops.c
+
+Please!  If you have noticed any other errors, report them to me.  I
+am afraid that no one is using ISETL when I don't hear about bugs or
+missing features.
+
+Gary Levin/Dept of Math & CS/Clarkson Univ/Potsdam, NY 13676/(315) 268-2384
+BitNet: gary@clutx   Internet: gary@clutx.clarkson.edu
+
+
+============================
+
+/* (return-closure,x): x
+    Resets PC and Environment to return-closure
+    Needs to manipulate stack, so non-standard ENTER-LEAVE is used.
+    None of the operations creates space, so that it is safe to have the
+    values x and ret_closure not on the stack.
+
+    mcPrint uses space, so need to be careful about x and ret_closure
+*/
+    void opReturn(){
+	Ptr x, ret_closure;
+	Bool is_watched;
+
+	x = mcPop();
+
+	/* remove iterators that may be nested (return inside of for-loop) */
+	    while( !mcIsEmpty() && Kind(R(Top)) == Iter ) {
+		mcPop();
+	    }
+
+	if( mcIsEmpty() ) {
+	    RT_ERROR("Return at top level");
+	}
+	ret_closure = R(Top);
+	assert( Kind(ret_closure) == Closure );
+	is_watched = ( Id_Holder( ret_closure ) != 0 );
+
+	R(Top) = x;
+	GO_TO( Cl_Code( ret_closure ) );
+	Environment = Cl_Env( ret_closure );
+
+	if( is_watched ) {
+	    ENTER;
+	    Reg(rret);
+	    R(rret) = ret_closure;
+
+	    show( "! ", stdout);
+	    show( Id_String( Id_Holder(ret_closure) ), stdout);
+	    show(" returns: ", stdout);
+	    mcPrint(x, stdout, verbose);
+	    mcFlush(stdout);
+	    LEAVE;
+	}
+
+    }
+

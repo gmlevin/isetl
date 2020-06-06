@@ -1,0 +1,39 @@
+>       $ Partitions induce equivalence relations
+>       induce     := :P   -> { [i,j] : s in P, i,j in s } : ;
+>
+>       P := eqclass(R5);
+>       P;
+{{10, 7, 4, 1}, {8, 2, 5}, {9, 6, 3}};
+>       induce(P) = R5;
+true;
+>       Rclose := :S,R -> R union { [i,i] : i in S } : ;
+>       Sclose := :R   -> R union { [j,i] : [i,j] in R } : ;
+>       Tclose := func(R); local new;
+>>                     $ Add missing relations until there is no change
+>>                     new := om;
+>>                     while new /= {} do
+>>                         new := { [a,c] : [a,b] in R, c in R{b} 
+>>                                        | [a,c] notin R };
+>>                         R := R union new;
+>>                     end while;
+>>                     return R;
+>>                end func;
+>
+>       R1;
+{[3, 4], [4, 5], [2, 3], [1, 2], [5, 6], [6, 7], [7, 8], [8, 9], [9, 10]};
+>       x := Tclose(R1);
+>       #x;
+45;
+>       y := Sclose(R1);
+>       #y;
+18;
+>       z := Tclose(y);
+>       #z;
+100;
+>       eqclass(z);
+{{4, 3, 1, 2, 5, 6, 7, 8, 9, 10}};
+>
+>       $ A relation that is closed is unchanged by applying closures
+>       x := Tclose(Sclose(R5));
+>       x = R5;
+true;

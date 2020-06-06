@@ -1,0 +1,47 @@
+$ Uncomment the following code to correct the arb(Tuple) bug in ISETL 2.0
+$    arb := func(x);
+$               if is_tuple(x) then
+$	           return x(lo(x)+random(#x-1))
+$	       else return sysarb(x)
+$	       end if
+$	   end func
+$	   where sysarb := arb
+$	   end;
+
+
+
+sort := func(lt, S);
+            $ return S sorted by lt, which must be transitive and asymmetric (<)
+	    local work, result, next, pivot;
+	    $work = list of tuples to be sorted and catenated after result
+	    work   := [ [x : x in S] ];
+	    result := [];
+
+	    while work /= [] do 
+		take next fromb work;
+
+		if #next <= 1 then
+		    result := result + next;
+		else
+		    pivot := arb(next);
+		    work := [ [y: y in next| y .lt pivot],
+			      [y: y in next| y  =  pivot],
+			      [y: y in next| pivot .lt y]
+			    ] + work;
+		end if;
+	    end while;
+	    return result;
+        end func;
+
+lex := |S,T -> #T /= 0 and ( #S=0 
+                          or S(1) < T(1) 
+			  or (S(1)=T(1) and lex(S(2..), T(2..))) ) |;
+
+canonical := |S,T -> #S < #T or (#S=#T and S .lex T) |;
+
+
+print_set_of_sets := func(S);
+     S := sort(canonical, [ sort(lt,s) : s in S ]);
+     writeln '{', S : [ '{',    [0, ', '],  '},\n ' ], '}}';
+end func;
+

@@ -1,0 +1,31 @@
+$ apply to all  
+all := func(f); return 
+          func(t); return [f(i) : i in t]; end;
+       end;
+      
+$ pointwise application
+point := func(f); return
+          func(a,b); return [a(i) .f b(i) : i in [1..#a]]; end;
+         end;
+
+diff  := func(a,b); return a-b; end;
+sum   := func(a,b); return a+b; end;
+
+pdiff := point(diff);
+psum  := point(sum);
+
+
+$ progressive differences
+delta := func(t); return [t(i)-t(i-1) : i in [2..#t]]; end;
+
+$ partial sums
+scan  := func(f); return
+           func(t); return [%f t(1..i): i in [1..#t]]; end;
+         end;
+total := func(t);return %+t end;
+
+fact  := func(n); return 1 %* [1..n]; end;
+P     := func(n,k); return if k<0 or k>n
+                           then 0 else 1 %* [n-k+1..n] end end;
+C     := func(n,k); return if k<0 or k>n 
+                           then 0 else P(n,k) div fact(k) end end;

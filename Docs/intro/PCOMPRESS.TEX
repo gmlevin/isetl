@@ -1,0 +1,257 @@
+\beforeHEAD=\smallskipamount
+\beforeRULE=0in
+\cleardoublepage
+
+\section{The ISETL Grammar --- Compressed}
+\subsection{Input at the Prompt}
+
+\HEAD{INPUT}
+\RULE{PROGRAM}
+\RULE{STMT}
+\RULE{EXPR ;}
+
+
+\subsection{Program}
+
+\HEAD{PROGRAM}
+\RULE{program ID ; LOCALS VALUES STMTS  end ;}
+
+
+\subsection{Statements}
+
+\HEAD{STMT}
+\RULE{LHS := EXPR ;}
+\key{:=}
+\RULE{EXPR ;}
+\key{if}\key{then}\key{else}\key{elseif}\key{end}
+\RULE{if EXPR then STMTS ELSE-IFS ELSE-PART end ;}
+    \begin{indented}
+    \HEAD{ELSE-IFS}
+    \RULE{\rm ``Zero or more repetitions of \[ELSE-IF\].''}
+    \HEAD{ELSE-IF}
+    \RULE{elseif EXPR then STMTS}
+    \HEAD{ELSE-PART}
+    \RULE{else STMTS}
+    \end{indented}
+
+\RULE{for   ITERATOR do STMTS end ;}
+\key{for}\key{do}\key{end}
+\RULE{while EXPR do STMTS end ;}
+\key{while}
+\RULE{read LHS-LIST ;}
+\key{read}\key{from}
+\RULE{read LHS-LIST from EXPR ;}
+\RULE{readf PAIR-LIST ;}
+\RULE{readf PAIR-LIST to EXPR ;}
+\RULE{print EXPR-LIST ;}
+\key{print}\key{to}
+\RULE{print EXPR-LIST to EXPR ;}
+\RULE{printf PAIR-LIST ;}
+\RULE{printf PAIR-LIST to EXPR ;}
+\RULE{return ;}
+\key{return}
+\RULE{return EXPR ;}
+\RULE{take LHS from LHS ;}
+\key{take}\key{from} \key{fromb}\key{frome}
+\RULE{take LHS frome LHS ;}
+\RULE{take LHS fromb LHS ;}
+\RULE{write PAIR-LIST ;}
+\RULE{write PAIR-LIST to EXPR ;}
+\RULE{writeln PAIR-LIST ;}
+\RULE{writeln PAIR-LIST to EXPR ;}
+
+\HEAD{STMTS}
+\RULE{\rm ``One or more instances of \[STMT\].
+The final semicolon is optional.''}
+
+\HEAD{PAIR-LIST}
+\RULE{\rm ``One or more instances of \[PAIR\], separated by commas.''}
+
+\HEAD{PAIR}
+\RULE{EXPR : EXPR}
+\RULE{EXPR}
+
+
+
+\subsection{Iterators}
+
+\HEAD{ITERATOR}
+\RULE{ITER-LIST}
+\RULE{ITER-LIST | EXPR}
+
+\HEAD{ITER-LIST}
+\RULE{\rm ``One or more \[SIMPLE-ITERATOR\]s separated by commas.''}
+
+\HEAD{SIMPLE-ITERATOR}
+\RULE{BOUND-LIST in EXPR}
+\key{in}
+\RULE{BOUND = ID ( BOUND-LIST )}
+\RULE{BOUND = ID \{ BOUND-LIST \} }
+
+\HEAD{BOUND-LIST}
+\RULE{\rm ``One or more instances of \[BOUND\], separated by commas.'' }
+
+\HEAD{BOUND}
+\RULE{\~{}}\key{ztilde}
+\RULE{ID }
+\RULE{[ BOUND-LIST ] }
+
+
+\subsection{Selectors}
+
+\HEAD{SELECTOR}
+\RULE{( EXPR-LIST ) }
+\RULE{\{ EXPR-LIST \} }
+\RULE{( EXPR ..\ EXPR ) }
+\key{..}
+\RULE{( ..\ EXPR ) }
+\RULE{( EXPR ..\ ) }
+\RULE{( ) }
+
+
+\subsection{Left Hand Sides}
+
+\HEAD{LHS-LIST}
+\RULE{\rm ``One or more instances of \[LHS\], separated by commas.''}
+
+\HEAD{LHS}
+\RULE{ID }
+\RULE{@ EXPR}\key{@}
+\RULE{@ ( EXPR , EXPR , ... , EXPR)}
+\RULE{LHS SELECTOR }
+\RULE{[ LHS-LIST ]}
+
+
+\subsection{Expressions and Formers}
+
+\HEAD{EXPR-LIST}
+\RULE{\rm ``One or more instances of \[EXPR\] separated by commas.''}
+
+
+\HEAD{EXPR}
+\RULE{ID}\key{ID}
+\RULE{INTEGER}\key{INTEGER}
+\RULE{FLOATING-POINT}\key{FLOATING-POINT}
+\RULE{STRING}\key{STRING}
+\RULE{true}\key{true}
+\RULE{false}\key{false}
+\RULE{OM}\key{OM}
+\RULE{newat}\key{newat}
+\RULE{FUNC-CONST}\key{FUNC-CONST}
+\RULE{if EXPR then EXPR ELSE-IFS ELSE-PART end ;}
+\RULE{( EXPR )}
+\RULE{[ FORMER ]}
+\RULE{\{ FORMER \}}
+    \begin{indented}
+    \HEAD{FORMER}
+    \RULE{\rm ``Empty''}
+    \RULE{EXPR-LIST }
+    \RULE{EXPR ..\ EXPR }
+    \key{..}
+    \RULE{EXPR , EXPR ..\ EXPR }
+    \RULE{EXPR : ITERATOR }
+    \end{indented}
+
+\HEAD{EXPR}
+\index{length (# tt)\\of a string}%
+\index{length (# tt)\\of a tuple}%
+\index{cardinality (# tt) of a set}%
+\RULE{\# EXPR}
+\RULE{not EXPR}\key{not}
+\RULE{+ EXPR}\key{+}
+\RULE{- EXPR}\key{-}
+\RULE{EXPR SELECTOR}
+\RULE{EXPR . ID EXPR}
+\RULE{EXPR . (EXPR) EXPR}
+\newpage
+{\samepage
+\RULE{EXPR OP EXPR}
+\key{/} \key{div} \key{mod} 
+\key{with} \key{less}
+\key{union} \key{inter} \key{in} \key{notin} \key{subset}
+\key{and} \key{or} \key{impl} \key{iff} 
+\index{intersection (* tt, inter tt, zinter)}
+\index{replication (* tt)\\string}
+\index{replication (* tt)\\tuple}
+\index{exponentiation (** tt)}
+\index{concatenation (+ tt)\\string}
+\index{concatenation (+ tt)\\tuple}
+\index{union (+ tt, union tt, zunion)}
+\index{difference (- tt) of two sets}
+\index{equal}
+\index{relational operators}
+\nopagebreak
+\COMMENT{
+\nopagebreak
+Possible operators (\[OP\]) are:
+
+\begin{indented}\tt
+\CS
++ - * / div mod **\\		\nopagebreak
+with less\\			\nopagebreak
+= /= < > <= >=\\		\nopagebreak
+union inter in notin subset\\	\nopagebreak
+and or impl iff			\nopagebreak
+\CE
+\end{indented}
+}
+}
+\RULE{\% BINOP EXPR}\index{zpercent tt}
+\index{generalize operation}
+\index{compound operator (% tt)}%
+\RULE{EXPR \% BINOP EXPR}
+\RULE{EXPR ? EXPR}\key{?}
+\RULE{choose ITER-LIST | EXPR}\key{choose}
+\RULE{exists ITER-LIST | EXPR}
+\key{exists}
+\RULE{forall ITER-LIST | EXPR}
+\key{forall}
+\RULE{EXPR where DEFNS end}
+\key{where}\key{end}
+\RULE{EXPR @ EXPR}\key{@}
+
+\HEAD{BINOP}
+\RULE{\rm ``Any binary operator or an \[ID\] or expression in parentheses
+whose value is a function of two parameters.
+The \[ID\] and parenthesized expression may be preceded by a period.''}
+\COMMENT{
+The acceptable binary operators are:
+\[+\], \[-\], \[*\], \[**\], \[union\], \[inter\],
+\[/\], \[div\], \[mod\], \[with\], \[less\], \[and\], \[or\],
+\[impl\].}
+
+\HEAD{DEFNS}
+\RULE{\rm ``Zero or more instances of \[DEFN\].
+The final semicolon is optional.''}
+
+\HEAD{DEFN}
+\RULE{BOUND := EXPR ;}
+\RULE{ID SELECTOR := EXPR ;}
+
+\subsection{Function Constants}
+
+\HEAD{FUNC-CONST}
+\RULE{FUNC-HEAD LOCALS VALUES STMTS end}
+\RULE{: ID-LIST OPT-PART -> EXPR :}
+
+\HEAD{FUNC-HEAD}
+\RULE{func ( ID-LIST OPT-PART ) ;}
+\key{func}
+\RULE{func ( OPT-PART ) ;}
+\RULE{proc ( ID-LIST OPT-PART ) ;}
+\key{proc}
+\RULE{func ( OPT-PART ) ;}
+
+\HEAD{OPT-PART}
+\RULE{opt ID-LIST}
+\key{opt}
+\COMMENT{\rm ``May be omitted.''}
+
+\HEAD{LOCALS}
+\RULE{local ID-LIST ;}
+
+\HEAD{VALUES}
+\RULE{value ID-LIST ;}
+
+\HEAD{ID-LIST}
+\RULE{\rm ``One or more instances of \[ID\] separated by commas.''}

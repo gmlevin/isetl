@@ -1,0 +1,43 @@
+I have been asked for the time costs of various operations under
+ISETL.  Here is a rough list.  If there are operations that you are
+curious about that are not listed, feel free to ask.  I am only giving
+big-O measures, no constants and no low-order terms.
+
+
+Arithmetic
+   Single precision is essentially constant time.
+
+   Anything bigger than 2**14 switches to multiple precision.
+   + and - are O(number of digits).
+   * and / are O(number of digits squared).
+      / is slightly slower than *.
+   ** is O(log(exponent)) multiplications.
+
+Sets and Tuples
+   smap access and assignment (f(x)) are O(log(size)).
+   Iteration over a set or tuple is O(size), hence constant time
+        per element, on average.
+   Iteration over a set is slower than iteration over a tuple, 
+        because of the random ordering.
+   Membership is generally O(log(size of set)) or O(size of tuple).
+   Access to a set is just slightly slower than to a tuple.
+   Space for a set is about twice that of a tuple.
+
+Relations
+   If the set represents a relation, the costs can be much higher.
+   Membership, access, and assignment to mmaps (r{x}) are 
+        O(log(size of relation) + size of image).
+   E.g.
+       r := {[i,j]: i in [1..10], j in [1..1000]};
+       r{3};         $ takes log(10) to find image + 1000 to copy image
+       [3,5] in r;   $ takes log(10) to find image + 1000 to search image
+
+   Hence, mmaps tend to be less efficient.
+
+All this is subject to change without notice.  For relative speeds,
+your best bet is to run the cases with lots of memory to minimize the
+effect of garbage collection and measure using a system timing routine
+or the wall clock.
+
+Gary Levin/Dept of Math & CS/Clarkson Univ/Potsdam, NY 13676/(315) 268-2384
+BitNet: gary@clutx   Internet: gary@clutx.clarkson.edu

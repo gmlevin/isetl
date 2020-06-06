@@ -1,0 +1,17 @@
+I have tried to write a speedy prime generator.  Rather than give you
+the code, let me offer the speed as a challenge.  To calibrate, I ran
+the standard ISETL primes program:
+
+	[p : p in [2..500] | forall i in [2..p-1] | p mod i /= 0];
+
+This took roughly 1 minute 15 seconds (1:15) on a Z200, which is
+purported to be an IBM AT compatible.  Nothing was done to adjust the
+memory allocated.
+
+My program counts by 1's (tests [3..3000], not [3,5..3000]).  It does
+start with 2 being known prime to avoid an empty list.  The default
+memory allocation was used (no use of !memory or !allocate).
+
+In 1:20, my speedier algorithm found the primes less than 3000.  If
+you can find more than the primes under 3000 faster than the standard
+program finds the primes to 500, let's see it.

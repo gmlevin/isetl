@@ -1,0 +1,18 @@
+
+
+Input must be an expression
+Internal object too large.
+Iter_Next(internal error)
+Nesting too deep for pretty printer.
+Only one level of selection allowed
+RHS in mmap assignment must be set
+RHS in string slice assignment must be string
+RHS in tuple slice assignment must be tuple
+Return at top level
+Slice lower bound too big
+Slice upper bound too big
+Stack Overflow
+Stack Underflow
+Too few arguments
+Too many arguments
+Wrong number of args

@@ -1,0 +1,125 @@
+The General Principal for Classifying Errors (GPCE) from Baxter,
+Dubinsky, and Meunch is a clear enough description for separating OM
+from error.  It should prove useful in discussions and when teaching
+the concepts to students.  I'd like to make two points in response.
+
+(1) The GPCE is descriptive, not prescriptive.  It provides a useful
+    terminology for explaining the difference between error and OM,
+    but no more.
+
+    Why, for instance, is the superdomain of tuples positive integers
+    and not all integers?  This is not and cannot be answered from the
+    GPCE.  Again, why is 0 omitted from the super-domain of ``div''
+    and not merely the domain.
+
+    Similarly, they used the GPCE to answer the question
+>    4. If F has the value {[om,2], [4,6]} then
+>     
+>        is_map(F) is false
+>     
+>        domain(F) and image(F) are OM
+>     
+>        F(om) and F(4) are errors
+
+    is_map(F)=false is fine.  And domain(F)=image(F)=OM follows from
+    the assumption that pre-defined functions should not get errors on
+    reasonable data. But where does the GPCE answer the question of
+    F(om) and F(4).  The operation under question is ``application'',
+    and the GPCE only answers the questions for sets that are maps,
+    which F is not.  What is the domain and superdomain for
+    ``application''?  The point here is that the GPCE is good for
+    describing decisions already made and for checking for
+    consistency, but it does not answer these questions by itself.
+
+    Note that this is *not* a criticism of the GPCE.  Rather it is a
+    statement that we should not expect more than it can provide.
+
+    I assume that the domain and superdomain of the left arg of
+    application comprises tuples, funcs, predefs, strings, and smap.
+    These each control the domain/superdomain definition for the right
+    arg of application.
+
+(2) We now must turn to a less attractive side of the problem, now
+    that we have a reasonable guide to errors.
+
+    It is time for practical considerations to rear their ugly heads
+    in the question of error handling.  I didn't want to bring in this
+    side until I had a reasonable description of errors.
+
+    The positive side of most language features is clear: for example,
+    if you evaluate a function at a point *in its domain*, you must
+    return the value of the function at that point.
+
+    The negative side is often somewhat harder to handle.  The GPCE
+    offered by Don, Ed, and Nancy only admits of two responses: OM and
+    reporting an error.  Unfortunately, that requires ISETL to
+    correctly classify all circumstances.  A third possibility is that
+    given bad input, the results are unspecified (preferably not
+    resulting in the collapse of the system).
+
+    A simple, but extreme, example is infinite loops.  Everyone would
+    agree that infinite loops that contain neither input nor output
+    must be errors.  On the other hand, it is impossible to recognize
+    such a condition (the halting problem).  This is a case of an
+    error where we cannot return OM nor report an error.
+
+    Slightly less clear, but more germane is the case of:
+
+       F := { [om,3], [5,7] };
+
+    It is easy enough to report an error in response to F(om), because
+    that merely depends on the type of F (applying a set to OM is an
+    error for any set).  It is expensive to report an error for F(5),
+    because that would require that we examine all of F to determine
+    that it is a set that superficially looks like an SMap, but isn't
+    really.
+
+    (1) We could pay the overhead, but it will slow things down
+    considerable.
+
+    (2) Some special cases can be speeded up by remembering the
+    results of previous checks, but many operations on F would require
+    that the overhead be introduced again.
+
+    (3) We can merely state that F(om) is an error that will be
+    reported, and that F(5) is an error that may not be reported.
+
+    =======
+    Paraphrasing the GPCE says that applying a function to a:
+
+    (1) ``unreasonable value'' (not in super-domain) returns error (NB:
+	``returns'' error is wrong.  ``reports'' error is what happens.)
+
+    (2) ``reasonable value'' returns OM if the function is not defined there.
+
+    (3) ``legal value'' returns the value of the function at the point.
+
+    I am suggesting that for practical reasons, (1) and (2) be considered
+    ``errors''.
+
+    Where possible (feasible) we should respond according to the GPCE.
+    ( 3(4) is applying an integer, obviously a case of 1. )
+
+    It will be necessary to simply indicate that in the case of certain
+    errors, the result is not defined by the language definition.  (In the
+    case above, F(5)==>7, F(OM)==>error) *in the current implementation*.)
+
+    Depending on the result of an error is wrong, as the result is not
+    promised.  Better implementations might have F(5)==>error.
+
+    In most cases, I expect that case (2) will be defined and
+    implemented correctly to return OM.  Most of the cases that come
+    to mind where errors are not reported fall in case (1).  In large
+    part, that is just luck.  If we had decided that sets fell in the
+    superdomain of application, then F(5) would  yield OM in a perfect
+    world, which would mean that we left undefined an instance of case (2).
+
+
+I would appreciate notice of any operation that appears to violate the
+GPCE, either through failing to report an error (which may or may not
+be easily changed), or through reporting an error or return OM where
+the other is more appropriate.  Please state your domain/superdomain
+assumptions that apply to the operation in question.
+____
+Gary Levin/Dept of Math & CS/Clarkson Univ/Potsdam, NY 13676/(315) 268-2384
+BitNet: gary@clutx   Internet: gary@clutx.clarkson.edu

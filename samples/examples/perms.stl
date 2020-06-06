@@ -1,0 +1,28 @@
+$ Permutations of a set S consists of sequences beginning with
+$ each possible element i followed by all permutations of the
+$ remaining elements.  The empty tuple is the only permutation
+$ of the empty set.
+permS     := :S -> { [i] + t : i in S, t in permS(S less i) } :;
+permS({}) := {[]};
+
+$ Permutations of a tuple T consists of sequences beginning with
+$ each possible element x followed by all permutations of the
+$ remaining elements.  The empty tuple is the only permutation
+$ of the empty tuple.
+permT     := :T -> { [x] + t : x in {a : a in T},
+			       t in permT( T .lessT x )} :;
+permT([]) := {[]};
+
+$ T .lessT x = T with first occurrence of x deleted
+lessT     := func(T,x);
+		for y=T(i) | y=x do
+		    return T(..i-1)+T(i+1..)
+		end for;
+		return T
+	     end func;
+
+
+perms    := :L -> if     is_tuple(L) then permT(L) 
+		  elseif is_set(L)   then permS(L)
+		  else                    om
+		  end if : ;

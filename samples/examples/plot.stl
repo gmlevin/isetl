@@ -1,0 +1,146 @@
+!include axis.stl
+LineStyle  := 0;       $ 0 - solid, 1 - dotted, 2 - dashed, 3 - centered
+ErasePlots := true;    $ set to false to keep multiple graphs
+ThickPlots := true;    $ set to false to use thin lines for graphs
+Titles     := [];      $ Titles(1) is main title, subsequent titles appear 
+                       $ in data window
+
+	DrawGraph := func(points);
+	    move(points(1)(1), points(1)(2));
+	    for [x,y] in points do
+		draw(x,y);
+                draw(x,y);    $ this second call will plot one point
+                              $ needed so that xor plots will be continous
+	    end for;
+	end func;
+	
+
+plot:= func(Fs,xlow,xhigh opt ylow, yhigh, STEPS);
+$ plot functions in tuple Fs (a singleton function is also acceptable)
+$ plot F in Fs, F(xlow..xhigh) 
+
+    local f, step,x, points, title_num;
+    local xextra, yextra;
+    local EvalGraph;
+
+    Titles := Titles ? [];
+    if not is_tuple(Fs) then Fs := [Fs]; end;
+    STEPS := STEPS ? 20;
+
+	EvalGraph := func(f);
+	    local x, points;
+	    x := xlow;
+	    points := [];
+	    while x <= xhigh do
+		points := points with [x,f(x)];
+		x := x + step;
+	    end while;
+	    return points;
+	end func;
+	
+
+
+    step := (xhigh-xlow)/STEPS;
+    graphics(true);
+    xor_plot(false);
+
+    $ Determine scale from first function
+        take f fromb Fs;
+        points := EvalGraph(f);
+    
+	ylow  := ylow  ? %min { y : [x,y] in points };
+	yhigh := yhigh ? %max { y : [x,y] in points };
+    
+	if ylow=yhigh then ylow := ylow-1 end if;
+
+        xextra := (xhigh-xlow)*0.1;
+        yextra := (yhigh-ylow)*0.1;
+
+	scale(xlow-xextra,ylow-yextra,xhigh+xextra,yhigh+yextra);
+        title_window(Titles(1) ? "");
+	xaxis(xlow-xextra,xhigh+xextra,
+              (yhigh-ylow)/50,(xhigh-xlow)/10,2, (yhigh+ylow)/2);
+	yaxis(ylow-yextra,yhigh+yextra,
+              (xhigh-xlow)/50,(yhigh-ylow)/10,2, (xhigh+xlow)/2);
+
+    linestyle(LineStyle,ThickPlots);
+    DrawGraph(points);
+    data_window(Titles(2) ? "");
+    title_num := 3;
+
+    xor_plot(ErasePlots);
+    readf x:-1;
+
+    while Fs /= [] do 
+        take f fromb Fs;
+        data_window( Titles(title_num) ? "" );
+        points := EvalGraph(f);
+        $ draw, wait, then erase points
+            title_num := title_num + 1;
+
+	    DrawGraph(points);
+	    readf x:-1;
+	    DrawGraph(points);
+    end while;
+
+    Titles := [];
+    graphics(false);
+end func;
+
+
+
+plot_param := func( Fx, Fy, tlow, thigh opt STEPS );
+    local xlow, xhigh, ylow, yhigh;
+    local step, points;
+    local xextra, yextra;
+    local EvalGraph;
+
+    Titles := Titles ? [];
+    STEPS := STEPS ? 20;
+
+	EvalGraph := func(f);
+	    local t, points;
+	    t := tlow;
+	    points := [];
+	    while t <= thigh do
+		points := points with [Fx(t),Fy(t)];
+		t := t + step;
+	    end while;
+	    return points;
+	end func;
+	
+
+
+    step := (thigh-tlow)/STEPS;
+    graphics(true);
+    xor_plot(false);
+
+    $ Determine scale 
+        points := EvalGraph(f);
+    
+	xlow  := xlow  ? %min { x : [x,y] in points };
+	xhigh := xhigh ? %max { x : [x,y] in points };
+	if xlow=xhigh then xlow := xlow-1 end if;
+
+	ylow  := ylow  ? %min { y : [x,y] in points };
+	yhigh := yhigh ? %max { y : [x,y] in points };
+	if ylow=yhigh then ylow := ylow-1 end if;
+
+        xextra := (xhigh-xlow)*0.1;
+        yextra := (yhigh-ylow)*0.1;
+
+	scale(xlow-xextra,ylow-yextra,xhigh+xextra,yhigh+yextra);
+        title_window(Titles(1) ? "");
+	xaxis(xlow-xextra,xhigh+xextra,
+              (yhigh-ylow)/50,(xhigh-xlow)/10,2, (yhigh+ylow)/2);
+	yaxis(ylow-yextra,yhigh+yextra,
+              (xhigh-xlow)/50,(yhigh-ylow)/10,2, (xhigh+xlow)/2);
+
+    linestyle(0,ThickPlots);
+    DrawGraph(points);
+    data_window(Titles(2) ? "");
+    readf x:-1;
+    Titles := [];
+    graphics(false);
+    
+end func;

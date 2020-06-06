@@ -1,0 +1,59 @@
+EXTERNAL
+
+Lines in programs to be included in ISETL should not extend beyond
+column 71 if you don't want part of the line to wrap and appear on the
+next line when included.
+
+What is standard input?
+
+If I use a word processor to write my programs, how should I save it so
+that ISETL will be able to include it without trouble, just save it in
+unformatted form or make a print file of it?
+
+Are lines supposed to end with CR or CR-LF?
+
+Which does ED.COM do?
+
+LANGUAGE
+
+How can I write a program which, when I choose a specific integer n,
+would make an assignment such as Zn:={0..(n- 1)}, that is, part of the
+identifier name depends on my choice of n?  For example, when I enter
+MAKEZN(137); it assigns to Z137 the correct set and also constructs the
+addition and multiplication mod 137 with appropriately chosen
+identifiers (a and m?).
+
+If I assign to B some expression, does it evaluate it immediately and
+just store the calculated value in mailbox B, or doesn't it evaluate
+the expression until we enter B; ?
+
+How is B; different from print B; ?
+
+How do you keep from printing ; and how to put several things on a line
+with appropriate spacing?
+
+The readf and printf and PAIR all look pretty mysterious, and cause
+glazing of the eyes.
+
+What is pretty-printing anyway and the backslash convention?
+
+Exactly when does one need to put in ; and what is it telling ISETL?
+
+What is the difference between program and func?
+
+USAGE
+
+What exactly does !record file1 actually pick up and record, and what
+is missed of what I see on the screen or values it computes?
+
+What is a good way for a beginner to work, to write, try, debug, and
+rewrite a program or func - using some combination of ED, !include,
+!edit, !verbose, !echo, !record, and !watch some variables?
+
+After you have some experience with ISETL what is the most efficient
+way to operate?
+
+Right from the beginning there are questions about printing things in
+the way you would like either on the screen or on paper.
+
+Suggestions about form and style of writing programs?

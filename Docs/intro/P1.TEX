@@ -1,0 +1,753 @@
+
+\section{Running \ISETL{}}
+
+\ISETL{} is an interpreted, interactive version of the programming language
+\SETL\@.
+It is invoked by typing a command line with
+the executable name, say \[isetl\], along with optional file
+names that are discussed below.\footnote{The \XX{Macintosh} version
+is clickable.  
+}
+
+There is no compiler for \ISETL{}\@.
+When \ISETL{} is running,
+it prompts for input with the character ``\[>\]''.
+Input consists of a sequence of expressions
+(each terminated by a semicolon ``\[;\]''), statements, and programs.
+Each input is acted upon as soon as it is entered.
+These actions are explained below.
+In the case of expressions,
+the result includes its value being printed.
+If you have not completed your entry,
+you will receive the prompt ``\[>>\]'',\index{prompts}
+indicating that more is expected.
+
+\begin{enumerate}
+
+\item
+\index{exit}\index{quit}\key{!quit}
+\ISETL{} is exited by typing ``\[!quit\]''.
+It may also be exited by ending the standard input.
+In \XX{Unix}, this is done by typing ctrl-D\@.
+In MS-DOS, ctrl-Z and ctrl-D will work.
+
+\item
+A common mistake is omitting the semicolon after an expression.
+\ISETL{} will wait until it gets a semicolon before proceeding.
+The doubled prompt ``\[>>\]'' indicates that \ISETL{} is expecting more
+input.
+
+\item
+\ISETL{} can get its input from sources other than the standard input.
+
+\begin{enumerate}
+    \item
+    \index{.isetlrc tt} \index{isetl.ini tt}\label{.ini}
+    If there is an initialization file\footnote{
+        Initialization files are called either \[.isetlrc\] or \[isetl.ini\].
+	The file is looked for in:
+	\begin{enumerate}
+	\item the current directory
+	\item the directory containing \[isetl.exe\] (MSDOS and Mac)
+	\item the home directory (Unix, VMS) or root (MSDOS)
+	\item in the symbol \[ISETLINI:\] (VMS only)
+	\end{enumerate}
+	Only one initialization file is read.
+	The same pattern is searched for the \[ile\] initialization file.
+	}
+    in the current directory,
+    then the first thing \ISETL{} will do is read this file.
+
+    \item
+    Next, if the \XX{command line} has any file names listed, \ISETL{} will
+    read each of these in turn.\footnote{
+	This feature is system dependent.
+	To provide this feature in \XX{VMS}, you must define
+	\[isetl~:==~\$your\$disk:[your.dir]isetl.exe\] in your
+	\[login.com\].  The leading \[\$\] makes
+	this a {\em foreign command\/}.  The rest is the
+	complete path to the executable version of \ISETL{}\@.}
+
+    Thus, if the command line reads,
+
+    \DS isetl file.1 blue green \DE
+
+
+    \ISETL{} will first read from ``\[.isetlrc\]'' if it exists,
+    and then from ``\[file.1\]'', then ``\[blue\]'',
+    and then ``\[green\]''.
+    Finally, it is ready for input from the terminal.
+
+    \item
+    If there is a file available --- say ``\[file.2\]'' --- and
+    \ISETL{} is given (at any time), the following line of input,
+
+    \key{!include}
+    \DS !include file.2 \DE
+
+    then it will take its input from ``\[file.2\]''
+    before being ready for any further input.
+    The material in such a file is treated
+    {\em exactly as if it were typed directly at the keyboard,\/}
+    and it can be followed on subsequent lines
+    by any additional information that
+    the user would like to enter.
+
+    Consider the following (rather contrived) example:
+    Suppose that the file ``\[file.3\]'' contained the following data:
+
+    \DS 5, 6, 7, 3, -4, "the" \DE
+
+    Then if the user typed,
+
+\DS
+>      seta := \{\\
+>>     !include file.3\\
+!include file.3 completed\\
+>>     , x \};\\
+\DE
+
+    the effect would be exactly the same as if the user had entered,
+
+\DS
+>      seta := \{5, 6, 7, 3, -4, "the", x\};\\
+\DE
+
+    The line ``\[!include file.3 completed\]''
+    comes from \ISETL{} and is always printed after an ``\[!include\]''.
+\end{enumerate}
+
+\item
+Comments\index{comments (zdollar tt)}\index{dollar sign}
+
+If a dollar sign ``\[\$\]'' appears on a line,
+then everything that appears until
+the end of the line is ignored by \ISETL{}\@.
+
+\item
+After a program or statement has executed,
+the values of global variables persist.
+The user can then evaluate expressions in terms of these variables.
+(See section~\ref{funcs} for more detail on scope.)
+\end{enumerate}
+
+
+\section{Characters, Keywords, and Identifiers}\label{char-key}
+
+\subsection{Character Set}  
+
+\index{character set}
+The following is a list of characters used by \ISETL{}\@.
+
+\CS\tt
+\verb|@ |\verb@[ ] ; : = | { } ( ) . # ? * / + - _ " < > % ~ ,@\\
+\mbox{}\\
+a {\rm ---} z         A {\rm ---} Z        0 {\rm ---} 9\\
+\CE
+
+\noindent
+In addition, the following character-pairs are used.
+
+\CS
+\verb|:=    ..    **    /=    <=    >=    ->|
+\CE
+
+The characters ``\[:\]'' and ``\[|\]'' may be used interchangably.
+
+\subsection{Keywords}
+
+The following is a list of \ISETL{} \XX{keywords}.
+\key{and}	\key{newat}	\key{subset}
+\key{div}	\key{not}	\key{take}      \key{frome}
+\key{do}	\key{func}	\key{notin}	\key{then}
+\key{else}	\key{iff}	\key{of}	\key{to}
+\key{elseif}	\key{if}	\key{om}	\key{true}
+\key{end}	\key{impl}	\key{opt}	\key{union}
+\key{exists}	\key{inter}	\key{or}	\key{value}
+\key{false}	\key{in}	\key{print}	\key{where}
+\key{for}	\key{less}	\key{program}	\key{while}
+\key{forall}	\key{local}	\key{read}	\key{with}
+\key{mod}	\key{return}	\key{readf}	\key{printf}
+\key{write}	\key{writeln}	\key{from}	\key{fromb}
+\DS
+\begin{tabular}{ l l l l l l l}
+and&	false&	iff&	not&	program&true\\
+div&	for&	impl&	notin&	read&	union\\
+do&	forall&	in&	of&	readf&	value\\
+else&	from&	inter&	om (OM)&return&	where\\
+elseif&	fromb&	less&	opt&	subset&	while\\
+end&	frome&	local&	or&	take&	with\\
+exists&	func&	mod&	print&	then&	write\\
+&	if&	newat&	printf&	to&	writeln
+\end{tabular}
+\DE
+
+\subsection{Identifiers}
+
+    \begin{enumerate}
+
+    \item
+    An \XX{identifier} is a sequence of alphanumeric characters along with the
+    underscore, caret, and prime --- ``\[\_\caret '\]''.
+    It must begin with a letter.
+    Upper or lower case may
+    be used, and \ISETL{} preserves the distinction.
+    (I.e.: \[a\_\,good\_\,thing\] and \[A\_\,Good\_\,Thing\]
+    are both legal and are different.)
+
+    \item
+    An identifier serves as a variable and can take on a value of any \ISETL{}
+    data type.
+    The type of a variable is entirely determined by the value
+    that is assigned to it and changes when a value of a different type is
+    assigned.
+    \end{enumerate}
+
+\section{Simple Data Types}
+
+    \subsection{Integers}
+    \begin{enumerate}
+    \item
+    \index{integer} \index{number}
+    There is no limit to the size of integers.\footnote{
+	No {\em practical\/} limit.  
+	Actually limited to about 20,000 digits per integer.}
+    \item
+    An integer constant is a sequence of one or more digits.
+    It represents an unsigned integer.
+    \item
+    On input and output, long integers may be broken to accommodate 
+    limited line length.  
+    A backslash (``\[$\backslash$\]'') at the end of a sequence of
+    digits indicates that the integer is continued on the next line.
+
+\begin{indented}\begin{verbatim}
+>       123456\
+>>        789;
+123456789;
+\end{verbatim}\end{indented}
+
+
+    \end{enumerate}
+
+    \subsection{Rationals}
+    \begin{enumerate}
+    \item Rationals are only created when the directive \[!rational~on\]
+          has been used.
+    \item Rationals are created by dividing integers.
+    \item Arithmetic remains rational as long as possible.
+    \end{enumerate}
+
+    \subsection{Floating\_\,Point Numbers}
+    \begin{enumerate}
+    \item
+    \index{floating-point number} \index{number}
+    The possible range of floating\_\,point numbers is machine dependent.
+    At a minimum, the values will have 5 place accuracy, with a range of
+    approximately $10^{38}$.
+    \item
+    A floating\_\,point constant is a sequence of zero or more digits,
+    followed by a decimal point,
+    followed by zero or more digits.
+    Thus, \[2.0\], \[.5\], and \[2.\] are all legal.
+    
+    A floating\_\,point constant may be followed by an exponent.
+    An exponent consists of one of the characters ``\[e\]'',
+    ``\[E\]'', ``\[f\]'', ``\[F\]'' followed by a signed or unsigned
+    integer.
+    The value of a floating\_\,point constant
+    is determined as in scientific notation.
+    Hence, for example, \[0.2\], \[2.0e-1\], \[20.0e-2\] are all equivalent.
+    As with integers, it is unsigned.
+
+    \item
+    Different systems use different printed representations when
+    floating point values are out of the machine's range.
+    For example, when the value is too large, the \XX{Macintosh}
+    prints ``+++++'' and the Sun prints ``Infinity''.
+    \end{enumerate}
+
+    \subsection{Booleans}
+    \begin{enumerate}
+    \item
+    A \XX{Boolean} constant is one of the keywords 
+    \[true\] or \[false\],\key{true}\key{false}
+    with the obvious meaning for its value.
+    \end{enumerate}
+
+    \subsection{Strings}
+    \begin{enumerate}
+    \item
+    A \XX{string} constant is any sequence of
+    characters preceded and followed by a double quote, ``\["\]''.
+    A string may not be split across lines.
+    Large strings may be constructed using the
+    operation of concatenation.
+    Strings may also be surrounded by single quotes, ``\['\]''.
+
+The backslash convention may be used to enter special characters.
+When pretty-printing, these conventions are used for output.
+In the case of formated output, the special characters are printed.
+
+\CS
+\begin{tabular}{l l}
+$\backslash$b&	backspace\\
+$\backslash$f&	formfeed (new page)\\
+$\backslash$n&	newline (prints as CR-LF)\\
+$\backslash$q&	double quote\\
+$\backslash$r&	carriage return (CR)\\
+$\backslash$t&	tab\\
+$\backslash${\it octal}&	character represented by {\it octal}\\
+\mbox{}&			Refer to an ASCII chart for meaning.\\
+$\backslash${\it other}&	{\it other} --- may be any character\\
+\mbox{}&			not listed above.
+\end{tabular}
+\CE
+
+In particular, \["$\backslash\backslash$"\] is a single backslash.
+You may type, \["$\backslash$""\] for double quote, but the pretty
+printer will print as \["$\backslash$q"\].
+ASCII values are limited to \['$\backslash$001'\] to
+\['$\backslash$377'\].
+
+\begin{verbatim}
+>       %+ [char(i): i in [1..127]];
+"\001\002\003\004\005\006\007\b\t\n\013\f"
++"\r\016\017\020\021\022\023\024\025\026"
++"\027\030\031\032\033\034\035\036\037 !"
++"\q#$%&'()*+,-./0123456789:;<=>?@ABCDEF"
++"GHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijk"
++"lmnopqrstuvwxyz{|}~\177";
+\end{verbatim}
+
+
+    \end{enumerate}
+
+    \subsection{Atoms}
+    \begin{enumerate}
+    \item
+    \index{atom tt}
+    Atoms are ``abstract points''.
+    They have no identifying properties other than their individual existence.
+
+    \item
+    The keyword \TT{newat} has as its value an atom never before
+    seen in this session of \ISETL{}\@.
+    \end{enumerate}
+    
+    \subsection{Files}
+    \begin{enumerate}
+    \item\index{file}
+    A file is an \ISETL{} value that
+    corresponds to an external file in the operating system environment.
+
+    \item
+    They are created as a result of applying one of the pre-defined
+    functions \[openr\], \[opena\], \[openw\].
+    (See section~\ref{file-func}.)
+    \end{enumerate}
+
+    \subsection{Undefined}
+    \begin{enumerate}
+    \item
+    The data type \XX{undefined}
+    has a single value --- \TT{OM}\@.
+    It may also be entered as \[om\].
+
+    \item
+    Any identifier that has not been
+    assigned a value has the value \[OM\]\@.
+    \end{enumerate}
+
+
+
+\section{Compound Data Types}
+
+\subsection{Sets}
+    \begin{enumerate}
+    \item
+    Only finite sets may be represented in \ISETL{}\@.
+    The elements may be of any type, mixed heterogeneously.
+    Elements occur at most once per \XX{set}.
+
+    \item
+    \TT{OM} may not be an element of a set.
+    Any set that would contain \[OM\] is considered to be undefined.
+
+    \item
+    The order of elements is not significant
+    in a set and printing the value
+    of a set twice in succession could display the elements in
+    different orders.
+
+    \item
+    Zero or more expressions, separated by commas and enclosed in
+    braces (``\[\{\]'' and ``\[\}\]'') evaluates to
+    the set whose elements are the values of the
+    enclosed expressions.
+
+    \index{empty\\set ({} tt,zempty)}
+    Note that as a special case, the empty set is denoted by \[\{~\}\].
+
+    \item
+    There are syntactic forms, explained in the grammar, for a finite set
+    that is an \XX{arithmetic progression} of integers,
+    and also for a finite set
+    \index{set former}
+    obtained from a set former in standard mathematical notation.
+
+    For example, the value of the following expression
+
+\CS
+\verb@{ x+y : x,y in {-1,-3..-100} | x /= y };@
+\CE
+
+    is the set of all sums of two different odd negative integers
+    larger than $-100$.
+    \end{enumerate}
+
+\subsection{Tuples}
+
+    \begin{enumerate}
+    \item
+    A \XX{tuple} is an infinite sequence of components,
+    of which only a finite number are defined.
+    The components may be of any type, mixed heterogeneously. The values of
+    components may be repeated.
+
+    \item
+    \[OM\] is a legal value for a component.
+
+    \item
+    The order of the components of a tuple is significant.
+    By treating the tuple as a function over the positive integers,
+    you can extract individual components and 
+    contiguous subsequences (slices) of the tuple.
+
+    \item
+    Zero or more expressions, separated by commas and enclosed in
+    square brackets (``\[[\]'' and ``\[]\]'') evaluates to
+    the tuple whose defined components are the values of the
+    enclosed expressions.
+
+    \index{empty\\tuple ([] tt)}
+    Note that as a special case, the empty tuple is denoted by \[[~]\].
+    This tuple is undefined everywhere.
+
+    \item
+    The syntactic forms for tuples of finite arithmetic progressions
+    and tuple formers are similar to those provided for sets.
+    The only difference is the use of square,
+    rather than curly, brackets.
+
+    \item
+    The length of a tuple is the largest index (counting from 1) for which
+    a component is defined (that is, is not equal to \[OM\]).
+    It can change at run-time.
+
+    \item
+    Tuples usually are indexed starting at 1,
+    but they can have different starting indices.
+    See page~\pageref{tuple-at} and page~\pageref{tuple-func} for definitions.
+
+    \item
+    Tuples created by a \[FORMER\] have the default origin.  See
+    \[origin\] for how to redefine the default.
+
+    \item
+    Tuples that result from operations on other tuples inherit their origin.
+    Generally, the result inherits the origin of the leftmost tuple argument.
+    \end{enumerate}
+
+\subsection{Maps}
+
+Maps form a subclass of sets.
+
+    \begin{enumerate}
+
+    \item \index{map}
+    A \[map\] is a set that is either empty
+    or whose elements are all ordered pairs.
+    An ordered pair is a tuple
+    whose first two components and no others are defined.
+
+    \item
+    There are two special operators for evaluating a map at a point in its
+    domain.
+    Suppose that \[F\] is a map.
+
+	\begin{enumerate}
+
+	\item
+	\[F(EXPR)\] will evaluate to the value of the second component
+	of the ordered pair whose first component
+	is the value of \[EXPR\], provided there is exactly
+	one such ordered pair in \[F\];
+	if there is no such pair, it evaluates to \[OM\];
+	if there are many such pairs, an error is reported.
+
+	\item
+	\[F\{EXPR\}\] will evaluate to the set of all values
+	of second components of ordered pairs in \[F\]
+	whose first component is the value of \[EXPR\]\@.
+	If there is no such pair, its value is the empty set.
+	\end{enumerate}
+
+
+    \item
+    A map in which no value appears more 
+    than once as the first component of an
+    ordered pair is called a {\em single-valued map\/} or 
+    \TT{smap};
+    otherwise, the map is called a {\em multi-valued map\/} or 
+    \TT{mmap}.
+    \end{enumerate}
+
+
+\section{Funcs}\label{funcs}
+
+    \index{func tt sff}
+    \index{function sff}
+    \index{proc tt sff}
+    \index{procedure sff}
+    \begin{enumerate}
+    \item
+    A \TT{func} (\TT{proc}) is an \ISETL{} value that may be applied 
+    to zero or more values passed to it as arguments.
+    It then returns a value specified by the
+    definition of the func. (\[procs\] return an non-printing version
+    of OM and should only be used in the place of statements.)
+    Because it is a value, an \ISETL{} func can
+    be assigned to an identifier, passed as an argument, etc.
+    Evaluation of an \ISETL{} func can have side-effects determined by the
+    statements in the definition of the func.
+    Thus, it also serves the purpose of what is often called a 
+    \XX{procedure}.
+
+    \item
+    \index{return tt}%
+    The \[return\] statement is only meaningful inside a func.
+    Its effect is to terminate execution of
+    the func and return a value to the caller.
+    The form ``\[return {\it expr};\]'' returns the value of {\it expr};
+    ``\[return;\]'' returns \[OM\].
+
+    \ISETL{} inserts \[return;\] just before the \[end\] of every func.
+
+
+    \item
+    A func is the computational 
+    representation of a \XX{function}, as a map
+    is the ordered pair representation, and a tuple is the sequence
+    representation.
+    Just as tuples and maps may be modified at a point 
+    by assignment, so can funcs.
+    However, if the value at a point is structured, you may not modify
+    that at a point as well.
+
+\begin{indented}
+\begin{verbatim}
+>       x := func(i);
+>>               return char(i);
+>>           end;
+>       x(97);
+"a";
+>       x(97) := "q"; 
+>       x(97);
+"q";
+>       x(97)(1) := "abc";
+! Error: Only one level of selection allowed
+\end{verbatim}
+\end{indented}
+
+     \[x\] may be modified at a point.
+     The assignment to \[x(97)\] is legal.
+     However, the following assignment is not supported at this time,
+     because you are trying to modify the structure of the value
+     returned.
+
+    \item
+    A number of functions have been \XX{pre-defined}
+    as funcs in \ISETL{}\@.
+    A list of their definitions is given in section~\ref{predef}.
+    These are not keywords and may be changed by the user.
+    They may not be modified at a point, however.
+
+    \item
+    It is possible for the user to define her/his own func.
+    This is done with the following syntax:
+
+\begin{indented}
+\begin{verbatim}
+func(list-of-parameters);
+    local list-of-local-ids;
+    value list-of-global-ids;
+    statements;
+end
+\end{verbatim}
+\end{indented}
+
+Alternately, one may write
+\begin{indented}
+\begin{verbatim}
+: list-of-parameters -> result :
+\end{verbatim}
+\end{indented}
+if the function simply consists of evaluating an expression.
+
+	\begin{enumerate}
+
+	\item
+	The declaration of \TT{local} ids
+	may be omitted if no local variables are needed.
+	The declaration of \TT{value} ids 
+	represents global variables
+	whose {\em current values are to be remembered\/}
+	and used at the time of function invocation;
+	these may be omitted if not needed.
+	The list-of-parameters may be empty,
+	but the pair of parentheses must be present.
+
+\pagebreak[1]
+	\item
+	 Parameters and local-ids are local to the func.
+	 See below for a discussion of scope.
+
+\pagebreak[1]
+	\item
+	The syntax described above is for an {\em expression\/}
+	of type func.
+	As with any expression,
+	it may be evaluated, but the value has no name.
+	Thus, the definition will typically be part of an assignment
+	statement or passed as a parameter.
+	As a very simple example, consider:
+
+\begin{indented}
+\begin{verbatim}
+cube_plus := func(x,y);
+                 return x**3 + y;
+             end;
+\end{verbatim}
+\end{indented}
+
+	After having executed this input, \ISETL{} will evaluate an
+	expression such as \[cube\_\,plus(2,5)\] as \(13\).
+
+\pagebreak[1]
+	\item
+	\index{parameter}\index{call by value}\index{optional parameters}
+	Parameters are passed by value.
+	It is an error to pass too many or too few arguments.
+	It is possible to make some parameters {\em optional\/}.
+
+	\CS
+	\verb|f := func(a,b,c opt x,y,z); ... end;|
+	\CE
+
+	\[f\] can be called with 3, 4, 5, or 6 arguments.
+	If there are fewer than 6 arguments, the missing arguments are
+	considered to be \[OM\].
+
+\pagebreak[1]
+	\item
+	\index{scope}
+	Scope is \XX{lexical} (\XX{static}) with \XX{retention}.
+	{\em Lexical\/} means that
+	references to \XX{global variables} are determined by
+	where the func was created,
+	not by where it will be evaluated.
+	{\em Retention\/} means that even
+	if the scope that created the func has been exited,
+	its variables persist and can be used by the func.
+
+	By default, references to global variables will use the value
+	of the variable at the time the function is invoked.
+	\index{value declaration}
+	The \[value\] declaration causes the value of the
+	global variable {\em at the time the func is created\/} to
+	be used.
+
+\pagebreak[1]
+	\item
+	Here is a more complicated example of the use of func.
+	As defined below, \[compose\] takes two functions as arguments
+	and creates their functional composition.
+	The functions can be any \ISETL{}
+	values that may be applied to a single
+	argument; e.g. func, tuple, smap.
+
+\begin{indented}
+\begin{verbatim}
+compose := func(f,g); 
+               return :x -> f(g(x)) :
+           end;
+twice :=   :a -> 2*a: ;
+times4 :=  compose(twice,twice);
+\end{verbatim}
+\end{indented}
+	
+	Then the value of \[times4(3)\] would be 12.  	The value of
+	\[times4\] needs to refer to the values of \[f\] and \[g\],
+	and they remain accessible to \[times4\], 	even though
+	\[compose\] has returned.
+
+\pagebreak[1]
+	\item
+	Finally, here is an example of\index{function\\modified at a point}
+	functions modified at a point and
+	functions that capture the current value of a global.
+
+\begin{indented}
+\begin{verbatim}
+f := func(x);
+         return x + 4;
+     end func;
+gs := [ func(x); value N; return x+3*N; end
+        : N in [1..3] ];
+f(3) := 21;
+\end{verbatim}
+\end{indented}
+
+	After this is executed, \[f(1)\] is 5, \[f(2)\] is 6,
+	but \[f(3)\] is 21.
+	\[gs(2)(4)\] is 10 (\[4+3*2\]).
+%	The function defined below by func and assigned to
+%	the identifier \[curry\] takes as its single
+%	parameter any value \[F\] for which \[F(x,y)\] makes sense
+%	(e.g., a func, a map, etc.),
+%	and returns a func \[G\] defined by: \[G(x)\] is a func whose
+%	value at \[y\] is \[F(x,y)\].
+%	Thus, after executing the following code, \[curry(F)\] will
+%	be a func whose value at \[x\] is a func
+%	that can be evaluated at \[y\],  and
+%	\[curry(F)(x)(y)\] is \[F(x,y)\].
+%
+%\DS
+%curry := \= func\= (F); \\
+%	 \>	   \> return \= func\= (x); \\
+%	 \>	   \>        \>     \> return \= func\= (y); \\
+%	 \>	   \>	     \>     \>        \>     \> return F(x,y);\\
+%	 \>	   \>	     \>     \>        \> end; \\
+%	 \>	   \>        \> end; \\
+%	 \> end; \\
+%\DE
+%
+%	Hence, for example, if one then executed the following code,
+%
+%\DS
+%plus := \= func\= (a,b); \\
+%	\>     \>return a+b; \\
+%	\> end; \\
+% \\
+%inc := curry(plus)(1); \\
+%\DE
+%	the resulting value of \[inc(3)\] would be \(4\).
+	\end{enumerate}
+\end{enumerate}
+
+
+    \index{func tt eff}
+    \index{function eff}
+    \index{proc tt eff}
+    \index{procedure eff}

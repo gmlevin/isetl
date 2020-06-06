@@ -1,0 +1,78 @@
+\contentsline {section}{\numberline {1}Running {\ptt ISETL\spacefactor \@m }{}}{4}
+\contentsline {section}{\numberline {2}Characters, Keywords, and Identifiers}{6}
+\contentsline {subsection}{\numberline {2.1}Character Set}{6}
+\contentsline {subsection}{\numberline {2.2}Keywords}{6}
+\contentsline {subsection}{\numberline {2.3}Identifiers}{6}
+\contentsline {section}{\numberline {3}Simple Data Types}{7}
+\contentsline {subsection}{\numberline {3.1}Integers}{7}
+\contentsline {subsection}{\numberline {3.2}Rationals}{7}
+\contentsline {subsection}{\numberline {3.3}Floating\unhbox \voidb@x \kern .06em \vbox {\hrule width.3em}\pcomma Point Numbers}{7}
+\contentsline {subsection}{\numberline {3.4}Booleans}{8}
+\contentsline {subsection}{\numberline {3.5}Strings}{8}
+\contentsline {subsection}{\numberline {3.6}Atoms}{9}
+\contentsline {subsection}{\numberline {3.7}Files}{9}
+\contentsline {subsection}{\numberline {3.8}Undefined}{9}
+\contentsline {section}{\numberline {4}Compound Data Types}{9}
+\contentsline {subsection}{\numberline {4.1}Sets}{9}
+\contentsline {subsection}{\numberline {4.2}Tuples}{10}
+\contentsline {subsection}{\numberline {4.3}Maps}{11}
+\contentsline {section}{\numberline {5}Funcs}{11}
+\contentsline {section}{\numberline {6}The {\ptt ISETL\spacefactor \@m }{} Grammar --- Annotated}{15}
+\contentsline {subsection}{\numberline {6.1}Terminology}{15}
+\contentsline {subsection}{\numberline {6.2}Input at the Prompt}{15}
+\contentsline {subsection}{\numberline {6.3}Program}{16}
+\contentsline {subsection}{\numberline {6.4}Statements}{16}
+\contentsline {subsection}{\numberline {6.5}Iterators}{21}
+\contentsline {subsection}{\numberline {6.6}Formers}{23}
+\contentsline {subsection}{\numberline {6.7}Selectors}{23}
+\contentsline {subsection}{\numberline {6.8}Left Hand Sides}{24}
+\contentsline {subsection}{\numberline {6.9}Expressions}{25}
+\contentsline {subsection}{\numberline {6.10}Function Constants}{31}
+\contentsline {section}{\numberline {7}Pre-defined Functions}{33}
+\contentsline {subsection}{\numberline {7.1}Functions on Integers}{33}
+\contentsline {subsection}{\numberline {7.2}Functions on Rationals}{33}
+\contentsline {subsection}{\numberline {7.3}Functions on Floating Point Numbers}{33}
+\contentsline {subsection}{\numberline {7.4}Functions on Sets}{34}
+\contentsline {subsection}{\numberline {7.5}Functions on Maps}{34}
+\contentsline {subsection}{\numberline {7.6}Standard Mathematical Functions}{34}
+\contentsline {subsection}{\numberline {7.7}Type Testers}{35}
+\contentsline {subsection}{\numberline {7.8}Input/Output Functions}{36}
+\contentsline {subsection}{\numberline {7.9}Miscellaneous}{37}
+\contentsline {subsection}{\numberline {7.10}Tuple}{37}
+\contentsline {subsection}{\numberline {7.11}Graphics}{38}
+\contentsline {section}{\numberline {8}Precedence Rules}{40}
+\contentsline {section}{\numberline {9}Directives}{41}
+\contentsline {subsection}{\numberline {9.1}Brief Descriptions}{41}
+\contentsline {subsubsection}{\numberline {9.1.1}Commands}{41}
+\contentsline {subsubsection}{\numberline {9.1.2}Toggles}{42}
+\contentsline {subsubsection}{\numberline {9.1.3}Debugging}{43}
+\contentsline {subsection}{\numberline {9.2}{\ptt !clear} and {\ptt !edit}}{43}
+\contentsline {subsection}{\numberline {9.3}{\ptt !allocate} and {\ptt !memory}}{44}
+\contentsline {subsection}{\numberline {9.4}{\ptt !watch} and {\ptt !unwatch}}{44}
+\contentsline {subsection}{\numberline {9.5}{\ptt !record}}{45}
+\contentsline {subsection}{\numberline {9.6}{\ptt !system}}{45}
+\contentsline {section}{\numberline {10}Editors}{46}
+\contentsline {subsection}{\numberline {10.1}MSDOS Screen Editor}{46}
+\contentsline {subsection}{\numberline {10.2}Mac Screen Editor}{46}
+\contentsline {subsection}{\numberline {10.3}Interactive Line Editor (ILE)}{47}
+\contentsline {subsubsection}{\numberline {10.3.1}Brief description}{47}
+\contentsline {subsubsection}{\numberline {10.3.2}Default key bindings}{48}
+\contentsline {subsubsection}{\numberline {10.3.3}Initialization File}{49}
+\contentsline {subsubsection}{\numberline {10.3.4}Actions}{50}
+\contentsline {subsubsection}{\numberline {10.3.5}Strings}{52}
+\contentsline {subsubsection}{\numberline {10.3.6}Error Messages}{53}
+\contentsline {subsubsection}{\numberline {10.3.7}Copyright}{53}
+\contentsline {section}{\numberline {11}Runtime Errors}{54}
+\contentsline {subsection}{\numberline {11.1}Fatal Errors}{54}
+\contentsline {subsection}{\numberline {11.2}Operator Related Messages}{54}
+\contentsline {subsection}{\numberline {11.3}General Errors}{55}
+\contentsline {section}{\numberline {12}The ISETL Grammar --- Compressed}{59}
+\contentsline {subsection}{\numberline {12.1}Input at the Prompt}{59}
+\contentsline {subsection}{\numberline {12.2}Program}{59}
+\contentsline {subsection}{\numberline {12.3}Statements}{59}
+\contentsline {subsection}{\numberline {12.4}Iterators}{60}
+\contentsline {subsection}{\numberline {12.5}Selectors}{60}
+\contentsline {subsection}{\numberline {12.6}Left Hand Sides}{60}
+\contentsline {subsection}{\numberline {12.7}Expressions and Formers}{61}
+\contentsline {subsection}{\numberline {12.8}Function Constants}{62}
+\contentsline {section}{\hbox to\@tempdima {\hfil }Index}{63}

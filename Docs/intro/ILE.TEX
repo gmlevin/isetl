@@ -1,0 +1,319 @@
+\index{Interactive Line Editor sff}
+\subsubsection{Brief description}
+The \[left\] and \[right\] \[arrows\] will move you within a line,
+permitting insertions of characters.  \[delete\] removes the character
+at the cursor, \[backspace\] deletes the character left of the cursor.
+The interesting feature is that the \[up\] \[arrow\] moves you back thru
+the last hundred lines entered, with \[down\] \[arrow\] moving you forward.
+You can't go past the last entered line.
+
+
+You need to use \[!clear\] if you want to throw away your current input
+(since the last \[>\]) so that you can edit it.
+
+\noindent Example:
+\begin{verbatim}
+>   a := b +
+>>       c +
+>>  !clear
+>            =up=>      c + =up=>  a := b +
+>>           =up=> a := b + =up=>       c +  =edit=> c;
+\end{verbatim}
+The \[!clear\] had \ISETL{} throw away the earlier input, but left it
+for subsequent editting.  \[=up=>\] means typing the up arrow, followed
+by the new value displayed on that line.  \[=edit=>\] means editing
+the line to produce the desired result.
+
+Below is a complete description of the new editor.
+
+
+\subsubsection{Default key bindings}
+     The interactive line editor is an input line 
+      editor  that  provides both
+     line editing and a history mechanism to edit and re-enter
+     previous lines.
+
+     \ISETL{} looks in the \[ile\] initialization file.  See
+     page~\pageref{.ini} for more information.
+     \index{ile.ini tt}
+
+     Not everyone wants to have to figure out  yet  another 
+      initialization  file	format	so we provide a complete set of
+     default bindings for all its operations.
+
+     The following table shows the default bindings of	keys  and
+     key  sequences provided by \[ile\]. These are based on the emacs
+     key bindings for similar operations.
+
+
+\begin{tabular}{@{\tt}l l l}
+    \bf Key&    \bf Effect&        \bf VMS differences\\
+    del&	delete char under\\
+    \caret A&	start of line&     undefined\\
+    \caret B&	backward char\\
+    \caret E&	end of line\\
+    \caret F&	forward char\\
+    \caret K&	erase to end of line\\
+    \caret L&	retype line\\
+    \caret N&	forward history\\
+    \caret P&	backward history\\
+    \caret U&	erase line\\
+    \caret V&	quote\\
+    \caret X&	delete char under\\
+\\
+    delete&	delete char under&  delete char before\\
+    back space&	delete char before& start of line\\
+    return&	add to history\\
+    line feed&	add to history\\
+    home&	start of line&      undefined\\
+    end&	end of line&	    undefined\\
+\\
+    \caret C&	interrupt\\
+    \caret Z&	end of file\\
+    \caret D&	end of file\\
+\\
+    left&	backward char\\
+    right&	forward char\\
+    up&		backward history\\
+    down&	forward history
+\end{tabular}
+
+
+
+\subsubsection{Initialization File}
+     The \[ile\] initialization file is a list of table numbers,
+     characters, and actions or strings. \[ile\] has 4 action tables.
+     Each action table contains an action or string for each possible
+     character. \[ile\] decides what to do with a character by looking it
+     up in the table and executing the action associated with the
+     character or by passing the string one character at a time into
+     \[ile\] as if it had been typed by the user.  Normally only table~0
+     is used. The escape actions cause the next character to be
+     looked up in a different table. The escape actions make it
+     possible to map multiple character sequences to actions.
+
+     By default, all entries in table~0 are bound to  the  insert
+     action, and all entries in the other tables are bound to the
+     bell  action.  User  specified   bindings	 override   these
+     defaults.	The example in Table~\ref{ile.ini} is an initialization file
+     that sets up the same key and delimiter bindings as the  \[ile\]
+     default bindings.
+
+
+\begin{table}
+\begin{quote}\begin{verbatim}
+0\177=delete_char_under
+0^@=escape_3
+0^A=start_of_line
+0^B=backward_char
+0^C=pass_thru
+0^D=pass_thru
+0^E=end_of_line
+0^F=forward_char
+0^J=add_to_history
+0^H=delete_char
+0^K=erase_to_end_of_line
+0^L=retype_line
+0^M=add_to_history
+0^N=forward_history
+0^P=backward_history
+0^U=erase_line
+0^V=quote
+0^X=delete_char_under
+0^Z=pass_thru
+0^[=escape_1
+
+1[=escape_2
+
+2A=backward_history
+2B=forward_history
+2C=forward_char
+2D=backward_char
+
+3\107=start_of_line
+3\110=backward_history
+3\113=backward_char
+3\115=forward_char
+3\117=end_of_line
+3\120=forward_history
+3\123=delete_char_under
+\end{verbatim}\end{quote}
+\caption{Example \[ile.ini\] file\label{ile.ini}}
+\end{table}
+
+     The first character on each key binding line is the index of
+     the  table to place the key binding in. Valid values for the
+     index are 0, 1, 2, and 3.
+
+     The second character on the line is either the character to bind
+     or an indicator that tells how to find out what character to
+     bind.  If the second character is any	character besides
+     `\[\caret \]'
+     or `\[\esc\]' then the action is bound to that character.
+
+     If the second character on the line is  `\[\caret \]'  then
+     the  next
+     character is taken as the name of a control character. So
+     \[\caret H\]
+     is backspace and \[\caret [\] is escape.
+
+     If the second character on the line is a `\[\esc\]' and	the
+     next character is a digit between 0 and 7 the the following
+     characters are interpreted as an octal number that	indicates
+     which character to bind	 the action to. If the character
+     immediately after the `\[\esc\]' is not an octal	 digit	then the
+     action is	 bound to that character. For example, to get the
+     `\[\caret \]'
+     character you would use `\[\esc\caret \]'.
+
+     The next character on the line is always `\[=\]'. Following  the
+     equal sign is the name of an action or a string. The actions
+     are defined in the following table.
+
+\subsubsection{Actions}
+\begin{description}
+     \item[\[bell\]]		 Send a bell (\[\caret G\]) character to the
+     terminal.	 Hopefully the	 bell will ring.
+			 This action is a nice way  to	tell  the
+			 user  that  an	 invalid sequence of keys
+			 has been typed.
+
+
+     \item[\[insert\]]		  Insert  the  character  into	the  edit
+			 buffer. If there are already 75 characters
+     in the buffer \[ile\] will	beep and
+			 refuse	 to put the character in the
+			 buffer.
+
+
+     \item[\[delete\_char\]]	  Delete the character	directly  to  the
+			 left of the cursor from the edit buffer.
+
+
+     \item[\[delete\_char\_under\]]	  Delete the character under  the  cursor
+			 from the edit buffer.
+
+
+     \item[\[quote\]]		  The next character  to  come	into  \[ile\]
+			 will  be  inserted into the edit buffer.
+			 This allows you to put	 characters  into
+			 the  edit  buffer  that  are bound to an
+			 action other than insert.
+
+
+     \item[\[escape\_1\]]		  Look up the next  character  in  action
+			 table~1 instead of action table~0.
+
+
+     \item[\[escape\_2\]]		  Look up the next  character  in  action
+			 table~2 instead of action table~0.
+
+
+     \item[\[escape\_3\]]		  Look up the next  character  in  action
+			 table~3 instead of action table~0.
+
+
+
+     \item[\[start\_of\_line\]]	 Move the cursor to the left most character in
+     the edit buffer.
+
+
+     \item[\[backward\_char\]]	  Move the cursor to the left one character.
+
+
+     \item[\[end\_of\_line\]]	  Move the cursor past the last character
+			 in the edit buffer.
+
+
+     \item[\[forward\_char\]]	  Move the cursor to the right one  character.
+
+
+     \item[\[add\_to\_history\]]	  Add the contents of the edit buffer  to
+			 the  history  buffer  and  pass the line
+			 along to the program running under \[ile\].
+
+
+     \item[\[erase\_line\]]		  Clear the line. Erase all characters on
+			 the line.
+
+
+     \item[\[erase\_to\_end\_of\_line\]]			 Delete the character
+     under the cursor
+			 and  all  character  to  the left of the
+			 cursor from the edit buffer.
+
+
+     \item[\[retype\_line\]]	 Retype the contents of the current edit
+			 buffer.  This	is handy when system messages
+     or other asynchronous output has
+			 garbled the input line.
+
+     \item[\[forward\_history\]]	  Display the next entry in  the  history
+			 buffer.  If  you are already at the most
+			 recent entry display a	 blank	line.  If
+			 you  try  to  go  forward past the blank
+			 line this command will beep at you.
+
+
+     \item[\[backward\_history\]]	 Display the previous entry in the
+     history buffer.	If there are	no older
+			 entries in the buffer, beep.
+
+\end{description}
+
+\subsubsection{Strings}
+     In addition to being able to bind a character sequence to an
+     action \[ile\] allows characters sequences	 to be	 bound to
+     strings of characters. When a string is invoked the characters in
+     the string are treated as if they were typed by the user. For
+     example, if the line:
+\begin{center}
+	  \verb|0^G=ring^Ma^Mbell^M|
+\end{center}
+
+     was in your \[ile.ini\] file, typing control G would cause  three
+     lines  to	be  typed  as  if  the user typed them. Using the
+     default bindings, unless there is a \[\caret J\] or \[\caret M\] in  the  string
+     the string will be inserted in the current line but not sent
+     along until the  user actually presses return.
+
+
+\subsubsection{Error Messages}
+     When \[ile\] encounters errors it  prints  a  message	and  terminates.	\[ile\]  can print several standard error message. It
+     can also print a few messages that are specific to \[ile\].
+
+\begin{itemize}
+\item     \[ile: '=' missing on line \#\]
+
+			 In a character binding line you left out
+			 the `\[=\]' character. Or, you did something
+			 that confused	the  initialization  file
+			 reader	 into thinking there should be an
+			 `\[=\]' where you didn't think there  should
+			 be one.
+
+
+\item     \[ile: error in initialization file on line \#\]
+
+			 This means that the first character of a
+			 character  binding line wasn't a newline
+			 or a~0, 1, 2,  or  3.	It  could
+			 also  mean  that the initialization file
+			 reader is confused.
+
+\end{itemize}
+
+
+
+     A misspelled action name in an \[ile.ini\] will be  treated  as	a
+     string.   This  means that typing the sequence of characters
+     that should  invoke  the  action  will  actually  cause  the
+     misspelled name to be inserted in the input line.
+
+\subsubsection{Copyright}
+
+\[ile\] and this documentation was adapted from the program called
+\[ile\].  Permission to modify and distribute the program and its
+documentation is granted, subject to the inclusion of its copyright
+notice, which has been reproduced at the front of this manual.
+\index{Interactive Line Editor eff}

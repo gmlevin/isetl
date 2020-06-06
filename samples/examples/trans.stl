@@ -1,0 +1,21 @@
+transitive := : R ->
+       forall [a,b] in R, c in R{b} : [a,c] in R : ;
+
+bipart := : R-> 
+            { s with r | s in S }
+           +{ s with rp| s in S }
+           where [a,b] := arb(R);
+                 r     := [a,b];
+                 rp    := [b,a];
+                 S     := bipart(R less r);
+           end : ;
+bipart({}) := { {} };
+
+$ chcek for bipartite transitivity
+bitrans := : R->
+           forall [a,b] in R, c in R{b}, d in R{c} : [a,d] in R : ;
+
+$ Complete a bipartite relation relative to BASE
+complete := :R -> { if r in R then r
+                    else [b,a] where [a,b] := r end end
+                    | r in BASE } :;

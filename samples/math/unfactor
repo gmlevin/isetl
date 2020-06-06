@@ -1,0 +1,25 @@
+$ represent polynomials from lower order to high order
+$ p(1) + p(2)*x + p(3)*x**2 + ...
+$ or %+[p(i)*x**(i-1) : i in [1..#p]]
+$
+$ order of polynomial is #p-1
+
+new_factor := func(poly, factor);
+   return [factor*poly(1)] + [poly(i+1)*factor+poly(i) : i in [1..#poly-1]]
+          with poly(#poly);
+   end;
+
+
+$ The power of the terms in p runs from 0 to #p-1.
+$ The high order term of the result is order of p (#p-1) + order of q.
+$ Sum the terms where the sum of the powers = the power of the result.
+
+times := func(p,q);
+           return [ %+[ p(i)*q(j) : i in [1..#p], j in [1..#q]
+                        | i-1 + j-1 = n]
+                  : n in [0..#p-1 + #q-1] ];
+         end func;
+
+
+[1,2] .times [3,4];
+[1,2,3,4] .times [2,3];

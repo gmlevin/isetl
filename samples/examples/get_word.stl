@@ -1,0 +1,10 @@
+    get_word := func();
+        local word, char;
+	word := '';
+	readf char:-1 from f;
+	while char /= ' ' and char /= '\t' and char /= '\n' do
+	    word := word + char;
+	    readf char:-1 from f;
+	end while;
+	return word;
+    end func;

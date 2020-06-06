@@ -1,0 +1,12 @@
+atan
+:= func(x,n); return
+        %plus[ power(neg_one, i) .times power(x, 2*i+1) 
+                                 .times [1,2*i+1]
+               : i in [0..n]];
+   end;
+
+pi
+:= func(n); return
+        [4,1] .times (  ([4,1] .times atan([1,5],n))
+                      .minus atan([1,239],n) );
+   end;

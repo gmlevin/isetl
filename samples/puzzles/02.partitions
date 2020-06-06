@@ -1,0 +1,28 @@
+Partitioning an integer.
+
+    A partition of an integer is an sorted sequence of positive
+    integers that sum to the integer.  The sequence permits
+    repetitions of terms, but the sorted restriction eliminates
+    solutions that are the same except for re-ordering.  If Part(N)
+    returns the set of all partitions of N, then the following holds: 
+
+                 forall s in Part(N)| %+ s = N;
+
+    (1) Write Part(N).
+
+    (2) Write a function that returns #Part(N), without actually
+        computing Part(N).
+
+    (3) Consider a variant where the integer is broken into a *set* of
+        non-negative integers.  This implies that there can be no
+	repetitions in the breakdown.  (There is a name for this, but
+	I can't call it to mind.  Anybody remember what it is called?)
+
+	Try (1) and (2) for this variant.
+
+    (4) A more ``practical'' form of the problem is making change.
+        Here you are limited in the numbers that you may employ.  You
+	could further limit matters by limiting the number of each
+	type of coin available.
+
+	Again you can try (1) and/or (2).

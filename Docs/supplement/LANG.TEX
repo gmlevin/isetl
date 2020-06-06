@@ -1,0 +1,319 @@
+\newcounter{question}
+\newcommand{\Q}{\pagebreak[1]\vspace{0pt plus 40pt}
+                \refstepcounter{question}\item[Q\arabic{question}: ]}
+\newcommand{\A}{\pagebreak[0]\item[A\arabic{question}: ]}
+\renewcommand{\thequestion}{(Q\arabic{question})}
+\section{Questions about the language}\label{lang}
+
+\begin{description}
+
+\Q  Exactly when does one need to put in ``\[;\]''
+    and what is it telling \ISETL?
+
+\A  This is probably the most commonly asked question about any programming
+    language that I know of, with the exceptions of \[Lisp\] and
+    \[Fortran\] which don't use semicolons.
+
+    Fortunately, the answer is easy for \ISETL;  semicolons go after every
+    statement.  The semicolon tells \ISETL\ that you are finished with the
+    statement.  At the prompt, where you can simply type expressions,
+    the importance of the semicolon can be easily seen.  If statements and
+    expressions ended at the end of the line, like \[Fortran\], the
+    following would not work, instead printing \[6\] after the first line.
+
+    \begin{quote}\begin{verbatim}
+>       1+2+3
+>>      +4;
+10;
+    \end{verbatim}\end{quote}
+
+    Bowing to popular pressure, I have made the final semicolon in a
+    list of statements optional.  This means that Pascal programmers
+    will find that their intuition works fine.  All previously correct
+    programs still work.  
+
+    
+\Q How is \[x+y;\] different from \[print x+y;\] ?
+
+\A This depends on where you write them.  
+
+\begin{itemize}
+    \item
+    At the prompt, an input that is just an expression implies that you
+    want the value printed.  Therefore, at the top level, there is no
+    difference.
+    
+    \item
+    Inside functions or programs, \[x+y;\] simply evaluates \[x+y\], producing
+    no output.  Only \[print x+y;\] would let you see the result.
+\end{itemize}
+
+
+\Q  If I assign an expression to \[B\], does \ISETL\ evaluate the
+    expression immediately and just store the calculated value
+    in \[B\], or does it wait to evaluate the expression 
+    until we enter \[B;\] ?
+
+
+\A \ISETL\ is a value-oriented language and as such you should think of
+    expressions as being evaluated when they are used.  Therefore, the
+    expression assigned to \[B\] is evaluated and the value stored.
+
+\Q    What is the difference between \[program\] and \[func\]?
+
+\A  A \[program\] is a collection of statements to be executed.
+    It has no name, takes no arguments, executes once.  Moreover,
+    there is no object in \ISETL\ that corresponds to a program ---
+    that is, you can't store a program in a variable or 
+    as an element of a set.
+
+    A \[func\] is an \ISETL\ object, and as such can be used in many more
+    ways.  
+
+    The program is somewhat like the human appendix, a feature left over
+    from the evolutionary predecessor, \[SETL\]\@.  It does serve a purpose
+    until such time as you are ready to deal with \[func\]s.  Consider the
+    difference between the following two sequences of input.
+
+\begin{quote}\begin{verbatim}
+>       program example;
+>>          read x;
+>>          read y;
+>>          print [x,y];
+>>      end program;
+?       5; 6;
+[5, 6];
+
+>       
+>       read x; 5;
+>       read y; 6;
+>       print [x,y];
+[5, 6];
+\end{verbatim}\end{quote}
+
+    With a program, the input follows the program.
+    With separate statements, the input must follow the \[read\].
+
+\Q  What is pretty-printing?\label{pp}
+
+\A  When you print using \[print\], the output is generally in the form of
+    constant expressions, terminated by semicolons.  (Generally, because
+    some objects don't have a constant form: atoms, files, \[func\]s.)
+
+    The large structured objects, like sets and tuples, are printed so that
+    the indentation and line breaks respect the structure of the object.
+    Consider:
+\begin{quote}\begin{verbatim}
+>       [ [i,i**2]: i in [100..104] ];
+[[100, 10000], [101, 10201],
+ [102, 10404], [103, 10609],
+ [104, 10816]];
+\end{verbatim}\end{quote}
+
+    Breaking the line in the middle of a pair would make it harder to read,
+    so we try to format automatically.  In contrast, see \ref{write}.
+    The function \[max\_line(x)\] sets the maximum number of columns of
+    output in prettyprinting to \[x\]. Here I have set it to \[40\], to
+    keep lines short.
+
+\Q  What is the ``backslash convention''?\label{backslash}
+
+\A  Not all characters in the \[ascii\] character set
+    have a printed image, and some are awkward to type.
+    When you type a character string, you can use the backslash convention
+    to enter these special characters.
+    When prettyprinting \ref{pp}, strings are printed in the same fashion.
+    See \ref{write} for uses of these special characters.
+
+    Here is a table describing these special characters:
+\nopagebreak
+\CS
+\begin{tabular}{l l}
+$\backslash$b&	backspace\\
+$\backslash$f&	formfeed (new page)\\
+$\backslash$n&	newline (prints as CR-LF)\\
+$\backslash$q&	double quote\\
+$\backslash$r&	carriage return (CR)\\
+$\backslash$t&	tab\\
+$\backslash${\it octal}&	character represented by {\it octal}\\
+\mbox{}&			Refer to an ASCII chart for meaning.\\
+$\backslash${\it other}&	{\it other} --- may be any character\\
+\mbox{}&			not listed above.
+\end{tabular}
+\CE
+
+In particular, \["$\backslash\backslash$"\] is a single backslash.
+You may type, \["$\backslash$""\] for double quote, but the pretty
+printer will print as \["$\backslash$q"\].
+ASCII values are limited to \['$\backslash$001'\] to
+\['$\backslash$377'\].
+
+\begin{verbatim}
+>       %+ [char(i): i in [1..127]];
+"\001\002\003\004\005\006\007\b\t\n\013\f"
++"\r\016\017\020\021\022\023\024\025\026"
++"\027\030\031\032\033\034\035\036\037 !"
++"\q#$%&'()*+,-./0123456789:;<=>?@ABCDEF"
++"GHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijk"
++"lmnopqrstuvwxyz{|}~\177";
+\end{verbatim}
+
+
+
+
+\Q How do you keep from printing ``\[;\]''?
+    How do you put several things on a line with appropriate spacing?
+    \label{write}
+
+\A Two questions with a common answer.  First, why the semicolon in the
+    output, then how to get rid of it and produce pretty results.
+
+    The semicolon is included in the output so that \ISETL\ output may be
+    used as \ISETL\ input.  Where it makes sense, the output of \[print\]
+    is a constant followed by a semicolon, suitable for \[read\].
+
+    You can get output that is more like that of other languages by using
+    \[write\].  Use \[write\] in place of \[print\] (or \[print\ldots
+    to\ldots\]). It prints:
+    \begin{itemize}
+	\item numbers without the semicolon
+	\item strings without the quotes, semicolon, 
+		and the backslash convention (see \ref{backslash}).  
+	\item the elements of tuples and sets,
+		but without any punctuation ---
+		no semicolons, no braces or brackets, no commas.
+    \end{itemize}
+    As in Pascal, \[writeln\] is like \[write\] with a newline written
+    at the end.
+
+    Example:\nopagebreak
+\begin{verbatim}
+>       print 12, "ab\ncd",
+>>                 [1,2];
+12;
+"ab\ncd";
+[1, 2];
+
+>       write 12, "ab\ncd"; write [1,2];
+        12ab
+cd         1         2
+>       
+\end{verbatim}
+
+    Notice that \["\esc n"\] produced a newline and that the second
+    \[write\] began on the same line as the first ended.  Once you go
+    to \[write\] it is your responsibility to handle lines.
+    One solution is defining ``\[newline:=~"\esc n";\]'' in your \[isetl.ini\]
+    file, and then you can print \[newline\] as needed.
+    The other solution is to use \[writeln\].
+
+    Each of the types has a default number of columns that it uses for
+    output.  You can override the default by
+    putting ``\[:d\]'' where \[d\] is an integer expression that is the
+    minimum number of columns to be used.  
+
+\begin{center}
+\begin{tabular}{l r }
+    Type&	Columns\\\hline
+    Float&	20\\
+    Integer&	10\\
+    String&	0\\
+    Anything else&	10
+\end{tabular}
+\end{center}
+
+\begin{quote}\begin{verbatim}
+>       newline := "\n";
+>       write 1,2,3,newline;
+\end{verbatim}\begin{verbatim*}
+         1         2         3
+\end{verbatim*}\begin{verbatim}
+>       writeln 1:3, 2:3, 3:3;
+\end{verbatim}\begin{verbatim*}
+  1  2  3
+\end{verbatim*}\end{quote}
+
+    There are more possibilities for the format, to handle floating point
+    numbers and structured data.  See \Intro\ for the complete story.
+
+
+    
+\Q  How can I read inputs without needing the semicolon?\label{readf}
+
+\A  Just as there is \[printf\]\footnote{%
+    \[printf\] is a synonym for \[write\].}, we provide \[readf\].
+    You can check \Intro\ for the additional possibilities, but the two
+    important ones are: 
+    \begin{itemize}
+    \item \[readf x;\] --- This reads the next sequence of non-white
+	characters (skipping blanks, newlines, tabs, etc.).  If the
+	sequence can be interpreted as a number, that is what is read.
+	If it cannot be interpreted as a number, it is treated as a string.
+    \item \[readf x:-1;\] --- This reads one character and assigns \[x\]
+	that one character string.
+    \end{itemize}
+    Examples:
+\begin{quote}\begin{verbatim}
+>       readf x,y,z,a:-1,b:-1,c:-1;
+123 xyz 123; 12
+>       print [x,y,z,a,b,c];
+[123, "xyz", "123;", " ", "1", "2"];
+\end{verbatim}\end{quote}
+
+    Notice:
+    \begin{itemize}
+    \item There is no prompt for \[readf\].  You should print your own.
+    \item \[123;\] was read as a string.
+    \item \[a\] was assigned \["~"\], the character {\em immediately\/}
+	following ``\[123;\]''.
+    \end{itemize}
+
+
+
+\Q  How can I write a program which, when I choose a specific integer \[n\],
+    would make an assignment such as \[Zn:={0..n-1}\], that is, part of the
+    identifier name depends on my choice of \[n\]?  For example, when I enter
+    \[MAKEZN(137);\] it assigns to \[Z137\]
+    the correct set and also constructs the
+    addition and multiplication mod 137 with appropriately chosen
+    identifiers (\[a\] and \[m\]?).
+
+\A  You can't do this.  You can of course have \[Z(137):= {0..137-1};\]
+    and similarly for \[a(137)\] and \[m(137)\].
+    Identifiers aren't \ISETL\ objects,
+    so you can't perform operations on them.
+
+    I'd recommend that \[makeZn\] return a 3-tuple and you assign the
+    results as you wish.  It is not a good idea to assign to global
+    variables, although it is legal.
+
+\begin{quote}\begin{verbatim}
+[Z(137),a(137),m(137)] := makeZn(137);
+\end{verbatim}\end{quote}
+
+
+\Q What is the purpose of having tuples start at origins other than 1?
+
+\A A good example is polynomials, where
+$$ p(x) = \sum_{i=0}^k a_i x^i $$
+Here, the tuple \(a\) naturally begins at 0, so that the indices and
+exponents correspond.
+
+You can now define
+
+\begin{tgrind}
+\File{},{11:20},{Oct  2 1989}
+\L{\LB{p := 0@[1,2,4];}}
+\L{\LB{\C{}\$ Represents 1 + 2*x + 4*x*x}}
+\CE{}\L{\LB{eval := : x,p \-\> \%+[ai*x**i : ai=p(i)] :;}}
+\end{tgrind}
+%	p := 0@[1,2,4];
+%	$ Represents 1 + 2*x + 4*x*x
+%	eval := : x,p -> %+[ai*x**i : ai=p(i)] :;
+
+
+The definition of \[eval\] isn't quite right, because \[eval(p,0)\]
+will compute \[0**0\].  The correct form is left as an exercise to the
+reader.  Also left to the reader is the question why one sees the
+summation in some texts and not others.
+\end{description}

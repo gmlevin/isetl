@@ -1,0 +1,218 @@
+% Process with LaTeX
+% For appendix, comment out lines ending %R
+% For report, comment out lines ending %A
+
+
+% \documentstyle[dvidoc,12pt]{article}
+% \newcommand\longpage{
+% \raggedbottom
+% \topmargin -0.3in
+% \textheight 9in
+% \headheight .25in
+% \headsep .3in
+% \renewcommand{\dbltopfraction}{.8}
+% \setcounter{dbltopnumber}{3}
+% }
+% \longpage
+% \raggedright
+
+\documentstyle[twoside,titlepage]{article}	%R
+\newcommand{\ISETL}{{\tt ISETL\@}}
+\newcommand{\SETL} {{\tt  SETL\@}}
+\newcommand\twoup{
+\topmargin	0.00in
+\oddsidemargin	0.00in
+\evensidemargin	0.00in
+\headheight	0.25in
+\headsep	0.20in
+\textheight	6.50in
+\pagestyle{headings}
+}
+\twoup
+
+	\setcounter{secnumdepth}{3}	%R
+	\setcounter{tocdepth}{2}
+	\pagestyle{headings}	%R
+	\newcommand{\XX}[1]{#1}	%R
+	\newcommand{\TT}[1]{\[#1\]}	%R
+	\makeindex
+
+	\title{ An Introduction to \ISETL\\Version 3.0}	%R
+	\author{Gary Marc Levin \\
+	Bitnet: gary@clutx\\	%R
+	Internet: gary@clutx.clarkson.edu	%R
+	}	%R
+
+	\newcommand{\DS}{\begin{center}\begin{minipage}{10in}\tt\begin{tabbing}}	%R
+	\newcommand{\DE}{\end{tabbing}\end{minipage}\end{center}}	%R
+	
+	\newcommand{\CS}{\begin{center}}	%R
+	\newcommand{\CE}{\end{center}}	%R
+	
+% Include the following section for appendix.
+% Comment out above section.
+
+%	\setcounter{secnumdepth}{3}	%A
+%	\newcommand{\XX}[1]{#1\index{#1}}	%A
+%	\newcommand{\TT}[1]{\[#1\]\key{#1}}	%A
+
+%	\appendix	%A
+%	\chapter{\ISETL{} Definition}	%A
+
+%  Common code
+
+\hyphenation{bool-ean}
+\renewcommand{\[}{\begingroup \tt\obeyspaces}
+\renewcommand{\]}{\endgroup}
+\renewcommand\div{\mskip-\medmuskip\mkern5mu
+  \mathbin{\rm div}\penalty900\mkern5mu\mskip-\medmuskip}
+\newcommand\mod{\mskip-\medmuskip\mkern5mu
+  \mathbin{\rm mod}\penalty900\mkern5mu\mskip-\medmuskip}
+\newcommand{\esc}{\mbox{$\backslash$}}
+\newcommand{\caret}{\mbox{\^\,}}
+
+\newif\ifafterhead\afterheadfalse
+
+\newsavebox{\head}
+\newcommand{\key}[1]{\index{#1 tt}}
+\newskip{\beforeHEAD}
+\beforeHEAD=\bigskipamount
+\newskip{\beforeRULE}
+\beforeRULE=\medskipamount
+
+\makeatletter
+\newcommand{\HEAD}[1]{
+	\if@nobreak\relax\else\vspace{\beforeHEAD}\fi
+	\afterheadtrue
+		  \key{#1}
+		  \sbox{\head}{\hspace{0.25in}{\tt #1}\ $\rightarrow$}}
+\newcommand{\RULE}[1]{\ifafterhead\nopagebreak\else\vspace{\beforeRULE}\fi
+		    \afterheadfalse
+		    \ifvmode\relax\else\par\fi
+		  \noindent
+		   \usebox{\head} {\tt #1}}
+\newcommand{\COMMENT}[1]{
+		    \nopagebreak
+		      \begin{list}{}
+			 {\@beginparpenalty\@M
+			  \setlength{\topsep}{-2pt}
+			  \setlength{\parsep}{2pt}
+			  \setlength{\leftmargin}{2\parindent}
+			 }
+			 \item #1
+		       \end{list}
+		      }
+\makeatother
+
+
+\newenvironment{indented}%
+{\begin{list}{}{\setlength{\leftmargin}{0.25in}\setlength{\parsep}{0in}
+ \setlength{\parindent}{0in}\setlength{\topsep}{0in}\item}}%
+{\end{list}\vspace{\smallskipamount}}
+
+    \begin{document}	%R
+    \maketitle	%R
+    \begin{abstract}	%R
+\small
+    \ISETL{} is an interactive implementation of \SETL\footnote{%	%R
+    \SETL{} was developed at the Courant Institute, by Schwartz.	%R
+    See Schwartz, J.T., {\it et al.}	%R
+    Programming with sets: An introduction to SETL\@.	%R
+    Springer-Verlag, 1986.	%R
+    },	%R
+    a programming language built around mathematical notation	%R
+    and objects,	%R
+    primarily sets and functions.	%R
+    It contains the usual collection of statements common to procedural	%R
+    languages, but a richer set of expressions.	%R
+
+    The objects of \ISETL{} include: integers, floating point numbers,	%R
+    funcs (sub-programs),	%R
+    strings, sets, and tuples (finite sequences).	%R
+    The composite objects, sets and tuples, may contain any mixture of	%R
+    \ISETL{} objects, nested to arbitrary depth.	%R
+
+This introduction is intended for people who have had no
+previous experience with \ISETL{},
+but who are reasonably comfortable with learning
+a new programming language.
+Few examples are given here,
+but many examples are distributed with the software.
+
+
+    This documentation is a useful supplement to	%R
+    {\it Learning Discrete Mathematics with \ISETL{}\/},	%R
+    a discrete math text	%R
+    written by Nancy \XX{Baxter}, Ed \XX{Dubinsky}, and Gary \XX{Levin},  %R
+     from Springer-Verlag.	%R
+    That text uses \ISETL{} as a tool for teaching discrete mathematics.	%R
+
+\vfill
+
+    \begin{quote}\tiny
+    \begin{center}
+        Copyright 1987, 1988, 1989.\\
+	Gary Levin.\\
+	Clarkson University.
+    \end{center}
+
+    This manual and the accompanying software may be freely copied,
+    subject to the restriction that it not be sold {\em for profit\/.}
+    (This would permit bulk copying and sale at cost.)
+    The software is offered as-is, but we will attempt to correct
+    errors in our code.
+
+    Portions of this manual and the accompanying software are derived
+    from the Interactive Line Editor, which was released with the
+    following copyright restrictions.
+
+    \begin{center}
+			    COPYRIGHT 1988\\
+	       Evans \& Sutherland Computer Corporation\\
+			 Salt Lake City, Utah\\
+			 All Rights Reserved.
+\end{center}
+
+     THE INFORMATION  IN  THIS	SOFTWARE  IS  SUBJECT  TO  CHANGE
+     WITHOUT  NOTICE  AND SHOULD NOT BE CONSTRUED AS A COMMITMENT
+     BY	 EVANS	\&  SUTHERLAND.	 EVANS	\&  SUTHERLAND	MAKES  NO
+     REPRESENTATIONS  ABOUT  THE SUITABILITY OF THIS SOFTWARE FOR
+     ANY PURPOSE.  IT IS SUPPLIED  ``AS	IS''  WITHOUT  EXPRESS  OR
+     IMPLIED WARRANTY.
+
+     IF THE SOFTWARE IS MODIFIED IN A MANNER CREATING  DERIVATIVE
+     COPYRIGHT	RIGHTS,	 APPROPRIATE LEGENDS MAY BE PLACED ON THE
+     DERIVATIVE WORK IN ADDITION TO THAT SET FORTH ABOVE.
+
+     Permission	 to  use,  copy,  modify,  and	distribute   this
+     software  and  its documentation for any purpose and without
+     fee is hereby granted, provided  that  the	 above	copyright
+     notice  appear  in	 all  copies  and that both the copyright
+     notice and this permission notice appear in supporting documentation,
+     and  that  the name of Evans \& Sutherland not be
+     used in advertising or publicity pertaining to  distribution
+     of the software without specific, written prior permission.
+
+Written by:
+     Robert C. Pendleton Evans \& Sutherland, Interactive  Systems
+     Division, Salt Lake City, Utah.
+
+     Modified for \ISETL{} by Gary Levin
+
+     \end{quote}
+
+    	\end{abstract}	%R
+	\tableofcontents	%R
+	\newpage	%R
+
+\include{p1}
+
+\include{p2}
+
+\include{p3}
+
+\include{pcompress}
+
+\include{index}
+
+	\end{document}	%R

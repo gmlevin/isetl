@@ -1,0 +1,46 @@
+Calculating rational approximations of transcendental numbers or
+functions might make an interesting exercise to motivate writing some
+of the rational arithmetic package.  It might also be useful for
+examining the idea of limits.
+
+Useful functions would be:
+
+    plus, minus, times, ratio (can't use div, it is reserved)
+    -- these have their obvious meanings as binary functions.
+
+    gcd
+    -- needed for normalization.
+
+    expand(r,n)
+    -- returns n-place decimal expansion of rational r.  perhaps best
+    returned as a tuple [integer-part, tenths, hundredths, ...].
+
+Notice that you can have one set of definitions that implements the
+basic operations using rational arithmetic, and another that simply
+defines, for instance, "plus := func(a,b); return a+b; end;".
+Depending on which set of definitions you included, you would have
+either floating point or rational calculations performed.
+
+Of course we need some rational series that approximate the numbers.
+It would be nice if they converged reasonably quickly, but with
+different rates of convergence you will have other topics to discuss.
+
+Some off the top of my head:
+
+pi/4 = 1 -  1/3  + 1/5 - 1/7 + ...
+
+       2   2   4   4   6   6
+pi/2 = - * - * - * - * - * - * ...
+       1   3   3   5   5   7
+
+        1    1    1    1
+e    = -- + -- + -- + -- + ...
+       0!   1!   2!   3! 
+
+The pi expressions don't converge quickly.
+Anyone know faster series, that are rational?
+
+ln(x), sin(x), ... are all possible.
+
+Let's see some code out here, either for rational arithmetic or
+approximations, or both.

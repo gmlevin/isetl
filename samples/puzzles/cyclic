@@ -1,0 +1,44 @@
+!include numbers
+
+$ Investigate the nature of the multiplicative subgroups mod n U(n)
+
+
+$ U(n) = those elements of [1..n-1] that have inverses
+$  This may be shown to be those that are relatively prime to n
+
+U := func(n); return { x : x in [1..n-1] | gcd(x,n) = 1}; end;
+
+$ U(n) is cyclic if some element generates all the elements
+cyclic := func(n); local Un;
+            Un := U(n);
+	    
+            return
+            exists x in Un |
+                   (x**size mod n = 1
+		    and  forall k in [2..size-1] | x**k mod n /= 1)
+                   where size := #Un;
+		   end
+          end func;
+
+$ The characterization of the cyclic groups depends on the factors of n
+$ Consider the output from
+$       for i in [2..25] do print [i,cyclic(i), factors(i)] end;	  
+
+factors := func(n); local trial, sq, Fs;
+              trial := 2;
+              sq := 4;
+              Fs := [];
+              while sq <= n do
+	          if n mod trial = 0 then
+		      Fs := Fs with trial;
+		      n := n div trial;
+		  else
+		      sq := sq + 2*trial + 1;
+		      trial := trial + 1;
+		  end if;
+	      end while;
+	      if n /= 1 then Fs := Fs with n; end if;
+	      return Fs;
+	   end func;
+
+

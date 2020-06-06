@@ -1,0 +1,28 @@
+$ The following properties are for Relations, not mmaps
+
+    reflexive := func(R,S); return
+		    forall i in S | i .R i ;
+		 end;
+
+    symmetric := func(R,S); return
+		    forall a,b in S | a .R b iff b .R a ;
+		 end;
+
+    transitive:= func(R,S); return
+		    forall a,b,c in S | (a .R b and b .R c) impl a .R c;
+		 end;
+
+$ make_rel(mmap) ==> relation (map to boolean)
+
+    make_rel := func(R); return
+		    func(a,b); return [a,b] in R; end;
+		end;
+
+S := {1..6};
+gt := make_rel({ [i,j] : i,j in S | i > j });
+ge := make_rel({ [i,j] : i,j in S | i >= j });
+eq := make_rel({ [i,j] : i,j in S | i = j });
+
+reflexive(gt,S); symmetric(gt,S); transitive(gt,S);
+reflexive(ge,S); symmetric(ge,S); transitive(ge,S);
+reflexive(eq,S); symmetric(eq,S); transitive(eq,S);

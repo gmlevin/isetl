@@ -1,0 +1,48 @@
+xaxis := func(low,high,ticksize,tickstep,tickskip opt center);  
+           local i,ticks;
+           center := center ? 0.0;
+
+           [high,low] := [high+twiddle, low-twiddle]
+                         where twiddle := (high-low+1)*0.1 end;
+
+	   move(low,center);
+	   draw(high,center);
+	   i := 0.0; ticks := 0;
+	   while i > low do i := i-tickstep; ticks := ticks-1; end;
+	   i := i+tickstep; ticks := ticks+1;
+	   while i < high do
+	     move(i,-ticksize/2 + center);
+	     draw(i,ticksize/2  + center);
+	     if ticks mod tickskip = 0 then
+		textout(i,-ticksize + center, as_string(ticks*tickstep));
+	     end;
+	     i := i+tickstep;
+	     ticks := ticks+1;
+	   end;
+        end func;
+
+
+yaxis := func(low,high,ticksize,tickstep,tickskip opt center);  
+           local i,ticks;
+           center := center ? 0.0;
+
+           [high,low] := [high+twiddle, low-twiddle]
+                         where twiddle := (high-low+1)*0.1 end;
+           
+	   move(center,low);
+	   draw(center,high);
+	   i := 0.0; ticks := 0;
+	   while i > low do i := i-tickstep; ticks := ticks-1; end;
+	   i := i+tickstep; ticks := ticks+1;
+	   while i < high do
+	     move(-ticksize/2 + center,i);
+	     draw(ticksize/2 + center,i);
+	     if ticks mod tickskip = 0 then
+		textout(ticksize + center, i, as_string(ticks*tickstep));
+	     end;
+	     i := i+tickstep;
+	     ticks := ticks+1;
+	   end;
+        end func;
+
+

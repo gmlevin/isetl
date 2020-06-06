@@ -1,0 +1,39 @@
+\documentstyle[12pt]{report}
+\pagestyle{empty}
+\begin{document}
+\section*{Partial Sums of Fourier Series}
+While one can think of many programs that would be useful
+in connection with teaching MA331, Fourier Series and
+Boundary Value Problems, the following example might serve
+to identify the basic capabilities one would want.
+
+Specify a function $f(x)$ of a single variable $x$, defined over
+a specified domain, say $-a < x < a$.  We wish first to compute
+the Fourier coefficients 
+\begin{eqnarray*} 
+a_{0} & = & \frac{1}{2a} \int_{-a}^{a} f(x) dx \\
+a_{n} & = & \frac{1}{a} \int_{-a}^{a} f(x) \cos{\frac{n\pi x}{a}} dx \\
+b_{n} & = & \frac{1}{a} \int_{-a}^{a} f(x) \sin{\frac{n\pi x}{a}} dx 
+\end{eqnarray*}
+for $n=1,2,3,\ldots$.  Then, we wish to evaluate the sum of the
+first $N$ terms of the Fourier series
+$$f(x) \sim a_{0} + \sum_{n=1}^{\infty} \{
+a_{n} \cos{\frac{n\pi x}{a}} + b_{n} \sin{\frac{n\pi x}{a}}
+\}.$$  That is, replace $\infty$ by $N$.
+
+The function that results from performing the partial sum of the
+Fourier series should be plotted on the same axes as the
+original function $f(x)$.  It will look something like the
+original function, but probably will have some wiggles where the
+original function was smooth.
+
+There are lots of other things I can think of doing with Fourier
+series, but if I see how one would do this problem using ISETL,
+I should be able to figure out how to do other things.
+
+Thanks,
+
+Fred
+\end{document}
+
+

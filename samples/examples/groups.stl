@@ -1,0 +1,81 @@
+$ functions provided
+$    read_table(f)     read multiplication table from file f
+$    print_table(E,G)  print table for binary SMap G ordered by tuple E
+$    assoc(E,G)	       is G associative for elements in E?
+$    id(E,G)	       find a left identity in E for G
+$    orders(E,G opt i) orders of elements E for G (i=id for G)
+
+read_table := func(f);
+    $ read lines from file f
+    $ first line is list of elements
+    $ subsequent lines are lines of multiplication table
+    $ rows and columns ordered according to the first line
+
+    local elements, table;
+    local word;
+
+    elements := [];
+    readf word:-1 from f;
+    while word /= '\n' do
+        elements := elements with word;
+	readf word:-1 from f;
+    end while;
+
+    table := {};
+    for i in elements do
+        for j in elements do
+	    readf word:-1 from f;
+	    table(i,j) := word;
+	end for;
+	readf word:-1 from f;
+	if word /= '\n' then
+	    writeln 'Error in read_table. line wrong length';
+	    return OM;
+	end if;
+    end for;
+
+    return [elements,table];
+end func;
+
+cols := 4;
+print_table := func(elements, table);
+    writeln '':cols, elements:cols;
+    writeln '-'*(cols*(#elements+1));
+    for i in elements do
+        write i:cols-2,'| ';
+	for j in elements do
+	    write table(i,j):cols;
+	end for;
+	writeln;
+    end for;
+end func;
+
+
+
+assoc := func(elm, G);
+    return forall a,b,c in elm:
+              a .G (b .G c) = (a .G b) .G c;
+end func;
+
+orders := |elm,G opt i -> [order(x,I,#elm,G) : x in elm]
+               where I := i ? id(elm,G) end
+          |;
+
+$ used for orders.  N is maximum possible order for an element
+    order := func(x,i,N,G);
+	local k, xk;
+	xk := x;
+	k  := 1;
+	while k <= N and xk /= i do
+	    xk := xk .G x;
+	    k  := k+1;
+	end while;
+	return k;
+    end func;
+
+id := | elm,G -> arb({i: i in elms | forall j in elms: i .G j = j})|;
+
+inverse := | G opt i -> {[a,b] | x=G(a,b) : x=I}
+             where I := i ? id(domain(G),G) end
+	   |;
+

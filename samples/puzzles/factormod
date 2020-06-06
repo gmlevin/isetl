@@ -1,0 +1,70 @@
+!include numbers
+!include primality
+
+$  Go looking for factors by the quadratic residue method
+
+factor
+:=  func(n);
+        local i,h,psi_h, psi_k, psi, trial, pow;
+        pow := 2**(random(4)+1);
+	psi := func(x); return (powmod(x,pow,n) + 1) mod n; end;
+	i := 0;
+	psi_k := random(n-2)+1;
+writeln 'pow=', pow;
+writeln 'x0= ', psi_k;
+	while i <= 7 do
+	    i := i+1;
+	    h := 2**i - 1;
+	    psi_h := psi_k;
+	    psi_k := psi(psi_h);
+	    for k in [h+1..2*h] do
+	        trial := gcd(psi_h-psi_k, n);
+		if trial /= n and trial /= 1 then 
+                   writeln;
+		   return trial;
+	        end if;
+	        write '*';
+		psi_k := psi(psi_k);
+	    end for;
+	    writeln;
+	end while;
+    end func;
+
+!include prime3
+
+factors
+:=  func(n);
+        local result;
+	[n,result] := small_factors(n);
+	result     := result + big_factors(n);
+	return result;
+    end func;
+
+small_factors
+:=  func(n); local result, f, trials, test;
+        result := [];
+	trials := primes;
+	while #trials /= 0  and n /= 1 do
+	    take trial fromb trials;
+	    while n mod trial = 0 do
+	        result := result with trial;
+		n := n div trial;
+	    end while;
+	end while;
+	return [n,result];
+    end func;
+
+big_factors
+:=  func(n); local result, f, trials, test;
+        writeln 'Factoring ', n;
+	result := [];
+	while n /= 1 and not primality(n,10) do
+            f := factor(n);
+	    if f /= om then 
+	        result := result + factors(f);
+		n := n div f;
+	    end if;
+	end while;
+	if n /= 1 then result := result with n; end if;
+	return result;
+    end func;

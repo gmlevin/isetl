@@ -1,0 +1,52 @@
+make_basis := | elms -> { [i,i] : i in elms } |;
+
+S := func(N); 
+    local elements, times, basis;
+
+    elements := perms([1..N]);
+    basis    := make_basis(elements);
+    times := { [ [a,b], basis(a .compose b) ] : a,b in elements };
+    return [elements, times];
+end func;
+
+!include perms.stl
+compose := func(a,b); 
+    return [a(bi) : bi in b];
+end func;
+
+encode := func(GROUP);
+$ returns a mapping from elements to integers
+$ and table encoded as integers
+    local elements, table;
+    local mapping, new_table, code;
+    [elements, table] := GROUP;
+    code := | x -> $ x = [ [a,b], c ]
+              [ [mapping(a), mapping(b)], mapping(c) ]
+	      where [ [a,b],c] := x end
+	    |;
+    mapping := [ p : p in elements ];         $ assign arbitrary order
+    mapping := { [p,i] : p = mapping(i) };
+
+    new_table := { code(i) : i in table };
+    return [mapping, new_table];
+end func;
+
+decode := func(CODED);
+    local mapping, new_table;
+    local elements, table, inv_map, code;
+    [mapping, new_table] := CODED;
+    code := | x -> $ x = [ [a,b], c ]
+              [ [inv_map(a), inv_map(b)], inv_map(c) ]
+	      where [ [a,b],c] := x end
+	    |;
+    inv_map := { [a,b] : [b,a] in mapping };
+
+    elements := domain(mapping);
+    table    := {code(i) : i in new_table };
+    
+    return [elements, table];
+end func;
+
+!memory 1000000
+S4 := S(4);
+!memory

@@ -1,0 +1,97 @@
+ISETL (2.0 beta)  Last updated on 89/07/24 at 11:27:27.
+Copyright 1987,1988 (c) Gary Levin, Clarkson University
+This version was compiled with Turbo-C (c) Borland
+Enter !quit to exit.
+
+>	$ Define the properties of equivalence relations
+>	reflexive  := :S,R -> forall i in S | [i,i] in R: ;
+>	symmetric  := :R   -> forall [a,b] in R | [b,a] in R: ;
+>	transitive := :R   -> forall a,b,c in S | ([a,b] in R and [b,c] in R)
+>>	                                          impl [a,c]
+>>	                      where S := domain(R) + image(R) end : ;
+>	$ Faster definition
+>	transitive := :R   -> forall [a,b] in R, c in R{b} | [a,c] in R : ;
+>
+>	S := {1..10};
+>
+>	R1 := { [i,i+1] : i in S | i+1 in S };
+>	R2 := { [i,j]   : i,j in S | i <  j };
+>	R3 := { [i,j]   : i,j in S | i <= j };
+>	R4 := { [i,j]   : i,j in S | abs(i-j) < 2 };
+>	R5 := { [i,j]   : i,j in S | (i-j) mod 3 = 0 };
+>
+>	reflexive(S,R1);    symmetric(R1);    transitive(R1);
+false;
+false;
+false;
+
+>	reflexive(S,R2);    symmetric(R2);    transitive(R2);
+false;
+false;
+true;
+
+>	reflexive(S,R3);    symmetric(R3);    transitive(R3);
+true;
+false;
+true;
+
+>	reflexive(S,R4);    symmetric(R4);    transitive(R4);
+true;
+true;
+false;
+
+>	reflexive(S,R5);    symmetric(R5);    transitive(R5);
+true;
+true;
+true;
+
+>
+>	$ The equivalence classes for a relation are the sets of
+>	$ related elements
+>	eqclass := :R -> { R{i} : i in domain(R) + image(R) } : ;
+>
+>	eqclass(R5);
+{{9, 6, 3}, {2, 8, 5}, {1, 4, 7, 10}};
+
+>
+>	$ Equivalence relations are exhaustive ...
+>	%union eqclass(R5) = S;
+true;
+
+>	$ ... and disjoint ...
+>	forall a,b in eqclass(R5) | a/=b impl a inter b = {};
+true;
+
+>	$ ... properties of partitions
+>	exhaustive := :S,P -> %union P = S: ;
+>	disjoint   := :P   -> forall a,b in P | a/=b impl a inter b = {} : ;
+>
+>	exhaustive(S,eqclass(R1));  disjoint(eqclass(R1));
+false;
+true;
+
+>	exhaustive(S,eqclass(R2));  disjoint(eqclass(R2));
+false;
+false;
+
+>	exhaustive(S,eqclass(R3));  disjoint(eqclass(R3));
+true;
+false;
+
+>	exhaustive(S,eqclass(R4));  disjoint(eqclass(R4));
+true;
+false;
+
+>	exhaustive(S,eqclass(R5));  disjoint(eqclass(R5));
+true;
+true;
+
+>
+>	$ It is possible for the function eqclass to return a partition
+>	$ from a function that is not an equivalence relation.
+>
+>	Rq := {[1,1]} + R1;
+>	exhaustive(S,eqclass(Rq));  disjoint(eqclass(Rq));
+true;
+true;
+

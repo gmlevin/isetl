@@ -1,0 +1,435 @@
+!memory 200000
+$           Title: graph II
+$              By: Mark Huibregtse
+$            Date: 5-8 September 1989
+     
+$      This file contains the func "graph", which provides a
+$ simple character-based graphing capability for ISETL.  The
+$ graph is generated using (subdivided) character locations as
+$ "pixels".  Each character position represents a column of
+$ three pixels by the trick of using characters of different
+$ heights: . + ^ .  (In the program, the period and the
+$ circumflex are fixed, but the user enters the character to
+$ be used as the intermediate pixel; lowercase letters are
+$ good choices, or symbols such as +, -, *, etc.)  The x-axis
+$ is horizontal and the y-axis is vertical -- this is the
+$ main difference between this version of the program and the
+$ version distributed previously.
+     
+$      Any of the following ISETL representations of functions
+$ can be graphed: func, tuple, s-map, m-map.  These functions
+$ need not be exclusively number-valued; non-numeric values are
+$ ignored. The user can graph as many items simultaneously as
+$ desired; for example, a scatterplot (m-map) and its regression
+$ line (func) can be simultaneously displayed.  If the user
+$ enters an (optional) filename, the graph is written to the
+$ named file, otherwise the graph is displayed on the screen.
+     
+$      Note:  If you need to adjust the size of the "window"
+$ in which the graph is displayed, reset the values of numRows
+$ and numCols in the func InitializeGraphGlobals.  Currently
+$ these have the values 21 and 70, respectively; the two
+$ extreme rows and columns are reserved for a graph border.
+$ The top line of the graph can be "chopped off" if echo is
+$ "on" when the func is used.
+     
+$ ---------------------------------------------------------
+     
+$ The inputs to "graph" are:
+     
+$      itemList:   List of one or more items to be graphed.
+$                  Format: [ [f1, ch1], [f2, ch2], ... ]
+$                  The f's are "function items", that is, funcs
+$                  or maps or tuples, and the ch's are the
+$                  characters to be used to graph the
+$                  corresponding item -- as noted above, the ch's
+$                  should be characters of "intermediate height"
+$                  between the period . and the circumflex ^.
+$
+$      minX, maxX: Bounds on x, the independent variable.
+     
+$      minY, maxY: Bounds on y, the dependent variable.
+     
+$      fileName:   Optional string parameter giving the pathname
+$                  of the file where graph is to be written; if
+$                  omitted, as in the following example, the
+$                  graph is written to the screen.
+     
+$ Example:  >  graph ([[sin, "+"]], -3.14, 3.14,  -1,  1);
+$                     /\              /\    /\     /\  /\
+$                    itemList        minX  maxX   minY maxY
+$                 (with one item)
+     
+graph := func(itemList, minX, maxX, minY, maxY opt fileName);
+     
+local
+     
+$      variables
+     
+	    numRows, numCols, graphArray, numSpacesToIndent,
+	    numXPixels, numYPixels, f, ch, outfile,
+	    inputErrorMessage, fileOutputDesired,
+     
+$      funcs
+     
+	    InitializeGraphGlobals, DisplayGraph,
+	    RealToPixel, AddAxes, PlotFunc, PlotMap, PlotTuple,
+	    PlotChar, PixelToRow;
+     
+$ ---------------------------------------------------------
+     
+$ This func initializes the variables that are accessed
+$ globally by the funcs in the graphing system.
+     
+InitializeGraphGlobals := func ();
+     
+    local index;
+     
+    numRows := 21;   $   19 for graph + 2 for border
+    numCols := 70;   $   68 for graph + 2 for border
+     
+    numXPixels := numCols - 2;
+    numYPixels := 3 * (numRows - 2);  $  3 vertical places/char. pos.
+     
+    graphArray := [" " * numCols : row in [1..numRows]];
+     
+    $ set up border in the graphArray
+	  graphArray (1) := numCols * "-";
+	  graphArray (numRows) := numCols * "-";
+     
+	  for rowIndex in [1..numRows] do
+	      graphArray (rowIndex) (1) := "{";
+	      graphArray (rowIndex) (numCols) := "}";
+	  end for;
+     
+    numSpacesToIndent := 5;  $  should be >= 5
+     
+    fileOutputDesired := is_file (outfile)  $  either opened or OM
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func checks the inputs to Graph and catches various
+$ errors.  If an error is detected, the variable
+$ "inputErrorMessage" is assigned an appropriate string
+$ value.  If the user has provided a fileName and the
+$ file can be opened for output, this func opens the
+$ file as a side effect; if the file can not be opened,
+$ the graph inputs are not OK and inputErrorMessage
+$ is set accordingly.
+     
+GraphInputsAreOK := func (itemList, minX, maxX, minY, maxY, fileName);
+     
+    local is_char, is_funcMapTuple, is_validFileOrOM;
+     
+    is_char := func (ch);
+	return is_string (ch) and #ch = 1;
+    end func;
+     
+    is_funcMapTuple := func (f);
+	return is_func (f) or is_map (f) or is_tuple (f);
+    end func;
+     
+    is_validFileOrOM := func (s);
+	if s = OM then
+	    return true;
+	elseif not is_string (s) then
+	    return false;
+	else
+	    outfile := openw (s);
+	    return is_file (outfile);
+	end if;
+    end func;
+     
+    $ ***** start of input checks *****
+     
+	if not ( is_tuple (itemList) and
+		 (forall item in itemList | is_tuple (item) and #item = 2 and
+				      is_funcMapTuple (item (1)) and
+				      is_char (item (2))
+		 )
+	       ) then   $  error in itemList
+     
+	    inputErrorMessage := "Error in the list of items to graph.";
+	    return false;
+     
+	elseif not (is_number (minX) and is_number (maxX) and minX < maxX)
+								     then
+     
+	    inputErrorMessage := "Error in the input range.";
+	    return false;
+     
+	elseif not (is_number (minY) and is_number (maxY) and minY < maxY)
+								     then
+     
+	    inputErrorMessage := "Error in the output range.";
+	    return false;
+     
+	elseif not is_validFileOrOM (fileName) then
+     
+	    inputErrorMessage := "Error in the output filename.";
+	    return false;
+     
+	else
+     
+	    return true;
+     
+	end if;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func writes the contents of the graphArray to the
+$ location desired by the user (the console or the named
+$ file).  The bounds on x and y are also written.
+     
+DisplayGraph := func ();
+     
+    local rowCount;
+     
+    rowCount := 1;
+     
+    if not fileOutputDesired then
+	outfile := openw ("CONSOLE");
+    end if;
+     
+    printf 3 * "\n" to outfile;
+     
+    for row in graphArray do
+	if rowCount = 2 then
+	    printf "MaxY>" + (numSpacesToIndent - 5) * " " to outfile;
+	elseif rowCount = numRows - 1 then
+	    printf "MinY>" + (numSpacesToIndent - 5) * " " to outfile;
+	else
+	    printf numSpacesToIndent * " " to outfile;
+	end if;
+	printf row, "\n" to outfile;
+	rowCount := rowCount + 1;
+    end for;
+     
+    printf numSpacesToIndent*" " + " ^MinX" + (numCols-12)*" " + "MaxX^",
+	  "\n" to outfile;
+     
+    printf 15 * " " , "MinX = ", minX : 1.02, "  MaxX = ", maxX : 1.02,
+		      "  MinY = ", minY : 1.02, "  MaxY = ", maxY : 1.02,
+		      "\n" to outfile;
+     
+    return;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func converts the given real value to an integer
+$ value which represents the "pixel" number corresponding to
+$ the real value.
+     
+RealToPixel := func (inValue, minValue, maxValue, minPixel, maxPixel);
+     
+    local ratio, valueToReturn;
+     
+    ratio := (inValue - minValue) / (maxValue - minValue);
+     
+    valueToReturn := (maxPixel - minPixel) * ratio  +  minPixel;
+     
+    valueToReturn := floor (valueToReturn + 0.5);
+     
+    return valueToReturn;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func takes the value of yPixel and computes the
+$ row in graphArray that corresponds to that pixel.  Each
+$ character position represents three pixels; row 2 of the
+$ array represents pixels 1, 2, 3, row 3 represents
+$ pixels 4, 5, 6, etc.
+     
+PixelToRow := func (yPixel);
+     
+    if yPixel mod 3 = 0 then
+	return (yPixel div 3) + 1;
+    else
+	return (yPixel div 3) + 2;
+    end if;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func inserts the x- and y- axes into the graphArray,
+$ as needed.
+     
+AddAxes := func (minX, maxX, minY, maxY);
+     
+    local yAxisPixel, yAxisRow, xAxisPixel, xAxisCol;
+     
+    if minX <= 0 and 0 <= maxX then  $  need y-axis
+	yAxisPixel := RealToPixel (0, minX, maxX, 1, numXPixels);
+	yAxisCol := yAxisPixel + 1;  $  shift to accommodate border
+	for count in [2..numRows-1] do
+	    graphArray (count) (yAxisCol) := "|";
+	end for;
+    end if;
+     
+    if minY <= 0 and 0 <= maxY then  $  need x-axis
+	xAxisPixel := RealToPixel (0, minY, maxY, numYPixels, 1);
+	xAxisRow := PixelToRow (xAxisPixel);
+	if xAxisPixel mod 3 = 1 then
+	    graphArray (xAxisRow) := numCols * "~";
+	elseif xAxisPixel mod 3 = 2 then
+	    graphArray (xAxisRow) := numCols * "-";
+	else
+	    graphArray (xAxisRow) := numCols * "_";
+	end if;
+	graphArray (xAxisRow) (1) := "{";
+	graphArray (xAxisRow) (numCols) := "}";
+    end if;
+     
+    return;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func returns the appropriate character to plot
+$ depending on the value of yPixel.
+     
+PlotChar := func (yPixel, ch);
+     
+    if yPixel mod 3 = 1 then
+	return "^";
+    elseif yPixel mod 3 = 2 then
+	return ch;
+    else
+	return ".";
+    end if;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func plots the the func f.  That is, it fills the
+$ graphArray with the appropriate characters to represent
+$ the graph of f.
+     
+PlotFunc := func (f, ch);
+     
+    local xValue, xPixel, xCol, yValue, yPixel, delta;
+     
+    delta := (maxX - minX) / (numXPixels - 1);
+     
+    xValue := minX;
+    xPixel := 1;
+    xCol := 2;  $  cols 1 and numCols are reserved for the border
+     
+    while xPixel <= numXPixels do
+	yValue := f(xValue);
+	if yValue /= OM and is_number (yValue) and
+	   minY <= yValue and yValue <= maxY then
+	     yPixel := RealToPixel (yValue, minY, maxY, numYPixels, 1);
+	     graphArray (PixelToRow (yPixel)) (xCol) :=
+						    PlotChar (yPixel, ch);
+	end if;
+	xValue := xValue + delta;
+	xPixel := xPixel + 1;
+	xCol := xCol + 1;
+    end while;
+     
+    return;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func plots the map f.  That is, it fills the
+$ graphArray with the appropriate characters to represent
+$ all of the pairs in f which are numeric and in range.
+     
+PlotMap := func (f, ch);
+     
+    local xValue, xPixel, xCol, yValue, yPixel;
+     
+    for pair in f do
+     
+	xValue := pair (1);
+	yValue := pair (2);
+	if is_number (xValue) and minX <= xValue and xValue <= maxX and
+	   is_number (yValue) and minY <= yValue and yValue <= maxY then
+	     xPixel := RealToPixel (xValue, minX, maxX, 1, numXPixels);
+	     xCol := xPixel + 1;
+	     yPixel := RealToPixel (yValue, minY, maxY, numYPixels, 1);
+	     graphArray (PixelToRow (yPixel)) (xCol) :=
+						    PlotChar (yPixel, ch);
+     
+	end if;
+     
+    end for;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func plots the tuple f.  That is,it fills the
+$ graphArray with the appropriate characters to represent
+$ the points [index, f(index)] for those values of index
+$ in [1..#f] which are in range.
+     
+PlotTuple := func (f, ch);
+     
+    local xPixel, xCol, yValue, yPixel;
+     
+    for xValue in [1..#f] do
+     
+	yValue := f(xValue);
+	if is_number (yValue) and minY <= yValue and yValue <= maxY then
+	    xPixel := RealToPixel (xValue, minX, maxX, 1, numXPixels);
+	    xCol := xPixel + 1;
+	    yPixel := RealToPixel (yValue, minY, maxY, numYPixels, 1);
+	    graphArray (PixelToRow (yPixel)) (xCol) :=
+						   PlotChar (yPixel, ch);
+	end if;
+     
+    end for;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ ********** Start of main graphing steps **********
+     
+    if not GraphInputsAreOK (itemList, minX, maxX, minY, maxY, fileName) then
+	printf "\n", inputErrorMessage, "  Execution halted.", "\n";
+	return "**********************************************************";
+    end if;
+     
+    InitializeGraphGlobals ();
+     
+    AddAxes (minX, maxX, minY, maxY);
+     
+    for item in itemList do
+     
+	f := item (1);
+	ch := item (2);
+     
+	if is_func (f) then
+	    PlotFunc (f, ch);
+	elseif is_map (f) then
+	    PlotMap (f, ch);
+	elseif is_tuple (f) then
+	    PlotTuple (f, ch);
+	end if;
+     
+    end for;
+     
+    DisplayGraph ();
+     
+    close (outfile);  $  either "CONSOLE" or external file
+     
+    return "***** Graph Completed *****";
+     
+end func;
+

@@ -1,0 +1,43 @@
+How about sharing some interesting problems / puzzles / contests that
+we can set our students, either as assigned problems or just for fun.
+For instance,
+
+Prime number generation
+
+    ISETL must have one of the simplest prime number programs around:
+    { p : p in [2..N] | forall i in [2..p-1] | p mod i /= 0};
+
+    It is also one of the slowest.
+
+    The test suite has two other prime number generators, one using
+    loops, and the other using generators -- functions act as infinite
+    sequences, returning the next element in the sequence on each call.
+    These are in the files primel.t and primeg.t.
+
+    The contest would be to see who could generate the most primes in
+    a fixed amount of time.  Ground rules would have to be laid:
+
+        (a) May you just iterate over the odd numbers, or must the
+	    evens be eliminated ``fairly''.
+
+	(b) May you start with some primes already stored in
+	    sequence, or must you build from scratch? 
+
+    Obviously the choice of the machine will make some difference.
+    I'd advice pre-allocating memory to reduce garbage collection
+    time.  You can match machine limits by setting the maximum memory
+    to use with ``!memory 100000'' and then allocating it with
+    ``!allocate 100000''.
+
+    I'd be curious to see what programs are developed, for cleverness,
+    speed, clarity, ... .  I'm also curious to know how large a prime
+    can be found.
+
+    (Alternate problem for advanced students might be to implement the
+    pseudo-prime testing algorithms, and see what large primes they
+    can discover.)
+
+I'll post other puzzles in separate messages.
+----
+Gary Levin/Dept of Math & CS/Clarkson Univ/Potsdam, NY 13676/(315) 268-2384
+BitNet: gary@clutx   Internet: gary@clutx.clarkson.edu

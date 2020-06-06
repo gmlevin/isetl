@@ -1,0 +1,30 @@
+        $ bar(dom,F) prints a bar graph showing the value of F(i), i in dom
+        bar := func(dom,F opt width);   local largest, scale, total, p;
+                  if width=om then width := 60; end if;
+
+                  $ Determine largest value of F(dom)
+                    largest := 0;
+                    total := 0;
+                    for i in dom do
+                      $ Limit F(i) to natural numbers
+                        F(i) := F(i);       $ won't need to recompute it
+                        if F(i)=OM or F(i) < 0 then F(i) := 0; end if;
+
+                      largest := max(largest, F(i));
+                      total   := total + F(i);
+                    end for;
+
+                  if largest > width then scale := largest div width + 1;
+                                          writeln 'Scaled by: ', scale;
+                  else scale := 1;
+                  end if;
+                    
+                  p := 0;
+                  for i in dom do
+                    p := p+F(i);
+                    writeln p*100/total:6.02, i:4, '  ', 
+                        '=' * (F(i) div scale);
+                  end for;
+               end func;
+        hist := func(dom,T); bar(dom, :i -> #[x : x in T | x=i]:); end;
+        roll := :-> random(5)+1: ;

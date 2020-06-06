@@ -1,0 +1,31 @@
+I was reading the new book ``Archimedes' Revenge'' by Paul Huffman (I
+think that is his name).  The sections of the book are:
+
+    (1) Numbers -- articles on number theory, particularly primes
+    (2) Shapes -- geometry and topology, with some molecular biology
+    (3) Computers -- mainly computer chess and simple Turing machines
+    (4) One Man, One Vote -- voting paradoxes and the theory of games
+
+An interesting fact was mentioned in the Numbers section.
+
+    Consider the following manipulation of the decimal representation
+    of an integer.  Take the digits, cube them, and then add the
+    cubes.  Repeat the process.
+
+    As the book states, every third number has 153 hidden inside.
+    (The book offers a reference to the person who made this
+    discovery.  Unfortunately, the book is at home.)
+
+It is easy to write an ISETL program that will list the steps in the
+above process, printing the integer at each stage.
+
+(1) What can be observed in the sequences that begin with ``every
+    third number'' [3,6..N] ?
+
+(2) Does this suggest that there might be a common terminus for each
+    sequence?
+
+(3) What about non-multiples of 3?  Is there anything of note in their
+    sequences?
+
+(4) Can you prove any of your conjectures to the above?

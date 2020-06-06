@@ -1,0 +1,51 @@
+connected := func(G);
+$ G is an undirected graph
+$ returns set of connected components
+    local R;         $ Relation that represents G not yet in comps
+    local V;	     $ Vertices of G not in comps
+    local comps;     $ set of components found so far
+    local covered,to_do,v,q,new;
+
+    R := { [x: x in edge] : edge in G };
+    R := R + { [j,i] : [i,j] in R };
+
+    V := %union G;
+    comps := {};
+
+    while V /= {} do
+        take v from V;
+	covered := {};
+	to_do   := {v};
+	while to_do /= {} do 
+	    take q from to_do;
+	    V := V less q;
+	    covered := covered with q;
+	    to_do   := to_do + R{q};
+	    R{q}    := om;
+	end while;
+	new :=  { x : x in G | x subset covered };
+	G := G - new;
+	comps := comps with new;
+    end while;
+    return comps;
+end func;
+
+conn2 := func(G);
+    local new, next, V, comps;
+    comps := {};
+    while G/={} do
+        take new from G;
+	new := {new};
+	V := {};
+	next := {};
+
+	while new/={} do
+	    next := next+new;
+	    V := V %+new;
+	    new := { x : x in G | x inter V /= {}};
+	    G := G-new;
+	end;
+	comps := comps with next;
+    end;
+    return comps;
+end func;

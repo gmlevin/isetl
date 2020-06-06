@@ -1,0 +1,104 @@
+\section{Running \ISETL\ on your computer}\label{extern}
+
+It is difficult to cover all the possibilities here,
+because \ISETL\ has been written so that it will run on many machines.
+This means that I have no way of knowing things like memory size, number of
+disks, or available software.
+I will try to cover general possibilities, and leave it to you to check
+with local machine experts
+--- usually called {\em \GURU s} ---
+for more details.
+I'll put a mark in the margin like the one near the word guru to point out these
+system dependent points.
+Instructors may wish to check these points {\em before\/} the semester
+begins.
+
+\subsection{Creating files}\label{editor}
+If you want to do more than use \ISETL\ as a calculator,
+you will eventually want to create files that \ISETL\ can read.
+These files may be used as input to programs you have written,
+or they may be programs to be \[!include\]d.
+
+The files should be simple text files,
+also called \[ascii\] files or unformatted files.
+Lines may end with CR, LF, or CR-LF, although the last case may result in
+blank lines on some systems.
+
+The problem arises of how to create such a file.
+\begin{itemize}
+    \item Preferably, don't use a word processor.
+
+    Word processors put lots of extra information into files,
+    so that the file can be printed in an attractive format.
+    Unfortunately, each word processor has its own way of hiding that extra
+    information, and there is no way that \ISETL\ can ignore it.
+    More unfortunately, I have no way of knowing what needs to be done to just
+    save the text.
+    This is a job for your local \GURU.
+
+    For instance, on the Mac, MacWrite has an option when you are saving
+    to save text only.  If you save text only, it tries to protect you by
+    asking you if you want to save the file when you exit.  If you say yes,
+    it saves a formatted file.  Arrgh!
+
+    \item On Unix and VMS, just use the standard editors --- vi, emacs, edt.
+    \item On the Mac and MS-DOS, use an editor if you have one.
+
+    Both the Mac and MSDOS now contain built-in editors.  These can be
+    used to create files.  See the section on Editors in \Intro.
+
+\end{itemize}
+
+
+See \ref{system} for hints as to how to use an editor while you are using
+\ISETL.
+
+
+\subsection{Size of files}
+There is no important limit to the length of a file,
+but if you want to see your input as you \[!include\] a file,
+you should take note of the width of your screen.
+Each line is indented one tab.  This means that if you have 80
+columns, you should limit lines to 72 columns.
+The Macintosh has a smaller screen.
+
+See \ref{echo} for an explanation of how to watch as input is read
+from files.
+
+
+\subsection{Standard input and output}\label{redirection}
+Standard input and output (\[stdin\] and \[stdout\], respectively)
+are concepts that come from Unix.
+\[stdin\] is usually the keyboard, and \[stdout\] is usually the screen.
+If this were all there was to it, I would just say keyboard and screen and
+be done with it, but there is more.
+This extra ability is useful when you want to collect a terminal session,
+say to turn in as homework.
+(See \ref{script} for information about how to do this in detail.)
+
+On Unix and MS-DOS, you can re-direct \[stdin\] and/or \[stdout\] for 
+{\em any\/} program.  What follows does not apply to VMS or the Mac.
+See your \GURU\ for
+suggestions as to how you can get the same effect.
+
+On the command line where you type \[isetl\], 
+you can also type ``\[<~afile\]''.  This means that instead of
+reading from the keyboard, \[stdin\] is read from \[afile\].
+Any filename may be used in place of \[afile\].
+Similarly, you can type ``\[>~bfile\]'' and \[stdout\] will go to
+\[bfile\] instead of the screen.
+There will be {\em no visible output\/} to the screen in this case.
+
+The characters ``\[<\]'' and ``\[>\]'' may be thought of as ``out of'' and
+``in to'', respectively.
+
+\subsection{Command line arguments --- VMS}
+Command line arguments and flags may be passed in all versions of \ISETL\@,
+except the Mac.
+In the case of VMS, you need to do a little work first.
+
+Define \[isetl :== \$your\$disk:[your.dir]isetl.exe\] in your
+\[login.com\] and you
+will be able to use command line arguments.  The leading \[\$\] makes
+this a {\em foreign command\/} (a VMS term, I am told).  The rest is the
+complete path to the executable version of \ISETL\@.

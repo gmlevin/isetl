@@ -1,0 +1,129 @@
+!include numbers
+
+$ Factoring  (from Wilf, Algorithms and Complexity, p 169)
+
+$ B is factor base (differs from book in that it is origin 1)
+B := [-1] + [p : p in [2..50] | forall i in [2..p-1] | p mod i /= 0];
+
+h := #B;
+
+$ Find e(a) = [e(i) : i in [1..h]] where
+$         c = %* [B(i)**e(i)]
+$      a**2 = c
+$      -n/2 <= c < n/2
+$ Assumes B begins with -1
+$ Returns OM if no such c exists 
+exp_vector := func(a,n);  local c,e,pow;
+                  c := (a**2  mod n);
+		  if c >= (n+1) div 2 then c := c - n;
+		  end if;
+		  
+		  if     c < 0 then e := [1]; c := -c;
+		  elseif c > 0 then e := [0];
+		  else              return OM;
+		  end;
+		  for x in B(2..) do
+		      pow := 0;
+		      while c mod x = 0 do
+		          pow := pow+1;
+			  c := c div x;
+		      end;
+		      e := e with pow;
+		  end for;
+		  if c = 1 then return e;
+		  else          return OM;
+		  end if;
+              end func;
+
+
+$ find set A of exp_vectors that has 0 sum, mod 2
+$   (h+1) will be enough
+$ compute r = %+ A div 2 (ok, since pointwise sum is even)
+$         u = %* A mod n (use numbers represented)
+$         v = %* [B(i)**r(i)] mod n
+$  u**2 == v**2 mod n
+$  therefor either u-v or u+v has factor in common with n
+$  if u == v mod n, bad luck
+$  o.w. compute gcd(u-v,n) or gcd(u+v,n)
+
+factorbase
+       := func(n); local E, A, R,  U, V, times;
+              times := func(a,b); return (a*b) mod n; end;
+	      
+              E := [];
+	      while #E <= #B do
+	          E := E with exp_vector(random(n-2)+1,n);
+		  write '*';
+	      end while;
+	      A := solve(E);
+
+	      if A=om then print ['failed',E]; return; end if;
+	      A := [e : e=E(i) | A(i)];
+	      R := [ (%+[a(i) : a in A]) div 2 : i in [1..#B]];
+
+	      U := %times[ powmod(B(i),a(i),n) : a in A, i in [1..#B]];
+
+	      V := %times[ powmod(B(i),R(i),n) : i in [1..#B]];
+
+	      return [gcd(U-V, n), gcd(U+V,n)];
+          end func;
+
+
+$ Find linear combination of V that sums to zero
+$ Return boolean vector of length #V indicating which are included in sum
+$ All computation is done mod 2.
+$
+$ Solved by considering homogeneous equation V**T x result**T = 0
+$ Select one non-zero vector to include and then back substitute
+$ Assumes #V = #V(1) + 1
+solve := func(V); local j, pivot, val, SizeV, SizeC;
+             SizeV := #V;
+	     SizeC := #V(1);
+             V := [ [odd(i) : i in v] : v in V];
+	     for i in [1..SizeV] do 
+	         $ find true in V(i)(i..)
+		     j := i;
+		     while j<=SizeC and not V(i)(j) do
+		        j := j+1;
+		     end while;
+		 $ if  none, go to next vector
+		     if j <= SizeC then
+		         $ o.w. move it to ith position, with other elements
+			     if j /= i then
+			         for k in [i..SizeV]  do
+				     [V(k)(i),V(k)(j)]:=[V(k)(j),V(k)(i)];
+				 end for;
+			     end if;
+			 $ xor rest of row i with each later row
+			 $ (remember transpose swaps row and col)
+			     for k in [i+1..SizeC] | V(i)(k) do
+				 for j in [i..SizeV] |  V(j)(i) do
+				     V(j)(k) := not V(j)(k);
+				 end for;
+			     end for;
+		     end;
+	     end for;
+
+	     $ back substitute
+	         for i in [SizeC,SizeC-1..2] do 
+		     $ T and T  =>  need to subtract
+		     $ T and F  =>  subtracting zero, so no action
+		     $ F and F  =>  independent?
+		     $ F and T  =>  error
+		     pivot := V(i)(i);
+		     val := V(SizeV)(i);
+		     if pivot and val then          $ xor back
+		         for j in [1..i-1] do
+			     if V(i)(j) then
+			         V(SizeV)(j) := not V(SizeV)(j);
+			     end if;
+			 end for;
+		     elseif not pivot and val then  $ error
+		         return om;
+		     end if;
+		 end for;
+	     return [V(i)(i) and V(SizeV)(i) : i in [1..SizeC]] + [true];
+         end func;
+
+
+	 

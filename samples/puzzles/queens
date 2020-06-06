@@ -1,0 +1,25 @@
+$ queens placed in row Q(c) of column c.  is queen safe at (#Q+1,x)?
+$ assumes no row conflicts
+safe 
+:=  func(Q,x);
+        return forall r=Q(c)| r+c /= x+(#Q+1)
+                         and  r-c /= x-(#Q+1)
+    end func;
+
+
+$ Return set of all placements of queens extending Q to n queens
+$ Assumes Q is safe
+$ left = unused rows 
+queens
+:=  func(Q,left,n); local result;
+        if #Q=n then print Q; return {Q};
+	else
+	    result := {};
+	    for x in left | safe(Q,x) do
+	        result := result + queens(Q with x, left less x, n);
+	    end for;
+	    return result;
+	end if;
+    end func;
+
+Queens := func(n); return queens([],{1..n},n); end;

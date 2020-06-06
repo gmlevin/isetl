@@ -1,0 +1,2 @@
+[p : p in [2..1000] | forall i in [2..p-1] | p mod i /= 0];
+$ 57.2u 2.6s 1:10 84% 0+224k 3+1io 0pf+0w sun.mcs

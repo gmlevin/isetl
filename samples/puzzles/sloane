@@ -1,0 +1,263 @@
+A great source of interesting exercises is Sloane's Handbook of
+Integer Sequences.  This book lists 2372 different integer sequences
+in lexicographic order.  This means that given a few terms of a
+sequence, you can often find it here.
+
+A typical entry looks like
+
+256				Entry number
+1,2,3,5,8,13,21,34,55		Sequence
+Fibonacci numbers		Name and/or
+A(n) = A(n-1)+A(n-2)		 descriptive phrase
+REF				references
+
+Two lines of terms are given, unless fewer terms have been computed.
+
+A limited number of reference books cover the majority of sequences.
+Many are covered in the first half of the book.
+
+Sequences are limited to:
+
+    Non-negative integer sequences.
+    Alternating sequences are in absolute values.
+    Fractions have their numerators and denominators listed separately.
+    Real functions may be represented by integer parts (truc or round).
+
+    Infinite sequences.  (Mersenne primes have been given the benefit
+    of the doubt.)
+
+    First two terms must be 1,n, n in {1..999}.
+    An initial 1 is inserted if needed, and extra 1s and 0s are deleted.
+
+    Enough terms must be known to differentiate the sequence.
+
+    Sequence must have appeared elsewhere, be well-defined, and
+    interesting.
+
+We can perform experiments on sequences, looking for patterns, trying
+to justify our choices for proofs.  Certain operations will make
+manipulations easier.  Some of these are built-in to APL, for
+instance, but are easily written in ISETL; they may then be included
+in the isetl.ini file.
+
+    $ apply to all  
+    all := func(f); return  func(t); return [f(i) : i in t]; end; end;
+
+    $ pointwise application
+    point := func(f); return
+	      func(a,b); return [a(i) .f b(i) : i in [1..#a]]; end;
+	     end;
+
+    $ progressive differences
+    delta := func(t); return [t(i)-t(i-1) : i in [2..#t]]; end;
+
+    $ partial sums
+    scan  := func(f); return
+	       func(t); return [%f t(1..i): i in [1..#t]]; end;
+	     end;
+
+An experiment:  What is %+[i*(i+1) : i in [1..N]];
+
+>	s := [ i*(i+1) : i in [1..20]];
+>	t := [ %+s(1..i): i in [1..#s]];
+
+>	cube := [i*i*i : i in [1..20]];
+>	cube;
+[1, 8, 27, 64, 125, 216, 343, 512, 729, 1000, 1331, 1728, 2197, 2744,
+ 3375, 4096, 4913, 5832, 6859, 8000];
+
+>	t .(point(diff)) cube;
+[1, 0, -7, -24, -55, -104, -175, -272, -399, -560, -759, -1000, -1287,
+ -1624, -2015, -2464, -2975, -3552, -4199, -4920];
+
+>	t;
+[2, 8, 20, 40, 70, 112, 168, 240, 330, 440, 572, 728, 910, 1120, 1360,
+ 1632, 1938, 2280, 2660, 3080];
+
+>	hcube := all(func(x);return x div 2;end)(cube);
+>	hcube;
+[0, 4, 13, 32, 62, 108, 171, 256, 364, 500, 665, 864, 1098, 1372, 1687,
+ 2048, 2456, 2916, 3429, 4000];
+
+>	t .(point(diff)) hcube;
+[2, 4, 7, 8, 8, 4, -3, -16, -34, -60, -93, -136, -188, -252, -327, -416,
+ -518, -636, -769, -920];
+
+>	x := [i*(i+1)*(i+2) div 3 : i in [1..20]];
+>	x;
+[2, 8, 20, 40, 70, 112, 168, 240, 330, 440, 572, 728, 910, 1120, 1360,
+ 1632, 1938, 2280, 2660, 3080];
+
+>	t;
+[2, 8, 20, 40, 70, 112, 168, 240, 330, 440, 572, 728, 910, 1120, 1360,
+ 1632, 1938, 2280, 2660, 3080];
+
+>	$ Now prove that %+[i*(i+1) : i in [1..N]] == N*(N+1)*(N+2) div 3
+>	$ Sloane's has 1363 = 1,4,10,20,35,56,84,120
+>	$ Tetrahedral numbers or C(N,3)
+
+An experiment: What is %+[i**3 : i in [1..N]];
+
+>	s := [%+cube(1..i) : i in [1..#cube]];
+>	s;
+[1, 9, 36, 100, 225, 441, 784, 1296, 2025, 3025, 4356, 6084, 8281, 11025,
+ 14400, 18496, 23409, 29241, 36100, 44100];
+
+>	$ Expect it to grow roughly as i**4, but 20**4 = 160,000 (4* too big)
+>	fth := [ i*(i+1)*(i+2)*(i+3) div 4 : i in [1..#s]];
+>	fth;
+[6, 30, 90, 210, 420, 756, 1260, 1980, 2970, 4290, 6006, 8190, 10920,
+ 14280, 18360, 23256, 29070, 35910, 43890, 53130];
+
+>	x := s .pdiff fth;
+>	x;
+[-5, -21, -54, -110, -195, -315, -476, -684, -945, -1265, -1650, -2106,
+ -2639, -3255, -3960, -4760, -5661, -6669, -7790, -9030];
+
+>	y := x .psum cube;
+>	y;
+[-4, -13, -27, -46, -70, -99, -133, -172, -216, -265, -319, -378, -442,
+ -511, -585, -664, -748, -837, -931, -1030];
+
+>	z := y .psum sq;
+>	z;
+[-3, -9, -18, -30, -45, -63, -84, -108, -135, -165, -198, -234, -273,
+ -315, -360, -408, -459, -513, -570, -630];
+
+>	$ notice that all are divisible by 3
+>	all(func(x); return x div 3 end) (z);
+[-1, -3, -6, -10, -15, -21, -28, -36, -45, -55, -66, -78, -91, -105, -120,
+ -136, -153, -171, -190, -210];
+
+>	$ looks familiar, sum of integers
+>	$ one solution is
+>	$ i*(i+1)*(i+2)*(i+3) div 4 - i**3 - i**2 - 3*i*(i+1) div 2
+>	
+>	s;
+[1, 9, 36, 100, 225, 441, 784, 1296, 2025, 3025, 4356, 6084, 8281, 11025,
+ 14400, 18496, 23409, 29241, 36100, 44100];
+
+>	[i*(i+1)*(i+2)*(i+3) div 4 - i**3 - i**2 - 3*i*(i+1) div 2  :
+>>	   i in  [1..20]];
+[1, 9, 36, 100, 225, 441, 784, 1296, 2025, 3025, 4356, 6084, 8281, 11025,
+ 14400, 18496, 23409, 29241, 36100, 44100];
+
+>	$alternate approach  to fth (smaller first guess)
+>	fth := [(i-1)*i*(i+1)*(i+2) div 4 : i in [1..20]];
+>	x := s .pdiff fth;
+>	x;
+[1, 3, 6, 10, 15, 21, 28, 36, 45, 55, 66, 78, 91, 105, 120, 136, 153, 171,
+ 190, 210];
+
+>	$ again, familiar
+>	$ new solution is:
+>	$  (i-1)*i*(i+1)*(i+2) div 4 + i*(i+1) div 2
+>	[(i-1)*i*(i+1)*(i+2) div 4 + i*(i+1) div 2 : i in [1..20]];
+[1, 9, 36, 100, 225, 441, 784, 1296, 2025, 3025, 4356, 6084, 8281, 11025,
+ 14400, 18496, 23409, 29241, 36100, 44100];
+
+
+>	pascal := [ [ C(n,k) : k in [0..n]] : n in [1..10]];
+>	pascal;
+[[1, 1], [1, 2, 1], [1, 3, 3, 1], [1, 4, 6, 4, 1], [1, 5, 10, 10, 5, 1],
+ [1, 6, 15, 20, 15, 6, 1], [1, 7, 21, 35, 35, 21, 7, 1],
+ [1, 8, 28, 56, 70, 56, 28, 8, 1], [1, 9, 36, 84, 126, 126, 84, 36, 9, 1],
+ [1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1]];
+
+>	all(total)(pascal);
+[2, 4, 8, 16, 32, 64, 128, 256, 512, 1024];
+	$ Justify idea of binomial coefficients (1+1)**n
+	$ Easily proved, but this is a surprise from this direction
+	$ might even have the students think of (1+1)**n themselves.
+
+
+>       f := func(n); f(n):= f(n-1)+f(n-2); return f(n); end;
+>	f(1):= 1; f(0) := 1;
+>	s := [f(i): i in [1..20]];
+>	s;
+[1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584,
+ 4181, 6765, 10946];
+
+>	$ Roughly doubles
+>	x := [2**i : i in [1..20]];
+>	x;
+[2, 4, 8, 16, 32, 64, 128, 256, 512, 1024, 2048, 4096, 8192, 16384, 32768,
+ 65536, 131072, 262144, 524288, 1048576];
+>	ratio := func(a,b); return a/b end;
+>	s .(point(ratio)) x;
+[0.500, 0.500, 0.375, 0.312, 0.250, 0.203, 0.164, 0.133, 0.107, 0.087,
+ 0.070, 0.057, 0.046, 0.037, 0.030, 0.024, 0.020, 0.016, 0.013, 0.010];
+	$ but not quite
+	$ try other bases 1.5 1.6 1.7
+	
+ 	$ Get more terms to work with
+>	s := [f(i) : i in  [1..40]];
+>	x := [1.6**i :  i in [1..40]];
+
+	$ is there a regular rate of growth
+>	[s(i)/s(i-1) : i in [2..#s]];
+[2.000, 1.500, 1.667, 1.600, 1.625, 1.615, 1.619, 1.618, 1.618, 1.618,
+ 1.618, 1.618, 1.618, 1.618, 1.618, 1.618, 1.618, 1.618, 1.618, 1.618,
+ 1.618, 1.618, 1.618, 1.618, 1.618, 1.618, 1.618, 1.618, 1.618, 1.618,
+ 1.618, 1.618, 1.618, 1.618, 1.618, 1.618, 1.618, 1.618, 1.618];
+
+ 	$ try that as an approximation
+>	x := [1.618**i :  i in [1..40]];
+>	s .(point(ratio)) x;
+[0.618, 0.764, 0.708, 0.730, 0.721, 0.725, 0.723, 0.724, 0.724, 0.724,
+ 0.724, 0.724, 0.724, 0.724, 0.724, 0.724, 0.724, 0.724, 0.724, 0.724,
+ 0.724, 0.724, 0.724, 0.724, 0.724, 0.724, 0.724, 0.724, 0.724, 0.724,
+ 0.724, 0.724, 0.724, 0.724, 0.724, 0.724, 0.724, 0.724, 0.724, 0.724];
+
+ 	$ multiply by ratio to get reasonable approximation
+>	x := [fix(0.724*1.618**i) : i in [1..40]];
+>	x;
+[1, 1, 3, 4, 8, 12, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584,
+ 4181, 6765, 10947, 17712, 28659, 46370, 75027, 121395, 196417, 317803,
+ 514205, 831985, 1346151, 2178073, 3524123, 5702031, 9225887, 14927485,
+ 24152672, 39079023, 63229860, 102305914, 165530968];
+>	s .pdiff x;
+[0, 1, 0, 1, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -1, -1, -2, -2,
+ -2, -2, 1, 8, 24, 55, 118, 236, 455, 856, 1578, 2867, 5145, 9146, 16126,
+ 28241, 49173];
+
+>	(s .pdiff x) .(point(ratio)) x;
+[0.000, 1.000, 0.000, 0.250, 0.000, 0.083, 0.000, 0.000, 0.000, 0.000,
+ 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000, 0.000,
+ -9.13492e-05, -5.64589e-05, -6.97861e-05, -4.31313e-05, -2.66571e-05,
+ -1.64751e-05, 5.09121e-06, 2.51728e-05, 4.66740e-05, 6.61070e-05,
+ 8.76573e-05, 1.08353e-04, 1.29110e-04, 1.50122e-04, 1.71040e-04,
+ 1.92062e-04, 2.13020e-04, 2.34039e-04, 2.55038e-04, 2.76045e-04,
+ 2.97062e-04];
+>	$  error is decreasing
+
+>	$  need better values for 0.724 and 1.618
+>	(1+sqrt(5))/2;
+1.618;
+>	base/sqrt(5);
+0.724;
+>	x :=  [base/sqrt(5)*base**i : i in [1..40]];
+>	all(fix)(x);
+[1, 1, 3, 4, 8, 12, 21, 33, 55, 88, 144, 232, 377, 609, 987, 1596, 2584,
+ 4180, 6765, 10945, 17711, 28656, 46368, 75024, 121393, 196417, 317811,
+ 514228, 832040, 1346268, 2178309, 3524577, 5702887, 9227464, 14930352,
+ 24157817, 39088169, 63245986, 102334155, 165580141];
+>
+	$ comes from Sloane's
+>	sq5 := sqrt(5);
+>	left := (1+sq5)/2;
+>	right := (1-sq5)/2;
+>	closed := [(left**i-right**i)/sq5 : i in [1..40]];
+>	all(fix)(closed);
+[1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597,
+ 2584, 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418,
+ 317811, 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465,
+ 14930352, 24157817, 39088169, 63245986, 102334155];
+
+>	s;
+[1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584,
+ 4181, 6765, 10946, 17711, 28657, 46368, 75025, 121393, 196418, 317811,
+ 514229, 832040, 1346269, 2178309, 3524578, 5702887, 9227465, 14930352,
+ 24157817, 39088169, 63245986, 102334155, 165580141];
+
+

@@ -1,0 +1,120 @@
+>	$ Compute the set of all functions from A to B
+>	all_funcs := :A,B -> { r | r in npow(A .cross B, #A) | domain(r)=A }:;
+>	cross     := :A,B -> { [a,b] | a in A, b in B } :;
+
+>	x := all_funcs({1,2,3},{1,2,3,4});
+>	#x;
+64;
+>	$ Is f oneToOne?
+>	oneToOne  := :f -> #domain(f) = #image(f): ;
+
+>	y := { f : f in x | oneToOne(f) };
+>	#y;
+24;
+>	$ Is f onto?
+>	onto      := :f,S -> image(f) = S :;
+>	z := { f : f in x | onto(f,{1,2,3,4}) };
+>	z;
+{};
+>	x := all_funcs({1,2,3,4}, {1,2,3});
+>	#x;
+81;
+>	y := { f : f in x | oneToOne(f) };
+>	#y;
+0;
+>	z := { f : f in x | onto(f,{1,2,3}) };
+>	#z;
+36;
+>	$ C(n,m)  = combinations of n objects select m
+>	C  := :n,m -> (1 %* [n-k+1..n]) div (1 %* [1..k])
+>>	              where k := min(m,n-m) end             :;
+
+>	$ Also known as lines in Pascal's Triangle
+>	[C(6,i): i in [0..6]];
+[1, 6, 15, 20, 15, 6, 1];
+
+>	$ ... or as binomial coefficients, here considered for
+>	$ (x+1)**6 for x = 1
+>	%+[C(6,i): i in [0..6]];
+64;
+
+>	$ Factorial
+>	fact  := :n -> 1 %*[1..n] :;
+
+>	$ x = all functions from {w,x,y,z} to {1,2,3}
+>	$ z = the onto functions in that set
+>	x := all_funcs({'w','x','y','z'}, {1,2,3});
+>	z := { i : i in x | onto(i,{1,2,3}) };
+>	
+>	$ The number of onto functions is the total number of functions
+>	#x;
+81;
+>	$ minus the number of functions to a two element image
+>	#{ i : i in x | #image(i) = 2 };
+42;
+>	$ minus the number of functions to a one element image
+>	#{ i : i in x | #image(i) = 1 };
+3;
+>	81 - 42 - 3;
+36;
+>	#z;
+36;
+>	$ This is fine if we are permitted to count, say using ISETL,
+>	$ but we really need a way to compute the above quantities.
+>	$ The number of functions to a two element co-domain is:
+>	2**4;
+16;
+>	$ and we have C(3,2)=3 ways to choose the co-domain.
+>	C(3,2) * 2**4;
+48;
+>	$ But 48 is too large, we expected 42.
+>	$ Let's see why the count is off.
+
+>	$ To find all those functions counted in the 48, consider
+>	range2 := [all_funcs({'w','x','y','z'}, {1,2,3} less i)
+                   : i in [1,2,3]];
+>	%+[ #i : i in range2];
+48;
+>       $ The reason we have 48 but expected 42 is two fold:
+>	$ (1) We counted the constant functions
+>	{ i : s in range2, i in s | #image(i) = 1 };
+{{["x", 3], ["w", 3], ["z", 3], ["y", 3]},
+ {["w", 1], ["x", 1], ["y", 1], ["z", 1]},
+ {["y", 2], ["z", 2], ["w", 2], ["x", 2]}};
+
+>	$ and (2) We counted them twice, once in each of the domains
+>	range2(1) inter range2(2);
+{{["y", 3], ["z", 3], ["w", 3], ["x", 3]}};
+>	$ This accounts for the extra (48-42) = 3 * 2
+
+>       $ This means that we needed to add back in the constant functions.
+>       $ This alternating adding and subtracting to keep the counts of 
+>       $ our functions correct is the motivation behind Stirling functions
+>       $ The number of onto functions from A (size m) to B (size n) is:
+>       $ C(n,n)*n**m - C(n,n-1)*(n-1)**m + C(n,n-2)*(n-2)**m ...
+>       $ ===========   =================   ================
+>       $ All A->B    - A->B less i       + A->B less i,j     ...
+
+>       $ This is better written in ISETL as:
+>       $ %+ [ (-1)**k * C(n,n-k) * (n-k)**m : k in [0..n]]
+
+>	$ Stirling numbers of the second kind count the number of  ways
+>	$ to distribute m things in n indistinguishable bins so that none
+>	$ is empty (hence ``onto'' the n bins).
+>       $ Multiplying by fact(n) considers the bins as distinguishable
+>	$ and therefore counts onto functions.
+>	S2 := :n,m -> (%+ [ (-1)**k * C(n,n-k) * (n-k)**m : k in [0..n]])
+>>	              div fact(n) :;
+
+>	$ Exercise from Grimaldi p 76
+>	S2(3,4)*fact(3);
+36;
+>	S2(4,7)*fact(4);
+8400;
+>	x := [ C(4,i)*i**7 : i in [1..4]];
+>	x;
+[4, 768, 8748, 16384];
+>	x(4) - x(3) + x(2) - x(1);
+8400;
+
+

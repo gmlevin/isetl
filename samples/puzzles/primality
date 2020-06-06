@@ -1,0 +1,46 @@
+!include numbers
+
+
+$  Probabilistic primality tester
+
+
+
+$     composite(b,n) ==> n is composite
+$ not composite(b,n) ==> n may be prime
+$ for composite numbers less than half the b in [2..n-1]
+$     will return false
+composite
+       := func(b,n);
+             local q,m, b_to_m;
+	     [q,m] := shiftdown(n-1); 
+	     b_to_m := powmod(b,m,n); 
+	     if b_to_m = 1 then return false $ 'case 1 --  may be prime'
+	     else
+	         $ if exists i in [0..q-1] | powmod(b,m*2**i) = -1
+		 $ then return [false,b,n, 'case 2 -- may be prime']
+		 for i in [0..q-1] do
+		     $ b_to_m = b**(m*2**i)
+		     if b_to_m = n-1 
+	                then return false $ 'case 2 -- may be prime'
+		     end if;
+		     if b_to_m = 1 then return true $'composite, early'
+		     end if;
+		     b_to_m := timesmod(b_to_m, b_to_m, n);
+		 end for;
+		 return true $ 'composite'
+	     end if;
+	  end func;
+	  
+
+$ primality(n,k) ==> n passed k composite tests 1:2**k that it is composite
+$ not primality  ==> n is composite
+primality := func(n,k); local test;
+                for i in [1..k] do
+		    test := composite(random(n-3)+2, n); 
+		    if test then return false
+		    end if;
+		end for;
+		return true;
+	     end func;
+
+

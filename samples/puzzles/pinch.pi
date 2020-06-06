@@ -1,0 +1,24 @@
+!include numbers
+$ pinch will find fractions with the smallest a/b pairs
+$ that approximate goal
+
+pinch := func(a,b, goal); local err;
+                pairs := [];
+		err := goal - a/b;
+		while true do
+		   if abs(goal - a/b) < abs(err) and gcd(a,b)=1 then
+		      err := goal - a/b;
+		      pairs := pairs with [a,b];
+		      writeln a:4,' / ',b:4,' = ', a/b:20.15, ' err=',err:-1;
+		   end;
+		   if a/b < goal then a:= a+1 else b := b+1 end;
+		end;
+          end func;
+
+$ deltas lists the differences between consecutive a/b pairs
+$ from the last run of pinch
+deltas
+:= func(); return
+      [ [pairs(i)(1)-pairs(i-1)(1),pairs(i)(2)-pairs(i-1)(2)]
+        : i in [2..#pairs]];
+   end;

@@ -1,0 +1,19 @@
+$ Compute the set of all functions from A to B
+all_funcs := :A,B -> { r | r in npow(A .cross B, #A) | domain(r)=A }:;
+cross     := :A,B -> { [a,b] | a in A, b in B } :;
+
+$ Is f oneToOne?
+oneToOne  := :f -> #domain(f) = #image(f): ;
+
+$ Is f onto?
+onto      := :f,S -> image(f) = S :;
+
+$ C(n,m)  = combinations of n objects select m
+C  := :n,m -> (1 %* [n-k+1..n]) div (1 %* [1..k])
+              where k := min(m,n-m) end             :;
+$ Factorial
+fact  := :n -> 1 %*[1..n] :;
+
+$ Stirling numbers of the second kind, useful for counting onto functions
+S2 := :n,m -> (%+ [ (-1)**k * C(n,n-k) * (n-k)**m : k in [0..n]])
+              div fact(n) :;

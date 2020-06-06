@@ -1,0 +1,8 @@
+>   fract :=    func(t,x);
+>>                  if #t=0 then return x;
+>>                  else return 1/(t(1)+fract(t(2..),x))
+>>                  end;
+>>              end;
+>   x := fract([6],x); x;
+>   [(x+i)**2 : i in [1..5]];
+

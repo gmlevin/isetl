@@ -1,0 +1,3 @@
+{ [i,j,k,l,m] : i in [1..9], j in [i..9], k in [j..9], l in [k..9],
+		m in [l..9]
+            | i+j+k+l+m = i*j*k*l*m };

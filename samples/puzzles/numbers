@@ -1,0 +1,45 @@
+
+gcd := func(a,b);
+           if a<0 then a := -a; end if;
+           if b<0 then b := -b; end if;
+           while b /= 0 do
+	       [a,b] := [b, a mod b];
+	   end while;
+	   return a;
+       end;
+
+
+timesmod := func(a,b, N); return (a*b) mod N; end;
+
+$ For those not used to functional programming, I have created a
+$ binary function that behaves like timesmod for global N and used it
+$ to multiply exp copies of base.
+$powmod := func(base,exp, N); return
+$            1 %(func(a,b); return (a*b) mod N;end) (exp*[base])
+$	  end;
+
+
+powmod   := func(base,exp, N);
+                 local b,e,r; $ r*b**e == base**exp mod N
+		 b := base; e := exp; r := 1;
+		 while e>0 do
+		     while even(e) do
+		         b := (b*b) mod N;
+			 e := e div 2;
+		     end while;
+		     r := (r*b) mod N;
+		     e := e - 1;
+		 end while;
+                 return r;
+	    end;
+
+$ Return [q,m] where n = m*2**q
+shiftdown := func(n); local q;
+                 q := 0;
+		 while even(n) do
+		     q := q+1;
+		     n := n div 2;
+		 end;
+		 return [q,n];
+	     end;
+

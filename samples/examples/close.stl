@@ -1,0 +1,13 @@
+        Rclose := :S,R -> R union { [i,i] : i in S } : ;
+        Sclose := :R   -> R union { [j,i] : [i,j] in R } : ;
+        Tclose := func(R); local new;
+                       $ Add missing relations until there is no change
+                       new := om;
+                       while new /= {} do
+                           new := { [a,c] : [a,b] in R, c in R{b} 
+                                          | [a,c] notin R };
+                           R := R union new;
+                       end while;
+                       return R;
+                  end func;
+

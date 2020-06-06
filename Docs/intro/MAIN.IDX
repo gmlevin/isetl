@@ -1,0 +1,404 @@
+\indexentry{prompts}{4}
+\indexentry{exit}{4}
+\indexentry{quit}{4}
+\indexentry{!quit tt}{4}
+\indexentry{.isetlrc tt}{4}
+\indexentry{isetl.ini tt}{4}
+\indexentry{!include tt}{5}
+\indexentry{comments (zdollar tt)}{5}
+\indexentry{dollar sign}{5}
+\indexentry{character set}{6}
+\indexentry{and tt}{6}
+\indexentry{newat tt}{6}
+\indexentry{subset tt}{6}
+\indexentry{div tt}{6}
+\indexentry{not tt}{6}
+\indexentry{take tt}{6}
+\indexentry{frome tt}{6}
+\indexentry{do tt}{6}
+\indexentry{func tt}{6}
+\indexentry{notin tt}{6}
+\indexentry{then tt}{6}
+\indexentry{else tt}{6}
+\indexentry{iff tt}{6}
+\indexentry{of tt}{6}
+\indexentry{to tt}{6}
+\indexentry{elseif tt}{6}
+\indexentry{if tt}{6}
+\indexentry{om tt}{6}
+\indexentry{true tt}{6}
+\indexentry{end tt}{6}
+\indexentry{impl tt}{6}
+\indexentry{opt tt}{6}
+\indexentry{union tt}{6}
+\indexentry{exists tt}{6}
+\indexentry{inter tt}{6}
+\indexentry{or tt}{6}
+\indexentry{value tt}{6}
+\indexentry{false tt}{6}
+\indexentry{in tt}{6}
+\indexentry{print tt}{6}
+\indexentry{where tt}{6}
+\indexentry{for tt}{6}
+\indexentry{less tt}{6}
+\indexentry{program tt}{6}
+\indexentry{while tt}{6}
+\indexentry{forall tt}{6}
+\indexentry{local tt}{6}
+\indexentry{read tt}{6}
+\indexentry{with tt}{6}
+\indexentry{mod tt}{6}
+\indexentry{return tt}{6}
+\indexentry{readf tt}{6}
+\indexentry{printf tt}{6}
+\indexentry{write tt}{6}
+\indexentry{writeln tt}{6}
+\indexentry{from tt}{6}
+\indexentry{fromb tt}{6}
+\indexentry{integer}{7}
+\indexentry{number}{7}
+\indexentry{floating-point number}{7}
+\indexentry{number}{7}
+\indexentry{true tt}{8}
+\indexentry{false tt}{8}
+\indexentry{atom tt}{9}
+\indexentry{file}{9}
+\indexentry{empty\\set ({} tt,zempty)}{10}
+\indexentry{set former}{10}
+\indexentry{empty\\tuple ([] tt)}{10}
+\indexentry{map}{11}
+\indexentry{func tt sff}{11}
+\indexentry{function sff}{11}
+\indexentry{proc tt sff}{11}
+\indexentry{procedure sff}{11}
+\indexentry{return tt}{12}
+\indexentry{parameter}{13}
+\indexentry{call by value}{13}
+\indexentry{optional parameters}{13}
+\indexentry{scope}{13}
+\indexentry{value declaration}{13}
+\indexentry{function\\modified at a point}{14}
+\indexentry{func tt eff}{14}
+\indexentry{function eff}{14}
+\indexentry{proc tt eff}{14}
+\indexentry{procedure eff}{14}
+\indexentry{grammar}{15}
+\indexentry{STMT tt}{15}
+\indexentry{! tt (directives)}{15}
+\indexentry{INPUT tt}{15}
+\indexentry{PROGRAM tt}{16}
+\indexentry{STMT tt}{16}
+\indexentry{:= tt}{16}
+\indexentry{if tt}{16}
+\indexentry{then tt}{16}
+\indexentry{else tt}{16}
+\indexentry{elseif tt}{16}
+\indexentry{end tt}{16}
+\indexentry{for tt}{17}
+\indexentry{do tt}{17}
+\indexentry{end tt}{17}
+\indexentry{while tt}{17}
+\indexentry{read tt}{17}
+\indexentry{from tt}{17}
+\indexentry{print tt}{17}
+\indexentry{to tt}{17}
+\indexentry{print tt}{18}
+\indexentry{printf tt}{18}
+\indexentry{return tt}{18}
+\indexentry{take tt}{18}
+\indexentry{from tt}{18}
+\indexentry{fromb tt}{18}
+\indexentry{frome tt}{18}
+\indexentry{STMTS tt}{19}
+\indexentry{ELSE-IFS tt}{19}
+\indexentry{ELSE-IF tt}{19}
+\indexentry{ELSE-PART tt}{19}
+\indexentry{PAIR-LIST tt}{19}
+\indexentry{PAIR tt}{19}
+\indexentry{bound variable}{22}
+\indexentry{scope}{22}
+\indexentry{ITERATOR tt}{22}
+\indexentry{ITER-LIST tt}{22}
+\indexentry{SIMPLE-ITERATOR tt}{22}
+\indexentry{in tt}{22}
+\indexentry{BOUND-LIST tt}{22}
+\indexentry{BOUND tt}{22}
+\indexentry{ztilde tt}{22}
+\indexentry{FORMER tt}{23}
+\indexentry{.. tt}{23}
+\indexentry{function\\application}{23}
+\indexentry{mmap tt}{23}
+\indexentry{image}{23}
+\indexentry{smap tt}{23}
+\indexentry{slice}{23}
+\indexentry{map}{23}
+\indexentry{SELECTOR tt}{23}
+\indexentry{function}{24}
+\indexentry{function\\of several variables}{24}
+\indexentry{.. tt}{24}
+\indexentry{LHS tt}{24}
+\indexentry{@ tt}{25}
+\indexentry{LHS-LIST tt}{25}
+\indexentry{EXPR tt}{25}
+\indexentry{ID tt}{25}
+\indexentry{INTEGER tt}{25}
+\indexentry{FLOATING-POINT tt}{25}
+\indexentry{STRING tt}{25}
+\indexentry{true tt}{25}
+\indexentry{false tt}{25}
+\indexentry{OM tt}{26}
+\indexentry{newat tt}{26}
+\indexentry{FUNC-CONST tt}{26}
+\indexentry{length (# tt)\\of a string}{26}
+\indexentry{length (# tt)\\of a tuple}{26}
+\indexentry{cardinality (# tt) of a set}{26}
+\indexentry{not tt}{26}
+\indexentry{+ tt}{26}
+\indexentry{- tt}{26}
+\indexentry{/ tt}{27}
+\indexentry{div tt}{27}
+\indexentry{mod tt}{27}
+\indexentry{with tt}{27}
+\indexentry{less tt}{27}
+\indexentry{union tt}{27}
+\indexentry{inter tt}{27}
+\indexentry{in tt}{27}
+\indexentry{notin tt}{27}
+\indexentry{subset tt}{27}
+\indexentry{and tt}{27}
+\indexentry{or tt}{27}
+\indexentry{impl tt}{27}
+\indexentry{iff tt}{27}
+\indexentry{intersection (* tt, inter tt, zinter)}{27}
+\indexentry{replication (* tt)\\string}{27}
+\indexentry{replication (* tt)\\tuple}{27}
+\indexentry{exponentiation (** tt)}{27}
+\indexentry{concatenation (+ tt)\\string}{27}
+\indexentry{concatenation (+ tt)\\tuple}{27}
+\indexentry{union (+ tt, union tt, zunion)}{27}
+\indexentry{difference (- tt) of two sets}{27}
+\indexentry{equal}{27}
+\indexentry{relational operators}{27}
+\indexentry{intersection (* tt, inter tt, zinter)}{27}
+\indexentry{zpercent tt}{30}
+\indexentry{generalize operation}{30}
+\indexentry{compound operator (% tt)}{30}
+\indexentry{? tt}{30}
+\indexentry{choose tt}{30}
+\indexentry{exists tt}{30}
+\indexentry{forall tt}{30}
+\indexentry{where tt}{31}
+\indexentry{end tt}{31}
+\indexentry{@ tt}{31}
+\indexentry{BINOP tt}{31}
+\indexentry{DEFNS tt}{31}
+\indexentry{DEFN tt}{31}
+\indexentry{EXPR-LIST tt}{31}
+\indexentry{FUNC-CONST tt}{31}
+\indexentry{FUNC-HEAD tt}{31}
+\indexentry{func tt}{31}
+\indexentry{proc tt}{32}
+\indexentry{OPT-PART tt}{32}
+\indexentry{opt tt}{32}
+\indexentry{LOCALS tt}{32}
+\indexentry{VALUES tt}{32}
+\indexentry{ID-LIST tt}{32}
+\indexentry{even tt}{33}
+\indexentry{odd tt}{33}
+\indexentry{float tt}{33}
+\indexentry{char tt}{33}
+\indexentry{ceil tt}{33}
+\indexentry{floor tt}{33}
+\indexentry{fix tt}{33}
+\indexentry{pow tt}{34}
+\indexentry{npow tt}{34}
+\indexentry{domain tt}{34}
+\indexentry{image tt}{34}
+\indexentry{trig functions}{34}
+\indexentry{hyperbolic functions}{34}
+\indexentry{transcendental functions}{34}
+\indexentry{sqrt tt}{34}
+\indexentry{sin tt}{34}
+\indexentry{cos tt}{34}
+\indexentry{log tt}{34}
+\indexentry{ln tt}{34}
+\indexentry{sgn tt}{34}
+\indexentry{random tt}{34}
+\indexentry{randomize tt}{35}
+\indexentry{max tt}{35}
+\indexentry{min tt}{35}
+\indexentry{is... tt}{35}
+\indexentry{type test}{35}
+\indexentry{openr tt}{36}
+\indexentry{CONSOLE tt}{36}
+\indexentry{openw tt}{36}
+\indexentry{opena tt}{36}
+\indexentry{close tt}{36}
+\indexentry{eof tt}{36}
+\indexentry{abs tt}{37}
+\indexentry{ord tt}{37}
+\indexentry{arb tt}{37}
+\indexentry{random tt}{37}
+\indexentry{max_line tt}{37}
+\indexentry{system tt}{37}
+\indexentry{precision tt}{37}
+\indexentry{print tt}{37}
+\indexentry{video tt}{37}
+\indexentry{MSDOS}{37}
+\indexentry{lo tt}{37}
+\indexentry{hi tt}{37}
+\indexentry{origin tt}{37}
+\indexentry{graphics}{38}
+\indexentry{precedence rules}{40}
+\indexentry{directives}{41}
+\indexentry{! tt (directives)}{41}
+\indexentry{!quit tt}{41}
+\indexentry{!include tt}{41}
+\indexentry{!clear tt}{41}
+\indexentry{!edit tt}{41}
+\indexentry{!allocate tt}{41}
+\indexentry{!record tt}{41}
+\indexentry{!system tt}{42}
+\indexentry{!lock tt}{42}
+\indexentry{!unlock tt}{42}
+\indexentry{!ids tt}{42}
+\indexentry{!locked tt}{42}
+\indexentry{!oms tt}{42}
+\indexentry{!alias tt}{42}
+\indexentry{!version tt}{42}
+\indexentry{!credits tt}{42}
+\indexentry{!verbose tt}{42}
+\indexentry{!echo tt}{42}
+\indexentry{!code tt}{42}
+\indexentry{!trace tt}{42}
+\indexentry{!source tt}{42}
+\indexentry{!stack tt}{42}
+\indexentry{!setrandom tt}{43}
+\indexentry{!rational tt}{43}
+\indexentry{!watch tt}{43}
+\indexentry{trace}{43}
+\indexentry{!unwatch tt}{43}
+\indexentry{!pp tt}{43}
+\indexentry{!slow tt}{43}
+\indexentry{!fast tt}{43}
+\indexentry{!clear tt}{43}
+\indexentry{!edit tt}{43}
+\indexentry{!allocate tt}{44}
+\indexentry{!memory tt}{44}
+\indexentry{.isetlrc tt}{44}
+\indexentry{isetl.ini tt}{44}
+\indexentry{trace}{44}
+\indexentry{!watch tt}{44}
+\indexentry{!unwatch tt}{44}
+\indexentry{!record tt}{45}
+\indexentry{!system tt}{45}
+\indexentry{Interactive Line Editor sff}{47}
+\indexentry{ile.ini tt}{48}
+\indexentry{Interactive Line Editor eff}{53}
+\indexentry{error messages}{54}
+\indexentry{INPUT tt}{59}
+\indexentry{PROGRAM tt}{59}
+\indexentry{STMT tt}{59}
+\indexentry{:= tt}{59}
+\indexentry{if tt}{59}
+\indexentry{then tt}{59}
+\indexentry{else tt}{59}
+\indexentry{elseif tt}{59}
+\indexentry{end tt}{59}
+\indexentry{ELSE-IFS tt}{59}
+\indexentry{ELSE-IF tt}{59}
+\indexentry{ELSE-PART tt}{59}
+\indexentry{for tt}{59}
+\indexentry{do tt}{59}
+\indexentry{end tt}{59}
+\indexentry{while tt}{59}
+\indexentry{read tt}{59}
+\indexentry{from tt}{59}
+\indexentry{print tt}{59}
+\indexentry{to tt}{59}
+\indexentry{return tt}{59}
+\indexentry{take tt}{59}
+\indexentry{from tt}{59}
+\indexentry{fromb tt}{59}
+\indexentry{frome tt}{59}
+\indexentry{STMTS tt}{60}
+\indexentry{PAIR-LIST tt}{60}
+\indexentry{PAIR tt}{60}
+\indexentry{ITERATOR tt}{60}
+\indexentry{ITER-LIST tt}{60}
+\indexentry{SIMPLE-ITERATOR tt}{60}
+\indexentry{in tt}{60}
+\indexentry{BOUND-LIST tt}{60}
+\indexentry{BOUND tt}{60}
+\indexentry{ztilde tt}{60}
+\indexentry{SELECTOR tt}{60}
+\indexentry{.. tt}{60}
+\indexentry{LHS-LIST tt}{60}
+\indexentry{LHS tt}{60}
+\indexentry{@ tt}{60}
+\indexentry{EXPR-LIST tt}{61}
+\indexentry{EXPR tt}{61}
+\indexentry{ID tt}{61}
+\indexentry{INTEGER tt}{61}
+\indexentry{FLOATING-POINT tt}{61}
+\indexentry{STRING tt}{61}
+\indexentry{true tt}{61}
+\indexentry{false tt}{61}
+\indexentry{OM tt}{61}
+\indexentry{newat tt}{61}
+\indexentry{FUNC-CONST tt}{61}
+\indexentry{FORMER tt}{61}
+\indexentry{.. tt}{61}
+\indexentry{EXPR tt}{61}
+\indexentry{length (# tt)\\of a string}{61}
+\indexentry{length (# tt)\\of a tuple}{61}
+\indexentry{cardinality (# tt) of a set}{61}
+\indexentry{not tt}{61}
+\indexentry{+ tt}{61}
+\indexentry{- tt}{61}
+\indexentry{/ tt}{62}
+\indexentry{div tt}{62}
+\indexentry{mod tt}{62}
+\indexentry{with tt}{62}
+\indexentry{less tt}{62}
+\indexentry{union tt}{62}
+\indexentry{inter tt}{62}
+\indexentry{in tt}{62}
+\indexentry{notin tt}{62}
+\indexentry{subset tt}{62}
+\indexentry{and tt}{62}
+\indexentry{or tt}{62}
+\indexentry{impl tt}{62}
+\indexentry{iff tt}{62}
+\indexentry{intersection (* tt, inter tt, zinter)}{62}
+\indexentry{replication (* tt)\\string}{62}
+\indexentry{replication (* tt)\\tuple}{62}
+\indexentry{exponentiation (** tt)}{62}
+\indexentry{concatenation (+ tt)\\string}{62}
+\indexentry{concatenation (+ tt)\\tuple}{62}
+\indexentry{union (+ tt, union tt, zunion)}{62}
+\indexentry{difference (- tt) of two sets}{62}
+\indexentry{equal}{62}
+\indexentry{relational operators}{62}
+\indexentry{zpercent tt}{62}
+\indexentry{generalize operation}{62}
+\indexentry{compound operator (% tt)}{62}
+\indexentry{? tt}{62}
+\indexentry{choose tt}{62}
+\indexentry{exists tt}{62}
+\indexentry{forall tt}{62}
+\indexentry{where tt}{62}
+\indexentry{end tt}{62}
+\indexentry{@ tt}{62}
+\indexentry{BINOP tt}{62}
+\indexentry{DEFNS tt}{62}
+\indexentry{DEFN tt}{62}
+\indexentry{FUNC-CONST tt}{62}
+\indexentry{FUNC-HEAD tt}{62}
+\indexentry{func tt}{62}
+\indexentry{proc tt}{62}
+\indexentry{OPT-PART tt}{62}
+\indexentry{opt tt}{62}
+\indexentry{LOCALS tt}{62}
+\indexentry{VALUES tt}{62}
+\indexentry{ID-LIST tt}{62}

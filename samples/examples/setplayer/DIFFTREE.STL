@@ -1,0 +1,313 @@
+$ Difference Tree routines
+!memory 1000000
+!allocate 500000
+
+$ represent families of sets by difference trees
+$    internal nodes:  { ['plus', S], ['minus', T] }
+$            Represents S-T, assumes that T subset S
+$    leaves: { ['explicit',A], ['power', B], ['pk', [C(i): i in [...]]] }
+$            Represents 
+$	         A union
+$                %union [pow(b) : b in B] union
+$		 %union [ %union[s npow i: s in Ci] : Ci = C(i)] 
+$    A, B, and C(i) are sets of sets
+
+origin(0);
+
+plus     := 'plus';
+minus	 := 'minus';
+power	 := 'power';
+pk	 := 'pk';
+explicit := 'explicit';
+
+Internal := :T -> domain(T) = {plus,minus} :;
+
+$ Return a tree with redundancies removed from leaves
+Simplify := func(tree);
+	local p,m;
+	if Internal(tree) then
+	    p := Simplify(tree(plus));
+	    m := Simplify(tree(minus));
+	    return { [plus,p], [minus,m] }
+	else
+	    return Simple(tree)
+	end if
+    end func;
+
+Simple   := func(leaf);
+	$ replace pk(0) and pk(1) by explicit
+	    if leaf(pk)(0)?{} /= {} then
+	        leaf(explicit) := leaf(explicit) with {};
+		leaf(pk)(0) := {};
+	    end if;
+	    if leaf(pk)(1)?{} /= {} then
+	        leaf(explicit) := leaf(explicit) +
+		          { {x} : C in leaf(pk)(1), x in C };
+		leaf(pk)(1) := {};
+	    end if;
+
+	$ remove subsumed subsets in each part
+      	$ remove undersized subsets from pk
+	$ remove duplicated explicit sets (in power or pk)
+	$ remove pk elements subsumed by power
+	    leaf(explicit) 
+	        := { x : x in E 
+		   |   (forall S in leaf(power): not x subset S)  $ subsumed?
+		   and (forall S in PK(#x)?{}  : not x subset S)  $ subsumed?
+		   and (forall y in E : x=y or not x subset y)
+		   }
+		   where E := leaf(explicit);
+		         PK:= leaf(pk);
+		   end;
+
+	    leaf(power)    
+	        := { x : x in P 
+	           | forall y in P : x=y or not x subset y
+	           }
+	           where P := leaf(power) end;
+
+	    leaf(pk)
+	        := [ { x : x in S 
+	    	     |   #x >= k                         $ big enough
+		     and (forall s in P: not x subset s) $ pk subsumed by power
+                     and (forall y in S: x=y or not x subset y)
+		     }
+	           : S = PK(k) ]
+		   where PK := leaf(pk);
+		         P  := leaf(power);
+		   end ;
+	return leaf;
+    end func;
+
+$
+$ Core Set Theoretic operations
+
+DIFFTREE := |A,B -> {[plus,A],[minus,B]}|;
+
+UNION := func(A,B); return
+    if Internal(A) then DIFFTREE(UNION(A(plus),B), 
+                                 DIFFTREE(A(minus), INTER(A(minus),B)) )
+    elseif Internal(B) then DIFFTREE(UNION(B(plus),A), 
+                                 DIFFTREE(B(minus), INTER(B(minus),A)) )
+    else Simple({[explicit, A(explicit)+B(explicit)],
+                 [power,    A(power) + B(power)],
+		 [pk,       [a(i)?{} + b(i)?{}:  i in [0..k]]
+		            where a := A(pk);
+			          b := B(pk);
+				  k := max(hi(a),hi(b))
+                            end
+		 ]})
+    end if;
+end func;
+
+INTER := func(A,B); return
+    if Internal(A) then DIFFTREE(INTER(A(plus),B),
+                                 INTER(A(minus),B))
+    elseif Internal(B) then DIFFTREE(INTER(B(plus),A),
+                                 INTER(B(minus),A))
+    else Simple({[explicit,
+		  {a : a in AE
+		     |  a in BE
+		     or (exists b in BP: a subset b)
+		     or (exists b in BPk(#a)?{}: a subset b)
+                  }
+		 +{b : b in BE
+		     |  b in AE
+		     or (exists a in BP: b subset a)
+		     or (exists a in BPk(#b)?{}: b subset a)
+                  }
+	         ],
+                 [power, { a inter b : a in AP, b in BP}   ],
+		 [pk,
+		  [ { a inter b : a in APk(i)?{}, b in BPk(i)?{} }
+		    union { a inter b: a in APk(i)?{}, b in BP }
+		    union { a inter b: b in BPk(i)?{}, a in AP }
+		  : i in [0..k]
+		  ]
+		 ]})
+	 where AE := A(explicit); BE := B(explicit);
+	       AP := A(power);    BP := B(power);
+	       APk:= A(pk);	  BPk:= B(pk);
+	       k := max(hi(APk), hi(BPk));
+	 end;
+    end if;
+end func;
+
+DIFF := | A,B -> DIFFTREE(A, INTER(A,B)) |;
+
+
+
+$
+
+POW := func(A opt B);
+$ A (and B) must be an explicit family
+$ If B is present, returns subsets of A that touch each set in B
+$  o.w. returns powerset of A
+    if B=om then
+	return {[explicit,{}], [power, A], [pk, []]}
+    else
+	return DIFFTREE(POW(A),
+		        %UNION[POW({a-b: b in B})
+			      : a in A
+			      ]
+	               )
+    end if
+end func;
+
+
+PK := func(k, A opt B);
+$ A (and B) must be an explicit family
+$ If B is present, returns subsets of A of size k that touch each set in B
+$  o.w. returns k npow A
+    if B=om then
+	return {[explicit,{}], [power, {}], [pk, [{}]*k with A]}
+    else
+	return DIFFTREE(PK(k,A),
+		        %UNION[PK(k,{a-b: b in B})
+			      : a in A
+			      ]
+	               )
+    end if
+end func;
+
+
+$
+emptyF := {[explicit,{}], [power,{}], [pk,[]]};
+
+LIST := func(S opt T);
+$ Print elements of family S that are not in family T
+    local pks;
+    T := T?emptyF;   $ optional arg defaults to empty family
+
+    if S .SUBSET T then
+        return   $ nothing to print
+    elseif Internal(S) then
+        LIST(S(plus), UNION(S(minus),T))
+    else
+        for i in S(explicit) | not (i .IN T) do
+	    print i;
+	end;
+	for s in S(power), i in pow(s) |  not (i .IN T) do
+	    print i;
+	end;
+	pks := S(pk);
+	for C=pks(k), s in C, i in npow(s,k) | not (i .IN T) do
+	    print i;
+	end;
+    end if;
+end func;
+
+IN := func(S,F);
+$ Is S a member of family F?
+    if Internal(F) then
+        return (S .IN F(plus)) and not (S .IN F(minus));
+    else
+        return S in F(explicit)
+	    or (exists f in F(power) | S subset f)
+	    or (exists f in F(pk)(#S)?{} | S subset f)
+    end if;
+end func;
+
+SUBSET := func(S,T);
+$ Is family S a subset of family T?
+    return CARD(S) <= CARD(T) and CARD(DIFF(S,INTER(S,T))) = 0
+end func;
+
+EQ := func(S,T);
+    return CS = CT and CS = CARD(INTER(S,T))
+           where CS := CARD(S); CT := CARD(T) end
+end func;
+
+
+$
+$ This implementation of CARD is not efficient.
+$ Need to code the TR algorithm
+
+CARD := func(F); return
+$ Returns number of sets in family F
+    if Internal(F) then
+       CARD(F(plus)) - CARD(F(minus));
+    else
+         #F(explicit)
+       + POWCARD(B)
+       + (0 %+ [ POWkCARD(k,Ck?{}) : Ck=C(k) ] )
+       - (0 %+ [ POWkCARD(k, {b inter c: b in B, c in Ck?{}} ) : Ck=C(k) ] )
+       where B := F(power); C := F(pk);
+       end;
+    end if;
+end func;
+
+CARDk := func(k,F); return
+$ Returns number of sets of size k in family F
+    if Internal(F) then
+       CARDk(k, F(plus)) - CARDk(k, F(minus));
+    else
+         #[ f :  f in F(explicit) | #f=k ]
+       + POWkCARD(k,B)
+       + POWkCARD(k,Ck)
+       - POWkCARD(k, {b inter c: b in B, c in Ck} )
+       where B := F(power); Ck := F(pk)(k)?{};
+       end;
+    end if;
+end func;
+
+POWCARD := func(F);
+$ F is an explicit family
+$ Return size of powerset of F    
+   local even, odd, tmp_even, tmp_odd;
+       $ even(odd) correspond to intersections of an even(odd)
+       $   number of sets from family A
+   even := [];
+   odd  := [];
+
+   for S in F do
+        tmp_even := [ x inter S | x in odd ];
+	tmp_odd  := [ x inter S | x in even ];
+	even  := even + [ x | x in tmp_even | x /= {} ];
+	odd   := odd  + [ x | x in tmp_odd  | x /= {} ] with S;
+   end;
+
+   return  (0%+[ 2**#S : S in odd ])
+         - (0%+[ 2**#S : S in even]);
+end func;
+
+POWkCARD := func(k,F);
+$ F is an explicit family
+$ Return size of powerset.k of F    
+   local even, odd, tmp_even, tmp_odd;
+       $ even(odd) correspond to intersections of an even(odd)
+       $   number of sets from family A
+   even := [];
+   odd  := [];
+
+   for S in F | #S >= k do
+        tmp_even := [ x inter S | x in odd ];
+	tmp_odd  := [ x inter S | x in even ];
+	even  := even + [ x | x in tmp_even | #x >= k ];
+	odd   := odd  + [ x | x in tmp_odd  | #x >= k ] with S;
+   end;
+
+   return  (0%+[ Choose(#S,k) : S in odd ])
+         - (0%+[ Choose(#S,k) : S in even]);
+end func;
+
+
+Choose := | n,k -> (1%*[x+1..n]) div (1%*[1..n-x]) where x := max(k,n-k) end |;
+
+$
+
+
+Graph := func( pat, times );
+$ Generate edges of a regular graph
+$ Consecutive nodes are connected
+$ Nodes separated by distances in pat are connected,
+$ with pat repeated ``times'' times
+    local N, k;
+    k := #pat;
+    N := times * # pat;
+
+    return { {i,(i+1) mod N} : i in [0..N-1] }
+         + { {i,(i+pat(i mod k)) mod N} : i in [0..N-1] };
+end func;
+
+mcgee := Graph([-7,12,7],8);

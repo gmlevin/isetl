@@ -1,0 +1,12 @@
+v := %+mcgee;
+cover := PK(N, { v }, mcgee);
+
+
+a := cover(plus)(pk)(N);
+a := arb(a);
+b := cover(minus)(pk)(N);
+mh := { a-x : x in b};
+
+writeln 'go!';
+
+ENUMk(N,mh,{},a);

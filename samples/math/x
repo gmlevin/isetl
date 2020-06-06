@@ -1,0 +1,7 @@
+
+C := func(n,m); 
+       return (1 %* [big+1..n]) div (1 %* [1..little])
+              where big := max(m,n-m);
+                    little := min(m,n-m);
+              end;
+      end;

@@ -1,0 +1,470 @@
+$           Title: graph
+$              By: Mark Huibregtse
+$            Date: 14-28 August 1989
+     
+$      This file contains the func "graph", which provides a
+$ simple character-based graphing capability for ISETL.  The
+$ graph is generated using character locations as "pixels".
+$ The x-axis is vertical and the y-axis is horizontal; a line-
+$ feed corresponds to incrementing x.
+     
+$      Any of the following ISETL representations of functions
+$ can be graphed: func, tuple, s-map, m-map.  These functions
+$ need not be exclusively number-valued; non-numeric values are
+$ ignored. The user can graph as many items simultaneously as
+$ desired; for example, a scatterplot (m-map) and its regression
+$ line (func) can be simultaneously displayed.  If the user
+$ enters an (optional) filename, the graph is written to the
+$ named file, otherwise the graph is displayed on the screen.
+     
+$      Note:  The values assigned to the variables
+$ xLabelLength and plotBarLength (in InitializeGraphGlobals)
+$ should add to 77 if the monitor being used displays 80
+$ characters/line.  If the monitor displays a different
+$ number of characters/line, these values should be adjusted
+$ accordingly.  (Currently I have set xLabelLength to 0 and
+$ plotBarLength to 77, in order to allocate as many "pixels"
+$ as possible to the graph proper, and none to "labeling"
+$ the increments along the x-axis.)
+     
+$ ---------------------------------------------------------
+     
+$ The inputs to "graph" are:
+     
+$      itemList:   List of one or more items to be graphed.
+$                  Format: [ [f1, ch1], [f2, ch2], ... ]
+$                  The f's are "function items", that is, funcs
+$                  or maps or tuples, and the ch's are the
+$                  characters to be used to graph the
+$                  corresponding item.
+$
+$      minX, maxX: Bounds on x, the independent variable.
+     
+$      minY, maxY: Bounds on y, the dependent variable.
+     
+$      delta:      Increment in x corresponding to linefeed.
+     
+$      fileName:   Optional parameter giving the pathname of
+$                  the file where graph is to be written; if
+$                  omitted, as in the following example, the
+$                  graph is written to the screen.
+     
+$ Example:  >  graph ([[sin, "*"]], -3.14, 3.14,  -1,  1,  0.1);
+$                     /\              /\    /\     /\  /\   /\
+$                    itemList        minX  maxX   minY maxY delta
+     
+graph := func (itemList, minX, maxX, minY, maxY, delta opt fileName);
+     
+    local
+     
+    $ variables
+     
+	xLabelLength, plotBarLength, xLabel, plotBar, verticalAxis,
+	leftBorder, rightBorder, usedIndexList, currentXValue, f,
+	char, fileOutputDesired, outfile, inputList,
+	xAxisNeeded, yAxisNeeded, xAxisPixel, yAxisInputValue,
+	inputErrorMessage,
+     
+    $ funcs
+     
+	InitializeGraphGlobals, RealToPixel, GraphInputsAreOK,
+	PlotFunc, PlotMap, PlotTuple, InitializeInputList, EchoScales,
+	PreProcessMap;
+     
+$ ---------------------------------------------------------
+     
+$ This func initializes the variables used globally by the
+$ funcs in the graphing system.
+     
+InitializeGraphGlobals := func ();
+     
+    local index;
+     
+    xLabelLength := 0;
+    plotBarLength := 77;  $  these should add to 77
+     
+    xLabel  := xLabelLength * " " + "{";
+    plotBar := plotBarLength * " ";
+    verticalAxis   := plotBarLength * "-";
+    leftBorder := xLabelLength * " " + (plotBarLength + 2) * "~";
+    rightBorder := xLabelLength * " " + (plotBarLength + 2) * "~";
+    usedIndexList := [];
+     
+    xAxisNeeded := minY <= 0 and 0 <= maxY;
+     
+    if xAxisNeeded then
+	xAxisPixel := RealToPixel (0, minY, maxY, 1, plotBarLength);
+    end if;
+     
+    yAxisNeeded := minX <= 0 and 0 <= maxX;
+     
+    if yAxisNeeded then
+	index := floor ( (0 - minX) / delta );
+	if 0 - inputList (index + 1) <= delta/2 or index + 2 > #inputList
+							       then
+	    yAxisInputValue := inputList (index + 1);
+	else
+	    yAxisInputValue := inputList (index + 2);
+	end if;
+    end if;
+     
+    fileOutputDesired := is_file (outfile);  $  a valid file or OM
+     
+    return;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func initializes the list "inputList" to the list
+$ [minX, minX + delta, minX + 2*delta, ...].  Components
+$ are added so long as they are < maxX + delta.
+     
+InitializeInputList := func (minX, maxX, delta);
+     
+    local nextX;
+     
+    nextX := minX;
+    inputList := [];
+     
+    while nextX < maxX + delta do
+	inputList := inputList with nextX;
+	nextX := nextX + delta;
+    end while;
+     
+    return;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func "preprocesses" a map to make its graphing
+$ more straightforward.  First of all, any pairs in the
+$ map f which have non-numeric first or second components
+$ are discarded.  Next, for the remaining pairs, their
+$ first coordinates are rounded off to the nearest
+$ value in the "inputList".
+     
+PreProcessMap := func (f);
+     
+    local x, y, pair, index, newf;
+     
+    newf := {};
+    for pair in f do
+	x := pair (1);
+	y := pair (2);
+	if is_number (x) and is_number (y) and (x - minX >= 0) and
+					       (maxX - x >= 0) then
+	    index := floor ( (x - minX) / delta );
+	    if x - inputList (index + 1) <= delta/2 or index + 2 > #inputList
+								    then
+		pair (1) := inputList (index + 1);
+	    else
+		pair (1) := inputList (index + 2);
+	    end if;
+	    newf := newf with pair;
+	end if;
+    end for;
+     
+    f := newf;
+     
+    return f;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func echoes the minimum and maximum x and y values
+$ to "label" the graph.  This is especially important when
+$ the graph is written to a file.  The increment "delta"
+$ is also echoed.  Note: "maxInput" may not be equal to
+$ "maxX", because of the way "inputList" is generated;
+$ the former is the largest value in "inputList".
+     
+EchoScales := func (minInput, maxInput, minY, maxY, delta opt outfile);
+     
+    if outfile /= OM then
+     
+	printf "Inputs range from ", minInput:1, " to ", maxInput:1, ".", "\n",
+	       "Outputs range from ", minY:1, " to ", maxY:1, ".", "\n",
+	       "The increment in x is: ", delta:1,".", "\n" to outfile;
+    else
+     
+	printf "Inputs range from ", minInput:1, " to ", maxInput:1, ".", "\n",
+	       "Outputs range from ", minY:1, " to ", maxY:1, ".", "\n",
+	       "The increment in x is: ", delta:1, "\n";
+    end if;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func converts the given real value to an integer
+$ value which represents the "pixel" number corresponding to
+$ the real value.  (Here are pixel numbers are indices in the
+$ list plotBar.)
+     
+RealToPixel := func (inValue, minValue, maxValue, minPixel, maxPixel);
+     
+    local ratio, valueToReturn;
+     
+    ratio := (inValue - minValue) / (maxValue - minValue);
+     
+    valueToReturn := (maxPixel - minPixel) * ratio  +  minPixel;
+     
+    valueToReturn := floor (valueToReturn + 0.5);
+     
+    return valueToReturn;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ This func checks the inputs to Graph, and catches various
+$ errors.  The functional value returned is "true" if the
+$ inputs are "OK", and "false" otherwise.  In addition, the
+$ variable inputErrorMessage is assigned an appropriate value
+$ if an error is detected.  If the user has provided a
+$ fileName and the file can be opened for output, this
+$ procedure opens the file as a side effect; if the file
+$ can not be opened, "false" is returned.
+     
+GraphInputsAreOK := func (itemList, minX, maxX, minY, maxY, delta, fileName);
+     
+    local is_char, is_funcMapTuple, is_validFileOrOM;
+     
+    is_char := func (ch);
+	return is_string (ch) and #ch = 1;
+    end func;
+     
+    is_funcMapTuple := func (f);
+	return is_func (f) or is_map (f) or is_tuple (f);
+    end func;
+     
+    is_validFileOrOM := func (s);
+	if s = OM then
+	    return true;
+	elseif not is_string (s) then
+	    return false;
+	else
+	    outfile := openw (s);
+	    return is_file (outfile);
+	end if;
+    end func;
+     
+    $ ***** start of input checks *****
+     
+	if not ( is_tuple (itemList) and
+		 (forall item in itemList | is_tuple (item) and #item = 2 and
+				      is_funcMapTuple (item (1)) and
+				      is_char (item (2))
+		 )
+	       ) then   $  error in itemList
+     
+	    inputErrorMessage := "Error in the list of items to graph.";
+	    return false;
+     
+	elseif not (is_number (minX) and is_number (maxX) and minX <= maxX)
+								      then
+     
+	    inputErrorMessage := "Error in the input range.";
+	    return false;
+     
+	elseif not (is_number (minY) and is_number (maxY) and minY < maxY)
+								     then
+     
+	    inputErrorMessage := "Error in the output range.";
+	    return false;
+     
+	elseif not (is_number (delta) and delta > 0) then
+     
+	    inputErrorMessage := "Error in the input increment.";
+	    return false;
+     
+	elseif not is_validFileOrOM (fileName) then
+     
+	    inputErrorMessage := "Error in the output filename.";
+	    return false;
+     
+	else
+     
+	    return true;
+     
+	end if;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ Plot value of the func f at currentXValue, provided that
+$ f(currentXValue) is a numeric value in the interval
+$ [minY, maxY].
+     
+PlotFunc := func ();
+     
+    local currentYValue, currentYPixel;
+     
+    currentYValue := f(currentXValue);
+     
+    if currentYValue /= OM and is_number (currentYValue) and
+			       minY <= currentYValue and
+			       currentYValue <= maxY then
+	currentYPixel := RealToPixel (currentYValue, minY, maxY,
+				      1, plotBarLength);
+	plotBar (currentYPixel) := char;
+	usedIndexList := usedIndexList with currentYPixel;
+    end;
+     
+    return;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ Plot value or values of the ISETL map f corresponding to
+$ the current value of x.  (Recall that f has been
+$ "PreProcessed" so that all first coordinates of pairs in
+$ f are exactly equal to values of x in "inputList".)
+     
+PlotMap := func ();
+     
+    local yValues, currentYPixel;
+     
+    yValues := f{currentXValue};  $  set of y's, could be empty
+     
+    for currentYValue in yValues do
+	if minY <= currentYValue  and currentYValue <= maxY then
+	    currentYPixel := RealToPixel (currentYValue, minY, maxY,
+					  1, plotBarLength);
+	    plotBar (currentYPixel) := char;
+	    usedIndexList := usedIndexList with currentYPixel;
+	end if;
+    end for;
+     
+    return;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ Plot the current component of the tuple f.  Note that f
+$ represents a function whose domain is a segment of the
+$ positive integers -- therefore only positive integer
+$ "currentXValue"s are processed.  If f(currentXValue) is
+$ not numeric, no point is plotted.
+     
+PlotTuple := func ();
+     
+    local currentYValue, currentYPixel;
+     
+    if is_integer (currentXValue) and currentXValue >= 1 then
+     
+	currentYValue := f(currentXValue);
+     
+	if currentYValue /= OM and is_number (currentYValue) and
+				   minY <= currentYValue and
+				   currentYValue <= maxY then
+	    currentYPixel := RealToPixel (currentYValue, minY, maxY,
+					  1, plotBarLength);
+	    plotBar (currentYPixel) := char;
+	    usedIndexList := usedIndexList with currentYPixel;
+	end if;
+     
+    end if;
+     
+    return;
+     
+end func;
+     
+$ ---------------------------------------------------------
+     
+$ ***** Main Procedure *****
+     
+    if not GraphInputsAreOK (itemList, minX, maxX, minY, maxY, delta,
+			     fileName) then
+	printf "\n", inputErrorMessage + "  Execution halted.";
+	return "*****************************************************";
+    end if;
+     
+    InitializeInputList (minX, maxX, delta);
+     
+    InitializeGraphGlobals ();
+     
+    for count in [1..#itemList] do  $  preprocess each map
+	if is_map (itemList (count) (1)) then
+	    itemList (count)(1) := PreProcessMap (itemList(count)(1));
+	end if;
+    end for;
+     
+    if fileOutputDesired then
+	printf 3 * "\n" to outfile;
+	EchoScales (minX, inputList(#inputList), minY, maxY, delta, outfile);
+	printf 3 * "\n" to outfile;
+	printf leftBorder, "\n" to outfile;
+    else
+	printf 3 * "\n";
+	EchoScales (minX, inputList(#inputList), minY, maxY, delta);
+	printf 3 * "\n";
+	printf leftBorder, "\n";
+    end if;
+     
+    for xValue in inputList do
+     
+	currentXValue := xValue;
+     
+	if xAxisNeeded then
+	    plotBar (xAxisPixel) := "|";
+	end if;
+     
+	for item in itemList do
+     
+	    f := item (1);
+	    char := item (2);
+     
+	    if is_func (f) then
+		PlotFunc ();
+	    elseif is_map (f) then
+		PlotMap  ();
+	    elseif is_tuple (f) then
+		PlotTuple ();
+	    end if;
+     
+	end for;
+     
+	if yAxisNeeded and currentXValue = yAxisInputValue then
+	    for index in usedIndexList do
+		verticalAxis (index) := plotBar (index);
+	    end for;
+	    plotBar := verticalAxis;
+	end if;
+     
+	if fileOutputDesired then
+	    printf xLabel + plotBar + "}", "\n" to outfile;
+	else
+	    printf xLabel + plotBar + "}", "\n";
+	end if;
+     
+	if yAxisNeeded and currentXValue = yAxisInputValue then
+	    plotBar := plotBarLength * " ";
+	else
+	    for p in usedIndexList do   $  reset plotBar and usedIndexList
+		plotBar (p) := " ";
+	    end for;
+	end if;
+	usedIndexList := [];
+     
+    end for;
+     
+    if fileOutputDesired then
+	printf rightBorder, "\n" to outfile;
+	close (outfile);
+    else
+	printf rightBorder, "\n";
+    end if;
+     
+    return  "***** Graph Completed *****";
+     
+$ ***** End of Main Procedure *****
+     
+end func;
+

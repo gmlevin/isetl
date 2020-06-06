@@ -1,0 +1,1133 @@
+
+\newpage
+{\raggedbottom
+\section{Pre-defined Functions}\label{predef}
+
+All pre-defined functions are initially locked, preventing accidental
+modification.  You can unlock the id with the \[!unlock\] directive.
+If no return value is specified, the function is a \[proc\] and should
+be used as a statement.
+
+\subsection{Functions on Integers}
+
+In each of the following, \[EXPR\] must evaluate to integer.
+
+\begin{enumerate}
+\item
+\[even(EXPR)\]\key{even} --- Is \[EXPR\] even?
+
+\item
+\[odd(EXPR)\]\key{odd} --- Is \[EXPR\] odd?
+
+\item
+\[float(EXPR)\] ---\key{float}
+The value of \[EXPR\] converted to floating\_\,point.
+
+\item
+\[char(EXPR)\] ---  The one-character string\key{char}
+whose (machine dependent) index is
+the value of \[EXPR\]\@.
+\end{enumerate}
+
+
+\pagebreak[0]
+\subsection{Functions on Rationals}
+
+In each of the following, \[EXPR\] must evaluate to a rational.
+
+\begin{enumerate}
+\item
+\[den(EXPR)\] --- returns the denominator of \[EXPR\].
+
+\item
+\[num(EXPR)\] --- returns the numerator of \[EXPR\].
+
+\end{enumerate}
+
+
+\pagebreak[0]
+\subsection{Functions on Floating Point Numbers}
+
+In each of the following, \[EXPR\] must evaluate to floating\_\,point.
+
+\begin{enumerate}
+\item
+\[ceil(EXPR)\] ---\key{ceil}
+The smallest integer not smaller than the value of \[EXPR\]\@.
+
+\item
+\[floor(EXPR)\] ---  The largest integer not larger than\key{floor}
+the value of \[EXPR\]\@.
+
+\item
+\[fix(EXPR)\] ---\key{fix}
+The same as  \[floor(EXPR)\] if \[EXPR>=0\],
+and the same as \[ceil(EXPR)\] if the value of \[EXPR<=0\].
+In other words, the fractional part is discarded.
+\end{enumerate}
+
+
+\pagebreak[0]
+\subsection{Functions on Sets}
+
+In each of following, \[EXPR\] must evaluate to a set.
+
+\begin{enumerate}
+
+\item
+\[pow(EXPR)\] --- The set of all subsets \key{pow}
+of the value of \[EXPR\]\@.
+
+\item
+\[npow(EXPR,EXPR)\] ---\key{npow}
+One \[EXPR\] must be a set and the other a non-negative integer.
+The set of all subsets of the set whose
+cardinality is equal to the integer.
+\end{enumerate}
+
+
+
+\pagebreak[0]
+\subsection{Functions on Maps}
+
+In each of the following, \[EXPR\] must evaluate to a map.
+
+\begin{enumerate}
+
+\item
+\[domain(EXPR)\] ---  The \key{domain}
+set of all values that appear as the first
+component of an element of the value of \[EXPR\]\@.
+
+\item
+\[image(EXPR)\] ---  The \key{image}
+set of all values that appear as the second
+component of an element of the value of \[EXPR\]\@.
+\end{enumerate}
+
+\pagebreak[0]
+\subsection{Standard Mathematical Functions}
+
+\begin{enumerate}
+\item
+Each of the following takes a  single floating\_\,point argument.
+The result is a floating\_\,point approximation
+to the value of the corresponding mathematical function.
+\index{trig functions}
+\index{hyperbolic functions}
+\index{transcendental functions}
+\key{sqrt}\key{sin}\key{cos}\key{log}\key{ln}
+\[exp\], \[ln\], \[log\], \[sqrt\], \[sin\], \[cos\], \[tan\],
+\[sec\], \[csc\], \[cot\], \[asec\], \[acsc\], \[atan\],
+\[asin\], \[acos\], \[atan\], \[sinh\], \[cosh\], \[tanh\],
+\[asinh\], \[acosh\], \[atanh\].
+
+
+\nopagebreak
+\begin{sloppypar}
+\item
+In each of the following, \[EXPR\] must evaluate to 
+integer or floating\_\,point.
+The result is the value of the mathematical function in the
+same type as the value of \[EXPR\]\@.
+\end{sloppypar}
+
+\begin{enumerate}
+\item
+\[sgn(EXPR)\] ---\key{sgn}
+If \[EXPR\] is positive, then \(1\); if \[EXPR\] is zero,
+then \(0\); otherwise \(-1\).
+
+\item
+\[random(EXPR)\] ---\key{random}
+The value is a number selected at random in the interval
+from~0 to the value of \[EXPR\], inclusive.
+There has been no statistical study made of the generators.
+Don't depend on them for highly sensitive work.
+
+\begin{sloppypar}
+\item
+\[randomize(EXPR)\] ---\key{randomize}
+This resets the random number generator.
+EXPR should be an integer.
+This may be used to select a new sequence of random numbers.
+\end{sloppypar}
+
+\end{enumerate}
+
+
+\item
+In each of the following, both occurrences of \[EXPR\] 
+must evaluate to a number or string.  
+The result is always one of the two \[EXPR\],
+according to the usual mathematical definition.
+
+\begin{enumerate}
+\item
+\[max(EXPR,EXPR)\]\key{max}
+
+\item
+\[min(EXPR,EXPR)\]\key{min}
+\end{enumerate}
+\end{enumerate}
+
+
+
+\pagebreak[0]
+\subsection{Type Testers}
+
+In each of the following, the value of \[EXPR\] can be any \ISETL{} data type.
+The function is the test for the value of
+\[EXPR\] being the type indicated.
+
+\begin{enumerate}
+
+\key{is...}\index{type test}
+\item \[is\_\,atom(EXPR)\]
+\item \[is\_\,boolean(EXPR)\]
+\item \[is\_\,defined(EXPR)\] ---  Negation of \[is\_\,om\].
+\item \[is\_\,file(EXPR)\]
+\item \[is\_\,floating(EXPR)\]
+\item \[is\_\,func(EXPR)\]
+\item \[is\_\,integer(EXPR)\]
+\item \[is\_\,map(EXPR)\]
+\item \[is\_\,number(EXPR)\] --- true for integer and floating\_\,point.
+\item \[is\_\,om(EXPR)\]
+\item \[is\_\,rational(EXPR)\]
+\item \[is\_\,set(EXPR)\]
+\item \[is\_\,string(EXPR)\]
+\item \[is\_\,tuple(EXPR)\]
+\end{enumerate}
+
+
+
+\pagebreak[0]
+\subsection{Input/Output Functions}\label{file-func}
+
+\begin{enumerate}
+\item
+In each of the following functions,
+the value of \[EXPR\] must be a string that
+is a file name consistent with the operating system's naming conventions.
+The value of the function has \ISETL{} type file
+and may be used in 
+\[read\ldots~from\ldots\],
+\[readf\ldots~from\ldots\],
+\[print\ldots~to\ldots\],
+\[printf\ldots~to\ldots\],
+and the function \[eof\] to refer to that file.
+
+\begin{enumerate}
+\item
+\[openr(EXPR)\] --- 
+If the file named by the value of \[EXPR\] exists,\key{openr}
+then it is opened for reading, and the value of the function 
+is of type file.
+If the file named by the value of \[EXPR\] does not exist,
+then the value of the function is \[OM\]\@.
+
+A special case is the file named \["CONSOLE"\].\key{CONSOLE}
+Opening \["CONSOLE"\] for reading provides a way to read from the
+console, even if you are currently reading from an include file.
+If you have directed \[stdin\] from a file, it may read from that file
+or it may read from the console; this is  machine dependent.
+
+\item
+\[openw(EXPR)\] ---  \key{openw}
+If the file named by the value of \[EXPR\] does not exist,
+then it is created by the operating system externally to \ISETL{}\@.
+This file is opened for writing from the beginning,
+so that anything previously in the file is destroyed.
+The value of the function is of type file.
+
+\item
+\[opena(EXPR)\] ---  The same as \[openw(EXPR)\],\key{opena}
+except that if the file exists
+its contents are not destroyed.
+Anything that is written is added to the end of the file.
+\end{enumerate}
+
+
+\item
+In the following function, the value of 
+\[EXPR\] must be of type file.  The
+file specified by this value is closed.  Output files must be closed to
+guarantee that all output has been stored by the operating system.  All
+files are closed automatically when \ISETL{} is exited.
+There is usually a system-imposed limit on the number of files
+that may be open at one time, however, so it is a good idea to close files
+when finished using them.
+
+\begin{enumerate}
+\item
+\[close(EXPR)\] ---  Closes the file.\key{close}
+\end{enumerate}
+
+
+\item
+In the following function the value of \[EXPR\]  must be of type file.
+
+\begin{enumerate}
+
+\item
+\[eof(EXPR)\] ---  Test for having read {\em past}
+the end of an external file.\key{eof}
+\end{enumerate}
+\end{enumerate}
+
+
+
+\pagebreak[0]
+\subsection{Miscellaneous}
+
+\begin{enumerate}
+
+
+\item
+\[abs(EXPR)\] ---  If the value of \[EXPR\] is \key{abs}
+integer or floating\_\,point, then
+the value of the function is the standard absolute value.  
+
+\item
+\[ord(EXPR)\] ---\key{ord}
+The inverse of \[char\].
+\[EXPR\] must be a string of length 1.
+
+\item
+\[arb(EXPR)\] ---  An element of \[EXPR\] selected arbitrarily.\key{arb}
+If the value of \[EXPR\] is empty,
+then the value of the function is \[OM\]\@.
+\[EXPR\] may be a set, tuple, or string.
+
+\item
+\[random(EXPR)\] ---\key{random}
+An element of \[EXPR\] selected with uniform probability.
+If the value of \[EXPR\] is empty,
+then the value of the function is \[OM\]\@.
+\[EXPR\] may be a set, tuple, or string.
+
+\item
+\[max\_line(EXPR)\] ---\index{max_line tt}
+\[EXPR\] must be an integer.
+The maximum number of columns used when pretty-printing is set to the
+value of \[EXPR\].
+
+\item
+\[system(EXPR)\] ---\index{system tt}
+\[EXPR\] must be a string.
+The string is passed to the operating system as a command line.
+Available under Unix, VMS, and MSDOS.
+
+\item
+\[precision(EXPR)\] ---\index{precision tt}
+\[EXPR\] must be an integer.
+This sets the number of decimal places shown by \[print\]\index{print tt}.
+If \[EXPR\] is negative, it indicates that \[print\] should use
+scientific notation.
+
+\item
+\[video(EXPR)\] ---\index{video tt}\index{MSDOS}
+MSDOS only.
+\[EXPR\] must be a boolean.
+This controls how the screen is managed under MSDOS.
+Generally,  \[true\] is faster output, and \[false\] is less likely to
+run into trouble with compatibility questions.
+Also controled by \[-v\] on the command line.  See section~\ref{flags}.
+
+\end{enumerate}
+
+\subsection{Tuple}
+\label{tuple-func}
+\begin{enumerate}
+\item
+\[lo(EXPR)\] ---\index{lo tt}
+\[EXPR\] must be a tuple.
+Returns the low bound of the tuple.
+
+\item
+\[hi(EXPR)\] ---\index{hi tt}
+\[EXPR\] must be a tuple.
+Returns the high bound of the tuple.
+
+\item
+\[origin(EXPR)\] ---\index{origin tt}
+\[EXPR\] must be an integer.
+Sets the default lower bound for tuples.
+
+
+\end{enumerate}
+
+
+\subsection{Graphics}\index{graphics}
+
+The following routines work on the PC and Mac versions only.
+
+\begin{enumerate}
+\item \[graphics(bool)\] ---
+  Call with true before any of the following commands.
+		Call with false to return to editor mode (or close
+		window).  On PC, \[\caret G\] will switch between graphics and
+		editor.   You must have the appropriate \[*.BGI\] file for
+		your PC graphics adaptor in the same directory as
+		\[isetl.exe\]. 
+
+
+\item \[scale(minX,maxX,minY,maxY)\] ---
+		Sets up graphing region.  Will plot points within the 
+		rectangle described by args, scaling your values to fit
+		on the screen.  Call before any of the following commands.
+
+\item \[move(x,y)\] ---
+       Move current point (CP) to \[(x,y)\].  Nothing drawn.
+
+\item \[draw(x,y)\] ---
+       Draw line from CP to \[(x,y)\].  Change CP to \[(x,y)\].
+
+\item \[textout(x,y,text)\] ---
+                Write text starting at \[(x,y)\] and writing left to
+                right.  If \[(x,y)\] are omitted, writes at CP.
+
+\item \[get\_\,coord()\] ---
+     Returns \[[x,y,c]\] when a key is pressed.  \[(x,y)\] is the point
+                on the screen and \[c\] is the key pressed.  \[c=''\] if mouse
+                was clicked.
+
+\item \[thickline(bool)\] ---
+ Should lines be thick?  Returns old value.
+
+\item \[title\_\,window(text)\] ---
+                Writes near top of graph, on PC.  Writes in title bar
+                on Mac.
+
+
+\item \[clear\_\,screen()\] ---
+    Clears screen and undefines objects.
+
+\item \[new\_\,object()\] ---
+      Returns an integer i identifying the new object.
+                  Anything plotted up to the next \[new\_\,object\] is
+                  part of this object and may be deleted with
+                  \[del\_\,object(i)\] and  added back again with
+		  \[add\_\,object(i)\]. 
+
+\item \[add\_\,object(i)\] --- See \[new\_\,object\].
+
+\item \[del\_\,object(i)\] --- See \[new\_\,object\].
+
+\item \[resolution()\] ---
+      Returns \[[minX,minY]\], distance between pixels.
+
+\item \[XtoYratio()\] ---
+       Returns ratio of x pixel size to y pixel size.
+
+\item
+    \[erasable\] is used for small objects that come and go quickly.
+    Drawn in xor mode, so complex figures or text may look funny.
+	
+    \[erasable(true)\] --- Plotting is made part of the erasable object.
+
+   \[erasable(false)\] --- Plotting is no longer part of erasable object.
+
+   \[erasable()\] ---     Erase erasable object.
+
+
+\item \[char\_\,mult(m)\] ---
+      Magnify text by  \[m\].  Returns old value.
+
+\item \[point(x,y,size)\] ---
+   Draw square \[2*size+1\] pixels on a side, centered
+                  at \[(x,y)\].  CP becomes \[(x,y)\].
+		  If \[x,y\] are missing, draws at
+                  current CP.  If size is negative, fills square.
+
+\begin{sloppypar}
+\item \[rectangle(xlow,xhigh,ylow,yhigh,hollow)\] ---
+                  Draw rectangle.  If \[hollow\] is true or is omitted,
+                  rectangle is hollow.  If \[hollow\] is false,
+                  rectangle is filled in.
+\end{sloppypar}
+
+\item \[save\_\,graph(filename)\] ---
+                  Write current graph to \[filename\].  On PC, empty
+                  string pops up a window to let you enter the name of
+                  the file.  On Mac, use SAVE from menu.
+
+\item \[load\_\,graph(filename)\] ---
+                  Read \[filename\] and add to current object.  Uses the
+                  current scale, which may be incorrect for this
+                  graph.  You can call scale after a plot.  On PC,
+                  empty string pops up a window to let you enter the
+                  name of the file.  On Mac, this is an error.
+\end{enumerate}
+
+
+
+
+\pagebreak[1]{\samepage
+\section{Precedence Rules}\label{prec}
+\index{precedence rules}
+\begin{itemize}
+\item Operators are listed from highest priority to lowest
+priority.
+\item
+Operators are left associative unless otherwise indicated.
+\item
+``nonassociative'' means that you cannot use two operators
+on that line without parentheses.
+\end{itemize}
+\nopagebreak
+\begin{center}
+\begin{tabular}{l l}
+    \[CALL\]& \begin{tabular}{@{}l}
+		anything that is a call to a function\\
+               --- func, tuple, string, map, etc.
+               \end{tabular}\\
+    \[\# - + @\]&	unary operators\\
+    \[@\]&       nonassociative\\
+    \[?\]&       nonassociative\\
+    \[\%\]&       nonassociative\\
+    \[**\]&      right associative\\
+    \[* / mod div inter\]\\
+    \[+ - with less union\]\\
+    \[.ID\]&	infix use of binary function\\
+    \[in notin subset \]\\
+    \[< <= = /= > >=\] &     nonassociative\\
+    \[not\]&	unary\\
+    \[and\]\\
+    \[or\]\\
+    \[impl\]\\
+    \[iff\]\\
+    \[exists forall\]\\
+    \[where\]
+\end{tabular}
+\end{center}
+}
+
+\pagebreak
+\section {Directives}
+
+\subsection{Brief Descriptions}
+\index{directives}
+\index{! tt (directives)}
+There are a number of directives that can be given to \ISETL{} to modify
+its behavior.
+
+\label{flags}
+On the command line, the following switches control aspects of \ISETL\@.
+\begin{description}
+\item[\TT{-d}] indicates {\em direct input}.  This suppresses the interactive
+line editor or the screen editor in MSDOS.
+
+\item[\TT{-e}] implies \[-d\] and provides the \[!edit\] directive
+described below.
+
+\item[\TT{-s}] indicates {\em silent mode\/}.
+In silent mode, the header and all prompts are suppressed.
+
+\item[\TT{-v}] (MSDOS only) controls the initial value of \[video\].
+\[-v\] sets it to safe (on all PC compatibles), but slow (on most
+video boards).
+
+
+\end{description}
+
+\noindent
+The rest of the directives are \[!\] commands.
+\[[~a~|~b~]\] indicates a choice between \[a\] and \[b\].
+
+\subsubsection{Commands}
+\begin{itemize}
+\item\key{!quit}
+\[!quit\] --- Exit \ISETL{}\@.
+
+\item\key{!include}
+\[!include <filename>\] --- Replace \[<filename>\] with a file/pathname
+according to the rules of your operating system.
+\ISETL{} will insert your file.
+
+\item\key{!clear}
+\[!clear\] --- Throw away all input back to the last single prompt.
+
+\item\key{!edit}
+\[!edit\] --- Edit all the input back to the last single prompt.
+Unavailable on systems with the interactive line editor.
+
+\item
+\[!memory [nnn]\] --- Change the legal upper bound to \[nnn\].
+May not be lower than the currently allocated memory.
+Without \[nnn\],  shows how much memory has been allocated.
+
+\item\key{!allocate}
+\[!allocate nnn\] --- Increase the currently allocated memory to \[nnn\].
+Will not exceed the upper bound set by \[!memory\],
+nor the actual limits of the machine.
+
+\item\key{!record}
+\[!record [ file-name ] \] ---
+Begins recording input to ``\[file-name\]''.
+This lets you experiment and keep a record of the work performed.
+
+\item\key{!system}
+\[!system command-line\] ---
+Sends the \[command-line\] to the system for execution.
+Not available on the \XX{Macintosh}.
+
+\item\key{!lock}
+\[!lock list-of-ids\] --- Prevent future assignments to the ids in the list.
+Predefined functions are locked by default.
+
+\item\key{!unlock}
+\[!unlock list-of-ids\] --- Permit future assignments to the ids in the list.
+
+
+
+\item\key{!ids}
+\[!ids\] --- Lists all non-locked identifiers that have been defined.
+
+\item\key{!locked}
+\[!locked\] --- Lists all locked identifiers that have been defined.
+
+\item\key{!oms}
+\[!oms\] --- Lists all identifiers that have been used,
+but not defined.
+
+
+\item\key{!alias}
+\[!alias id command-line\] --- Makes \[!id\] equivalent to
+\[!command-line\]. 
+
+\item\key{!version}
+\[!version\] --- Prints version information for \ISETL.
+
+\item\key{!credits}
+\[!credits\] --- Print some copyright information.
+\end{itemize}
+
+\subsubsection{Toggles}
+Toggles take arguments \[on\] or \[off\].
+Without arguments, they echo the toggle's current state.
+\begin{itemize}
+
+\item\key{!verbose}
+\[!verbose\] --- Controls the amount of information provided
+by runtime error messages.
+See section~\ref{secRT}.
+Default is off.
+
+\item
+\key{!echo}
+\[!echo\] --- When on, all input is echoed.
+This is particularly useful when trying to find a syntax error in an
+\[!include\] file or input for a \[read\].
+It is also useful for pedagogical purposes, as it can be used to 
+interleave input and output.
+
+
+\item\key{!code}
+\[!code\] --- When on, you get a pseudo-assembly listing
+for the program.  Default is off.
+
+\item\key{!trace}
+\[!trace\] --- When on, you get an execution trace, using
+the same notation as \[!code\].
+When desperate, this can be used to trace the execution of your
+program.
+Really intended for debugging \ISETL{}\@.
+Default is off.
+
+\item\key{!source}
+\[!source\] --- Saves source for debugging.  See \[!pp\], \[!stack\],
+and \[!slow\].
+
+
+\item\key{!stack}
+\[!stack\] --- Show calls when errors occur.
+
+\item\key{!setrandom}
+\[!setrandom\] --- When off, sets are printed in a canonical order.
+Default is on.
+
+\item\key{!rational}
+\[!rational\] --- When on, \[int~/~int\] produces a rational result.
+Default is off.
+
+\end{itemize}
+
+\subsubsection{Debugging}
+\label{debugger}
+\begin{enumerate}
+\item\key{!watch}\index{trace}
+\[!watch list-of-ids\] --- Traces assignment and evaluation of ids.
+
+\item\key{!unwatch}
+\[!unwatch list-of-ids\] --- Turns off tracing for ids.
+
+\item\key{!pp}
+\[!pp id [ file-name ]\] --- Prints the source for function \[id\].
+When present, output goes to \[file-name\]; otherwise, output goes to
+last file.  \[!pp\] returns the file to \[stdout\] (usually the screen).
+
+
+\item\key{!slow}
+\[!slow\] --- Execution steps by source lines.  See section~\ref{debugger}.
+
+
+\item\key{!fast}
+\[!fast\] --- Return to normal execution speed.
+
+\end{enumerate}
+
+When the system is stopped for debugging, in the \[!slow\] mode, you
+get the \[?>\] prompt.
+Responses at this point are:
+\begin{itemize}
+\item[\tt f] --- go to fast mode.
+\item[\tt l] --- leap mode (calls are executed as one step).
+\item[\tt c] --- crawl mode (trace execution within calls).
+\item[\tt e] --- evaluate.  Enter an expression at the \[!\] prompt.
+\item[\tt RET] --- Execute the next step.
+\end{itemize}
+
+\pagebreak[0]
+\subsection{{\tt !clear} and {\tt !edit}}
+\key{!clear}\key{!edit}
+
+\begin{enumerate}
+
+\begin{sloppypar}
+\item
+The user can \XX{edit}\footnote{%
+Turn this on with the \[-e\] switch.}
+whatever has been entered since the beginning of the
+current syntactic object,
+in response to a syntax error message, or if the user wants to change
+something previously typed.
+If you prefer to start again,
+``\[!clear\]'' will clear the typing buffer and allow you to start the
+input afresh.
+\end{sloppypar}
+
+\item
+When the editor is invoked
+(by typing ``\[!edit\]''), the user is prompted for the string that is to
+be modified.  The user types the desired string, and the editor finds its
+first occurrence in the lines being edited.
+
+\item
+The user is then prompted for the replacement of this string.  When it is
+entered, the change is made.
+
+\item
+The process repeats until the user enters a blank search line,
+at which time control is returned to \ISETL{}\@.
+\end{enumerate}
+
+\pagebreak[0]
+\subsection{{\tt !allocate} and {\tt !memory}}
+\label{allocate}
+\key{!allocate}\key{!memory}
+    The \[!memory\] directive adjusts the upper limit on permitted
+    memory allocation.
+    This is mainly to protect mainframe systems, so that one user
+    doesn't use all the available space.
+
+    The \[!allocate\] directive increases the amount of memory
+    {\em currently\/} available for \ISETL{} objects.
+    This space is automatically increased up to the limit set by
+    \[!memory\], but by allocating it early, some large programs may
+    run more quickly.
+
+    If you want to grab as much memory as possible, particularly on
+    single user systems, this is what we would recommend.
+    First, determine the amount of memory available, by attempting to
+    allocate everything.
+    Then subtract from that 10K for \ISETL{}'s scratch area plus any
+    other space you may wish to save for use by the \[!system\]
+    directive.
+    You can then set the memory limit and pre-allocate in your
+    \key{.isetlrc}\key{isetl.ini}
+    \[isetl.ini\] (or \[.isetlrc\]) files.
+
+    See figure~\ref{space}.
+    Having tried to allocate 800K, there was only room for 500K\@.
+    Deciding to leave 200K for other work, a limit of 300K was placed
+    on \ISETL{}, and 150K was pre-allocated.
+    The lines below ``\ldots'' are in another session,
+    because one cannot decrease the GC (garbage collected) memory.
+
+
+    \begin{figure}[hbp]
+	\DS
+	>XXXXXXX\=\kill
+	>	\>!memory\\
+	Current GC memory = 50060, Limit = 1024000\\
+	>	\>!allocate 800000\\
+	Current GC memory = 500600, Limit = 1024000\\
+	\ldots\\
+	>	\>!memory 300000\\
+	Current GC memory = 50060, Limit = 300000\\
+	>	\>!allocate 150000\\
+	Current GC memory = 150180, Limit = 300000
+	\DE
+	\caption{Finding memory limits}\label{space}
+    \end{figure}
+
+\pagebreak[0]
+\subsection{{\tt !watch} and {\tt !unwatch}}
+\index{trace}\key{!watch}\key{!unwatch}
+    The two commands \[!watch\] and \[!unwatch\] control which
+    identifiers are traced during execution.
+    Tracing consists of reporting assignments and function evaluation.
+
+    An identifier is watched by the directive:
+	\nopagebreak
+	\DS
+	!watch id id1 id2 id3
+	\DE
+    where ``\[id\]'' is the name of the identifier to be watched.
+    More than one identifier may be listed, separated by blanks.
+
+    While being watched, any assignment to a variable named with that
+    identifier is echoed on the standard output.
+    This includes assignments to slices and maps.
+    If the identifier is used as a function
+    (smap, mmap, tuple, func), a line is printed indicating that the
+    expression is being evaluated and a second line is printed
+    reporting the value returned.
+
+    It is significant that identifiers are watched, rather than
+    variables.
+    If \[i\] is being watched, then {\em all\/} variables named \[i\]
+    are watched.
+
+    You can stop watching an identifier with the directive:
+	\nopagebreak
+	\DS
+	!unwatch id
+	\DE
+    
+    See figure~\ref{watch} for an example of the output.
+
+    \begin{figure}[hbp]
+	\DS
+	    >XXXXXXX\= \kill
+	    >	\>f := \=func\=(i); \\
+		    \>     \>    \> return f(i-1)+f(i-2);\\
+		    \>     \>end;\\
+	    >	\>!watch f\\
+	    !'f' watched\\
+	    >	\>f(1) := 1;\\
+	    ! f(1) := 1;\\
+	    \\
+	    >	\>f(2) := 1;\\
+	    ! f(2) := 1;\\
+	    \\
+	    >	\>f(4);\\
+	    ! Evaluate: f(4);\\
+	    ! Evaluate: f(3);\\
+	    ! Evaluate: f(2);\\
+	    ! Yields: 1;\\
+	    ! Evaluate: f(1);\\
+	    ! Yields: 1;\\
+	    ! f returns: 2;\\
+	    ! Evaluate: f(2);\\
+	    ! Yields: 1;\\
+	    ! f returns: 3;\\
+	    3;
+	\DE
+	\caption{\[!watch\] examples\label{watch}}
+    \end{figure}
+
+\pagebreak[0]
+\subsection{{\tt !record}}
+\key{!record}
+
+    The \[!record\] directive channels all input from standard input
+    into a file.
+    This allows you to capture your work and later edit it for
+    including.
+
+    A directive of the form: \[!record test\] changes to recording on
+    file \[test\].
+    If you had been recording elsewhere, the other file is closed.
+    \[!record\] with no file name turns off recording altogether.
+    The recording is appended to an existing file.
+
+    By combining this with the \[!echo\] directive, one can create
+    terminal sessions.
+
+
+\pagebreak[0]
+\subsection{{\tt !system}}
+\key{!system}
+    This allows you to execute one command in the operating system
+    without leaving \ISETL{}\@.
+    This feature is not available on the \XX{Macintosh} version.
+    See section~\ref{allocate} for hints on making sure that there is
+    enough room to invoke the command from the system.
+
+    You could list your directory on \XX{MS-DOS} using the command:
+    \nopagebreak
+    \DS
+	!system dir
+    \DE
+
+    Assuming that you had enough memory, you could escape to an
+    editor, edit a file, exit the editor, and then include the file.
+
+    If you type \[!system\] by itself, you will enter a new copy of
+    your operating system.
+    You can execute anything that fits in the remaining memory.
+
+\section{Editors}
+The original view of \ISETL\ was a program that read lines of text,
+recognizing programs and expressions, and then evaluating them.
+The introduction of editors adds a second level to this.
+In each of the editors, there is some way to {\em send text to \ISETL}.
+This phrase refers to taking the text and treating it as if those
+lines had been typed directly in.
+
+\subsection{MSDOS Screen Editor}
+
+    In the MSDOS editor,
+    you send lines to \ISETL\ by typing \[RETURN\].
+    If you are on the last line of the window, that line is sent.
+    You may send other lines by selecting a {\em region}.
+    The  first line of a region is  called the \[TAG\].
+    The last line is the line containing the cursor.
+    Regions are written in reverse video.
+
+
+    If you want to send 
+    lines from the edit window, edit them {\em first}, then \[TAG\]
+    the first line you wish sent by
+    typing \[\caret T\], move to the last line that you wish sent, and type
+    \[RETURN\].  Prompts at the beginning of a line are ignored.\footnote{%
+    N.B.:  If you try to type a line starting with
+    `\[>\]', `\[?\]', or `\[!\]' you must
+      leave a blank in front of them to prevent their removal.
+    Blanks are automatically inserted after the prompts.}
+    
+
+    To make it easy to check a region, you can find \[TAG\] by typing
+     \[\caret X\] (control-X).  This will exchange the cursor and \[TAG\].
+     Type \[\caret X\] again to return.
+
+    To make it easy to find the last region sent, type \[\caret B\].
+    This finds
+    the \[BOOK\_\,MARK\], which is left behind at the old \[TAG\] after a region
+    is sent to \ISETL.
+
+    \begin{table}[ht]
+    \caption{Important keys for MSDOS Editor(\[\caret X\] = control-X)}
+    \begin{center}
+    \begin{tabular}{ l l }
+        \tt ESC&            Get menu\\
+        \tt Arrow Keys&     Motion\\
+        \tt INS&            Break line\\
+        \tt DEL&            Delete under\\
+        \tt Backspace&      Delete left\\
+        \tt Home&           Left of line\\
+        \tt End&            Right of line\\
+        \tt PgUp (PgDn)&    Up (down) 8 lines\\
+        \tt \caret PgUp (\caret PgDn)&  Top (bottom) of buffer\\
+        \tt Return (LF)&    If below tag, execute; o.w. insert return\\
+        \tt \caret A&             Mark previous region\\
+        \tt \caret B&             Go back to bookmark (previous tag)\\
+        \tt \caret E&             Erase current line\\
+        \tt \caret G&             Show graphics screen\\
+        \tt \caret L&             Refresh screen\\
+        \tt \caret T&             Tag top of region\\
+        \tt \caret X&             Exchange tag and cursor\\
+        \tt \caret Z&             Escape to DOS.  Use ``exit'' to return
+	\end{tabular}
+	\end{center}
+	Help is available through menu or \[F1\].
+	\end{table}
+
+
+There is a menu (\[ESC\]).  You can execute commands from the menu by
+typing \[ESC\] followed by the capital letter in the command or by moving
+to the command with the arrows and then typing return. 
+
+\begin{table}[ht]
+\caption{Menu for MSDOS Editor}
+\begin{center}
+  \begin{tabular}{l p{0.5\textwidth}}
+    \tt Copy region&	Copies region to the end of the buffer.\\
+    \tt Print region&	Send region to printer.\\
+    \tt Save region&	Appends region to a file.
+       			Omits prompts.\\
+    \tt Read file&	Placed at end of buffer.\\
+    \tt save Buffer&	Saves buffer, with prompts.\\
+    \tt Quit& 		Like !quit.\\
+    \tt buffer Info&	Information on buffer size and cursor position.\\
+    \tt Help&		Describes key maps.\\
+    \tt clear region&	Erase region.\\
+    \tt clear buffer&	Erase all lines in buffer.
+  \end{tabular}
+  \end{center}
+\end{table}
+
+
+A hint.  You can read a file that contains prompts and then execute
+it.  Note that you cannot \[!include\] a file with prompts, because they
+are not syntactically correct, but prompts are stripped from the
+beginning of the line when the editor sends lines to \ISETL.
+
+
+
+\subsection{Mac Screen Editor}
+
+The Macintosh version has an editor that needs no introduction.
+All operations are reachable from the menus, and follow the standard
+Macintosh usages.
+
+The only unusual feature is that highlighted regions can be run ---
+sent to the execution window and sent to \ISETL\ as input.
+You can run by:
+\begin{itemize}
+    \item Typing \[RETURN\],
+    \item Selecting \[Run\] from the menu, or
+    \item Typing \[clover-R\].
+\end{itemize}
+In addition, typing \[RETURN\] on the last line of the Execution
+window causes that line to be sent to \ISETL\@.
+
+\subsection{Interactive Line Editor (ILE)}
+
+\input{ile}
+    
+\pagebreak
+\section{Runtime Errors}\label{secRT}
+\index{error messages}
+
+    Error messages describe most problems by printing the
+    operation with the offending values of the arguments.
+
+    If \TT{!source} was on when the program was read, you will get the
+    source line where the error occurred.
+    If \TT{!stack} is on, lines containing the calls leading to this
+    error will also be printed.
+    
+    One possible problem is that some values are very big:
+    \[\{1..1000\}\] for instance.  Therefore, there are two forms of the
+    error messages, controlled by the \TT{!verbose} directive.  By
+    default, \[verbose\] is off and large values are represented by
+    their type.  The directive \[!verbose on\] results in full values
+    being printed. 
+    \[!verbose off\] returns you to short messages.
+    See figure~\ref{RT} for an example.
+
+    \begin{figure}[hbp]
+	\DS
+	    >XXXXXXX\=\kill
+	    >	    \>!verbose on\\
+	    >	    \>\{1..3\} + 5;\\
+	    ! Error -- Bad arguments in:\\
+	    \{3, 1, 2\} + 5;\\
+\\
+	    >	    \>!verbose off\\
+	    >	    \>\{1..3\} + 5;\\
+	    ! Error -- Bad arguments in:\\
+	    !Set! + 5;
+	\DE
+	\caption{Runtime errors\label{RT}}
+    \end{figure}
+
+\pagebreak[0]
+{\samepage
+\subsection{Fatal Errors}
+The following errors cause \ISETL{} to exit.
+Generally they indicate that the problem is larger than \ISETL{} can
+manage.
+Please report cases where internal limits are exceeded to the author.
+\begin{center}
+\begin{tabular}{l l}
+{\bf Message}&{\bf Explanation / Suggestions}\\\hline
+Includes too deeply nested&		Probably file includes itself.\\
+Out of parsing space&			Internal limit exceeded.\\
+Parser out of memory&			Internal limit exceeded.\\
+Too many locals&			Internal limit exceeded.\\
+Too many variables&			Internal limit exceeded.
+\end{tabular}
+\end{center}
+}
+
+\pagebreak[0]
+{\samepage\raggedbottom
+\subsection{Operator Related Messages}
+Most errors print the offending expression with the values (or types)
+of the arguments.
+A few have additional information attached.
+\begin{center}
+\begin{tabular}{l l}
+{\bf Additional}&{\bf Explanation}\\\hline
+\[+\]&			May refer to \[union\].\\
+\[*\]&			May refer to \[inter\].\\
+\[<relation>\]&		Refers to any of the relational operators.\\
+Boolean expected&	May occur in \[if\], \[while\], \[and\], \\
+&			\[or\], \[?\], and iterators.\\
+Can't iterate over&	Error in iterator.\\
+in LHS of assignment&	Error in selector on LHS\@.\\
+Multiple images&	Smap had multiple images.
+\end{tabular}
+\end{center}
+
+\pagebreak[1]
+}
+
+{\samepage \raggedbottom
+\subsection{General Errors}
+These errors do not provide context by printing the values involved,
+but they are generally more specific.
+\nopagebreak
+\begin{center}
+\nopagebreak
+\begin{tabular}{l l}
+*&		Used for self explanatory messages\\
+internal&	Messages the user should never see\\
+ &		Please report to author.
+\end{tabular}
+\nopagebreak\par\nopagebreak\noindent
+\begin{tabular}{l l}
+\bf Message	&		\bf Explanation\\\hline
+Allocated data memory exhausted&	Use \[!memory\] to raise limit.\\
+Arithmetic error&		Relates to machine limits \\
+Bad arg to mcPrint&			internal\\
+Bad args in low,next..high&		*\\
+Bad args in low..high&			*\\
+Bad format in readf&			*\\
+Bad mmap in iterator&			MMap iterator over non-map\\
+Can't mmap string&		Cannot perform selection in assignment\\
+Can't mmap tuple&		Cannot perform selection in assignment\\
+Cannot edit except at top level&	Edit not permitted within \\
+&					an include\\
+Divide by zero&				*\\
+Exact format too big in readf&		*\\
+Floating point error&			*\\
+Input must be an expression&		*\\
+Internal object too large&		*\\
+Iter\_\,Next&				internal\\
+Nesting too deep for pretty printer.&	*\\
+Only one level of selection allowed&	See section~\ref{funcs}\\
+Return at top level&				*\\
+RHS in mmap assignment must be set&		*\\
+RHS in string slice assignment &		*\\
+~~must be string\\
+RHS in tuple slice assignment &			*\\
+~~must be tuple\\
+Return at top level&                            *\\
+Slice lower bound too big&			*\\
+Slice upper bound too big&			*\\
+Stack Overflow&					*\\
+Stack Underflow&				*\\
+Too few arguments&				*\\
+Too many arguments&				*\\
+Wrong number of args&			*\\
+\end{tabular}
+\end{center}
+}
+
+\pagebreak[0]
+}

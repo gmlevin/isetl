@@ -1,0 +1,301 @@
+\section{Using \ISETL}\label{usage}
+
+\subsection{How to generate a terminal session}\label{script}\label{echo}
+    The directive ``\[!record xyz\]'' begins appending everything that you
+    type to the file \[xyz\].  This is a good idea when you are developing
+    new work, or if you want to be able to show your work to someone.
+    It includes everything that you typed, except for commands to edit
+    past lines (see \ref{edit}).  
+
+    When you are finished in \ISETL, you can edit \[xyz\] using your
+    favorite editor (see \ref{editor}), deleting errors and dead-ends.
+    In particular, remove the errors that precede \[!edit\] and the line
+    with \[!edit\].  This will give you a clean script of what {\em you\/}
+    did.  
+
+    To create a terminal session where your input and \ISETL's response are
+    interleaved, as you would see at the terminal, use file redirection to
+    read from \[xyz\] and save it.  You need to insert \[!echo~on\] at the
+    beginning of your file to tell \ISETL\ that it should print your
+    input.
+
+    \pagebreak[1]
+    Example:
+    \begin{description}
+    \item[\[xyz\]:]
+	\begin{verbatim}
+!echo on
+x:= 3;
+y:= 4;
+x+y;
+x*y;
+	\end{verbatim}
+
+    \pagebreak[1]
+    \item[Command:]
+	\begin{verbatim}
+isetl -s -d <xyz >abc
+	\end{verbatim}
+
+    \pagebreak[1]
+    \item[\[abc\]:]
+	\begin{verbatim}
+>	x:= 3;
+>	y:= 4;
+>	x+y;
+7;
+
+>	x*y;
+12;
+	\end{verbatim}
+    \end{description}
+
+    The ``\[-s\]'' on the command line suppresses the header information
+    that tells you about \ISETL\@.
+    The ``\[-d\]'' tells \ISETL\ that it is receiving {\em direct\/}
+    input and should not use the interactive line editor.
+
+
+\subsection{Indenting rules and multiple \[ends\]}
+The presentation of programs is a matter that often seems to stir
+emotions usually reserved for religious questions.  The most important
+point to consider is readability.  If you find that you are often
+confusing where statements begin and end, you are probably are using an
+inappropriate style.
+
+I recommend that you match the beginnings and endings of statements,
+and that you use the optional keywords after \[end\] when the program
+gets long.  See figure~\ref{ex:indent}.
+
+\begin{figure}[hbt]\begin{verbatim}
+program nothing;
+    i:= 0;
+    while i < 10 do
+        if i mod 3 = 5
+        then print i;
+        else
+            print 2*i;
+            print 3*i;
+        end if;
+        i:= i+1;
+    end while;
+end program;
+\end{verbatim}
+\caption{A simple example\label{ex:indent}}
+\end{figure}
+
+\subsection{Doing two things at once -- \ISETL\ and Editing}\label{system}
+Time for the \GURU\ again.
+This is very system dependent, even to the point of how much memory is
+available.  
+
+On Unix, there is usually a key to type that temporarily
+stops one program, and lets you start a second (ctrl-Z is the usual choice).
+\[\caret Z\] also works within \ISETL\ on MSDOS.
+
+On VMS, the best chance is \[!system\].  This is also available
+under Unix and MSDOS.
+The \[!system\] directive can be used to execute a command
+{\em without leaving \ISETL}\@.  ``\[!system~dir\]'' lists your
+directories.   Generally, 
+``\[!system~xyz\]'' is the same as executing \[xyz\] at the system prompt,
+except that \ISETL\ does not lose its variables in the meanwhile.
+See \Intro\ for details on how to save memory in small systems to provide
+enough room to use \[!system\].
+
+%\subsection{Programming style}
+%\begin{itemize}
+%    \item Avoid assignments to global variables.
+%	Functions should return values, not change globals.
+%\end{itemize}
+
+\subsection{Printing output}
+The simplest solution is to write to a file and then print the file
+from outside of \ISETL\@.  Other possibilities exist.  See
+\ref{script} and \ref{redirection}.
+
+\subsection{Formatting output}
+This is covered in \ref{lang}--\ref{write}.
+
+\subsection{\ISETL\ for beginners}
+I will consider beginners to be those who are generally
+writing one-liners, simple expressions for evaluation.
+
+\subsubsection{\[!record\]}
+When you begin, it is probably best to have \[!record history\] in your
+\[isetl.ini\] file.  This will keep a copy of what you type in the file
+\[history\].  This is useful for showing to others when something doesn't
+work.  There is little more frustrating than to say, ``This is what I did,
+and it didn't work.'' only to have the other person try the same thing and
+have it succeed.  If you \[!record\] everything, you can find out exactly
+what you did do (probably not as you remembered it).
+
+\subsubsection{\[!edit\]}\label{edit}
+Most systems no longer have or need \[!edit\], it having been replaced
+by the interactive line editor.  If your system does not have \[ILE\],
+read on (the header announces the presence of \[ILE\]).
+If you prefer \[!edit\], you can use it by including the \[-e\] switch.
+
+When you are typing one-liners, and even three- and four-liners,
+you will often get a character wrong and not feel like typing the
+whole thing again.
+Until the next \[>\] prompt appears, you have a chance to correct
+your input with \[!edit\].  You will be offered the input as
+it is and given the choice of accepting it or modifying it.
+\begin{itemize}
+\item To accept it, just type RETURN, entering a blank line as requested.
+    (The message is \[!Enter string to replace (blank line to execute)\],
+    which we have shortened in the example.)
+\item To modify it takes two steps.
+    \begin{enumerate}
+    \item Enter a string to be replaced.
+    \item Enter the string to be used as the replacement.
+    \end{enumerate}
+\end{itemize}
+
+\begin{figure}[btp]\begin{verbatim}
+>       1+2+3+;
+Syntax error, line 1.
+Error at or before end of:
+1+2+3+;
+
+Enter '!clear' or '!edit'
+>>      !edit
+1+2+3+;
+!Enter string to replace (blank line...)
++;
+!Enter replacement
++4;
+1+2+3+4;
+!Enter string to replace (blank line...)
+
+10;
+>       1+2
+>>      !edit
+1+2
+!Enter string to replace (blank line...)
+1
+!Enter replacement
+5
+5+2
+!Enter string to replace (blank line...)
+
+>>      ;
+7;
+\end{verbatim}
+\caption{Using \[!edit\]\label{ex:edit}}
+\end{figure}
+
+See figure~\ref{ex:edit}.
+In the first case, we made an error and corrected it.
+In the second case, we changed our mind and changed the 
+input to match.
+Try typing this to \ISETL\ to see exactly which parts are
+your input and which parts are printed by \ISETL\@.
+
+\subsubsection{\[!verbose\]}
+I'd recommend turning ``\[!verbose~on\]''.  This will give more information
+in the error messages, at the possible cost of printing large sets or
+tuples.  As a beginner, you need all the information \ISETL\ can give you.
+
+
+\subsection{\ISETL\ for intermediates}
+An intermediate is someone who is now writing small programs,
+too much to type each time you start again.
+
+\subsubsection{\[!include\]}
+Put your programs into files using an editor (see \ref{editor}).
+You can then use ``\[!include~file.x\]'' to insert \[file.x\] as if you had
+typed it at the keyboard, but without the strain on the fingers.
+
+
+
+\subsubsection{\[!verbose\]}
+I'd recommend turning ``\[!verbose~off\]''.
+Most of the time, you will have enough of an idea what is wrong just from
+the operation that got the error.
+You can always turn it back on and repeat the error if needed.
+
+\subsubsection{\[!watch\]}
+With big programs can come big errors.
+\[!watch\] can provide a trace of important changes that occur in your
+program: assignments and function evaluations.
+
+\begin{figure}[bpt] \begin{verbatim}
+>       f := func(x); 
+>>               return x+3;
+>>           end func;
+>       !watch i f
+!'i' watched
+!'f' watched
+>       i := f(5);
+! Evaluate: f(5);
+! f returns: 8;
+! i := 8;
+\end{verbatim} 
+\caption{Using \[!watch\]\label{ex:watch}}
+\end{figure}
+At the top level (as in figure~\ref{ex:watch}),
+this is not very helpful, but inside a larger
+program, this will let you see each time \[f\] is called, what its
+arguments were, and what it returned.
+You also see whenever \[i\] is assigned a value.
+
+\subsubsection{Misspelled identifiers}
+As programs get larger, there are more chances for things to go wrong.
+A common mistake that makes you appreciate \[Pascal\]'s pickiness is
+misspelling an identifier.  Any identifier is legal, so there are no syntax
+errors here.  The problem is that if you misspell the name on the left of
+an assignment, the variable of interest is undefined and if you misspell
+the name in an expression, the misspelling is undefined.
+(Let's not think about the problems when half the time you spell it one way
+and half the time the other.)
+
+The directive \[!ids\] lists identifiers that you have used that are
+defined.
+\[!oms\] lists those identifiers that you have used that are
+undefined (have the value \[om\]).  From these lists, you can often find a
+name that you didn't expect and thereby track down the problem.
+
+
+\subsubsection{Debugging}
+Debugging is described in detail in \Intro.
+
+\subsection{\ISETL\ for experts}
+
+Experts tend to find their own way of working.
+Much of the decision depends on what tools are available
+and how comfortable you are with your computer, separate from \ISETL\@.
+
+I find that I tend to use \ISETL\ more in the style of a compiler,
+editing files and having \ISETL\ read them in using the command line
+form or \[!include\], only typing short expressions at the keyboard
+for testing or evaluating functions.
+
+Being on Unix, I use the Unix means of stopping \ISETL, rather than
+\[!system\].  
+
+It will be interesting to have others report how they make use of
+\ISETL\@.
+
+Another option that I am finding useful under Unix is to run \[emacs\]
+and run \ISETL\ under the \[emacs\] shell.  This gives me a full
+editor.  If you are an \[emacs\] user, just remember to run
+\[isetl~-d\], so that the \[ILE\] is not active also.  The
+availability of programs like \[emacs\] is the reason I resisted
+introducing an editor into \ISETL; it really does not belong there.
+
+\subsubsection{Garbage collection}
+If your program seems to run very slowly, getting slower as the
+program continues to run, it may be using most of its
+available memory.
+The directive \[!gc on\] will print information about the available
+memory and how it is being collected each time \ISETL\ runs out of
+space.  If it collects frequently, or the amount of space reclaimed is
+small, increase the allocated memory with \[!allocate\].  If you are
+at the \ISETL\ memory limit, you can increase it with \[!memory\], up
+to the system limits.
+
+On the Mac, under MultiFinder, you may need to adjust the memory usage
+information in the Info window.  See a Mac \GURU.
+

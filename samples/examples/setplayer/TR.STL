@@ -1,0 +1,48 @@
+$ A is an explicit family 
+CARD := | A -> 2**#U - trs(U,Acomp)
+               where U := %union A;
+	             Acomp := { U-a | a in A };
+	       end
+        |;
+
+CARDk := | k,A -> Choose(#U,k) - trsk(k,U, Acomp)
+               where U := %union A;
+	             Acomp := { U-a | a in A };
+	       end
+         |;
+
+$ Return the number of subsets of U that touch every element of A
+trs := func(U,A);
+    local singles,x;
+    if      #A=0      then return 2**#U
+    elseif  {} in A   then return 0
+    else
+        singles := { a: a in A | #a=1 };
+	while singles /= {} do
+	    take x from singles;
+	    U := U - x;
+	    A := { a : a in A | not x subset a };
+	end while;
+	if      #A = 0 then return 2**#U
+	elseif	DegreeTwo graph????
+	else    ????
+	endif;
+    end if;
+end func;
+
+$ Number of ways to cover a path of n nodes with k nodes
+Pathk := T where
+      T := func(k,n);
+       if k < n div 2 or k > n then return 0 end;
+       T(k,n) := T(k-1,n-1) + T(k-1,n-2);
+       return T(k,n);
+      end func;
+      T(0,0) := 1; T(0,1) := 1;
+      T(0,1) := 1;
+      end;
+
+
+$ Number of ways to cover a path of n nodes
+Path := |n-> %+[Tk(i,n) : i in [n div 2 .. n] ]|;
+
+

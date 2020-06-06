@@ -1,0 +1,76 @@
+ENUMk := func(k, must_hit, hits, U );
+$ choose k size subsets of U
+$ return hits + each subset
+$ must contain at least one element from each set in must_hits
+$ no set in must_hit intersects hits  (all unhit)
+$ all sets in must_hit are contained in U
+    local singles, pick, result, quick_hits, miss;
+
+    if k < 0 or  #U < k then return {}
+    elseif #must_hit = 0 then  
+	return  { hits + r : r in npow(k,U) };
+    elseif k=0 or {} in must_hit then return {}
+    else
+       singles := { x : x in must_hit | # x = 1 };
+       if #singles /= 0 then 
+	   quick_hits := %+singles;
+	   return ENUMk(k-#quick_hits,
+		        {x : x in must_hit | x inter quick_hits = {} },
+                        hits + quick_hits, U-quick_hits);
+       else
+	   take pick from must_hit;
+	   result := {};
+	   for hit in pow(pick) less {} do
+	       miss := pick - hit;
+	       result := result 
+		 + ENUMk(k-#hit, 
+			 { needed-miss : needed in must_hit 
+				       | needed inter hit = {} },
+			 hits + hit, U-pick)
+	   end;
+	   return result;
+       end if
+    end if
+end func;
+
+
+
+ITEMS := func(S);
+$ return set of elements in S
+    local PLUS, MINUS;
+    if Internal(S) then
+	PLUS  := S(plus);
+	MINUS := S(minus);
+	if Internal(MINUS) then
+	    return ITEMS(DIFFTREE(PLUS,MINUS(plus)))
+	         + ITEMS(MINUS(minus))
+	elseif Internal(PLUS) then
+	    return ITEMS(DIFFTREE(PLUS(plus), UNION(PLUS(minus),MINUS)))
+	else
+	    return ENUM(PLUS,MINUS)
+	end if
+    else 
+        return S(explicit)
+	     + {}%+ [pow(x): x in S(power)]
+	     + {}%+ [npow(k,x): Ck=C(k), x in Ck] where C := S(pk) end
+    end if
+end func;
+
+ENUM := func(PLUS,MINUS);
+$ Return set of elements in PLUS that are not in MINUS
+$ PLUS and MINUS are leaves
+    return { x : x in PLUS_E
+               |   x notin MINUS_E
+	       and not (exists p in MINUS_P: x subset p)
+	       and not (exists p in MINUS_PK(#x)?{}: x subset p) }
+	 + {}%+[ENUMk(k,{S-x:x in MINUS_P}+{S-x: x in MINUS_PK(k)?{}},{},S)
+	        :S in PLUS_P, k in [0..#S]]
+	 + {}%+[ENUMk(k,{C-x:x in MINUS_P}+{C-x: x in MINUS_PK(k)?{}},{},C)
+	        : Ck=PLUS_PK(k), C in Ck]
+
+	 where PLUS_E := PLUS(explicit);   MINUS_E := MINUS(explicit);
+	       PLUS_P := PLUS(power);	   MINUS_P := MINUS(power);
+	       PLUS_PK:= PLUS(pk);	   MINUS_PK:= MINUS(pk);
+	 end
+end func;
+        

@@ -1,0 +1,99 @@
+intTrap := func(f,low,high opt steps);
+$ trapezoidal method
+    steps := steps ? DefaultSteps;
+    return h * ( (f(low)+f(high))/2 + %+[ f(low+i*h) : i in [1..steps-1]] )
+           where     h := (high-low)/steps;
+	   end;
+end func;
+
+intSimp := func(f,low,high opt N);
+$ Simpsons Rule
+    N := N ? DefaultSteps;
+    if odd(N) then N := N + 1 end;
+
+    return (h/3) *
+           (f(low)+ 4* %+[f(low+i*h) : i in [1,3..N-1]] 
+	          + 2* %+[f(low+i*h) : i in [2,4..N-2]] 
+		  +f(high))
+           where     h := (high-low)/N;
+	   end;
+end func;
+
+$ Use Simpsons's rule for integration
+    int := intSimp;
+    DefaultSteps := 20;
+
+
+
+coefs := func(f,a,N);
+    local As, Bs;
+    As := 0@[];
+    Bs := 1@[];
+
+    As(0) := int( f, -a,a ) / (2*a);
+    for i in [1..N] do
+        As(i) := int( |x -> f(x)*cos(k*x)| where k := i*pi/a end, -a,a) / a;
+        Bs(i) := int( |x -> f(x)*sin(k*x)| where k := i*pi/a end, -a,a) / a;
+    end for;
+    return [a,As,Bs];
+end;
+
+pi := 2*acos(0);
+
+Fsum := func(coefs opt N);
+    local As, Bs, a;
+    [a,As,Bs] := coefs;
+    N := N ? #Bs;
+    return | x -> As(0) + (0%+ [ As(i)*cos(i*pi*x/a) : i in [1..N] ])
+                        + (0%+ [ Bs(i)*sin(i*pi*x/a) : i in [1..N] ])
+           | ;
+end func;
+
+
+
+fourier := func(opt steps);
+    local F, a, N, xFs, c;
+    writeln 'Enter function "F" (ex:  | x -> x*x |; )';
+    read F;
+    writeln 'Enter "a" (range will be from -a to a)';
+    read a;
+    writeln 'Enter "N" (terms in the approximation)';
+    read N;
+
+    write 'Computing coefficients.  ';
+    c := coefs(F,a,N);
+    xFs := [Fsum(c,i) : i in [0..N]];
+    writeln 'Done';
+
+    writeln '\tFirst graph will be F.  ';
+    writeln '\tSecond graph is the 0th approximation, etc.';
+    writeln '\tType any key to see the next graph.';
+
+    pause();
+
+    Titles := | i-> 'Approximation '+as_string(i-3) + '\n' |;
+    Titles(1) := 'Fourier Series';
+    Titles(2) := 'Original function\n';
+    plot( [F]+xFs, -a,a, steps );
+    return c;
+
+end func;
+
+gplot := func(Fs, xlow, xhigh, steps);
+    local output, delta;
+    steps := steps ? DefaultSteps;
+
+
+    if not is_tuple(Fs) then Fs := [Fs] end;
+    delta := (xhigh-xlow)/steps;
+    for f = Fs(k) do 
+        output := openw("plot."+as_string(k));
+        for i in [0..steps] do
+	    writeln [x, f(x)] where x := xlow+delta*i end to output;
+	end for;
+    close(output);
+    end for;
+end func;
+
+
+plot := gplot;

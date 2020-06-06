@@ -1,0 +1,194 @@
+Changes to ISETL 3.0
+
+Lexical Extensions
+    Permit ' and ^ as id chars after initial letter
+    Ex;   x' y'' a^  x3'
+
+    Permit .9 as floating point input 
+
+
+Syntactic Extensions
+    Added [r1,r2..r3] for floating point.
+    Added [c1..c2] for characters (strings length 1).
+    Permit int**-k, returns floating point
+
+Non-origin 1 tuples:
+
+    orig @ T  yields a tuple with the same elements as T, but origin orig
+              See origin, hi, lo below.
+
+Choose iterator:
+    Added `choose iterators : cond'.
+     The condition is *NOT* optional.
+     Value returned depends on the iterators.
+
+     Iterator					Returns
+     ========					=======
+     x in S					x
+     x in S, y in T				[x,y]
+     x,y in S					[x,y]
+     y=f(x)					[x,y]
+     y=f(x), b=g(b)				[[x,y], [a,b]]
+     y=f{x}					[x,y],  where y is a set
+
+	>       a := 100;
+	>       b := 7;
+	>       [q,r] := choose q in [1..a], r in [0..b-1] : a = q*b+r;
+	>       q;
+	14;
+	>       r;
+	2;
+
+
+Converting strings to variables
+    @expr  or   @(expr1, expr2, ..., exprk)
+    These are variables and may be used wherever a variable is needed.
+    NB: The ids in declarations and binding positions (iterators) are
+    not variables and cannot be @-expressions.
+
+    The expressions may be strings or integers.  The integers are
+    converted to strings and the strings are then concatenated to
+    produce the variable name.
+
+    Ex:  for i in [1..5] do @('N',i) := Mod(i); end;
+         Defines N1, N2, N3, N4, N5 and assigns them values.
+
+If expressions:
+    No longer require the else part.  Missing else part is equivalent
+    to ``else OM''.
+
+Locals in programs:
+    You may now declare locals in programs.  These are not global
+    variables and vanish when the program is done.
+
+Procedures:
+    Procedures are created just like funcs, replacing `func' with
+    `proc'.  The difference is that you may not return a value from a
+    proc, hence `return expr' is not legal in a proc.  Procs actually
+    return an undefined value, but this should not be depended on.
+    This value has the peculiar property that it does not print, hence
+    calling a proc at the prompt produces no output.
+
+New directives  
+    setrandom [on|off]    When off, sets print in a canonical order.
+    rational  [off|on]    When on, int/int yields rational, not float.
+                          int**-k also yields rational.
+
+    alias id text	  make !id an abbreviation for !text
+    pp    id [file]       Pretty Print source for id. Defaults to
+                          stdout or last file.  !pp resets to stdout.
+
+    credits		  Print some copyright info and acknowledgements
+
+    lock    id-list	  Prevent assignments to ids.  
+    unlock  id-list	  Permit assignments to ids.
+       Locked ids cannot appear as LHS in code.  This prevents future
+       assignment statements, not the execution of previously defined
+       assignments.  All predefined function names are initially
+       locked.
+
+    ids                   Now lists only non-locked, non-om ids.
+    locked                Lists locked, non-om ids.
+       
+New predefined functions
+
+    as_string(x)   -- return a string representation of x
+    precision(int) -- defines the default output precision of print
+                      returns old precision.
+
+    lo(T)          -- T is defined from lo(T)..hi(T)
+    hi(T)
+    origin(i)      -- make the default origin (i)
+
+    is_rational(x) -- see New Directives for !rational
+    den(r)         -- denominator of r (rational or int)
+    num(r)         -- numerator of r (rational or int)
+
+    sec,csc,cot,asec,acsc,acot
+
+Predefined procedures
+
+    Funcs that used to always return OM now return the non-printing
+    object, and therefor behave like procedures.
+
+Graphics routines
+
+    NB: order of args in scale has changed.  Trying to make xlow,xhigh
+    together in all routines that need ranges.
+
+For those of you interested in writing graphics code, here is a list
+of the graphics routines and their meanings.  
+
+If no return value is mentioned, these are procs.
+
+graphics(bool)  Call with true to before any of the following commands.
+		Call with false to return to editor mode (or close
+		window).  On PC, ^G will switch between graphics and
+		editor.   You must have the appropriate *.BGI file for
+		your PC graphics adaptor in the same directory as
+		isetl.exe. 
+
+
+scale(minX,maxX,minY,maxY)
+		Sets up graphing region.  Will plot points within the 
+		rectangle described by args, scaling your values to fit
+		on the screen.  Call before any of the following commands.
+
+move(x,y)	Move current point (CP) to (x,y).  Nothing drawn.
+draw(x,y)	Draw line from CP to (x,y),  Change CP to (x,y).
+textout(x,y,text)
+                Write text starting at (x,y) and writing left to
+		right.  If x,y are omitted, writes at CP.
+
+get_coord()	Returns [x,y,c] when a key is pressed.  (x,y) is the point
+                on the screen and c is the key pressed.  c='' if mouse
+		was clicked.
+
+thickline(bool) Should lines be thick?  Returns old value.
+
+title_window(text)
+                Writes near top of graph, on PC.  Writes in title bar
+		on Mac.
+
+
+clear_screen()    clears screen and undefines objects
+new_object()      returns an integer i identifying the new object.
+		  Anything plotted up to the next new_object is
+		  part of this object and may be deleted with
+		  del_object(i) and  added back again with add_object(i).
+add_object(i)
+del_object(i)
+
+resolution()      returns [minX,minY]. distance between pixels.
+XtoYratio()	  returns ratio of x pixel size to y pixel size
+
+erasable(true)    plotting is made part of the erasable object
+erasable(false)   plotting is no longer part of erasable object
+erasable()        erase erasable object
+    Erasable is used for small objects that come and go quickly.
+    Drawn in xor mode, so complex figures or text may look funny.
+
+char_mult(m)      Magnify text by  m.  Returns old value.
+
+point(x,y,size)   draw square 2*size+1 pixels on a side, centered
+		  at x,y.  CP := x,y.  If x,y are missing, draws at
+		  current CP.  If size is negative, fills square.
+
+rectangle(xlow,xhigh,ylow,yhigh, hollow)
+	          draw rectangle.  if hollow=true or is omitted,
+		  rectangle is hollow.  If hollow=false,
+		  rectangle is filled in.
+
+save_graph(filename)
+	          Write current graph to filename.  On PC, empty
+		  string pops up a window to let you enter the name of
+		  the file.  On Mac, use SAVE from menu.
+
+load_graph(filename)
+	          Read filename and add to current object.  Uses the
+		  current scale, which may be incorrect for this
+		  graph.  You can call scale after a plot.  On PC,
+		  empty string pops up a window to let you enter the
+		  name of the file.  On Mac, this is an error.
+
+

@@ -1,0 +1,41 @@
+$ Define the properties of equivalence relations
+reflexive  := :S,R -> forall i in S | [i,i] in R: ;
+symmetric  := :R   -> forall [a,b] in R | [b,a] in R: ;
+transitive := :R   -> forall a,b,c in S | ([a,b] in R and [b,c] in R)
+                                          impl [a,c]
+                      where S := domain(R) + image(R) end : ;
+$ Faster definition
+transitive := :R   -> forall [a,b] in R, c in R{b} | [a,c] in R : ;
+
+S := {1..10};
+
+R1 := { [i,i+1] : i in S | i+1 in S };
+R2 := { [i,j]   : i,j in S | i <  j };
+R3 := { [i,j]   : i,j in S | i <= j };
+R4 := { [i,j]   : i,j in S | abs(i-j) < 2 };
+R5 := { [i,j]   : i,j in S | (i-j) mod 3 = 0 };
+
+$ The equivalence classes for a relation are the sets of
+$ related elements
+eqclass := :R -> { R{i} : i in domain(R) + image(R) } : ;
+
+$ Properties of partitions
+exhaustive := :S,P -> %union P = S: ;
+disjoint   := :P   -> forall a,b in P | a/=b impl a inter b = {} : ;
+
+$ Partitions induce equivalence relations
+induce     := :P   -> { [i,j] : s in P, i,j in s } : ;
+
+$ Compute the Reflexive, Symmetric and Transitive closures
+Rclose := :S,R -> R union { [i,i] : i in S } : ;
+Sclose := :R   -> R union { [j,i] : [i,j] in R } : ;
+Tclose := func(R); local new;
+               $ Add missing relations until there is no change
+               new := om;
+               while new /= {} do
+                   new := { [a,c] : [a,b] in R, c in R{b} 
+                                  | [a,c] notin R };
+                   R := R union new;
+               end while;
+               return R;
+          end func;

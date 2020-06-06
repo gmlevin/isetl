@@ -1,0 +1,32 @@
+Searching for patterns: How many primes?
+	
+Searching out patterns is one of the great uses of ISETL.  Whereas in
+the past the great number theorists had to calculate examples by hand,
+now we can have the computer churn out examples to test our theories.
+And with ISETL, the programs are generally fairly simple to write.
+
+The fact that primes appear in a unpredicatable fashion, with large
+and small gaps, is probably one of the reasons that searching for them
+is interesting.  Searching for prime twins (p, p+2) is another
+interesting problem.  Finding large dry spells without primes is another.
+
+One of the most fascinating facts about primes is that although the
+gaps seem unpredicatable, the relative density of primes is easily
+described.  An interesting task might be to have students look for a
+function that roughly predicts the number of primes less than or equal
+to N.  One way to do this would be to count primes as they are
+generated and try different ratios.  If #p is number of primes up to
+prime p, then p/#p is a reasonable ratio to start with.  Have them
+try different expressions with p and #p until they get a fairly
+constant result.  Now you can have them try to predict the number of
+primes less than N.  Either compute the number for a large N or hit
+the library for the information.
+
+This does not address the question of *proving* the ratio of p:#p, but
+it should stimulate some interest in the properties of numbers.  If
+any of you are familiar with the proof of the density of primes, you
+might try to find a series of experiments that would demonstrate the
+proof.  I'd be interested in seeing it.
+------
+Gary Levin/Dept of Math & CS/Clarkson Univ/Potsdam, NY 13676/(315) 268-2384
+BitNet: gary@clutx   Internet: gary@clutx.clarkson.edu

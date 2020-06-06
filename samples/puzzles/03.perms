@@ -1,0 +1,13 @@
+Permutations
+
+    (1) Write Perm(S) that returns the set of all permutations of set S.
+
+    (2) Write PermT(T) that returns the set of all permutations of 
+        tuple T, where T may have repetitions.  One solution is to
+	generate all permutations and let the set properties remove
+	duplicates.  Another solution requires that you handle
+	duplicates directly.
+
+    (3) Using # to determine the size of PermT(T) for various tuples,
+        try to discover a relation between repetitions and the number
+	of permutations.

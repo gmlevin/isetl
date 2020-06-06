@@ -1,0 +1,9 @@
+primes := [];
+for p in [2..3000] do
+    if forall i in primes | p mod i /= 0 then
+        primes := primes with p
+    end if;
+end for;
+primes;
+$ 13.5u 0.1s 0:14 94% 0+224k 0+0io 0pf+0w sun.mcs 1000
+$ 81.4u 2.3s 1:28 94% 0+224k 0+0io 0pf+0w sun.mcs 3000

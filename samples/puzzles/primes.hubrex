@@ -1,0 +1,21 @@
+$ This func returns the tuple consisting of all prime
+$ numbers from 2 through the input value N (a positive
+$ integer assumed >= 2).
+     
+sieve := func (N);
+     
+    local S, smallPrimes;
+     
+    if N = 2 then
+        return [2];
+    else
+        S := ceil (sqrt(N));
+        smallPrimes := sieve (S);
+        return smallPrimes + [p : p in [S + 1 .. N] |
+                              forall y in smallPrimes | p mod y /= 0];
+    end if;
+     
+end func;
+
+x := sieve(3000);
+#x;

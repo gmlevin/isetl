@@ -1,0 +1,10 @@
+!include groups.stl
+f := openr('g805');
+[elms,T] := read_table(f);
+null := print_table(elms,T);
+null := close(f);
+
+i := id(elms,T);
+assoc(elms,T);
+orders(elms,T,i);
+inv := inverse(T);

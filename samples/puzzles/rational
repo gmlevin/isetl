@@ -1,0 +1,69 @@
+!include numbers
+norm
+:= func(x); return
+      [num div g, den div g]
+      where [num,den] := x;
+	    g := gcd(num,den);
+	    end;
+   end func;
+
+plus
+:= func(x,y); return
+       norm([xnum*yden + ynum*xden, xden*yden])
+       where [xnum,xden] := x;
+             [ynum,yden] := y;
+	     end;
+   end func;
+
+minus
+:= func(x,y); return
+       norm([xnum*yden - ynum*xden, xden*yden])
+       where [xnum,xden] := x;
+             [ynum,yden] := y;
+	     end;
+   end func;
+
+times
+:= func(x,y); return
+       norm([xnum*ynum, xden*yden])
+       where [xnum,xden] := x;
+             [ynum,yden] := y;
+	     end;
+   end func;
+
+divide
+:= func(x,y); return
+       norm([xnum*yden, xden*ynum])
+       where [xnum,xden] := x;
+             [ynum,yden] := y;
+	     end;
+   end func;
+
+neg_one := [-1,1];
+one     := [1,1];
+zero    := [0,1];
+
+
+power
+:= func(x,i); return
+       one %times(i*[x]);
+   end func;
+
+expand
+:= func(x,n); local result,num,den;
+      [num,den] := x;
+      result := [num div den];
+      num := num mod den;
+      for i in [1..n] do
+          num := num * 10;
+	  result := result with (num div den);
+	  num := num mod den;
+      end;
+      return result;
+      end;
+
+print_expand
+:= func(x,n);
+       x := expand(x,n);
+       writeln x(1):0, '.', x(2..):0;
+   end; 
