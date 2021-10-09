@@ -2,6 +2,7 @@ program top_sort;
     print "Enter a partial order as a set of pairs";
     read po;
     nodes := domain(po) + image(po);
+    print ["PO", po];
     print ["nodes", nodes];
 
     sort := [];
@@ -24,6 +25,7 @@ $ breadth first (ready is maintained as a queue)
 program top_sort;
     print "Enter a partial order as a set of pairs";
     read po;
+    print ["PO", po];
     nodes := {x: [x,~] in po} + {y: [~,y] in po};
     print ["nodes", nodes];
 

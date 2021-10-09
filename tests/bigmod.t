@@ -1,6 +1,6 @@
 f := func(a,b); if b/=0 then return a mod b; end; end;
 g := func(a,b); if b/=0 then return a - a div b * b - a mod b; end;end;
-test := func(a,b); 
+test := func(a,b);
    print [a mod b >= 0, g(a,b)=0, g(a,b), a div -b = -(a div b),
           [a,b], a div b, a mod b];
    end;

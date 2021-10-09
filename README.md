@@ -16,6 +16,9 @@ Currently there a few cases that fail. I am working on tracking down the issues.
    * Lower directories have more specialized programs.
    * Some of them were intended to work with graphics output, which is currently not supported.
 
+* See howto.ubuntu for building instructions
+
+
 ## Issues
 * Some ISETL programs fail either assertions or core dump.
 * The command line editor is not working with the modern version of curses.

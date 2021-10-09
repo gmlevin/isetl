@@ -81,7 +81,7 @@ body:
 	stmts
     ;
 
-stmts:  
+stmts:
         stmt.list opt.semi      {$$ = Rev_Seq($1);}
     ;
 
@@ -92,7 +92,7 @@ stmt.list:
     |	stmt	 		{$$ = New_AST(0, $1, ANULL);}
     ;
 
-stmt:   { $$ = New_AST(T_Source, Source_List,ANULL); Source_List = $$; } 
+stmt:   { $$ = New_AST(T_Source, Source_List,ANULL); Source_List = $$; }
         real.stmt
         { $$ = $1; ast_2($1)= $2;}
     ;
@@ -119,7 +119,7 @@ real.stmt:
     |	T_PrintF  pair.list opt.to	{$$ = New_AST(T_PrintF, $2, $3);}
     |	T_Write   pair.list opt.to	{$$ = New_AST(T_PrintF, $2, $3);}
     |	T_Writeln pair.list opt.to
-            {$$ = New_AST(T_PrintF, 
+            {$$ = New_AST(T_PrintF,
 			  New_AST(0,
 				  New_AST(T_Om,ANULL,ANULL),
 				  New_AST(0, New_AST(T_String,
@@ -127,7 +127,7 @@ real.stmt:
 					  $2)),
 			  $3);}
     |	T_Writeln  opt.to
-            {$$ = New_AST(T_PrintF, 
+            {$$ = New_AST(T_PrintF,
 			  New_AST(0,
 				  New_AST(T_Om,ANULL,ANULL),
 				  New_AST(0, New_AST(T_String,
@@ -156,7 +156,7 @@ if.stmt:
 	{$$ = New_AST(T_If, New_AST(0, $2, $4),
 			    New_AST(0, Rev_Seq($5), $6) ); }
     ;
-	
+
 else.ifs:
 	else.ifs T_Elseif expr T_Then stmts
 	{$$ = New_AST(T_Elseif, New_AST(0, $3, $5),
@@ -197,7 +197,7 @@ iter.list:
     ;
 
 simple.iterator:
-	bound.list  T_In expr	
+	bound.list  T_In expr
 	{$$ = New_AST(T_In, $1, $3);}
     |	bound T_Eq expr
 	{$$ = New_AST(MAP, $1, $3);}
@@ -299,35 +299,35 @@ expr:
     |	expr T_Impl	expr  {$$ = New_AST(T_Impl,   $1, $3);}
     |	expr T_Iff	expr  {$$ = New_AST(T_Iff,    $1, $3);}
 
-    |	expr T_Insert binop expr	
+    |	expr T_Insert binop expr
 	{$$ = New_AST(T_Insert, $3, New_AST(0, $1, $4) );}
-			
-    |	T_Insert binop expr	
-	{$$ = New_AST(T_Insert, $2, 
+
+    |	T_Insert binop expr
+	{$$ = New_AST(T_Insert, $2,
 		      New_AST(0, ANULL, $3) );}
-	
+
     |	T_Not expr
 	{$$ = New_AST(T_Not, ANULL, $2);}
 
-    |	T_Plus expr		%prec UNARY		
+    |	T_Plus expr		%prec UNARY
 	{$$ = New_AST(T_Plus, ANULL, $2);}
 
-    |	T_Minus expr		%prec UNARY		
+    |	T_Minus expr		%prec UNARY
 	{$$ = New_AST(T_Minus, ANULL, $2);}
 
-    |	T_Exists iter.list T_St expr		
+    |	T_Exists iter.list T_St expr
 	{$$ = New_AST(T_Exists, $2, $4);}
 
-    |	T_Choose iter.list T_St  expr		
+    |	T_Choose iter.list T_St  expr
 	{$$ = New_AST(T_Choose, $2, $4);}
 
-    |	T_Forall iter.list T_St  expr		
+    |	T_Forall iter.list T_St  expr
 	{$$ = New_AST(T_Forall, $2, $4);}
     ;
 
 
 expr.list:	/* builds list in reverse order */
-	expr			
+	expr
 	{$$ = New_AST(0, $1, ANULL); }
 
     |	expr.list ',' expr
@@ -340,7 +340,7 @@ pair.list:	/* builds in reverse order */
 					 New_AST(0,$1, ANULL)); }
     |	expr T_St expr	{$$ = New_AST(0,$3,New_AST(0,$1,ANULL)); }
 
-    |	pair.list ',' expr	
+    |	pair.list ',' expr
 	{$$ = New_AST(0, New_AST(T_Om,ANULL,ANULL),
 			 New_AST(0, $3, $1)); }
     |	pair.list ',' expr T_St expr	{$$ = New_AST(0,$5,New_AST(0,$3,$1)); }
@@ -362,7 +362,7 @@ former:
 	/* empty */		{$$ = ANULL;}
     |	expr T_St iterator	{$$ = New_AST(T_St, $1, $3);}
     |	expr.list
-    |	counted 
+    |	counted
     ;
 
 binop: binop.short { $$ = New_AST((int)$$, ANULL,ANULL); }
@@ -373,27 +373,27 @@ binop: binop.short { $$ = New_AST((int)$$, ANULL,ANULL); }
     ;
 
 binop.short:
-	T_Exp		
-    |	T_Times		
-    |	T_Slash		
-    |	T_Mod		
-    |	T_Div		
-    |	T_Plus		
-    |	T_Minus		
-    |	T_With		
-    |	T_Less		
-    |	T_Eq		
-    |	T_Ne		
-    |	T_Lt		
-    |	T_Gt		
-    |	T_Le		
-    |	T_Ge		
-    |	T_In		
-    |	T_Notin		
-    |	T_Subset	
-    |	T_And		
-    |	T_Or		
-    |	T_Impl		
+	T_Exp
+    |	T_Times
+    |	T_Slash
+    |	T_Mod
+    |	T_Div
+    |	T_Plus
+    |	T_Minus
+    |	T_With
+    |	T_Less
+    |	T_Eq
+    |	T_Ne
+    |	T_Lt
+    |	T_Gt
+    |	T_Le
+    |	T_Ge
+    |	T_In
+    |	T_Notin
+    |	T_Subset
+    |	T_And
+    |	T_Or
+    |	T_Impl
     ;
 
 /* token numbers are small enough to fit in pointers */
@@ -410,25 +410,25 @@ func.const:
 	func.head dcls stmts end.func
         { $$ = make_func($1,$2,$3,$4); }
 
-    |  T_St 
+    |  T_St
         { $$ = New_AST(T_Source, Source_List,ANULL); Source_List = $$;
           if( func_level == 0 ) {
 	      Func_Tail = Func_List = mcCons(Nil,Nil);
           }
 	  func_level++;
-        } 
-       args T_Arrow 
+        }
+       args T_Arrow
 	{ $$ = New_AST(0,$2,$3); }
        expr T_St   /* func(args); return expr; end */
             { func_level --;
 	      if( func_level==0 ) Source_Flush();
 
-	      $$ = New_AST(T_Func, 
+	      $$ = New_AST(T_Func,
 		     New_AST(T_Source,
 			     (func_level==0 ? Func_List : Nil),
 			     ast_2($5)), /* ARGS */
 		     New_AST(0, ANULL, /* DCLS */
-			     New_AST(0, 
+			     New_AST(0,
 				     $2, /* First line */
 				     New_AST(0, New_AST(T_Return, $6, ANULL),
 					     ANULL))));
@@ -443,13 +443,13 @@ args:   id.list opt.part                { $$ = New_AST(0,$1,$2); }
     ;
 
 func.head:  /* Returns (source,args) */
-	t_func 
+	t_func
         { $$ = New_AST(T_Source, Source_List,ANULL); Source_List = $$;
           if( func_level == 0 ) {
 	      Func_Tail = Func_List = mcCons(Nil,Nil);
           }
 	  func_level++;
-        } 
+        }
         '(' args  ')' ';'
 	{ $$ = New_AST((int)$1,$2,$4); /* presumes |ptr| >= |int| */ }
     ;
@@ -485,9 +485,9 @@ defns:
     ;
 
 defn:
-	bound T_Gets expr 
+	bound T_Gets expr
 	    { $$ = New_AST( T_Gets, $1,$3); }
-    |	id selector T_Gets expr 
+    |	id selector T_Gets expr
 	    { $$ = New_AST(SELECTOR, New_AST(SELECTOR, $1, $2), $4); }
     ;
 
@@ -506,7 +506,7 @@ bound.list:
 void yyerror(i) char *i; {
 }
 
-void fix_error() 
+void fix_error()
 	{     mcprintf("!Syntax error or clearing input at or before end of:");
 	      Show_Error();
 
@@ -521,18 +521,18 @@ void fix_error()
 	      }
 	}
 
-AST_Ptr make_func(fhead,dcls,stmts,endfunc) 
+AST_Ptr make_func(fhead,dcls,stmts,endfunc)
     AST_Ptr fhead,dcls,stmts,endfunc;
-    { AST_Ptr result; 
+    { AST_Ptr result;
       /* presumes |ptr| >= |int| and comparable */
-      if( endfunc != (YYSTYPE)T_End && 
+      if( endfunc != (YYSTYPE)T_End &&
 	   endfunc!= (YYSTYPE)ast_kind(fhead) ) {
 	SYNTAX("Mis-matched 'end'");
       }
       func_level --;
       if( func_level==0 ) Source_Flush();
 
-      result = New_AST(ast_kind(fhead), 
+      result = New_AST(ast_kind(fhead),
 		   New_AST(T_Source,
 			   (func_level==0 ? Func_List : Nil),
 			   ast_2(fhead)), /* ARGS */

@@ -2,11 +2,11 @@
 .IGNORE:
 
 .t.r:
-	isetl -s -d <$*.t > $*.r 
+	./isetl -s -d <$*.t > $*.r
 	chmod a-w $*.r $*.t
 
 .t.c:
-	time isetl  -s -d <$*.t | diff - $*.r
+	./isetl  -s -d <$*.t 2>/dev/null | diff --ignore-all-space $*.r -
 #	mv gmon.out $*.mon
 
 tests:	; make `ls *.t | sed s/\\\.t/.c/`

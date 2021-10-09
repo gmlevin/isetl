@@ -101,7 +101,7 @@ struct exec_pt {
 
 typedef struct exec_pt Exec_Point;     /* Execution Point */
 
-#define BASE_BITS	14
+#define BASE_BITS	8
 #define BASE		(1<<BASE_BITS)
 typedef int DIGIT;
 typedef long int WORKING;

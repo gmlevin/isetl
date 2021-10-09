@@ -138,8 +138,8 @@ struct {
     "asin", pdASin, 1,
     "acos", pdACos, 1,
     "atan", pdATan, 1,
-    "sec",  pdSec, 1,	
-    "csc",  pdCsc, 1,	
+    "sec",  pdSec, 1,
+    "csc",  pdCsc, 1,
     "cot",  pdCot, 1,
     "asec", pdASec, 1,
     "acsc", pdACsc, 1,
@@ -415,7 +415,7 @@ Pd1(pdFix)
 	}
 	LEAVE R(ans);
       }
-	
+
       case Real:
 	return mpFix(Real_Value(x));
       default:
@@ -435,7 +435,7 @@ Pd1(pdFloor)
 	mpDivMod(Num(x),Den(x), &R(ans), &R(temp));
 	LEAVE R(ans);
       }
-	
+
       case Real:
 	return mpFix(floor(Real_Value(x)));
       default:
@@ -463,7 +463,7 @@ Pd1(pdCeil)
 	}
 	LEAVE R(ans);
       }
-	
+
       case Real:
 	return mpFix(ceil(Real_Value(x)));
       default:
@@ -523,6 +523,10 @@ Pd1(pdOrd)
     }
 }
 
+// Not sure why it Rand is defined here, but for Ubuntu is should not be defined
+#ifdef Ubuntu
+#undef Rand
+#endif
 /* returns real number 0 <= rrand() < 1 */
 double  rrand()
 {
@@ -535,11 +539,11 @@ double  rrand()
 
 #ifdef Random
     extern long random();
-
-    return (double) random() / (1 << 30) / 2;
+    return (double) random() / RAND_MAX;
 #endif
 
 #ifdef BigRand
+#error BGRAND
     return (double) rand() / (1 << 30) / 2;
 #endif
 }
@@ -606,7 +610,7 @@ Pd1(pdRandom)
 	  return New_Real(upper * rrand());
       }
 
-	
+
       case Real:
 	if (Real_Value(x) < 0)
 	    return OM;
@@ -1065,7 +1069,7 @@ static IPtr real_apply(x, f)
 
 static IPtr check_apply(x, f)
     IPtr     x;
-    IPtr     (*f) (MATHREAL); 
+    IPtr     (*f) (MATHREAL);
 {
     C_Real  r;
 
@@ -1202,21 +1206,21 @@ static IPtr check_apply(x, f)
     }
 
 
-Pd1(pdLo){ 
+Pd1(pdLo){
     if( Kind(x) != Tuple ) {
 	RT_ERROR("lo: needs tuple");
     }
     return New_Integer((WORKING)Tuple_Origin(x));
 }
 
-Pd1(pdHi){ 
+Pd1(pdHi){
     if( Kind(x) != Tuple ) {
 	RT_ERROR("hi: needs tuple");
     }
     return New_Integer((WORKING)Tuple_Origin(x)+mcLen(x)-1);
 }
 
-Pd(pdOrigin){ 
+Pd(pdOrigin){
     IPtr x = Info(args);
     Idx old = def_orig;
     if( Kind(x) == Integer ) {
@@ -1314,4 +1318,3 @@ IPtr my_acsc(r) C_Real r;{
    return (-1 <= r && r <= 1) ?  OM : New_Real(asin(1/r)); }
 IPtr my_acot(r) C_Real r;{
    return New_Real(r==0 ?  acos(0) : atan(1/r)); }
-

@@ -82,6 +82,20 @@
 #endif
 
 
+#ifdef Ubuntu
+#define Get_Env
+#define Assert
+#define Double
+#undef Rand
+#define Random
+#define Signals
+#define StringsH
+#define InitCast
+#define SYS5
+#define Raw
+#endif
+
+
 #ifdef Vax
 #define Get_Env
 #define Assert
@@ -222,4 +236,3 @@
 #else
 #define VOLATILE
 #endif
-

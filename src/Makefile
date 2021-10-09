@@ -28,16 +28,16 @@ HFILES	=	debug.h machine.h micro.h manager.h \
 		op.h instr.h ast.h predef.h mp.h scanner.h
 
 FILES	=	$(CFILES) $(HFILES) Makefile parser.y \
-		.isetlrc 
+		.isetlrc
 
-CREATED	=	core $(OFILES) tags Lint y.output
+CREATED	=	core $(OFILES) Lint y.output
 
 CO	=	co -q
 CFLAGS	=	-g
 YFLAGS	=	-d
 MESSAGE =	no message
 
-sun:
+ubuntu:
 
 parser.h:	parser.c
 parser.c:	parser.y
@@ -64,9 +64,9 @@ mc_list.o:	micro.h manager.h
 mc_tree.o:	micro.h manager.h instr.h
 mc_aux.o:	micro.h manager.h
 mc_set.o:	micro.h manager.h
-mc_data.o:	micro.h manager.h  
-mc_io.o:	micro.h manager.h   
-mc_stack.o:	micro.h manager.h    
+mc_data.o:	micro.h manager.h
+mc_io.o:	micro.h manager.h
+mc_stack.o:	micro.h manager.h
 mc_tuple.o:	micro.h manager.h
 mp.o:		micro.h manager.h
 new_mc.o:	micro.h manager.h instr.h
@@ -87,9 +87,10 @@ isetl:	$(OFILES)
 vaxbsd4.2:	; make  MESSAGE='$(MESSAGE)' \
                   CFLAGS='$(CFLAGS) -DVax -DCRMode'	isetl
 vax:		; make  MESSAGE='$(MESSAGE)' CFLAGS='$(CFLAGS) -DVax'	isetl
-sun:		; make  MESSAGE='$(MESSAGE)' CFLAGS='$(CFLAGS) -DNewSun'	isetl
+sun:		; make  MESSAGE='$(MESSAGE)' CFLAGS='$(CFLAGS) -DNewSun' isetl
+ubuntu:		; make  MESSAGE='$(MESSAGE)' CFLAGS='$(CFLAGS) -DUbuntu' isetl
 gcc:		; make  MESSAGE='$(MESSAGE)' CFLAGS='$(CFLAGS) -DGCC' \
-                     	CC='gcc  ' isetl
+			CC='gcc  ' isetl
 msdos:		; make CFLAGS='$(CFLAGS) -DMSDOS'	isetl
 sys5:		; make CFLAGS='$(CFLAGS) -DSYS5'	isetl
 att:		; make CFLAGS='$(CFLAGS) -DATT'	isetl
@@ -98,8 +99,8 @@ mac:		; make CFLAGS='$(CFLAGS) -DMac'	isetl
 
 
 clean:	; rm -f $(CREATED)
-tag:	; ctags $(CFILES) $(HFILES) 2> /dev/null > /dev/null
-lint:	; lint -a -h  -x -c -DVax $(CFILES) parser.c 
+tag:	; etags $(CFILES) $(HFILES) 2> /dev/null > /dev/null
+lint:	; lint -a -h  -x -c -DVax $(CFILES) parser.c
 update:	; make -f .RCS.make VERSION=$(VERSION) MESSAGE='$(MESSAGE)' all
 checkin:	; ci -f -l$(VERSION) '-m $(MESSAGE)' $(FILES);
 		rcs -L $(FILES); make -t isetl
@@ -107,4 +108,3 @@ checkin:	; ci -f -l$(VERSION) '-m $(MESSAGE)' $(FILES);
 install:
 	cp isetl isetl3
 	strip isetl3
-

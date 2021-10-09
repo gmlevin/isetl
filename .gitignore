@@ -1,8 +1,10 @@
 *~
+a.out
 *.o
 *.bgi
 .pure
 TAGS
+tags
 isetl
 y.tab.*
 parser.[ch]

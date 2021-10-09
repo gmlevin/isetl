@@ -21,7 +21,7 @@ end;
 
 is_atom(newat);
 is_boolean(true);
-is_integer(1); 
+is_integer(1);
 is_number(1);
 f := openr("abc");
 is_file(f);
@@ -33,6 +33,7 @@ is_string("abc");
 is_tuple([1,2,3]);
 is_set({});
 is_map({});
+!echo on
 even(1234567890);
 odd(1234567891);
 fix(1) = 1;

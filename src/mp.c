@@ -100,7 +100,7 @@ IPtr     mpNorm(n)
 
 
 
-/* Unsigned Addition or Subtraction (specified by do_add) 
+/* Unsigned Addition or Subtraction (specified by do_add)
  * Assumes non-negative result
  */
 IPtr     mpUAddSub(a, b, do_add)
@@ -278,6 +278,8 @@ void    mpUTSub(result, a, m, shift)
     int     i;
     DIGIT   carry = 0;		       /* carry <= 0 */
     WORKING digit;
+    mcfprintf(stderr, "DEBUG |a|=%d shift=%d |r|=%d\n",
+              Length(a), shift, Length(result));
 
     if( Length(a)+shift > Length(result) )  return;  /* too big to subtract */
 
@@ -289,7 +291,9 @@ void    mpUTSub(result, a, m, shift)
     }
 
     for (; carry != 0; i++) {
-	assert(i + shift < Length(result));
+        mcfprintf(stderr, "DEBUG i=%d shift=%d |r|=%d\n",
+                 i, shift, Length(result));
+	assert(i + shift <= Length(result));
 
 	digit = (WORKING) carry + Digits(result)[i + shift];
 	Digits(result)[i + shift] = Low(digit);
@@ -355,9 +359,13 @@ void    mpUDivMod(a, b, q, r)
     trialr = 0;
 
     for (; place >= 0; place--) {
+        mcfprintf(stderr, "r=%ld scaleup(r)=%ld d=%d\n",
+                  trialr, Scale_Up(trialr), Digits(*r)[Length(b) + place - 1] );
 	trialr = Scale_Up(trialr) + Digits(*r)[Length(b) + place - 1];
 
 	m = trialr / trialb;
+        mcfprintf(stderr, "m=%d r=%ld b=%f p=%d\n",
+                  m, trialr, trialb, place);
 	mpUTSub(*r, b, m, place);
 
 	while (mpUCmpTimes(*r, b, place) >= 0) {

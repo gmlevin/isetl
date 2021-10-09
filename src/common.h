@@ -41,7 +41,7 @@ void _Cdecl abort(void);
 		if(!(x)) {assert_exit(__FILE__, __LINE__);}else
 #else
 #	define assert(x)	\
-		if(!(x)) {mcprintf("assert failed %s %s\n",__FILE__, __LINE__);}else
+		if(!(x)) {mcprintf("assert failed %s:%d\n",__FILE__, __LINE__);}else
 #endif
 #endif
 
